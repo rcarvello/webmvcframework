@@ -14,7 +14,7 @@
  * that satisfy user request.
  *
  * @package framework
- * @filesource framework/Bean.php
+ * @file framework/Bean.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
  * @note none
