@@ -3,7 +3,7 @@
  * Interface Bean
  *
  * Defines public methods that a MySQL Database Bean class must implement.
- * A Database Bean class manages a single MySQL table. By implementing this contract
+ * A Database Bean class manages a single MySQL table. By implementing this interface
  * it provides all necessary services to execute SQL operations against the managed
  * table.
  * The interface is designed to guarantee interoperability of a Database Bean class
