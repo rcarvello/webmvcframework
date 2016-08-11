@@ -14,7 +14,7 @@
  *
  * A url request could also contain applications subsystems, e.g.:
  *  - http://site/subsystem/controller/method/param1/param2
- *  - http://site/ubsystem/childsubsystem/controller/method/param1/param2
+ *  - http://site/subsystem/childsubsystem/controller/method/param1/param2
  *
  * A url request could also contain http get parameters, e.g.:
  *  - http://site/controller?get1=value2&get2=value2
