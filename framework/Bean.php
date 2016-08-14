@@ -7,9 +7,10 @@
  * it provides all necessary services to execute SQL operations against the managed
  * table.
  * The interface is designed to guarantee interoperability of a Database Bean class
- * together with the Record class. A Record object uses a Database Bean object.
+ * together with the Record class. A Record object uses a Database Bean object through
+ * its Bean interface.
  * A Record object handles the submit action of an HTML form designed to execute some
- * DML operations against a MySQL table. After the form submit the Record object
+ * DML operations against a MySQL table. After the form is submitted the Record object
  * intercepts the request and uses a Database Bean object to execute its DML operation
  * that satisfy user request.
  *
@@ -28,7 +29,7 @@ namespace framework;
 interface Bean
 {
     /**
-     * Selects a record from table matching give primary key
+     * Selects a record from table matching the given primary key
      *
      * @param mixed $pk
      * @return mixed
@@ -44,7 +45,7 @@ interface Bean
     public function insert();
 
     /**
-     * Deletes a record from table matching give primary key.
+     * Deletes a record from table matching the given primary key.
      *
      * @param mixed $pk
      * @return mixed
@@ -53,7 +54,7 @@ interface Bean
     public function delete($pk);
 
     /**
-     * Updates a record from table matching give primary key.
+     * Updates a record from table matching the given primary key.
      *
      * @param mixed $pk
      * @return mixed
@@ -62,7 +63,7 @@ interface Bean
     public function update($pk);
 
     /**
-     * Updates a record with current instance.
+     * Updates a record with the current instance.
      *
      * @param mixed $pk
      * @return mixed
