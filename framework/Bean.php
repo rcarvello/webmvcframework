@@ -15,10 +15,9 @@
  * that satisfy user request.
  *
  * @package framework
- * @file framework/Bean.php
+ * @filesource framework/Bean.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
- * @note none
  * @see framework/Record
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD
