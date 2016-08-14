@@ -45,7 +45,7 @@ interface Bean
     public function insert();
 
     /**
-     * Deletes a record from table matching the given primary key.
+     * Deletes a record from table matching the user given primary key.
      *
      * @param mixed $pk
      * @return mixed
