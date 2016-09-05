@@ -90,5 +90,5 @@ class DataRepeater extends Component
             $this->renderBlock();
         }
     }
-
+    
 }
