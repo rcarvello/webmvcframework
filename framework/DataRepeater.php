@@ -26,7 +26,6 @@ class DataRepeater extends Component
     private $repeaterType = "block";
     protected $enableBinding = false;
 
-
     /**
      * Sets the content for repeating with array's value to a block name from the View.
      *
@@ -91,6 +90,5 @@ class DataRepeater extends Component
             $this->renderBlock();
         }
     }
-
 
 }
