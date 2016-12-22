@@ -1,0 +1,27 @@
+# .htaccess
+# Main Web MVC Framework Rewrite Rules for routing request to index.php
+#
+# copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved.
+# see License.txt file
+# license BSD Clause 3 License
+# license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
+
+# Set Apache Rewrite Engine to On
+# Attiva il Rewrite Engine di Apache
+RewriteEngine On
+
+# Ignores errors for not founded directories and apply the RewriteRule
+# Ignora l'errore sul posizionamento nell directory che non esistono e applica il RewriteRule
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Ignores errors for not founded files and apply the RewriteRule
+# Ignora l'errore del caricamento dei file che non esistono e procedi con il RewriteRule
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Ignores errors for not founded links and apply the RewriteRule
+# Ignora l'errore dei link che non esistono e procedi con il RewriteRule
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# A simple rule to routes the URL request to index.php with a parameter named url and containing the requested url value.
+# Routing di tutte le richieste che non possono essere eseguite a index.php con parametro url contenente l'URL sottomessa.
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
