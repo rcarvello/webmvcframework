@@ -25,17 +25,17 @@ define("DBHOST","127.0.0.1");
 /**
  *  MySQL User
  */
-define("DBUSER","root");
+define("DBUSER","YOUR_DB_USER");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","letmysql");
+define("DBPASSWORD","YOUR_PASSWORD");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","bean_db");
+define("DBNAME","YOUR_DB");
 
 /**
  *  MySQL Port
@@ -46,13 +46,13 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","http://localhost/ftp-webmvc");
+define("SITEURL","http://YOUR_HOST/YOUR_WEB_APP_FOLDER");
 
 /**
  * Defines a constant for the default controller
  * @note use URL like notation for mapping a Controller named with a PascalCase notation
  */
-define("DEFAULT_CONTROLLER", "home_controller");
+define("DEFAULT_CONTROLLER", "main");
 
 /**
  * Defines a constant for the default login page
