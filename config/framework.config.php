@@ -3,7 +3,7 @@
  * framework.config.php
  *
  * Main framework configuration parameters.
- * Usually you don't need to change those value.
+ * Usually you don't need to change those values.
  *
  * @filesource framework.config.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
