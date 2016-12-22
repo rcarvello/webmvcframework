@@ -1,0 +1,5 @@
+Title=Titolo pagina
+Welcome=Benvenuto con WEB MVC Framework
+SwitchLanguage=Cambia lingua
+SwitchEnglish=Inglese
+SwitchItalian=Italiano
