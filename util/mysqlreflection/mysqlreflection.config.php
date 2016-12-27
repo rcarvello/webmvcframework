@@ -3,10 +3,10 @@
 /**
  * Defines the constants for MySQL database connection parameters.
  */
-define("DBHOST","localhost");
-define("DBUSER","root");
-define("DBPASSWORD","letmysql");
-define("DBNAME","bean_db");
+define("DBHOST","YOUR_DB_HOST");
+define("DBUSER","YOUR_DB_USER");
+define("DBPASSWORD","YOUR_DB_USER_PASSWORD");
+define("DBNAME","YOUR_DATABASE_NAME");
 define('DBPORT', '3306');
 
 /**
