@@ -6,4 +6,10 @@ See the docs folders for more information<br/><br/>
 <h2>How to install</h2>
 To install download and copy it into an Apache web folder. Then go to the config directory and modify application.config.php according to your MySQL server configuration and Apache web folder you used to deploy your application.<br/><br/>
 By default framework is provided with simple examples.<br>
-I will provide further examples in the future to illustrate all its functionalities.
+I will provide further examples in the future to illustrate all its functionalities.<br/><br/>
+<h2>How to autogenerate PHP Model classes from your MySQL database</h2>
+The util directory contains a file named <strong>app_create_beans.php</strong>. <br>
+Run it from your browser or from command line for running ORM autogeneration engine<br>
+Warning ! <br>
+Before running it you must configure MySQL access parameters by modifying <strong>util\mysqlreflection\mysqlreflection.config.php</strong> according to your MySQL configuration.<br>
+After running the generation utility the generated source code classes will be placed into the model directory.
