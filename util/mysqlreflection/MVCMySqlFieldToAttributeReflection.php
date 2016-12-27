@@ -12,7 +12,7 @@
  * @extends mysqli
  * @filesource MVCMySqlFieldToAttributeReflection.php
  * @category Framework Utility
- * @package \MySqlBeanGenerationEngine
+ * @package \util\mysqlreflection
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version CVS: v1.0.0
  * @note This class is extracted from my personal MVC Framework.
