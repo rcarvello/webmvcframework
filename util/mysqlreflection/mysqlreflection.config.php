@@ -1,4 +1,17 @@
 <?php
+/*
+ * MySQL ORM Autogeneration engine config file.
+ *
+ * @filesource MVCMySqlTableReflection.php
+ * @category Framework Utility
+ * @package \util\mysqlreflection
+ * @author Rosario Carvello <rosario.carvello@gmail.com>
+ * @version CVS: v1.0.0
+ * @note This class is extracted from my personal MVC Framework.
+ * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved .  See License.txt file
+ * @license BSD
+ * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD Public License.
+ */
 
 /**
  * Defines the constants for MySQL database connection parameters.
