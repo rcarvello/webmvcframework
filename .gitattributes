@@ -1,1 +1,2 @@
-linguist-language=PHP
++*._html linguist-language=PHP
++*._php linguist-language=PHP
