@@ -1,2 +1,2 @@
-+*._html linguist-language=PHP
-+*._php linguist-language=PHP
+*.module  text eol=lf whitespace=blank-at-eol,-blank-at-eof,-space-before-tab,tab-in-indent,tabwidth=2 diff=php linguist-language=PHP
+*.inc  text eol=lf whitespace=blank-at-eol,-blank-at-eof,-space-before-tab,tab-in-indent,tabwidth=2 diff=php linguist-language=PHP
