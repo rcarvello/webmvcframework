@@ -1,5 +1,5 @@
 # .htaccess
-# Main Web MVC Framework Rewrite Rules for routing request to index.php
+# Main Web MVC Framework Rewrite Rules for routing request to index.php and securing website
 #
 # copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved.
 # see License.txt file
