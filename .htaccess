@@ -29,3 +29,66 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # A simple rule to routes the URL request to index.php with a parameter named url and containing the requested url value.
 # Routing di tutte le richieste che non possono essere eseguite a index.php con parametro url contenente l'URL sottomessa.
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
+# File Protection
+# Protezione del file .htacess
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Secure website using
+# Sicurezza del sito
+Options +FollowSymlinks
+ServerSignature Off
+# Rule #4a - Block out any script trying to base64_encode crap to send via URL
+RewriteCond %{QUERY_STRING} base64_encode.*(.*) [OR]
+# Rule #4b - Block out any script that includes a <script> tag in URL
+RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+# Rule #4c - Block out any script trying to set a PHP GLOBALS variable via URL
+RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
+# Rule #4d - Block out any script trying to modify a _REQUEST variable via URL
+RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
+# Rule #4e - Send all blocked request to homepage with 403 Forbidden error!
+RewriteRule ^(.*)$ index.php [F,L]
+
+# Prevent XSS attacks
+# Prevenzione attacchi XSS
+RewriteCond %{QUERY_STRING} http://([a-zA-Z0-9_\-]*) [NC,OR]
+RewriteCond %{QUERY_STRING} http:/([a-zA-Z0-9_\-]*) [NC,OR]
+RewriteCond %{QUERY_STRING} cmd= [NC,OR]
+RewriteCond %{QUERY_STRING} &cmd [NC,OR]
+RewriteCond %{QUERY_STRING} exec [NC,OR]
+RewriteCond %{QUERY_STRING} execu [NC,OR]
+RewriteCond %{QUERY_STRING} concat [NC]
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK) [NC,OR]
+RewriteCond %{THE_REQUEST} ^.*(\|\|%0A|%0D).* [NC,OR]
+RewriteCond %{HTTP_REFERER} ^(.*)(<|>|'|%0A|%0D|%27|%3C|%3E|).* [NC,OR]
+RewriteCond %{HTTP_COOKIE} ^.*(<|>|'|%0A|%0D|%27|%3C|%3E|).* [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(,|;|:|<|>|">|"<|/|\\\.\.\\).{0,9999}.* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget).* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT}^.*(winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner).* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^.*(libwww-perl|curl|wget|python|nikto|scan).* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^.*(<|>|'|%0A|%0D|%27|%3C|%3E|).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark|print|printf|system|exec|scanf).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(localhost|loopback|127\.0\.0\.1).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(<|>|'|%0A|%0D|%27|%3C|%3E|).* [NC]
+RewriteRule ^.* - [F]
+
+# Prevent SQL injections
+# Prevenzione SQL injections
+RewriteCond %{QUERY_STRING} UNION([%20\ /\*+]*)ALL([%20\ /\*+]*)SELECT [NC,OR]
+RewriteCond %{QUERY_STRING} UNION([%20\ /\*+]*)SELECT [NC,OR]
+RewriteCond %{QUERY_STRING} /\* [NC,OR]
+RewriteCond %{QUERY_STRING} \*/ [NC]
+RewriteRule ^.* - [F]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} http:.*\/.*\/ [OR]
+RewriteCond %{QUERY_STRING} ..*\/ [OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteCond %{QUERY_STRING} [^az](declare|char|set|cast|convert|delete|drop|exec|insert|meta|script|select|truncate|update)[^a-z] [NC]
+RewriteRule (.*) - [F]
