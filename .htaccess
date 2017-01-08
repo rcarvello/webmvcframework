@@ -30,7 +30,6 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # Routing di tutte le richieste che non possono essere eseguite a index.php con parametro url contenente l'URL sottomessa.
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
-
 # File Protection
 # Protezione del file .htacess
 <Files .htaccess>
