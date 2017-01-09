@@ -5,7 +5,7 @@
  * Reflection class for a given MySQL database table.
  * Responsability:
  *
- *  - reflects all information about the input given table by using them to build the class PHP source code
+ *  - reflects all information about the input given table by using it to build the class PHP source code
  *  - uses MVCMySqlFieldToAttributeReflection class to map the table fields into an appropriate object
  *  - uses MVCMySqlBeanBuilder as builder engine of PHP source code by passing to it the retrieved information about the
  *  - uses MVCMySqlPKAnalyzer to inspetc PK
