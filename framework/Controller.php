@@ -55,7 +55,7 @@ abstract class Controller
     }
 
     /**
-     * Applie localizations variables to a given parsed tpl.
+     * Apply localizations variables to a given parsed tpl.
      * Localizations are located into an exeternal text file having the format:
      * - ControllerName.CurrentLocale.txt
      *
