@@ -38,10 +38,13 @@ La ridistribuzione e l'uso in forma di codice sorgente e binaria, con o senza mo
 
 2. Le ridistribuzioni in formule binarie devono riprodurre la nota di copyright sopra riportata, questa lista di condizioni e il seguente disconoscimento nella documentazione e/o altri materiali forniti con la distribuzione.
 
-3. Ne' il nome del possessore di copyright, Rosario Carvello, ne' i nomi dei suoi collaboratori possono essere utilizzati per avallare o promuovere prodotti derivati da questo software senza uno specifico permesso scritto.
+3. Ne' il nome del possessore di copyright, Rosario Carvello, ne' i nomi dei suoi collaboratori possono essere utilizzati per avallare 
+o promuovere prodotti derivati da questo software senza uno specifico permesso scritto.
 
-Questo software e' fornito dal possessore di copyright, Rosario Carvello "cosi' com'e'" e qualsiasi garanzia espressa o implicita, che includa, ma che
+Questo software e' fornito dal possessore di copyright, Rosario Carvello "cosi' com'e'" e qualsiasi garanzia espressa o implicita, 
+che includa, ma che
 non sia limitata a, garanzie implicite di commerciabilita' e idoneita' a scopo particolare, viene disconosciuta.
+
 In nessun caso il possessore di copyright sara' ritenuto responsabile per qualsiasi danno diretto, indiretto, connesso, particolare,
 esemplare o conseguente (includente, ma non limitato a, approvvigionamenti di beni o servizi alternativi; perdita di utilita', dati o profitti; interruzione di affari) comunque causati e su qualsiasi ipotesi di responsabilita', come da contratto, responsabilita' oggettiva, o torto (compresa negligenza o altro)
 derivante in qualsiasi modo dall'utilizzo di questo software anche se al corrente della possibilita' di tale danno.
