@@ -229,6 +229,9 @@ class Dispatcher
             $controller = new $controllerClass;
             if (!empty($method) && method_exists($controller, $method)) {
                 $reflection = new ReflectionMethod($controllerClass,$method);
+                if($reflection->getName() == "__construct") {
+                    throw new MethodNotFoundException("access denied to __construct");
+                }
                 if ($reflection->isProtected() || $reflection->isPrivate()){
                     throw new MethodNotFoundException($reflection->getName() . " access denied");
                 }
