@@ -214,8 +214,8 @@ class Dispatcher
         $controllerClass = $this->controllerClass;
         $method = $this->method;
 
-        $separatorBeforeController = !empty($this->currentSubSystem) ? "/":"";
-        $controllerClassFile = "controllers/".$this->currentSubSystem . $separatorBeforeController. $this->controllerClass . ".php";
+        // $separatorBeforeController = !empty($this->currentSubSystem) ? "/":"";
+        // $controllerClassFile = "controllers/".$this->currentSubSystem . $separatorBeforeController. $this->controllerClass . ".php";
 
         /*
         // Commented out for PSR autoloder support
