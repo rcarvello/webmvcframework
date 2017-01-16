@@ -1,1 +1,2 @@
 *.php linguist-language=Php
+*.tpl linguist-language=Html
