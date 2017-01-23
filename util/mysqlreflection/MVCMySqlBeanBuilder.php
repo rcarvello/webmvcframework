@@ -286,7 +286,7 @@ class MVCMySqlBeanBuilder
     {
         $this->source->setBlock("PhpHeader");
         $this->source->setVar("ClassParent", $this->getClassParent());
-	    $this->source->setVar("ClassImplements", CLASS_IMPLEMENTS);
+	$this->source->setVar("ClassImplements", CLASS_IMPLEMENTS);
         $this->source->setVar("ClassName", $this->getClassName());
         $this->source->setVar("ClassFileName", $this->getClassFileName());
         $this->source->setVar("TableName", $this->getTableName());
