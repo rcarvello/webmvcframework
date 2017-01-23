@@ -8,10 +8,9 @@
  *  - The generation process is based on parsing and processing of a template file, MVCMySqlBeanClass.php.tpl
  *  - For the template management is used the class MVCMySqlSimpleTemplate
  *
- * @extends mysqli
  * @filesource MVCMySqlBeanBuilder.php
  * @category Framework Utility
- * @package \util\mysqlreflection
+ * @package util\mysqlreflection
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version CVS: v1.0.0
  * @uses class MVCMySqlSimpleTemplate
@@ -20,6 +19,8 @@
  * @license BSD
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD Public License.
  */
+
+
 class MVCMySqlBeanBuilder
 {
     /**
@@ -285,7 +286,6 @@ class MVCMySqlBeanBuilder
     {
         $this->source->setBlock("PhpHeader");
         $this->source->setVar("ClassParent", $this->getClassParent());
-        $this->source->setVar("ClassImplements", CLASS_IMPLEMENTS);
         $this->source->setVar("ClassName", $this->getClassName());
         $this->source->setVar("ClassFileName", $this->getClassFileName());
         $this->source->setVar("TableName", $this->getTableName());
@@ -306,7 +306,7 @@ class MVCMySqlBeanBuilder
     {
         $this->source->setBlock("PkAttribute");
         $this->source->setVar("TablePkName", $this->getTablePkName());
-        $this->source->setVar("ClassPkAttributeType", $attribute->getType());
+        $this->source->setVar("ClassPkAttributeType", $attribute->getTypeForPHPDoc());
         $this->source->setVar("ClassPkAttributeName", $attribute->getName());
         $this->source->setVar("Comment", $attribute->comment);
         $this->source->setVar("TableName", $this->getTableName());
@@ -733,7 +733,7 @@ class MVCMySqlBeanBuilder
      */
     private function setAttributeValues(MVCMySqlFieldToAttributeReflection $attribute)
     {
-        $this->source->setVar("ClassAttributeType", $attribute->getType());
+        $this->source->setVar("ClassAttributeType", $attribute->getTypeForPHPDoc());
         $this->source->setVar("ClassAttributeName", $attribute->getName());
     }
 

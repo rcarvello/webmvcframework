@@ -5,7 +5,7 @@
  * Reflection class for a given MySQL database table.
  * Responsability:
  *
- *  - reflects all information about the input given table by using it to build the class PHP source code
+ *  - reflects all information about the input given table by using them to build the class PHP source code
  *  - uses MVCMySqlFieldToAttributeReflection class to map the table fields into an appropriate object
  *  - uses MVCMySqlBeanBuilder as builder engine of PHP source code by passing to it the retrieved information about the
  *  - uses MVCMySqlPKAnalyzer to inspetc PK
@@ -15,7 +15,7 @@
  * @extends mysqli
  * @filesource MVCMySqlTableReflection.php
  * @category Framework Utility
- * @package \util\mysqlreflection
+ * @package util\mysqlreflection
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version CVS: v1.0.0
  * @uses file mysql_connection_inc.php
@@ -462,8 +462,8 @@ class MVCMySqlTableReflection extends mysqli
         $attribute->name = $object->Field;
         $setType = $object->Type;
         if ($setType == "date" || $setType == "time" )
-                $setType = "string|" . $object->Type;
-        $attribute->type = $setType ;
+            $setType = "string|" . $object->Type;
+        $attribute->type = $setType;
         $attribute->null = $object->Null;
         $attribute->key = $object->Key;
         $attribute->default = $object->Default;

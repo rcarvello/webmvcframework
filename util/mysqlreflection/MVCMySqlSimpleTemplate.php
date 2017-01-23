@@ -9,10 +9,9 @@
  *  - Parses and processes its blocks, sub-blocks and variables by replacing them with data managed by MVCMySqlBeanBuilder
  *  - Gets the processed content ... the source code :-)
  *
- * @extends mysqli
  * @filesource MVCMySqlSimpleTemplate.php
  * @category Framework Utility
- * @package \util\mysqlreflection
+ * @package util\mysqlreflection
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version CVS: v1.0.0
  * @uses file MVCMySqlBeanClass.php.tpl

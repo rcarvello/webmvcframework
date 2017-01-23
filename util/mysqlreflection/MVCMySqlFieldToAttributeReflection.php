@@ -9,10 +9,9 @@
  *  - Gives data type conversion of the field from mysql to php
  *  - Gives more useful information about the field
  *
- * @extends mysqli
  * @filesource MVCMySqlFieldToAttributeReflection.php
+ * @package util\mysqlreflection
  * @category Framework Utility
- * @package \util\mysqlreflection
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version CVS: v1.0.0
  * @note This class is extracted from my personal MVC Framework.
@@ -186,6 +185,92 @@ class MVCMySqlFieldToAttributeReflection
         return $result;
     }
 
+    public function getTypeForPHPDoc()
+    {
+        $result = "";
+        if (preg_match('/int/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/year/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/integer/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/tynyint/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/smallint/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/mediumint/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/bigint/',$this->type))
+            $result =  "int";
+
+        if (preg_match('/varchar/',$this->type))
+            $result = "string";
+
+        if (preg_match('/char/',$this->type))
+            $result = "string";
+
+        if (preg_match('/text/',$this->type))
+            $result = "string";
+
+        if (preg_match('/tyntext/',$this->type))
+            $result = "string";
+
+        if (preg_match('/mediumtext/',$this->type))
+            $result = "string";
+
+        if (preg_match('/longtext/',$this->type))
+            $result = "string";
+
+        if (preg_match('/char/',$this->type))
+            $result = "string";
+
+        if (preg_match('/enum/',$this->type))
+            $result = "string";
+
+        if (preg_match('/set/',$this->type))
+            $result = "string";
+
+        if (preg_match('/date/',$this->type))
+            $result = "string";
+
+        if (preg_match('/time/',$this->type))
+            $result = "string";
+
+        if (preg_match('/datetime/',$this->type))
+            $result = "string";
+
+        if (preg_match('/decimal/',$this->type))
+            $result = "float";
+
+        if (preg_match('/float/',$this->type))
+            $result = "float";
+
+        if (preg_match('/double/',$this->type))
+            $result = "float";
+
+        if (preg_match('/real/',$this->type))
+            $result = "float";
+
+        if (preg_match('/fixed/',$this->type))
+            $result = "float";
+
+        if (preg_match('/numeric/',$this->type))
+            $result = "int";
+
+        if (empty($result)){
+            // $result = $this->type;
+            $result = "null";
+        }
+
+        // TODO EVALUATES BIT, TIMESTAMP, VARBINARY, BLOB MySQL data types
+        return $result;
+    }
     /**
      * getCast
      * Gets the casting string to be used by the generated class.

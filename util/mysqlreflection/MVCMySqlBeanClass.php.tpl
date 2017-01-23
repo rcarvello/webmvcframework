@@ -94,7 +94,8 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
      */
     public function __construct(${ClassPkAttributeName} = null)
     {
-        $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        // $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        parent::__construct();
         if (!empty(${ClassPkAttributeName})) {
             $this->select(${ClassPkAttributeName});
         }
@@ -128,7 +129,8 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
     */
     public function __construct({PKDMLFunctionParametersNullDefault})
     {
-        $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        // $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        parent::__construct();
         if ({PKDMLFunctionParametersIsNotNull}) {
             $this->select({PKDMLFunctionParameters});
         }
@@ -377,10 +379,11 @@ SQL;
             $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            } else {
+                $this->select(${ClassPkAttributeName});
+                $this->lastSql = $sql;
+                return $result;
             }
-            $this->select(${ClassPkAttributeName});
-            $this->lastSql = $sql;
-            return $result;
         } else {
             return false;
         }
@@ -411,10 +414,11 @@ SQL;
             $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - ". $this->error;
+            }   else {
+                $this->select({PKDMLFunctionParameters});
+                $this->lastSql = $sql;
+                return $result;
             }
-            $this->select({PKDMLFunctionParameters});
-            $this->lastSql = $sql;
-            return $result;
         } else {
             return false;
         }

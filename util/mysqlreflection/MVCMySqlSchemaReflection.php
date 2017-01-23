@@ -10,7 +10,7 @@
  * @extends mysqli
  * @filesource MVCMySqlSchemaReflection.php
  * @category Framework Utility
- * @package \util\mysqlreflection
+ * @package \MySqlBeanGenerationEngine
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version CVS: v1.0.0
  * @uses file mysql_connection_inc.php
