@@ -45,7 +45,7 @@ abstract class Controller
     }
 
     /**
-     * Gets the FQ Controller Name
+     * Gets the Fully Qualified Controller Name
      *
      * @return string
      */
@@ -55,7 +55,7 @@ abstract class Controller
     }
 
     /**
-     * Apply localizations variables to a given parsed tpl.
+     * Applies localizations variables to a given parsed tpl.
      * Localizations are located into an exeternal text file having the format:
      * - ControllerName.CurrentLocale.txt
      *
