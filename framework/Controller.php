@@ -56,8 +56,10 @@ abstract class Controller
 
     /**
      * Applies localizations variables to a given parsed tpl.
-     * Localizations are located into an exeternal text file having the format:
-     * - ControllerName.CurrentLocale.txt
+     * Localizations are located into an external text file having the format:
+     * - ControllerName.txt
+     * The .txt is placed inside a directory locales/LOCALE_ID/.. followed by
+     * the subsystem name.
      *
      * @uses framework/classes/Locale to manage Locale e Localization file.
      * @param string $parsedTpl A text to translate with localizations.
