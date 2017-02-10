@@ -7,7 +7,7 @@
  * consumed by the Record Component.
  * A Record object uses BeanAdapter object through its Bean interface.
  * A Record object handles the submit action of an HTML form designed to execute some
- * DML operations against a MySQL table. After the form submit the Record object
+ * DML operations against a MySQL table. After the form submission the Record object
  * intercepts the request and uses BeanAdapter object to execute its DML operation
  * that satisfy user request. The BeanAdpter itself uses a MySQL Bean Class which manage
  * a single MySQL table and provide all necessary services to execute SQL operations.
