@@ -27,22 +27,22 @@ define("COMPRESS_OUTPUT", false);
 /**
  * Defines a constant for folder path of applications controllers
  */
-define("APP_CONTROLLERS_PATH", "controllers");
+define("APP_CONTROLLERS_PATH", RELATIVE_PATH . "controllers");
 
 /**
  * Defines a constant for folder path of applications models
  */
-define("APP_MODELS_PATH", "models");
+define("APP_MODELS_PATH", RELATIVE_PATH . "models");
 
 /**
  * Defines a constant for folder path of applications views
  */
-define("APP_VIEWS_PATH", "views");
+define("APP_VIEWS_PATH", RELATIVE_PATH . "views");
 
 /**
  * Defines a constant for folder path of applications templates
  */
-define("APP_TEMPLATES_PATH", "templates");
+define("APP_TEMPLATES_PATH", RELATIVE_PATH . "templates");
 
 /**
  * Defines a constant for folder path of applications templates
@@ -52,7 +52,7 @@ define("APP_TEMPLATES_PATH", "templates");
 /**
  * Defines a constant for path of JavaScript frameworks files
  */
-define("JSFRAMEWORK", "framework/js/");
+define("JSFRAMEWORK", RELATIVE_PATH . "framework/js/");
 
 /**
  * Defines a constant for framework's classes directories
