@@ -52,7 +52,7 @@ define("APP_TEMPLATES_PATH", RELATIVE_PATH . "templates");
 /**
  * Defines a constant for path of JavaScript frameworks files
  */
-define("JSFRAMEWORK", RELATIVE_PATH . "framework/js/");
+define("JSFRAMEWORK", "framework/js/");
 
 /**
  * Defines a constant for framework's classes directories
