@@ -16,7 +16,7 @@
 /**
  *  Application path where are located resource files for localization
  */
-define("APP_LOCALE_PATH","locales");
+define("APP_LOCALE_PATH", RELATIVE_PATH . "locales");
 
 /**
  *  Locale file name for the application (without extension, default is .txt)
