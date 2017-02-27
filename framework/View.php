@@ -3,7 +3,7 @@
  * Class VIEW
  *
  * A View of MVC design pattern manages the presentation.
- * Technically speaking it has these main roles:
+ * Technically speaking it has those main roles:
  *
  * - Loads and manages HTML templates file. A template files implements the GUI design or
  *   or, generally, the output of the application.
