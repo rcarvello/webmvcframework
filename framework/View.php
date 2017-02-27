@@ -62,6 +62,11 @@ class View
     protected $currentBlock;
 
     /**
+     * @var string Store the path depth of the template (to use for JS/CSS fieles inclusion)
+     */
+    protected $tplPathDepth;
+
+    /**
      * View constructor.
      * Creates View object to manage a static html template.
      * The static template name must exist into APP_TEMPLATES_PATH folder and must have
@@ -86,6 +91,7 @@ class View
      */
     protected function loadTemplate($tplName)
     {
+        $this->setTplPathDept($tplName);
         $tpl = APP_TEMPLATES_PATH  . "/" . $tplName . ".html.tpl";
         $this->tpl = @file_get_contents($tpl);
         if ($this->tpl == false)
@@ -101,11 +107,45 @@ class View
      */
     public function loadCustomTemplate($tplName)
     {
+        $this->setTplPathDept($tplName);
         $tpl = RELATIVE_PATH . $tplName . ".html.tpl";
         $this->tpl = @file_get_contents($tpl);
         if ($this->tpl == false)
             throw new TemplateNotFoundException("Template $tpl non trovato",101);
         $this->blocks = array();
+    }
+
+    /**
+     * Sets path depth of given teplate reference
+     * @param string $tplName
+     */
+    private function setTplPathDept($tplName)
+    {
+        $slashesOccurence = substr_count($tplName, '/');
+        $this->tplPathDepth = str_repeat("../", $slashesOccurence);
+    }
+
+    /**
+     * Get path depth of teplate reference
+     *
+     */
+    public function getTplPathDepth()
+    {
+        return $this->tplPathDepth;
+    }
+   
+    /**
+     * Set TEMPLATE_PATH placeholder.
+     * 
+     * @param bool $useSiteUrl If true (default) sse site url path. False use path depth
+     */
+    public function setVarTemplatePath($useSiteUrl = true)
+    {
+        if ($useSiteUrl) {
+            $this->setVar("TEMPLATE_PATH", SITEURL. "/");
+        } else{
+            $this->setVar("TEMPLATE_PATH", $this->getTplPathDepth());
+        }
     }
 
     /**
