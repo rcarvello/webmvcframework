@@ -86,7 +86,7 @@ class View
      */
     protected function loadTemplate($tplName)
     {
-        $tpl = RELATIVE_PATH . APP_TEMPLATES_PATH  . "/" . $tplName . ".html.tpl";
+        $tpl = APP_TEMPLATES_PATH  . "/" . $tplName . ".html.tpl";
         $this->tpl = @file_get_contents($tpl);
         if ($this->tpl == false)
             throw new TemplateNotFoundException("Template $tpl non trovato",101);
