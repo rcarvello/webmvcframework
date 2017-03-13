@@ -9,33 +9,41 @@
 namespace controllers\example02;
 
 use framework\Controller;
+use framework\Model;
+use framework\View;
 use framework\components\DataRepeater;
 use views\example02\Demo as DemoView;
 use models\example02\Demo as DemoModel;
 
-use framework\classes\Locale;
+
 class Demo extends Controller
 {
 
     protected $view;
     protected $model;
 
-    public function autorun($parameter = null)
+
+    public function __construct(View $view=null, Model $model=null)
     {
-        $view = $this->initView();
-        $model = $this->initModel();
-        $view->setMessage("{$model->getData()} MVC");
-        $this->initRepeaterComponent($view,$model);
+        $this->view = empty($view) ? $this->getView() : $view;
+        $this->model = empty($model) ? $this->getModel() : $model;
+        parent::__construct($this->view,$this->model);
     }
 
-    protected function initView()
+    public function autorun($parameter = null)
+    {
+        $this->view->setMessage("{$this->model->getData()} MVC");
+        $this->initRepeaterComponent($this->view,$this->model);
+    }
+
+    public function getView()
     {
         $view = new DemoView();
         $this->setView($view);
         return $view;
     }
 
-    protected function initModel()
+    public function getModel()
     {
         $model = new DemoModel();
         $this->setModel($model);

@@ -2,6 +2,8 @@
 namespace controllers\example01;
 
 use framework\Controller;
+use framework\Model;
+use framework\View;
 use views\example01\Hello as HelloView;
 use models\example01\Hello as HelloModel;
 
@@ -9,28 +11,29 @@ use models\example01\Hello as HelloModel;
 class Hello extends Controller
 {
 
-    protected $view;
-    protected $model;
+    public function __construct(View $view=null, Model $model=null)
+    {
+        $this->view = empty($view) ? $this->getView() : $view;
+        $this->model = empty($model) ? $this->getModel() : $model;
+        parent::__construct($this->view,$this->model);
+    }
+
 
     public function autorun($parameter = null)
     {
-        $view = $this->initView();
-        $model = $this->initModel();
-        $view->setMessage("{$model->getData()} {$this->getName()}");
-        $view->setSiteUrl($this->getSiteURL());
+        $this->view->setMessage("{$this->model->getData()} {$this->getName()}");
+        $this->view->setSiteUrl($this->getSiteURL());
     }
 
-    protected function initView()
+    public function getView()
     {
         $view = new HelloView();
-        $this->setView($view);
         return $view;
     }
 
-    protected function initModel()
+    public function getModel()
     {
         $model = new HelloModel();
-        $this->setModel($model);
         return $model;
     }
 
@@ -41,19 +44,16 @@ class Hello extends Controller
 
     public function simpleMethod()
     {
-        $view = $this->initView();
-        $model = $this->initModel();
-        $view->setMessage("{$model->getData()} {$this->getName()}->simpleMethod()");
-        $view->setSiteUrl($this->getSiteURL());
+
+        $this->view->setMessage("{$this->model->getData()} {$this->getName()}->simpleMethod()");
+        $this->view->setSiteUrl($this->getSiteURL());
         $this->render();
     }
 
     public function anotherMethod($parameter1,$parameter2=null)
     {
-        $view = $this->initView();
-        $model = $this->initModel();
-        $view->setMessage("{$model->getData()} {$this->getName()}->anotherMethod() with $parameter1 and $parameter2");
-        $view->setSiteUrl($this->getSiteURL());
+        $this->view->setMessage("{$this->model->getData()} {$this->getName()}->anotherMethod() with $parameter1 and $parameter2");
+        $this->view->setSiteUrl($this->getSiteURL());
         $this->render();
     }
 

@@ -3,27 +3,39 @@
 
 namespace controllers\example01;
 
+use framework\Model;
 use framework\View;
+
 class HelloExtended extends \controllers\example01\Hello
 {
 
-    protected function initView()
+    public function __construct(View $view=null, Model $model=null)
     {
-        $view = parent::initView();
+        parent::__construct($this->view,$this->model);
+        $this->setList();
+    }
+
+    /**
+     * Overrides parent InitView
+     * @return \views\example01\Hello
+     */
+    public function getView()
+    {
+        $view = parent::getView();
+        // Overriding the template with a new one containing html for listing items
         $view->loadCustomTemplate("templates/example01/hello_extended");
-        $this->setList($view);
         return $view;
     }
 
-    private function setList(View $view)
+    public function setList()
     {
-        $listItems = array("item a", "item b", "item c");
-        $view->openBlock("ListItems");
+        $listItems = $this->getModel()->getElements();
+        $this->view->openBlock("ListItems");
         foreach($listItems as $item){
-            $view->setVar("Item",$item);
-            $view->parseCurrentBlock();
+            $this->view->setVar("Item",$item);
+            $this->view->parseCurrentBlock();
         }
-        $view->setBlock();
+        $this->view->setBlock();
     }
 
     public function hideList()
