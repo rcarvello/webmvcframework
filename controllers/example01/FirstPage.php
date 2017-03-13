@@ -17,11 +17,16 @@ use controllers\example02\Demo;
 
 class FirstPage extends Controller
 {
+
     public function __construct(View $view=null, Model $model=null)
     {
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
-
+        parent::__construct($this->view,$this->model);
+    }
+    
+    public function autorun($parameters = null)
+    {
         $this->view->setControllerNamePlaceHolder($this->getName());
 
         $data = $this->model->getSimpleData();
@@ -31,9 +36,7 @@ class FirstPage extends Controller
         $this->view->setUsersBlock($userList);
 
         $this->bindController(new Demo());
-        parent::__construct($this->view,$this->model);
     }
-
 
     public function getView()
     {
