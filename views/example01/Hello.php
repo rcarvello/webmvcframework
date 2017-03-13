@@ -5,9 +5,12 @@ use framework\View;
 
 class Hello extends View
 {
-    public function __construct()
+
+    public function __construct($tplName = null)
     {
-        parent::__construct("example01/hello");
+        if (empty($tplName))
+            $tplName = "example01/hello";
+        parent::__construct($tplName);
     }
 
     public function setMessage($message=null)
@@ -19,4 +22,5 @@ class Hello extends View
     {
         $this->setVar("siteurl",$url);
     }
+
 }
