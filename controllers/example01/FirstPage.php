@@ -19,8 +19,8 @@ class FirstPage extends Controller
 {
     public function __construct(View $view=null, Model $model=null)
     {
-        $this->view = empty($view) ? $this->initView() : $view;
-        $this->model = empty($model) ? $this->initModel() : $model;
+        $this->view = empty($view) ? $this->getView() : $view;
+        $this->model = empty($model) ? $this->getModel() : $model;
 
         $this->view->setControllerNamePlaceHolder($this->getName());
 
@@ -35,13 +35,13 @@ class FirstPage extends Controller
     }
 
 
-    protected function initView()
+    public function getView()
     {
         $view = new FirstPageView();
         return $view;
     }
 
-    protected function initModel()
+    public function getModel()
     {
         $model = new FirstPageModel();
         return $model;
