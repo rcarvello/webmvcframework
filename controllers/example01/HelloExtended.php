@@ -16,7 +16,7 @@ class HelloExtended extends \controllers\example01\Hello
     }
 
     /**
-     * Overrides parent InitView
+     * Overrides parent getView
      * @return \views\example01\Hello
      */
     public function getView()
