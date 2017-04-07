@@ -2,7 +2,7 @@
 ### Overview
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/framework.png)
 ### Dispatcher
-![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/Dispatch and Create MVC Instance.png)
+![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/Dispatch%20and%20Create%20MVC%20Instance.png)
 ### Subsystems
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/MVC_0_framework.png)
 ### Components
