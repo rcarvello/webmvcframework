@@ -391,7 +391,7 @@ class View
     {
         $this->checkLoadedTpl();
 
-        if  ($errors[0] == "" || !isset($error)) {
+        if  ($errors[0] == "" || !isset($errors)) {
             $this->hide("ValidationErrors");
         } else {
             $this->openBlock("ValidationErrors");
