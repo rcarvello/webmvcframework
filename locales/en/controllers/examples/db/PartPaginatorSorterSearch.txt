@@ -1,0 +1,11 @@
+#Comment: Loads translations defined
+#Load:locales/en/controllers/examples/db/PartList.txt
+SearchFormTitle=Search a part
+PartCodeLabel=Part code
+PartCodePlaceholder=Please specify a part code number
+PartDescriptionLabel=Part description
+PartDescriptionPlaceholder=Please specify a word for description
+SearchSubmitCaption=Do search
+SearchResetCaption=Reset all
+SourceLabel=Source
+SourceSelectAValueText=Select a source value

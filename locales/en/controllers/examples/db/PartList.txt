@@ -1,0 +1,14 @@
+#Comment: Loads translations defined
+#Load:locales/en/controllers/examples/cms/Localization.txt
+
+part_code=Code
+description=Description
+source=Source
+source_lead_time=Lead time
+measurement_unit_code=Unit
+part_type_code=Type
+part_category_code=Category code
+wastage=Wastage
+bom_levels=BOM Levels
+PartsList=Parts list
+AllParts=All records

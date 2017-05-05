@@ -1,0 +1,2 @@
+#Comment: Loads translations defined
+#Load:locales/it-it/controllers/examples/db/PartList.txt

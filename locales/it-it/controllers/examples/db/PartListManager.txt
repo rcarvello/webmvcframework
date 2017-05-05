@@ -1,0 +1,3 @@
+#Comment: Loads translations
+#Load:locales/it-it/controllers/examples/db/PartPaginatorSorterSearchExternal.txt
+AddNewPart= Aggiungi una nuova parte

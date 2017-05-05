@@ -1,0 +1,11 @@
+#Comment:Translations for controller Localization
+ProjectName=Gestione MRP
+Contacts=Contatti
+Setting=Impostazioni
+LanguageSettings=Impostazioni lingua
+English=Inglese
+Italian=Italiano
+GuiSettings=Impostazioni GUI
+LookAndFeel=Aspetto
+Exit=Uscita (Indice Esempi)
+InfoMessage=Click su Impostazioni->Ipostazioni lingua per cambiare lingua. Le traduzioni sono poste nella cartella "locales".

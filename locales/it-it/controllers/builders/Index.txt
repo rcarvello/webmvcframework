@@ -1,0 +1,6 @@
+Welcome=Benvenuto
+to=in
+RunSkeletonBuilderCaption=Esegui l'utility Skeleton Builder
+RunMySQLBuilderCaption=Esegui l'utily MVC MySQL to Class
+SelectUtility=Seleziona l'utility
+ExamplesHome=Indice degli esempi

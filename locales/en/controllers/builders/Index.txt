@@ -1,0 +1,6 @@
+Welcome=Welcome
+to=to
+RunSkeletonBuilderCaption=Run MVC Skeleton Builder Tool
+RunMySQLBuilderCaption=Run MVC MySQL to Class utility
+SelectUtility=Select an utility
+ExamplesHome=Examples TOC

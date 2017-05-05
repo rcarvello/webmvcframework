@@ -1,0 +1,3 @@
+#Comment: Loads translations defined
+#Load:locales/en/controllers/examples/cms/Localization.txt
+AdditionalInfo=But now we are using the hierarchical composition of MVC instances . See the source code

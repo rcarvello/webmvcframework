@@ -1,0 +1,12 @@
+#Comment: Loads translations defined
+#Load:locales/it-it/controllers/examples/db/PartPaginatorSorterSearchExternal.txt
+PartManager=Scheda parte
+measurement_unit_code_select_value=Seleziona l'unità di misura
+source_select_value=Seleziona origine
+part_type_code_select_value=Selezione il tipo di parte
+part_category_code_value=Select la categoria della parte
+errormsg=Si sono verificati errori:
+New_Record=Aggiungi una nuovo prodotto/parte
+Edit_Record=Modifica prodotto/parte. Codice:
+errormsg= Si sono verificati i seguenti errori:
+AddNewPart= Aggiungi una nuova parte
