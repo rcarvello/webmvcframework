@@ -214,6 +214,7 @@ class Dispatcher
         $controllerClass = $this->controllerClass;
         $method = $this->method;
 
+        // Rem out
         // $separatorBeforeController = !empty($this->currentSubSystem) ? "/":"";
         // $controllerClassFile = "controllers/".$this->currentSubSystem . $separatorBeforeController. $this->controllerClass . ".php";
 

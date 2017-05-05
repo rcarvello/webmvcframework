@@ -62,7 +62,7 @@ class DataRepeater extends Component
      *                              null use Model
      *
      */
-    public function __construct(View $view=null, Model $model=null, $block =null,$dataList = null)
+    public function __construct(View $view=null, Model $model=null, $block=null,$dataList=null)
     {
         parent::__construct($view, $model);
 

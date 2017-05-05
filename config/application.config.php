@@ -25,17 +25,17 @@ define("DBHOST","127.0.0.1");
 /**
  *  MySQL User
  */
-define("DBUSER","YOUR_DB_USER");
+define("DBUSER","PUT_YOUR_USERNAME");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","YOUR_PASSWORD");
+define("DBPASSWORD","PUT_YOUR_PASSWORD");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","YOUR_DB");
+define("DBNAME","PUT_YOUR_DB_NAME");
 
 /**
  *  MySQL Port
@@ -46,13 +46,13 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","http://YOUR_HOST/YOUR_WEB_APP_FOLDER");
+define("SITEURL","http://localhost/corsomvc");
 
 /**
  * Defines a constant for the default controller
  * @note use URL like notation for mapping a Controller named with a PascalCase notation
  */
-define("DEFAULT_CONTROLLER", "main");
+define("DEFAULT_CONTROLLER", "index");
 
 /**
  * Defines a constant for the default login page

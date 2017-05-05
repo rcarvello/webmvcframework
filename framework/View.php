@@ -133,10 +133,10 @@ class View
     {
         return $this->tplPathDepth;
     }
-   
+
     /**
      * Set TEMPLATE_PATH placeholder.
-     * 
+     *
      * @param bool $useSiteUrl If true (default) sse site url path. False use path depth
      */
     public function setVarTemplatePath($useSiteUrl = true)

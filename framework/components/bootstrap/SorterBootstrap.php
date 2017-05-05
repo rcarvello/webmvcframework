@@ -21,10 +21,16 @@ class SorterBootstrap extends Sorter
     /**
      * @var string The value to show for sorter direction when ASC
      */
-    public $captionForDirectionUp   = '<span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>';
+    public $captionForDirectionUp   = '<i class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></i>';
 
     /**
      * @var string The value to show for sorter direction when DESC
      */
-    public $captionForDirectionDown = '<span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>';
+    public $captionForDirectionDown = '<i class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></i>';
+
+    public function __construct()
+    {
+        parent::__construct();
+        // $this->view->loadCustomTemplate("framework/resources/components/bootstrap/sorter");
+    }
 }

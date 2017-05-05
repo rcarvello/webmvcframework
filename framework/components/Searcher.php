@@ -64,6 +64,7 @@ class Searcher extends Component
                 } else {
                     $parameter = $this->model->real_escape_string($_GET[$p["parameter"]]);
                     $sql = $sql . $key . $p["operator"] . $_GET[$p["parameter"]] . " " .$this->booleanOperator . " " ;
+                    // $sql = $sql . $key . $p["operator"] . $parameter . " " .$this->booleanOperator . " " ;
                 }
                 $view->setVar($p["parameter"], $_GET[$p["parameter"]]);
             } else {

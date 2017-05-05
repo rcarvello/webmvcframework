@@ -1,0 +1,133 @@
+html,body {
+    height:100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+.modal-body{
+    height: 250px;
+    overflow-y: auto;
+}
+
+@media (min-height: 500px) {
+    .modal-body { height: 400px; }
+}
+
+@media (min-height: 800px) {
+    .modal-body { height: 600px; }
+}
+
+
+.row {
+    margin-left:0;
+    margin-right:0;
+}
+
+.row .sp {
+    height:150px;
+    min-height:45px;
+    padding-right:0;
+    padding-left: 0;
+    background-color: #222;
+    border-bottom:4px solid transparent;
+}
+
+.row .sp.toolbar {
+    min-height:450px;
+}
+
+.wrapper {
+    width:100%;
+    min-height: 100%;
+    height: 100%;
+    overflow:hidden;
+}
+
+
+.inner {
+    overflow-y:auto;
+    overflow-x:hidden;
+    /* height:100%; */
+    min-height:100%;
+}
+
+.outer {
+    border:0px #000 solid;
+    height:100%;
+}
+
+.pane-settings {
+    background: #002B36;
+    color:#b3b1b1;
+    position: absolute;
+    z-index: 199;
+    padding: 3px;
+    font-size: 16px;
+    opacity: .8;
+    right: 5px;
+    top: 0;
+    margin: 0;
+}
+
+.pane-label {
+    font-family: monospace;
+    background: #002B36;
+    color:#b3b1b1;
+    position: absolute;
+    z-index: 199;
+    padding: 3px;
+    font-size: 11px;
+    opacity: .7;
+    right: 10px;
+    bottom: 10px;
+    margin: 0;
+}
+
+.editable {
+    float:left;
+    margin-right:2px;
+    border:1px #ddd solid;
+    padding:1px;
+    line-height: 1.5;
+    border-radius:2px;
+}
+
+.toolbar
+{
+    padding:3px;
+    height:28px;
+}
+
+::-webkit-scrollbar {
+    width: 0.9em;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, 0.7);
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(100, 100, 100, 0.4);
+}
+
+.ace_autocomplete {
+    width: 270px;
+    z-index: 200000;
+    background: #666;
+    color: #eee;
+    border: 0 lightgray solid;
+    position: fixed;
+    box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+    line-height: 1.4;
+}
+
+.ace_content {
+    height:900px;
+}

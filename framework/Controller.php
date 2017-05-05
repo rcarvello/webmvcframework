@@ -31,13 +31,13 @@ abstract class Controller
     /**
      * Controller Object constructor.
      *
-     * @param View|null $view The managed view.
-     * @param Model|null $model The managed model
+     * @param View [optional] $view The managed view.
+     * @param Model [optional] $model The managed model
      */
     public function __construct(View $view = null, Model $model = null)
     {
         empty($view) ? $this->view = new View() : $this->view = $view;
-        empty($model) ? $this->model = new Model() : $this->model = $model;;
+        empty($model) ? $this->model = new Model() : $this->model = $model;
         if ($this->isInvokedControllerMain()) {
             $this->autorun();
         }

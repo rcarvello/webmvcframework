@@ -12,6 +12,8 @@
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
 namespace framework\exceptions;
+use Exception;
+
 class VariableNotFoundException extends MVCException
 {
 

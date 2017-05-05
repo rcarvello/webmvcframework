@@ -98,6 +98,8 @@ class Loader
             $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+        $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, RELATIVE_PATH);
+        $fileName = $relativePath . $fileName;
         if (file_exists($fileName))
             require $fileName;
 

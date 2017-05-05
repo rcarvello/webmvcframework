@@ -39,6 +39,7 @@ class Model extends mysqli
         $this->resultSet = $mysqliResult;
     }
 
+
     public function getResultSet()
     {
         return $this->resultSet;

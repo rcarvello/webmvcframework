@@ -77,6 +77,7 @@ class Record extends Component{
      */
     const DISALLOW_MODE_WITH_DISABLE    = 'disabled';
 
+    public $editMode = false;
     /**
      * @var bool Allows form ADD, default true
      */
@@ -230,15 +231,19 @@ class Record extends Component{
     public function init(Model $beanAdapter=null, View $view=null)
     {
         $this->beanAdapter = $beanAdapter;
-        $this->doAction($beanAdapter);
         $this->view->setVar("Separator",$this->actionsSeparator);
+
+        $this->doAction($beanAdapter);
 
         if (!empty($this->currentRecord[0])) {
             $this->allowAdd = false;
+            $this->editMode = true;
         } else {
             $this->allowUpdate = false;
             $this->allowDelete = false;
+            $this->editMode = false;
         }
+
         if ($this->record_add == self::ADD)
             $this->view->setVar(self::ADD,    $this->record_add);
         if ($this->record_update == self::UPDATE)

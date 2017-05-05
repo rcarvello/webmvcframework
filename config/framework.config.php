@@ -3,7 +3,7 @@
  * framework.config.php
  *
  * Main framework configuration parameters.
- * Usually you don't need to change those values.
+ * Usually you don't need to change those value.
  *
  * @filesource framework.config.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
@@ -52,7 +52,7 @@ define("APP_TEMPLATES_PATH", RELATIVE_PATH . "templates");
 /**
  * Defines a constant for path of JavaScript frameworks files
  */
-define("JSFRAMEWORK", "framework/js/");
+define("JSFRAMEWORK","framework/js/");
 
 /**
  * Defines a constant for framework's classes directories
