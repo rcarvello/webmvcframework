@@ -109,9 +109,10 @@ class MVCMySqlTableReflection extends mysqli
 
         // Set DDL
         $rsDdl = $this->query($sqlDdl);
-        $row = $rsDdl->fetch_row();
-        $ddl = $row[1];
-
+        if ($rsDdl) {
+            $row = $rsDdl->fetch_row();
+            $ddl = $row[1];
+        }
         // Set table comment
         $rsComment = $this->query($sqlTableComment);
         $row = $rsComment->fetch_row();
