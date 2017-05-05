@@ -1,5 +1,0 @@
-Title=Demo page title
-Welcome= Welcome to WEB MVC Framework
-SwitchLanguage=Change language
-SwitchEnglish=English
-SwitchItalian=Italian
