@@ -45,8 +45,9 @@ define('DBPORT', '3306');
 /**
  * Defines a constant for site URL
  * @note without the ending slash
+ * @example: http://localhost/webmvc
  */
-define("SITEURL","http://localhost/corsomvc");
+define("SITEURL","http://PUT_YOUR_HOST/PUT_YOUR_FOLDER");
 
 /**
  * Defines a constant for the default controller
