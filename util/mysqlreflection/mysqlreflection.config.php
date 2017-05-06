@@ -3,7 +3,7 @@
 /**
  * Defines the constants for MySQL database connection parameters.
  */
-define("DBHOST","localhost");
+define("DBHOST","PUT_YOUR_DB_HOST");
 define("DBUSER","PUT_YOUR_USERNAME");
 define("DBPASSWORD","PUT_YOUR_PASSWORD_HERE");
 define("DBNAME","PUT_YOUR_DB_NAME_HERE");
