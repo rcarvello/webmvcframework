@@ -20,7 +20,7 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","127.0.0.1");
+define("DBHOST","PUT_YOUR_DB_HOST");
 
 /**
  *  MySQL User
