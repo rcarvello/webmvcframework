@@ -78,7 +78,7 @@
     <div class="panel-heading" role="tab" id="headingDatabase">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#Database"  aria-controls="collapseThree">
-          Database feautures and Components
+          Database features and components
         </a>
       </h4>
     </div>
