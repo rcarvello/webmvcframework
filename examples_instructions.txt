@@ -1,0 +1,49 @@
+Examples and Buiders setup
+==========================
+
+A) Unzip package into a web folder
+
+B) Install Database script file sql/mrp.sql
+
+C) Modify the following lines of config/application.config.php" according to your db and 
+   web server
+
+
+/**
+ *  MySQL User
+ */
+define("DBUSER","PUT_YOUR_USERNAME");
+
+/**
+ * MySQL Password
+ */
+define("DBPASSWORD","PUT_YOUR_PASSWORD");
+
+/**
+ *  MySQL Database
+ */
+define("DBNAME","PUT_YOUR_DB_NAME");
+
+/**
+ *  MySQL Port
+ */
+define('DBPORT', '3306');
+
+/**
+ * Defines a constant for site URL
+ * @note without the ending slash
+ * @example: http://localhost/webmvc
+ */
+define("SITEURL","http://PUT_YOUR_HOST/PUT_YOUR_FOLDER");
+
+
+D) Modify the following lines of "util/mysqlreflection/mysqlreflection.config.php" according 
+   to your db
+
+define("DBHOST","PUT_YOUR_DB_HOST");
+define("DBUSER","PUT_YOUR_USERNAME");
+define("DBPASSWORD","PUT_YOUR_PASSWORD_HERE");
+define("DBNAME","PUT_YOUR_DB_NAME_HERE");
+define('DBPORT', '3306');
+
+E) Run: http://YOUR_HOST/YOUR_FOLDER
