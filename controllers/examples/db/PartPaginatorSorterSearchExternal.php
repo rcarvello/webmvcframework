@@ -41,7 +41,7 @@ class PartPaginatorSorterSearchExternal extends PartPaginatorSorter
         $searcher->setName("ricerca");
 
         // Creates filters: table field, form input, operators into query, type
-        $searcher->addFilter("part_code","s_part_code","=","int");
+        $searcher->addFilter("part_code","s_part_code","=","string");
         $searcher->addFilter("description","s_description","LIKE","string");
         $searcher->addFilter("source","s_source","=","string");
 
