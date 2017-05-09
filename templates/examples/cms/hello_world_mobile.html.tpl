@@ -17,7 +17,7 @@
     <div data-role="header" data-position="inline">
         <div data-role="navbar">
             <ul>
-                <li><a href="Home" data-icon="home" class="ui-btn-active">Home</a></li>
+                <li><a href="{GLOBAL:SITEURL}/examples/" data-ajax="false" data-icon="home" class="ui-btn-active">Home</a></li>
                 <li><a href="Buttons" data-icon="star">Buttons</a></li>
                 <li><a href="List" data-icon="grid">Lists</a></li>
                 <li><a href="Nav" data-icon="search">Nav</a></li>
