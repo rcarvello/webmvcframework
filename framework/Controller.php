@@ -15,6 +15,7 @@ namespace framework;
 use \DOMDocument;
 use \ReflectionClass;
 use framework\classes\Locale;
+use framework\classes\Globalize;
 use framework\exceptions\VariableNotFoundException;
 use framework\components\Component;
 
@@ -118,6 +119,8 @@ abstract class Controller
         // $this->view->render();
         $parsedTpl = $this->view->parse();
         $output = $this->localize($parsedTpl);
+        $globalize = new Globalize($output);
+        $output = $globalize->getContent();
         if (COMPRESS_OUTPUT)
             $output = trim(preg_replace('/\s+/', ' ', $output));
         echo $output;
