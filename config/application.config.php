@@ -20,22 +20,22 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","PUT_YOUR_DB_HOST");
+define("DBHOST","127.0.0.1");
 
 /**
  *  MySQL User
  */
-define("DBUSER","PUT_YOUR_USERNAME");
+define("DBUSER","root");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","PUT_YOUR_PASSWORD");
+define("DBPASSWORD","letmysql");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","PUT_YOUR_DB_NAME");
+define("DBNAME","mrp");
 
 /**
  *  MySQL Port
@@ -45,9 +45,8 @@ define('DBPORT', '3306');
 /**
  * Defines a constant for site URL
  * @note without the ending slash
- * @example: http://localhost/webmvc
  */
-define("SITEURL","http://PUT_YOUR_HOST/PUT_YOUR_FOLDER");
+define("SITEURL","http://localhost/corsomvc");
 
 /**
  * Defines a constant for the default controller
@@ -102,3 +101,5 @@ define("STORED_DATE_FORMAT","%Y-%m-%d");
  * Most used format: define("STORED_DATETIME_FORMAT","%d/%m/%Y %H:%i:%s");
  */
 define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
+
+include_once ("globals.config.php");
