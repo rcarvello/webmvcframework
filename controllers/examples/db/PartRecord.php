@@ -73,10 +73,10 @@ class PartRecord extends Controller
         $record->registerActionName($record::DELETE, "elimina");
         $record->registerActionName($record::CLOSE, "chiudi");
 
-        // Gets curren record
+        // Gets the current record
         $currentRecord = $record->getCurrentRecord();
 
-        // Sets history back for button close and delete
+        // Sets history back for buttons close and delete
         $historyBack = $record->getControllerHistoryBack("part_list_manager");
         $record->redirectAfterClose = $historyBack;
         $record->redirectAfterDelete = $historyBack;
@@ -92,6 +92,12 @@ class PartRecord extends Controller
         $beanAdapter = new BeanAdapter($bean);
         $beanAdapter->select($currentRecord);
 
+        // Disables update and delete if record was not fouund
+        if ($bean->getPartCode() == ""){
+            $record->disallowAction(Record::DELETE);
+            $record->disallowAction(Record::UPDATE);
+        }
+
         // Handles form submission and updates the bean attributes
         // with posted data
         if ($record->isSubmitted()){
@@ -103,7 +109,6 @@ class PartRecord extends Controller
         try {
             $record->init($beanAdapter);
         } catch (\Exception $e){
-
             if ($record->editMode == false) {
                 $bean->setPartCode(null);
                 $record->disallowAction(Record::UPDATE);
@@ -111,7 +116,6 @@ class PartRecord extends Controller
             } else {
                 $record->disallowAction(Record::ADD);
             }
-
         };
 
         // Binding Record Component to the view (without rendering)
