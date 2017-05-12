@@ -37,7 +37,7 @@ class Localization extends Model
     public function getBody($locale)
     {
 
-        if ($_REQUEST[LOCALE_REQUEST_PARAMETER])
+        if (@$_REQUEST[LOCALE_REQUEST_PARAMETER])
             $locale = $_REQUEST[LOCALE_REQUEST_PARAMETER];
         return $this->pageBodies[$locale];
     }
