@@ -106,7 +106,7 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
      */
     public function __destruct()
     {
-        $this->close();
+        // $this->close();
     }
 
     /**
@@ -114,7 +114,7 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
      */
     public function close()
     {
-        unset($this);
+        // unset($this);
     }
 <!-- END Constructor -->
 <!-- BEGIN ConstructorForMultiplePK -->
