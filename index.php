@@ -23,6 +23,9 @@
 // The path of this script
 define ("RELATIVE_PATH", "");
 
+// Enable error reporting and disable notices
+error_reporting(E_ALL & ~E_NOTICE);
+
 // Commons initializations and configurations loading
 // Note: for changing framework or application setting see config folder.
 header('Content-Type: text/html; charset=utf-8');
