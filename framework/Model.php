@@ -24,7 +24,7 @@ class Model extends mysqli
 
     public function __construct()
     {
-        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME);
+        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
         $this->throwIfDBError();
         $this->autorun();
     }
