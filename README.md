@@ -34,10 +34,10 @@ An introduction to PHP WebMVC Framework
 
 ### Diagrams
 
-#### Overview
+#### Main classes
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/framework.png)
 
-#### Request processing and dispatching
+#### Handling HTTP requests - Loading and dispatching controllers
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/Dispatch%20and%20Create%20MVC%20Instance.png)
 
 
