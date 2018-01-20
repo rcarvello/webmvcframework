@@ -1,8 +1,8 @@
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/webmvclogo.png)
 # webmvcframework - PHP WEB MVC Framework
-The package webmvcframework, with the acronym of **WebMVC**, is an **object oriented** PHP framework that uses**MVC architectural design pattern** for building web applications with MySQL database and HTML.
+The package webmvcframework, with the acronym of **WebMVC**, is an **object oriented** PHP framework that uses **MVC architectural design pattern** for building web applications with MySQL database and HTML.
 
-It offers to developers a complete set of functionalities for rapid development of data intensive web applications. Generally, it provides services for system decomposition that developers can do at different levels when they coding a complex web application. Firstly it entire implements services for realizing the MVC design pattern decomposition between PHP code and the HTML code of the GUI. However, this is not the only feature provided by the Framework for acting on the application's decomposition.
+It offers to developers a complete set of functionalities for rapid development of data intensive web applications. Generally, it provides services for system decomposition that developers can do at different levels when they coding a complex web application. Firstly it provides the classes to achieve the Model, View, Controller decomposition and also to divide PHP code from HTML during the GUI designing. However, this is not the only feature provided by the Framework for acting on the application's decomposition.
 
 The **Component Based Development**, used for building many Framework’s features, permits to developers to apply another level of applications decomposition, as wel as, software reuse. Framework’s components, in fact, realize common **Aspects** that can occurs, in a similar way, into different web applications. Many of these aspects are regarding database, for example: data listing, data listing and sorting, data listing and filtering, data listing and pagination, record management and common table’s operations for select, insert, delete and update records. 
 
