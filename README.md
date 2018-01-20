@@ -6,9 +6,9 @@ It offers to developers a complete set of functionalities for rapid development 
 
 The **Component Based Development**, that was used for building many framework’s features, permits to developers to apply another level of software decomposition and reuse. Framework’s components, in fact, realize **recurrent aspects** of web applications. Many of these aspects are regarding MySQL, e.g. data listing, data listing and sorting, data listing and filtering, data listing and pagination, record management and the common table’s operations of select, insert, delete and update. 
 
-> Framework offers a set of pre-built components for implementing the necessary server logic for frequently database management operations. Each component is itself designed with a MVC architecture, and is equipped by a Controller,Model,View, and HTML Template. 
-Components are easy to use and developers can aggregate them into a root controller by using a composite criteria when building complex web pages. 
-The component GUI can also easily updated or replaced to reflecting the graphic experience, simply by editing or replacing the component  HTML template. The component server logic will remain fully reusable without the need of any source code modifications.
+> WebMVC offers a set of pre-built components for implementing the necessary server logic for frequently database management operations. Each component is itself designed with an MVC architecture and is equipped by a Controller, Model, View, and HTML Template. 
+Components are easy to use and developers can aggregate them into a root controller by using composition criteria when building complex web pages. 
+The component GUI can also easily updated or replaced to reflect the graphics experience, simply by editing or replacing the component  HTML template. The component internal logic will remain fully reusable without the need for any source code modifications.
 
 ## How to install
 To install the framework download and copy it into an Apache web folder. Then go to the config directory and modify application.config.php according to your MySQL server configuration and Apache web folder you want to use for your application.
