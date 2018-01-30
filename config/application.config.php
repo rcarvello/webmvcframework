@@ -20,17 +20,17 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","127.0.0.1");
+define("DBHOST","TOUR_DB_HOST");
 
 /**
  *  MySQL User
  */
-define("DBUSER","root");
+define("DBUSER","YOUR_USER");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","letmysql");
+define("DBPASSWORD","YOUR_PASSWORD");
 
 /**
  *  MySQL Database
@@ -46,7 +46,7 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","http://localhost/corsomvc");
+define("SITEURL","http://localhost/YOUR_WEB_FOLDER");
 
 /**
  * Defines a constant for the default controller
