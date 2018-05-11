@@ -20,22 +20,22 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","127.0.0.1");
+define("DBHOST","YOUR_HOST");
 
 /**
  *  MySQL User
  */
-define("DBUSER","root");
+define("DBUSER","YOUR_USER");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","letmysql");
+define("DBPASSWORD","YOUR_PASSWORD");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","mrp");
+define("DBNAME","YOUR_DB");
 
 /**
  *  MySQL Port
@@ -46,7 +46,7 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","https://server.local/mvclogin");
+define("SITEURL","https://YOUR_HOST/YOUR_APP");
 
 /**
  * Defines a constant for the default controller
