@@ -20,17 +20,17 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","TOUR_DB_HOST");
+define("DBHOST","127.0.0.1");
 
 /**
  *  MySQL User
  */
-define("DBUSER","YOUR_USER");
+define("DBUSER","root");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","YOUR_PASSWORD");
+define("DBPASSWORD","letmysql");
 
 /**
  *  MySQL Database
@@ -46,7 +46,7 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","http://localhost/YOUR_WEB_FOLDER");
+define("SITEURL","https://server.local/mvclogin");
 
 /**
  * Defines a constant for the default controller
@@ -58,7 +58,7 @@ define("DEFAULT_CONTROLLER", "index");
  * Defines a constant for the default login page
  * @note use url notation for PascalCase Controllers
  */
-define("DEFAULT_LOGIN_PAGE", "login");
+define("DEFAULT_LOGIN_PAGE", "common/login");
 
 /**
  * Date formats:
@@ -102,4 +102,8 @@ define("STORED_DATE_FORMAT","%Y-%m-%d");
  */
 define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
 
+
+/**
+ * Globals Placeholders
+ */
 include_once ("globals.config.php");

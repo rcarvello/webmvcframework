@@ -1,4 +1,4 @@
-﻿First=First
+First=First
 Last=Last
 Previous=Previous
 Next=Next

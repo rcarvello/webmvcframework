@@ -92,7 +92,7 @@ class PartRecord extends Controller
         $beanAdapter = new BeanAdapter($bean);
         $beanAdapter->select($currentRecord);
 
-        // Disables update and delete if record was not fouund
+        // Disables update and delete if record was not found
         if ($bean->getPartCode() == ""){
             $record->disallowAction(Record::DELETE);
             $record->disallowAction(Record::UPDATE);
@@ -127,6 +127,7 @@ class PartRecord extends Controller
         // Pocesses record errors
         $this->view->parseErrors($record->getErrors());
 
+        // $this->setAsObserver(null,true);
     }
 
 

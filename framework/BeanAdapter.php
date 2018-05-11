@@ -93,4 +93,5 @@ class BeanAdapter extends Model implements Bean
         return call_user_func(array($this->bean, "lastSqlError"));
     }
 
+
 }

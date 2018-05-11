@@ -3,6 +3,13 @@
  * gobal.config.php
  *
  * Main application global placeholders.
+ * Scope and use:
+ * A global placeholder can be used inside a template with the following
+ * notation:{GLOBAL:PLACEHOLDER_NAME}. Template engine will replace it
+ * automatically with its corresponding value.
+ * Define:
+ * A global placeholder is a common PHP defined constant that must be prefixed
+ * with GLOBAL_.
  *
  * @filesource global.config.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
@@ -13,3 +20,4 @@
  */
 
 define("GLOBAL_SITEURL",SITEURL);
+define("GLOBAL_LOGIN_PAGE",DEFAULT_LOGIN_PAGE);

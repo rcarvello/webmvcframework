@@ -35,15 +35,6 @@ class Index extends Controller
     }
 
     /**
-    * Autorun method. Put your code here for running it after object creation.
-    * @param mixed|null $parameters Parameters to manage
-    *
-    */
-    protected function autorun($parameters = null)
-    {
-    }
-
-    /**
     * Inizialize the View by loading static design of /examples/index.html.tpl
     * managed by views\examples\Index class
     *

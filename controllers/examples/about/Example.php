@@ -74,13 +74,7 @@ class Example extends Controller
         return $model;
     }
 
-    private function showSource($namespace,$controller=null,$model=null,$view, $template)
-    {
-      $controller = (empty($controller)) ? "controllers/". $namespace ."php": $controller . "php";
-      $model= (empty($model)) ? "models/". $namespace ."php": $model ."php";
-      $view = (empty($view)) ? "views/". $namespace ."php": $view ."php";
-      $template= (empty($template)) ? "templates/". $this->camelCaseToUnderscore($namespace) ."html.tpl": $this->camelCaseToUnderscore($template) ."html.tpl";
-    }
+
     public function helloWorld(){
         $controller = highlight_file('controllers/examples/cms/HelloWorld.php',true);
         $model      = highlight_file('models/examples/cms/HelloWorld.php',true);
@@ -98,6 +92,22 @@ class Example extends Controller
         $this->render();
     }
 
+    public function helloWorldSecond(){
+        $controller = highlight_file('controllers/examples/cms/HelloWorldSecond.php',true);
+        $model      = highlight_file('models/examples/cms/HelloWorld.php',true);
+        $view       = highlight_file('views/examples/cms/HelloWorld.php',true);
+        $tpl        = htmlentities(file_get_contents('templates/examples/cms/hello_world_second.html.tpl',true));
+        $this->view->setVarExample("Hello Word Second");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/HelloWorldSecond.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/HelloWorld.php (Shared)");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/HelloWorld.php (Shared)");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/hellp_world_second.html.tpl");
+        $this->render();
+    }
     /**
      * Convert camelCase/PascalCase to under_score notation.
      *

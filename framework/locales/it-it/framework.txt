@@ -1,4 +1,7 @@
-﻿First=Primo
+Label01=Uno con accento è
+Label02=Il contenuto di {a} è {b}
+Label03=Tre normale
+First=Primo
 Last=Ultimo
 Previous=Prec.
 Next=Succ.

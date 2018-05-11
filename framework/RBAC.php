@@ -14,7 +14,7 @@
  */
 namespace framework;
 
-use framework\Record;
+use framework\MySqlRecord;
 class RBAC
 {
     const ADD       = 'record_add';
@@ -28,7 +28,7 @@ class RBAC
     public static $permissions = array();
 
 
-    public static function setRecordPermission(Record $record, $role)
+    public static function setRecordPermission(MySqlRecord $record, $role)
     {
         if (isset(self::$permissions[self::ADD]))
             $record->allowAdd = true;

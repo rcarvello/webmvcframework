@@ -106,6 +106,9 @@ class PartListManager extends Controller
         $this->bindComponent($pagination);
 
         $this->bindComponent($parts);
+
+        //$this->setAsObserver("parts");
+
     }
 
     /**

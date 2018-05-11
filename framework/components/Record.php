@@ -3,7 +3,7 @@
  * Class Record
  *
  * This MVC component should be used together with a custom controller buided to manage
- * an HTML Form. Record component  automatically renders and manages the form
+ * an HTML Form. Record component  automatically rendersand  manages the form
  * actions/buttons and execute SQL DML statements against a database table's row.
  * Its main features are:
  *
@@ -77,7 +77,12 @@ class Record extends Component{
      */
     const DISALLOW_MODE_WITH_DISABLE    = 'disabled';
 
+    /**
+     * Set/Get Editing (true) or Adding mode.
+     * @var bool
+     */
     public $editMode = false;
+
     /**
      * @var bool Allows form ADD, default true
      */
@@ -223,17 +228,18 @@ class Record extends Component{
      * Initializes the component with a given bean adapter that implement SQL actions
      * of its managed MySQL bean.
      *
-     * @param Model|null $beanAdapter
-     * @param View|null $view
+     * @param Model|null $beanAdapter The Beanadpter object that manage Bean.
+     * @param View|null $view A custom View if you want to use a custom design.
+     * @param bool|false $isBusinessValidationError Set to true if there were business errors excluding any SQL actions.
      * @throws BeanActionException If SQL error occurs
      * @throws VariableNotFoundException If component's variable is not found into template
      */
-    public function init(Model $beanAdapter=null, View $view=null)
+    public function init(Model $beanAdapter=null, View $view=null,$isBusinessValidationError=false)
     {
         $this->beanAdapter = $beanAdapter;
         $this->view->setVar("Separator",$this->actionsSeparator);
 
-        $this->doAction($beanAdapter);
+        // $this->doAction($beanAdapter,$isBusinessValidationError);
 
         if (!empty($this->currentRecord[0])) {
             $this->allowAdd = false;
@@ -264,6 +270,8 @@ class Record extends Component{
             $this->disallowAction(self::CLOSE);
         if ($this->allowReset == false)
             $this->disallowAction(self::RESET);
+
+        $this->doAction($beanAdapter,$isBusinessValidationError);
 
     }
 
@@ -396,6 +404,12 @@ class Record extends Component{
         isset($_POST[$pkName] )?  $id_post = $_POST[$pkName] : $id_post =null;
         ($id_get !=null ) ? $id = $id_get : $id = $id_post;
         $this->currentRecord[] = $id;
+
+        if (isset($_GET[$pkName]) || $_POST[$pkName]){
+            $this->editMode = true;
+        } else {
+            $this->editMode = false;
+        }
     }
 
     /**
@@ -424,45 +438,75 @@ class Record extends Component{
         return $submitted;
     }
 
+
+
     /**
-     * Executes record action.
+     * Executes record SQL actions
      *
-     * @param Bean $beanAdapter BeanAdpter that implements Bean SQL action
+     * @param BeanAdapter $beanAdapter
+     * @param bool|false $isBusinessValidationError Set to true if there were business errors excluding any SQL actions.
      * @throws BeanActionException If SQL error occur.
      */
-    private function doAction(BeanAdapter $beanAdapter)
+    private function doAction(BeanAdapter $beanAdapter, $isBusinessValidationError=false)
     {
+        // Unset $_GETs and compute if Editing or Adding mode
         foreach ($this->pkName as $key) {
-            if(isset($_GET[$key]))
+            if(isset($_GET[$key])) {
                 unset($_GET[$key]);
-        }
-
-        if (!isset($_REQUEST["getState"])) {
-            if (isset($_REQUEST[$this->record_add])) {
-                $beanAdapter->insert();
-                if (!empty($this->redirectAfterAdd))
-                    header("Location: " . $this->redirectAfterAdd);
-            }
-            if (isset($_REQUEST[$this->record_update])) {
-                $beanAdapter->update($this->currentRecord);
-                if (!empty($this->redirectAfterUpdate))
-                    header("Location: " . $this->redirectAfterUpdate);
-            }
-
-            if (isset($_REQUEST[$this->record_delete])) {
-                $beanAdapter->delete($this->currentRecord);
-                if (!empty($this->redirectAfterDelete))
-                    header("Location: " . $this->redirectAfterDelete);
-            }
-
-            if (isset($_REQUEST[$this->record_close])) {
-                if (!empty($this->redirectAfterClose))
-                    header("Location: " . $this->redirectAfterClose);
+                $this->disallowAction(Record::ADD);
+            } else {
+                $this->disallowAction(Record::UPDATE);
+                $this->disallowAction(Record::DELETE);
             }
         }
+
+        // Records Actions. (only if were not  previously detected business validations errors)
+        // Note: also excluded in observing mode.
+        try {
+            if (!isset($_REQUEST["getState"])) {
+                if (isset($_REQUEST[$this->record_add]) && ! $isBusinessValidationError ) {
+                    $beanAdapter->insert();
+                    if ($beanAdapter->getBean()->isSqlError()) {
+                        $this->redirectAfterAdd = NULL;
+                        $this->redirectAfterUpdate = NULL;
+                    }
+                    if (!empty($this->redirectAfterAdd))
+                        header("Location: " . $this->redirectAfterAdd);
+                }
+                if (isset($_REQUEST[$this->record_update]) && ! $isBusinessValidationError) {
+                    $beanAdapter->update($this->currentRecord);
+                    if ($beanAdapter->getBean()->isSqlError()) {
+                        $this->redirectAfterAdd = NULL;
+                        $this->redirectAfterUpdate = NULL;
+                    }
+                    if (!empty($this->redirectAfterUpdate))
+                        header("Location: " . $this->redirectAfterUpdate);
+                }
+
+                if (isset($_REQUEST[$this->record_delete]) && ! $isBusinessValidationError) {
+                    $beanAdapter->delete($this->currentRecord);
+                    if ($beanAdapter->getBean()->isSqlError()) {
+                        $this->redirectAfterAdd = NULL;
+                        $this->redirectAfterUpdate = NULL;
+                    }
+                    if (!empty($this->redirectAfterDelete))
+                        header("Location: " . $this->redirectAfterDelete);
+                }
+
+                if (isset($_REQUEST[$this->record_close])) {
+                    if (!empty($this->redirectAfterClose))
+                        header("Location: " . $this->redirectAfterClose);
+                }
+            }
+
+        } catch (BeanActionException $e){
+            $this->addError($e);
+        }
+
+        /*
         if ($beanAdapter->isSqlError() == true)
             throw new BeanActionException($beanAdapter->lastSqlError());
-
+        */
     }
 
     /**
@@ -492,7 +536,33 @@ class Record extends Component{
      */
     public function getErrors()
     {
-        $errors = array_merge(array ($this->beanAdapter->lastSqlError()),$this->errors );
+        //$errors = array_merge(array ($this->beanAdapter->lastSqlError()),$this->errors );
+        $this->errors[] = $this->beanAdapter->lastSqlError();
+        $errors = $this->errors;
         return $errors;
+    }
+
+    /**
+     * Adds an error to Record errors array.
+     *
+     * @param string $error
+     */
+    public function addError($error){
+        $this->errors[] = $error;
+    }
+
+    /**
+     * Redirects  when into edit mode the current selected record is empty
+     * @param Bean $bean
+     * @param null $redirect The redirect URL. Default is Record:redirectAfterClose
+     */
+    public function redirectOnEmpyEdit(Bean $bean, $redirect=null){
+        if ($bean->affected_rows==0 && !$this->isSubmitted() && $this->editMode){
+            if (empty($redirect)) {
+                header("location: $this->redirectAfterClose");
+            } else {
+                header("location: $redirect");
+            }
+        }
     }
 }

@@ -18,33 +18,50 @@ use \Exception;
 class Model extends mysqli
 {
     public $sql;
-    // protected $resultArray;
     protected $resultSet;
-    // protected $resultRecord;
 
+    /**
+     * Model constructor.
+     */
     public function __construct()
     {
-        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
+        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME);
         $this->throwIfDBError();
         $this->autorun();
     }
 
+    /**
+     * Hook for auto running custom code.
+     */
     protected function autorun()
     {
 
     }
 
+    /**
+     * Set model resultset.
+     *
+     * @param  $mysqliResult
+     */
     public function setResultSet($mysqliResult)
     {
         $this->resultSet = $mysqliResult;
     }
 
-
+    /**
+     * Gets model resultset.
+     *
+     * @return mixed
+     */
     public function getResultSet()
     {
         return $this->resultSet;
     }
 
+    /**
+     *  Runs current model SQL query string and update its
+     *  resultset with query results.
+     */
     public function updateResultSet()
     {
         $result = $this->query($this->sql);
@@ -52,15 +69,28 @@ class Model extends mysqli
         $this->setResultSet($result);
     }
 
+    /**
+     * Throws any db errors.
+     *
+     * @throws MVCException
+     */
     private function throwIfDBError()
     {
-
         If ($this->connect_error) {
             throw new MVCException($this->connect_error);
         }
         if ($this->error) {
             throw new MVCException($this->error);
         }
-
     }
+
+    /**
+     * Envelops Model sql string  for Searcher compatibility.
+     */
+    public function envelopeSql()
+    {
+        $this->sql = "SELECT mvc_sql_evelop.* FROM (" . $this->sql. ") mvc_sql_evelop";
+    }
+
+
 }

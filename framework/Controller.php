@@ -13,7 +13,10 @@
 namespace framework;
 
 use \DOMDocument;
+use framework\exceptions\MVCException;
+use framework\exceptions\UserNotLoggedException;
 use \ReflectionClass;
+use \Exception;
 use framework\classes\Locale;
 use framework\classes\Globalize;
 use framework\exceptions\VariableNotFoundException;
@@ -26,8 +29,8 @@ abstract class Controller
     protected $observersCounter = 0;
     protected $observerPollingInterval = 0;
     protected $subSystem = "";
-
     protected $rootController = true;
+    protected $roleBasedACL = array();
 
     /**
      * Controller Object constructor.
@@ -360,14 +363,77 @@ abstract class Controller
         }
     }
 
-
+    /**
+     * Gets the Model.
+     *
+     * @return Model
+     */
     public function getModel()
     {
         return $this->model;
     }
 
+    /**
+     * Gets the View.
+     *
+     * @return View
+     */
     public function getView()
     {
         return $this->view;
     }
+
+    /**
+     * Grants a user role for access
+     *
+     * @param int $role number
+     */
+    protected function grantRole($role)
+    {
+        $role = (int) $role;
+        $this->roleBasedACL[] = $role;
+    }
+
+    /**
+     * Restricts on RBAC. User role must have a role contained into RBACL.
+     *
+     * @param string $redirect The Controller url path to redirecting when access is denied.
+     *                         If null it redirects to the default login page.
+     * @param null|string $returnLink The return link after loggin in with the the dafault
+     *                    login page
+     * @param null|string $LoginWarningMessage  A custom warning message to show
+     * @return User
+    */
+    protected function restrictToRBAC($redirect=null, $returnLink=null, $LoginWarningMessage=null)
+    {
+        $user = $this->restrictToAuthentication($redirect,$returnLink,$LoginWarningMessage);
+        if (!empty($this->roleBasedACL)){
+            $userRole = $user->getRole();
+            if (!in_array($userRole, $this->roleBasedACL)) {
+                $redirect = (empty($redirect)) ? DEFAULT_LOGIN_PAGE : $redirect;
+                $returnLink = (!empty($returnLink)) ? "?return_link=$returnLink": "";
+                $LoginWarningMessage=(!empty($LoginWarningMessage)) ? "&login_warning_message=$LoginWarningMessage": "";
+                header('Location: ' . SITEURL . "/". $redirect . $returnLink . $LoginWarningMessage);
+            }
+        }
+        return $user;
+    }
+
+    /**
+     * Restricts access only to authenticated users
+     *
+     * @param string $redirect The Controller url path to redirecting when user is not logged in.
+     *                         If null it redirects to the default login page.
+     * @param null|string $returnLink The return link after loggin in with the the
+     *                                dafault login page
+     * @param null|string $LoginWarningMessage  A custom warning message to show
+     * @return User
+     */
+    protected function restrictToAuthentication($redirect=null, $returnLink=null, $LoginWarningMessage=null)
+    {
+        $user = new User();
+        $user->checkForLogin($redirect,$returnLink,$LoginWarningMessage);
+        return $user;
+    }
+
 }
