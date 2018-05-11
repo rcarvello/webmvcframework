@@ -384,7 +384,8 @@ class View
      *
      * @param array $errors An array containing the error's messages
      * @throws BlockNotFoundException If block <!-- BEGIN/END ValidationErrors --> was not found
-     * @throws VariableNotFoundException If placeholder {Error} was not found
+     * @throws BlockNotFoundException If block <!-- BEGIN/END RecordErrors --> was not found
+     * @throws VariableNotFoundException If placeholder {RecordError} was not found
      * @throws NotInitializedViewException If template was not loaded
      */
     public function parseErrors($errors)
@@ -394,9 +395,9 @@ class View
         if  ($errors[0] == "" || !isset($errors)) {
             $this->hide("ValidationErrors");
         } else {
-            $this->openBlock("ValidationErrors");
+            $this->openBlock("RecordErrors");
             foreach ($errors as $error) {
-                $this->setVar("Error", $error . "<br/>");
+                $this->setVar("RecordError", $error . "<br/>");
                 $this->parseCurrentBlock();
             }
             $this->setBlock();
