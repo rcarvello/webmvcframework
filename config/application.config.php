@@ -46,7 +46,9 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","https://YOUR_HOST/YOUR_APP");
+define("SITEURL","http://YOUR_HOST/YOUR_APP");
+// Or HTTPS
+// define("SITEURL","https://YOUR_HOST/YOUR_APP");
 
 /**
  * Defines a constant for the default controller
