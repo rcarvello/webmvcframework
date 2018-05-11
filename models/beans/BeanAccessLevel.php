@@ -1,9 +1,9 @@
 <?php
 /**
- * Class BeanOrderStatus
- * Bean class for object oriented management of the MySQL table order_status
+ * Class BeanAccessLevel
+ * Bean class for object oriented management of the MySQL table access_level
  *
- * Comment of the managed table order_status: Not specified.
+ * Comment of the managed table access_level: Access levels.
  *
  * Responsibility:
  *
@@ -20,7 +20,7 @@
  *
  * @extends MySqlRecord
  * @implements Bean
- * @filesource BeanOrderStatus.php
+ * @filesource BeanAccessLevel.php
  * @category MySql Database Bean Class
  * @package models/bean
  * @author Rosario Carvello <rosario.carvello@gmail.com>
@@ -34,7 +34,7 @@ namespace models\beans;
 use framework\MySqlRecord;
 use framework\Bean;
 
-class BeanOrderStatus extends MySqlRecord implements Bean
+class BeanAccessLevel extends MySqlRecord implements Bean
 {
     /**
      * A control attribute for the update operation.
@@ -46,12 +46,12 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     private $allowUpdate = false;
 
     /**
-     * Class attribute for mapping the primary key order_status_id of table order_status
+     * Class attribute for mapping the primary key id_access_level of table access_level
      *
-     * Comment for field order_status_id: Not specified<br>
-     * @var int $orderStatusId
+     * Comment for field id_access_level: Not specified<br>
+     * @var int $idAccessLevel
      */
-    private $orderStatusId;
+    private $idAccessLevel;
 
     /**
      * A class attribute for evaluating if the table has an autoincrement primary key
@@ -65,7 +65,7 @@ class BeanOrderStatus extends MySqlRecord implements Bean
      * Comment for field name: Not specified.<br>
      * Field information:
      *  - Data type: varchar(45)
-     *  - Null : YES
+     *  - Null : NO
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
@@ -74,22 +74,22 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     private $name;
 
     /**
-     * Class attribute for storing the SQL DDL of table order_status
+     * Class attribute for storing the SQL DDL of table access_level
      * @var string base64 encoded $ddl
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBvcmRlcl9zdGF0dXNgICgKICBgb3JkZXJfc3RhdHVzX2lkYCBpbnQoMTEpIE5PVCBOVUxMLAogIGBuYW1lYCB2YXJjaGFyKDQ1KSBERUZBVUxUIE5VTEwsCiAgUFJJTUFSWSBLRVkgKGBvcmRlcl9zdGF0dXNfaWRgKQopIEVOR0lORT1Jbm5vREIgREVGQVVMVCBDSEFSU0VUPXV0Zjg=";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBhY2Nlc3NfbGV2ZWxgICgKICBgaWRfYWNjZXNzX2xldmVsYCBpbnQoMTEpIE5PVCBOVUxMLAogIGBuYW1lYCB2YXJjaGFyKDQ1KSBOT1QgTlVMTCwKICBQUklNQVJZIEtFWSAoYGlkX2FjY2Vzc19sZXZlbGApCikgRU5HSU5FPUlubm9EQiBERUZBVUxUIENIQVJTRVQ9dXRmOCBDT01NRU5UPSdBY2Nlc3MgbGV2ZWxzJw==";
 
     /**
-     * setOrderStatusId Sets the class attribute orderStatusId with a given value
+     * setIdAccessLevel Sets the class attribute idAccessLevel with a given value
      *
-     * The attribute orderStatusId maps the field order_status_id defined as int(11).<br>
-     * Comment for field order_status_id: Not specified.<br>
-     * @param int $orderStatusId
+     * The attribute idAccessLevel maps the field id_access_level defined as int(11).<br>
+     * Comment for field id_access_level: Not specified.<br>
+     * @param int $idAccessLevel
      * @category Modifier
      */
-    public function setOrderStatusId($orderStatusId)
+    public function setIdAccessLevel($idAccessLevel)
     {
-        $this->orderStatusId = (int)$orderStatusId;
+        $this->idAccessLevel = (int)$idAccessLevel;
     }
 
     /**
@@ -106,16 +106,16 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     }
 
     /**
-     * getOrderStatusId gets the class attribute orderStatusId value
+     * getIdAccessLevel gets the class attribute idAccessLevel value
      *
-     * The attribute orderStatusId maps the field order_status_id defined as int(11).<br>
-     * Comment for field order_status_id: Not specified.
-     * @return int $orderStatusId
-     * @category Accessor of $orderStatusId
+     * The attribute idAccessLevel maps the field id_access_level defined as int(11).<br>
+     * Comment for field id_access_level: Not specified.
+     * @return int $idAccessLevel
+     * @category Accessor of $idAccessLevel
      */
-    public function getOrderStatusId()
+    public function getIdAccessLevel()
     {
-        return $this->orderStatusId;
+        return $this->idAccessLevel;
     }
 
     /**
@@ -132,7 +132,7 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     }
 
     /**
-     * Gets DDL SQL code of the table order_status
+     * Gets DDL SQL code of the table access_level
      * @return string
      * @category Accessor
      */
@@ -148,24 +148,24 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     */
     public function getTableName()
     {
-        return "order_status";
+        return "access_level";
     }
 
     /**
-     * The BeanOrderStatus constructor
+     * The BeanAccessLevel constructor
      *
      * It creates and initializes an object in two way:
-     *  - with null (not fetched) data if none $orderStatusId is given.
-     *  - with a fetched data row from the table order_status having order_status_id=$orderStatusId
-     * @param int $orderStatusId. If omitted an empty (not fetched) instance is created.
-     * @return BeanOrderStatus Object
+     *  - with null (not fetched) data if none $idAccessLevel is given.
+     *  - with a fetched data row from the table access_level having id_access_level=$idAccessLevel
+     * @param int $idAccessLevel. If omitted an empty (not fetched) instance is created.
+     * @return BeanAccessLevel Object
      */
-    public function __construct($orderStatusId = null)
+    public function __construct($idAccessLevel = null)
     {
         // $this->connect(DBHOST,DBUSER,DBPASSWORD,DBNAME,DBPORT);
         parent::__construct();
-        if (!empty($orderStatusId)) {
-            $this->select($orderStatusId);
+        if (!empty($idAccessLevel)) {
+            $this->select($idAccessLevel);
         }
     }
 
@@ -186,24 +186,24 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     }
 
     /**
-     * Fetchs a table row of order_status into the object.
+     * Fetchs a table row of access_level into the object.
      *
      * Fetched table fields values are assigned to class attributes and they can be managed by using
      * the accessors/modifiers methods of the class.
-     * @param int $orderStatusId the primary key order_status_id value of table order_status which identifies the row to select.
+     * @param int $idAccessLevel the primary key id_access_level value of table access_level which identifies the row to select.
      * @return int affected selected row
      * @category DML
      */
-    public function select($orderStatusId)
+    public function select($idAccessLevel)
     {
-        $sql =  "SELECT * FROM order_status WHERE order_status_id={$this->parseValue($orderStatusId,'int')}";
+        $sql =  "SELECT * FROM access_level WHERE id_access_level={$this->parseValue($idAccessLevel,'int')}";
         $this->resetLastSqlError();
         $result =  $this->query($sql);
         $this->resultSet=$result;
         $this->lastSql = $sql;
         if ($result){
             $rowObject = $result->fetch_object();
-            @$this->orderStatusId = (integer)$rowObject->order_status_id;
+            @$this->idAccessLevel = (integer)$rowObject->id_access_level;
             @$this->name = $this->replaceAposBackSlash($rowObject->name);
             $this->allowUpdate = true;
         } else {
@@ -213,14 +213,14 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     }
 
     /**
-     * Deletes a specific row from the table order_status
-     * @param int $orderStatusId the primary key order_status_id value of table order_status which identifies the row to delete.
+     * Deletes a specific row from the table access_level
+     * @param int $idAccessLevel the primary key id_access_level value of table access_level which identifies the row to delete.
      * @return int affected deleted row
      * @category DML
      */
-    public function delete($orderStatusId)
+    public function delete($idAccessLevel)
     {
-        $sql = "DELETE FROM order_status WHERE order_status_id={$this->parseValue($orderStatusId,'int')}";
+        $sql = "DELETE FROM access_level WHERE id_access_level={$this->parseValue($idAccessLevel,'int')}";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->lastSql = $sql;
@@ -231,7 +231,7 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     }
 
     /**
-     * Insert the current object into a new table row of order_status
+     * Insert the current object into a new table row of access_level
      *
      * All class attributes values defined for mapping all table fields are automatically used during inserting
      * @return mixed MySQL insert result
@@ -240,13 +240,13 @@ class BeanOrderStatus extends MySqlRecord implements Bean
     public function insert()
     {
         if ($this->isPkAutoIncrement) {
-            $this->orderStatusId = "";
+            $this->idAccessLevel = "";
         }
         // $constants = get_defined_constants();
         $sql = <<< SQL
-            INSERT INTO order_status
-            (order_status_id,name)
-            VALUES({$this->parseValue($this->orderStatusId)},
+            INSERT INTO access_level
+            (id_access_level,name)
+            VALUES({$this->parseValue($this->idAccessLevel)},
 			{$this->parseValue($this->name,'notNumber')})
 SQL;
         $this->resetLastSqlError();
@@ -257,39 +257,39 @@ SQL;
         } else {
             $this->allowUpdate = true;
             if ($this->isPkAutoIncrement) {
-                $this->orderStatusId = $this->insert_id;
+                $this->idAccessLevel = $this->insert_id;
             }
         }
         return $result;
     }
 
     /**
-     * Updates a specific row from the table order_status with the values of the current object.
+     * Updates a specific row from the table access_level with the values of the current object.
      *
      * All class attribute values defined for mapping all table fields are automatically used during updating of selected row.<br>
      * Null values are used for all attributes not previously setted.
-     * @param int $orderStatusId the primary key order_status_id value of table order_status which identifies the row to update.
+     * @param int $idAccessLevel the primary key id_access_level value of table access_level which identifies the row to update.
      * @return mixed MySQL update result
      * @category DML
      */
-    public function update($orderStatusId)
+    public function update($idAccessLevel)
     {
         // $constants = get_defined_constants();
         if ($this->allowUpdate) {
             $sql = <<< SQL
             UPDATE
-                order_status
+                access_level
             SET 
 				name={$this->parseValue($this->name,'notNumber')}
             WHERE
-                order_status_id={$this->parseValue($orderStatusId,'int')}
+                id_access_level={$this->parseValue($idAccessLevel,'int')}
 SQL;
             $this->resetLastSqlError();
             $result = $this->query($sql);
             if (!$result) {
                 $this->lastSqlError = $this->sqlstate . " - ". $this->error;
             } else {
-                $this->select($orderStatusId);
+                $this->select($idAccessLevel);
                 $this->lastSql = $sql;
                 return $result;
             }
@@ -299,7 +299,7 @@ SQL;
     }
 
     /**
-     * Facility for updating a row of order_status previously loaded.
+     * Facility for updating a row of access_level previously loaded.
      *
      * All class attribute values defined for mapping all table fields are automatically used during updating.
      * @category DML Helper
@@ -307,8 +307,8 @@ SQL;
      */
     public function updateCurrent()
     {
-        if ($this->orderStatusId != "") {
-            return $this->update($this->orderStatusId);
+        if ($this->idAccessLevel != "") {
+            return $this->update($this->idAccessLevel);
         } else {
             return false;
         }

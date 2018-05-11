@@ -25,7 +25,7 @@ class PartListManager extends Model
         parent::__construct();
         $this->sql =
 <<<SQL
-            SELECT  
+          SELECT  
               part_code, 
               description, 
               source, 
@@ -37,13 +37,20 @@ class PartListManager extends Model
               bom_levels 
             FROM 
               part
+            WHERE 1 = 1
 SQL;
-        // Also you can use a statement like this:
-        // $this->sql = "SELECT t.* FROM part t";
+        // Also you can use a statement like this to enveloping sql:
+        // a) $this->sql = "SELECT t.* FROM part t";
         //
         // Warning:
+        //
         // Do not use "SELECT * FROM part" because frameworks components
-        // and SQL itself cannot build SQL subquery that use the same table
+        // and SQL itself cannot build SQL subquery that use the same
+        // table
+        //
+        // Use $this->envelopeSql() to enveloping automatically
+        // your sql.
+        $this->envelopeSql();
         $this->updateResultSet();
     }
 }

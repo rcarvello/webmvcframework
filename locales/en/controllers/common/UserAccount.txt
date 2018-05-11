@@ -1,0 +1,29 @@
+#Comment: Loads translations
+#Load:locales/en/controllers/hr/common/NavigationBar.txt
+ErrorMessageTitle=There were errors:
+FixErrors=Please fix your input data and try again
+AddNewUser=New user
+EditUser=Edit
+UserTitle=User record
+FullNameCaption=Full name
+PlaceHolderFullName= Enter last and first name
+EmailCaption=Email
+PlaceHolderEmail=Email address
+AccessLevelCaption=Access level
+SelectAccessLevel=Select user access level
+EnabledCaption=Access enabled
+PasswordCaption=Password
+PlaceHolderPassword=Insert password
+RePasswordCaption=Re type password
+PlaceHolderRePassword=Please re type your password
+ButtonChangePasswordCaption=Change password
+PasswordDoesntMatch=Password/Confirmation doesn't match
+CannotEditBuiltInPermission=Cannot edit access level for built in administrator
+CannotEditBuiltInStatus=Cannot disable built in administrator
+CannotDeleteBuiltIn=Cannot delete built in administrator
+VeryWeak=Very weak
+Weak=Weak
+OK=Ok
+Strong=Strong
+VeryStrong=Very Strong
+

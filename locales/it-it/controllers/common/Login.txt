@@ -1,0 +1,11 @@
+#Comment: Loads translations
+LoginPageTitle=Login all'applicazione
+LogiFormTitle=Inserire le credenziali di accesso
+LoginAuthWarningMessage=Questa pagina richiede autenticazione
+LoginRBACWarningMessage=Non si dispone dei diritti di accesso a questa pagina.
+RememberMeText=Ricorda le mie credenziali
+LoginButtonCaption=Login
+LogoutButtonCaption=Logout
+CancelButtonCaption=Annulla
+LoginError=Credenziali di accesso non valide
+CopyRightInfo=2018 - La Tua Azienda - Tutti i diritti riservati

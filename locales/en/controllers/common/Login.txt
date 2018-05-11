@@ -1,0 +1,11 @@
+#Comment: Loads translations
+LoginPageTitle=Login to Application
+LogiFormTitle=Insert your credentials
+LoginAuthWarningMessage=This page requires authentication
+LoginRBACWarningMessage=You do not have access rights for the current page
+RememberMeText=Remember me
+LoginButtonCaption=Login
+LogoutButtonCaption=Logout
+CancelButtonCaption=Cancel
+LoginError=Login incorrect
+CopyRightInfo=2018 - Your Company - All righs reseverd

@@ -382,7 +382,7 @@ class BeanOrderFile extends MySqlRecord implements Bean
      */
     public function close()
     {
-        unset($this);
+        // unset($this);
     }
 
     /**

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Mag 05, 2017 alle 14:17
+-- Generation Time: Mag 11, 2018 alle 15:21
 -- Versione del server: 5.6.21-log
--- PHP Version: 5.3.9
+-- PHP Version: 5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `mrp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `access_level`
+--
+
+CREATE TABLE IF NOT EXISTS `access_level` (
+  `id_access_level` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Access levels';
+
+--
+-- Dump dei dati per la tabella `access_level`
+--
+
+INSERT INTO `access_level` (`id_access_level`, `name`) VALUES
+(50, 'user'),
+(60, 'manager'),
+(100, 'admin');
 
 -- --------------------------------------------------------
 
@@ -165,18 +185,17 @@ CREATE TABLE IF NOT EXISTS `part` (
 --
 
 INSERT INTO `part` (`part_code`, `description`, `source`, `source_lead_time`, `measurement_unit_code`, `part_type_code`, `part_category_code`, `wastage`, `bom_levels`) VALUES
-('01', 'Modulator', 'MAKE', 10, 'pz', 'ASSEMBLY', '01', 1, 1),
+('01', 'Descrizione 2', 'MAKE', 10000, 'kg', 'PRODUCT', '01', 1, 10),
 ('02', 'Demodulator', 'MAKE', 2, 'kg', 'PRODUCT', '01', 1, 1),
 ('03', 'Converter', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 1),
 ('04', 'Jack', 'BUY', 10, 'pz', 'PRODUCT', '02', 1, 2),
-('05', 'Mouse Wheel', 'BUY', 5, 'pz', 'RAW', '02', 10, NULL),
+('05', 'Mouse Wheel4', 'MAKE', 5, 'kg', 'ASSEMBLY', '01', 10, NULL),
 ('06', 'Board rz-048', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, 0),
-('07', 'Led mm 02 red', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 0),
+('07', 'Led mm 02 red', 'MAKE', 5, 'pz', 'PRODUCT', '01', 2, NULL),
 ('08', 'Led mm 02 green', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, 0),
 ('09', 'RS232', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 0),
 ('10', 'RJ45', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, 0),
-('11', 'Cable', 'BUY', 5, 'pz', 'PRODUCT', '02', 10, 0),
-('12', 'Pin mm 01', 'BUY', 10, 'pz', 'ASSEMBLY', '02', 10, 1);
+('11', 'Cable', 'BUY', 5, 'pz', 'PRODUCT', '02', 10, 0);
 
 -- --------------------------------------------------------
 
@@ -233,6 +252,17 @@ CREATE TABLE IF NOT EXISTS `stock` (
 -- --------------------------------------------------------
 
 --
+-- Struttura stand-in per le viste `stock_store`
+--
+CREATE TABLE IF NOT EXISTS `stock_store` (
+`part_code` varchar(40)
+,`store_code` int(11)
+,`quantity` decimal(11,2)
+,`name` varchar(45)
+);
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `store`
 --
 
@@ -241,9 +271,47 @@ CREATE TABLE IF NOT EXISTS `store` (
   `name` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+`id_user` int(11) NOT NULL,
+  `id_access_level` int(11) NOT NULL,
+  `full_name` varchar(45) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `enabled` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Users credentials';
+
+--
+-- Dump dei dati per la tabella `user`
+--
+
+INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `enabled`) VALUES
+(1, 100, 'Administrator', 'rosario.carvello@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(2, 60, 'Manager', 'manager@email.it', '5f4dcc3b5aa765d61d8327deb882cf99', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per la vista `stock_store`
+--
+DROP TABLE IF EXISTS `stock_store`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `stock_store` AS select `stock`.`part_code` AS `part_code`,`stock`.`store_code` AS `store_code`,`stock`.`quantity` AS `quantity`,`store`.`name` AS `name` from (`stock` join `store`) where (`store`.`store_code` = `stock`.`store_code`);
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `access_level`
+--
+ALTER TABLE `access_level`
+ ADD PRIMARY KEY (`id_access_level`);
 
 --
 -- Indexes for table `bom`
@@ -330,6 +398,12 @@ ALTER TABLE `store`
  ADD PRIMARY KEY (`store_code`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id_user`), ADD UNIQUE KEY `unique_email` (`email`), ADD KEY `fk_user_access_level_idx` (`id_access_level`), ADD KEY `idx_full_name` (`full_name`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -348,6 +422,11 @@ MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `order_macro_activity`
 MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -400,6 +479,12 @@ ADD CONSTRAINT `fk_part_part_unit_type1` FOREIGN KEY (`measurement_unit_code`) R
 ALTER TABLE `stock`
 ADD CONSTRAINT `fk_stock_part1` FOREIGN KEY (`part_code`) REFERENCES `part` (`part_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_stock_store1` FOREIGN KEY (`store_code`) REFERENCES `store` (`store_code`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limiti per la tabella `user`
+--
+ALTER TABLE `user`
+ADD CONSTRAINT `fk_user_access_level1` FOREIGN KEY (`id_access_level`) REFERENCES `access_level` (`id_access_level`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

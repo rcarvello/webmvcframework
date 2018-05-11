@@ -1,0 +1,30 @@
+#Comment: Loads translations
+#Load:locales/it-it/controllers/hr/common/NavigationBar.txt
+ErrorMessageTitle=Si sono verificati i seguenti errori:
+FixErrors=Correggi i dati indicati e riprova. Grazie
+AddNewUser=Nuovo utente
+EditUser=Modifica
+UserTitle=Record utente
+FullNameCaption=Nome completo
+PlaceHolderFullName= Specifica nome e cognome
+EmailCaption=Email
+PlaceHolderEmail=EIndirizzo email
+AccessLevelCaption=Livello di accesso
+SelectAccessLevel=Seleziona un livello..
+EnabledCaption=Accesso abilitato
+PasswordCaption=Password
+PlaceHolderPassword=Inserisci la password
+RePasswordCaption=Conferma password
+PlaceHolderRePassword=Ridigita la password
+ButtonChangePasswordCaption=Cambio password
+PasswordDoesntMatch=Password/Conferma password non conicidono
+CannotEditBuiltInPermission=Impossibile modificare il livello di accesso dell'amministratore
+CannotEditBuiltInStatus=Impossibile disabilitare l'amministratore di sistema
+CannotDeleteBuiltIn=Impossibile eliminare l'amministratore di sistema
+VeryWeak=Molto debole
+Weak=Debole
+OK=Ok
+Strong=Forte
+VeryStrong=Molto forte
+
+

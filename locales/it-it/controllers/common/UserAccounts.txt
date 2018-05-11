@@ -1,0 +1,23 @@
+#Comment: Loads translations
+#Load:locales/it-it/controllers/hr/common/NavigationBar.txt
+BTD_LENGTH_FOR_PAGE=
+BTD_NO_RECORDS=nessun record
+BTD_OF=di
+BTD_SEARCH=
+BTD_SEARCH_PLACEHOLDER=Cerca
+BTD_RESULT_OF=risultati di
+BTD_RESULT_TOTALS=totali
+BTD_FIRST=Primo
+BTD_LAST=Ultimo
+BTD_NEXT=Succ.
+BTD_PREVIOUS=Prec.
+Actions=Azioni
+FullNameCaption=Nome completo
+EmailCaption=Email
+AccessLevelCaption=Livello di accesso
+AddUsersCaption=Aggiungi utente
+UsersTitle=Gestione utenti
+
+
+
+
