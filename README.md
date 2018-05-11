@@ -14,7 +14,6 @@ The component GUI can also easily updated or replaced to reflect the graphics ex
 To install the framework download and copy it into an Apache web folder. Then go to the **config directory** and modify **application.config.php** according to your MySQL server configuration and Apache web folder you want to use for your application.
 By default framework provides a small set  of examples. For using them run the provided SQL script into the **sql** folder.
 In a future time, I will provide you with more examples illustrating its functionalities.  
-Note: For using builders and automatically generate the code for managing DB tables, you need also to modify **util/mysqlreflection/mysqlreflection.config.php** by setting your DB parameters
 
 ## How to autogenerate PHP Model classes from your MySQL database
 The util directory contains a file named **app_create_beans.php**.
