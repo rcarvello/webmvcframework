@@ -1,0 +1,45 @@
+{
+  "lang": "it",
+  "dir": "ltr",
+  "name": "App name",
+  "description": "Application description",
+  "manifest_version": 5,
+  "short_name": "Short description",
+  "icons": [
+    {
+        "src": "icons/icon64.png",
+        "sizes": "64x64",
+        "type": "image/png"
+    },
+    {
+        "src": "icons/icon128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+    },
+    {
+        "src": "icons/icon192.png",
+        "sizes": "192x1192",
+        "type": "image/png"
+    },
+    {
+        "src": "icons/icon256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },
+    {
+        "src": "icons/icon384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+    },
+    {
+        "src": "icons/icon512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+  ],
+  "scope": "/",
+  "start_url": "http://your_site/your_app",
+  "display": "fullscreen",
+  "theme_color": "aliceblue",
+  "background_color": "white"
+}

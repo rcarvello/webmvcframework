@@ -22,15 +22,13 @@
 
 // The path of this script
 define ("RELATIVE_PATH", "");
-
-// Enable error reporting and disable notices
-error_reporting(E_ALL & ~E_NOTICE);
-
+error_reporting(0);
 // Commons initializations and configurations loading
 // Note: for changing framework or application setting see config folder.
 header('Content-Type: text/html; charset=utf-8');
 include_once(RELATIVE_PATH . "config/framework.config.php");
 session_start();
+session_regenerate_id(true);
 
 // Use of framework classes
 use framework\Loader;

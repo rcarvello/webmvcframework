@@ -106,7 +106,7 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
      */
     public function __destruct()
     {
-        // $this->close();
+        $this->close();
     }
 
     /**
