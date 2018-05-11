@@ -42,7 +42,7 @@
                 <li><a href="cms/hello_world">Hello World</a></li>
                 <li><a href="cms/hello_world_second">Hello World</a> (2nd edition)</li>
                 <li><a href="cms/block">Blocks usage for handling data repetition </li>
-                <li><a href="cms/inner_blocks">Block with inner block</li>
+                <li><a href="cms/inner_blocks">Block with inner block</li> (requires authentication)
                 <li><a href="cms/block_extended">Controller Inheritance and Block Hiiding</li>
                 <li><a href="cms/localization">Localization and multi languages feautures (Use Settings DropDown Menu)</li>
                 <li><a href="cms/composite_page">Hierarchical MVC</li>
