@@ -216,7 +216,7 @@ class Locale
      *
      * @return string
      */
-    public function getCurrenLocale()
+    public function getCurrentLocale()
     {
         return $_SESSION["CurrentLocale"];
     }
