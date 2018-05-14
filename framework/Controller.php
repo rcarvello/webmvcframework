@@ -73,7 +73,7 @@ abstract class Controller
     public function localize($parsedTpl)
     {
         $locale = new Locale();
-        $currentLocale = $locale->getCurrenLocale();
+        $currentLocale = $locale->getCurrentLocale();
         $currentControllerName = str_replace("\\","/",$this->getName());
 
         $localeFilename = "locales" . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR. $currentControllerName . ".txt";
