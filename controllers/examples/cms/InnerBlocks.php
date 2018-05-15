@@ -30,9 +30,10 @@ class InnerBlocks extends Controller
     */
     public function __construct(View $view=null, Model $model=null)
     {
-        $this->grantRole(100);  //Administrator
+        $this->grantRole(100);  // Administrator
         $this->grantRole(60);   // Manager
         $this->restrictToRBAC(null,"examples/cms/inner_blocks");
+        // Alternatively it requires only to be an athenticated user
         // $this->restrictToAuthentication(null,"examples/cms/inner_blocks");
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
