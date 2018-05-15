@@ -19,7 +19,7 @@ use models\common\UserAccount as UserModel;
 use views\common\UserAccount as UserView;
 use framework\components\Record;
 use framework\BeanAdapter;
-use controllers\hr\common\NavigationBar;
+
 
 class UserAccount extends Controller
 {
@@ -65,8 +65,6 @@ class UserAccount extends Controller
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
         parent::__construct($this->view,$this->model);
-        $nav = new NavigationBar();
-        $this->bindController($nav);
     }
 
     /**

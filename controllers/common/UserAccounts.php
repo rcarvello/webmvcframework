@@ -15,7 +15,6 @@ use framework\Model;
 use framework\View;
 use models\common\UserAccounts as UserAccountsModel;
 use views\common\UserAccounts as UserAccountsView;
-use controllers\hr\common\NavigationBar;
 use framework\components\DataRepeater;
 
 class UserAccounts extends Controller
@@ -36,8 +35,6 @@ class UserAccounts extends Controller
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
         parent::__construct($this->view,$this->model);
-        $nav = new NavigationBar();
-        $this->bindController($nav);
     }
 
     /**
