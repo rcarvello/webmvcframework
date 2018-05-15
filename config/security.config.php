@@ -55,7 +55,7 @@ define('ADMIN_ROLE_ID', 100);
 
 /**
  *  Defines a constant for the enable field of the User MySQL Table
- *  User enable can temporary disable usere. Values must be 1 or -1
+ *  User enable can temporary disable users. Values must be 1 or -1
  */
 
 define('USER_ENABLED', 'enabled');
