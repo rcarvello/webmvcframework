@@ -42,7 +42,8 @@ class Localization extends Controller
     */
     protected function autorun($parameters = null)
     {
-        $body = $this->model->getBody($_SESSION["CurrentLocale"]);
+        isset($_SESSION["CurrentLocale"])? $CurrentLocale = $_SESSION["CurrentLocale"] : $CurrentLocale = CURRENT_LOCALE;
+        $body = $this->model->getBody($CurrentLocale);
         $this->view->setVarBodyMessage($body);
     }
 
