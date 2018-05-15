@@ -24,8 +24,9 @@
     <h4>- Also check and modify <strong>config\application.config.php</strong> and <strong>util\mysqlreflection\mysqlreflection.config.php</strong> according
     to your database configuration</h4>
     <br>
-    <a href="examples/">Run examples</a> <br>
-    <a href="{GLOBAL:LOGIN_PAGE}">Login</a><br>
+    <a href="examples/">Run Web MVC examples</a> <br>
+    <a href="{GLOBAL:SITEURL}/common/user_accounts">Users management</a><br>
+    <a href="{GLOBAL:LOGIN_PAGE}">Login page</a><br>
 
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
