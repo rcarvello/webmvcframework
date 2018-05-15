@@ -30,7 +30,7 @@
 
 </head>
 <body>
-{Controller:hr\common\NavigationBar}
+
 <div class="container">
     <form name="user_record_form" id="user_record_form" method="post" class="form-horizontal">
         <div class="panel panel-primary">

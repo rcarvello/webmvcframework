@@ -28,8 +28,9 @@
 
 </head>
 <body>
-{Controller:hr\common\NavigationBar}
 <div class="container">
+    <h2>You can nest inside a custom controller this simple user managements forms for managing application accounts</h2>
+    <a href="{GLOBAL:SITEURL}">Home page</a> | <a href="{GLOBAL:SITEURL}/common/user_accounts?locale=en">English</a> | <a href="{GLOBAL:SITEURL}/common/user_accounts?locale=it-it">Italiano</a><br><br>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <a href="{GLOBAL:SITEURL}/common/user_account" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> {RES:AddUsersCaption}</a>
