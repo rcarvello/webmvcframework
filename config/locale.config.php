@@ -34,7 +34,7 @@ define("FRAMEWORK_LOCALE_FILE_NAME","framework");
  * Default LCID locale, if null it look at client browser language
  * @see http://www.science.co.il/Language/Locale-codes.php for valid values of LCID
  */
-define("CURRENT_LOCALE","it");
+define("CURRENT_LOCALE","it-it");
 
 /**
  * Define the locale REQUEST parameter to handle localization files
