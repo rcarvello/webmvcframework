@@ -167,6 +167,7 @@ class MVCMySqlPKAnalyzer extends mysqli
      */
     public static function underscoreToCamelCase($string, $pascalCase = false)
     {
+        /*
         $string = strtolower($string);
 
         if( $pascalCase == true )
@@ -175,6 +176,19 @@ class MVCMySqlPKAnalyzer extends mysqli
         }
         $func = create_function('$c', 'return strtoupper($c[1]);');
         return preg_replace_callback('/_([a-z])/', $func, $string);
+        */
+        $string = strtolower($string);
+        if( $pascalCase == true ) {
+            $string[0] = strtoupper($string[0]);
+        }
+        $str=$string;
+        $i = array("-","_");
+        $str = preg_replace('/([a-z])([A-Z])/', "\\1 \\2", $str);
+        $str = preg_replace('@[^a-zA-Z0-9\-_ ]+@', '', $str);
+        $str = str_replace($i, ' ', $str);
+        $str = str_replace(' ', '', ucwords(strtolower($str)));
+        $str = strtolower(substr($str,0,1)).substr($str,1);
+        return $str;
     }
 
     /**
