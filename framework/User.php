@@ -121,8 +121,8 @@ class User extends MySqlRecord implements BeanUser
         $result = $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result) {
-            $rowObject = $result->fetch_object();;
+        if ($result && $result->num_rows === 1 ) {
+            $rowObject = $result->fetch_object();
             $this->id = $rowObject->{$this->fieldUserId};
             $this->email = $rowObject->{$this->fieldUserEmail};
             $this->password = $rowObject->{$this->fieldUserPassword};
@@ -130,6 +130,7 @@ class User extends MySqlRecord implements BeanUser
             $this->serializeUser();
             return true;
         } else {
+            $this->logout();
             $this->lastSqlError = $this->sqlstate . " - " . $this->error;
             return false;
         }
