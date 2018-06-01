@@ -100,5 +100,6 @@ define("LoginAuthWarningMessage", "{RES:LoginAuthWarningMessage}");
  *  Note: It appears when is set the $_GET["login_warning_message"] and is
  *  automatically translated by the Locale engine by using Login controller
  *  translation file
+ *
  */
 define("LoginRBACWarningMessage", "{RES:LoginRBACWarningMessage}");
