@@ -288,10 +288,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 --
 -- Dump dei dati per la tabella `user`
---
+-- ALL PASSWORDS ARE: 'password'
 
 INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `enabled`) VALUES
-(1, 100, 'Administrator', 'rosario.carvello@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(1, 100, 'Administrator', 'admin@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
 (2, 60, 'Manager', 'manager@email.it', '5f4dcc3b5aa765d61d8327deb882cf99', 1);
 
 -- --------------------------------------------------------
