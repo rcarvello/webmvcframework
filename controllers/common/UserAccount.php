@@ -57,10 +57,10 @@ class UserAccount extends Controller
         }
 
         // Computes if current user is admin
-        if ($user->getRole()==100)
+        if ($user->getRole()==ADMIN_ROLE_ID)
             $this->isAdmin = true;
 
-        $this->grantRole(100);
+        $this->grantRole(ADMIN_ROLE_ID);
         $this->restrictToRBAC(null,"common/user_accounts",LoginRBACWarningMessage);
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
@@ -191,7 +191,7 @@ class UserAccount extends Controller
 
             // Checks constraints when editing builtin admin
             if ($_POST["id_user"]==1) {
-                if ($_POST["id_access_level"]!=100) {
+                if ($_POST["id_access_level"]!=ADMIN_ROLE_ID) {
                     $record->addError("{RES:CannotEditBuiltInPermission}");
                     $isError = true;
                 } elseif(!isset($_POST["enabled"])){
