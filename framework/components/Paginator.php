@@ -21,7 +21,7 @@ use framework\View;
 class Paginator extends Component
 {
 
-	private $fullResult;         // MySQL result from query
+    private $fullResult;         // MySQL result from query
     private $totalResult;        // Total number of rows
     private $resultPage;	     // MySQL Result from each page
     private $pages;			     // Total number of pages from (totalResult/resulPerPge)
@@ -126,6 +126,9 @@ class Paginator extends Component
         }
         parent::__construct($view,$model);
 
+        // mysqli_query("SET SESSION sql_mode = 'TRADITIONAL'");
+        $this->autorun();
+
     }
 
     /**
@@ -137,26 +140,36 @@ class Paginator extends Component
 	{
         !empty($query) ? $this->query = $query : $this->query =	$this->model->sql;
 
-        // Add limit 0 for first query speed without the need of obtain all recordset
-        // for counting
-        $addLimit = " LIMIT,0,0";
+        if (!MYSQL_MODE_FULL_GROUP_BY) {
+            // Add limit 0,0 for obtaing all records, Then counting
+            $addLimit = " LIMIT,0,0";
+        } else {
+            // Used in  MySQL num_rows
+            $addLimit = "";
+        }
+
         $urlPageParameterName = $this->urlPageParameterName;
         $this->fullResult =     $this->model->query($this->query . $addLimit);
         $this->model->setResultSet($this->fullResult);
 
-        // We don't use mysqli1-result->num_rows because by selecting a large recordset
-        // and then result->num_rows it consumes a long time.
-        // Counts record with MySQL COUNT()
-        $countingSQL = str_ireplace("SELECT","SELECT COUNT(*) as num_rows , ",$this->query);
-        $countingResult = $this->model->query($countingSQL);
-        $countingObject = $countingResult->fetch_object();
-        $counting = $countingObject->num_rows;
+        if (!MYSQL_MODE_FULL_GROUP_BY) {
+            // We don't MySQL num_rows because by selecting a large recordset
+            // it consumes a long time. But it is possible only when FULL_GROUP_BY
+            // is not active,
+            $countingSQL = str_ireplace("SELECT", "SELECT COUNT(*) as num_rows , ", $this->query);
+            // echo $countingSQL;
+            $countingResult = $this->model->query($countingSQL);
+            $countingObject = $countingResult->fetch_object();
+            $counting = $countingObject->num_rows;
+            $this->totalResult = $counting;
+        } else {
+            // Using num_rows (slowest)
+            $this->totalResult	=	$this->fullResult->num_rows;
+        }
 
-        // Old implementation.
-        // $this->totalResult	=	$this->fullResult->num_rows;
-        $this->totalResult	=	$counting;
 
-        $this->pages		=	$this->getPages($this->totalResult,$this->resultPerPage);
+
+        $this->pages = $this->getPages($this->totalResult,$this->resultPerPage);
 		if(isset($_GET[$urlPageParameterName]) && $_GET[$urlPageParameterName]>0) {
 			$this->openPage	=	$_GET["$urlPageParameterName"];
 			if($this->openPage > $this->pages) {
@@ -175,6 +188,7 @@ class Paginator extends Component
 			$this->openPage	=	1;
 			$this->query .=	" LIMIT 0,$this->resultPerPage";
 		}
+
 
 		$this->resultPage =	$this->model->query($this->query);
         $this->model->setResultSet($this->resultPage);
