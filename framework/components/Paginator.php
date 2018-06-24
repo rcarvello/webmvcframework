@@ -23,9 +23,9 @@ class Paginator extends Component
 
     private $fullResult;         // MySQL result from query
     private $totalResult;        // Total number of rows
-    private $resultPage;	     // MySQL Result from each page
-    private $pages;			     // Total number of pages from (totalResult/resulPerPge)
-    private $openPage = 1;		 // Currently opened page
+    private $resultPage;	 // MySQL Result from each page
+    private $pages;	   	 // Total number of pages from (totalResult/resulPerPge)
+    private $openPage = 1;       // Currently opened page
 
     /**
      * @var string The SQL query to paginate
@@ -125,7 +125,7 @@ class Paginator extends Component
             $view->loadCustomTemplate($tpl);
         }
         parent::__construct($view,$model);
-
+	    
         // mysqli_query("SET SESSION sql_mode = 'TRADITIONAL'");
         $this->autorun();
 
@@ -164,7 +164,7 @@ class Paginator extends Component
             $this->totalResult = $counting;
         } else {
             // Using num_rows (slowest)
-            $this->totalResult	=	$this->fullResult->num_rows;
+            $this->totalResult	= $this->fullResult->num_rows;
         }
 
 
