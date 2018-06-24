@@ -57,8 +57,8 @@ define("SITEURL","http://YOUR_HOST/YOUR_APP");
 define("DEFAULT_CONTROLLER", "index");
 
 /**
- * Defines a constant for the default login page
- * @note use url notation for PascalCase Controllers
+ * Defines a constant for indicating the default login controller
+ * You can use URL notation for specifying your custom Controller
  */
 define("DEFAULT_LOGIN_PAGE", "common/login");
 
@@ -104,7 +104,12 @@ define("STORED_DATE_FORMAT","%Y-%m-%d");
  */
 define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
 
-
+/**
+ *  Instructs framework if MYSQL uses FULL_GROUP_BY sql mode
+ *  On MySQL > 5.7  FULL_GROUP_BY is enabled by default
+ *  If on your MySQL ULL_GROUP_BY is ON set it to true else false 
+ */
+define ("MYSQL_MODE_FULL_GROUP_BY",false);
 /**
  * Globals Placeholders
  */
