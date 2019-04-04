@@ -31,7 +31,7 @@ class SkeletonBuilder extends Model
                 $file = $path->getPathname();
                 $fileToShow = str_replace(RELATIVE_PATH,"",$file);
                 if (strtolower(substr($file, -4)) == ".php" ) {
-                    $arr = array("ControllerName" => $fileToShow, "Level" => $level, "Current" => $current, "Parent" => $parent, "Type" => "Controller");
+                    $arr = array("ControllerName" => $fileToShow, "Level" => $level, "Current" => $current, "Parent" => $parent, "Type" => "Controller/WebMVC Assembly");
                     $outputs[] = $arr;
                     $current = $current + 1;
                 }
@@ -98,6 +98,7 @@ class SkeletonBuilder extends Model
     {
         if (!file_exists($destinationPath. $fileName)) {
             if (@file_put_contents($destinationPath . $fileName, $content)) {
+                chmod($destinationPath . $fileName, 0777);
                 return true;
             } else {
                 return false;
