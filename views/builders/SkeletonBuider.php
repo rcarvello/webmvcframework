@@ -92,9 +92,12 @@ class SkeletonBuider extends View
     public function buildSources($basePath,$templateBasePath,$className,$TemplateSrc=null){
 
         $view = new View("builders/classes_template");
-        $view->setVar("controllers",APP_CONTROLLERS_PATH);
-        $view->setVar("models",APP_MODELS_PATH);
-        $view->setVar("views",APP_VIEWS_PATH);
+        $view->setVar("controllers",str_replace(SECURING_OUTSIDE_HTTP_FOLDER,'',APP_CONTROLLERS_PATH));
+        $view->setVar("models",str_replace(SECURING_OUTSIDE_HTTP_FOLDER,'',APP_MODELS_PATH));
+        $view->setVar("views",str_replace(SECURING_OUTSIDE_HTTP_FOLDER,'',APP_VIEWS_PATH));
+
+        $basePath = str_replace('/','\\',$basePath);
+
         $view->setVar("namespace",$basePath);
         $view->setVar("classname",$className);
         $view->setVar("template_path",$templateBasePath);
@@ -156,6 +159,7 @@ class SkeletonBuider extends View
 
     /**
      * Converts underscored strings into Pascal/Camel Case.
+     *
      * @param $string
      * @param bool $pascalCase. Default true. If false use CamelCase
      * @return mixed
@@ -165,7 +169,7 @@ class SkeletonBuider extends View
         if( $pascalCase == true ) {
             $string[0] = strtoupper($string[0]);
         }
-        $func = create_function('$c', 'return strtoupper($c[1]);');
+        $func = @create_function('$c', 'return strtoupper($c[1]);');
         return preg_replace_callback('/_([a-z])/', $func, $string);
     }
 
