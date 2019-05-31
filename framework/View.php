@@ -13,7 +13,7 @@
  *   the format:  <!-- BEGIN Block Name -->Text<!-- END Block Name -->, located into
  *   template file.
  * - Manages repetitions of data that must be rendered into a block. For example each
- *   row of a database table's rows can be rendered by using design from a block.
+ *   row of a database table's rows can be rendered by using design from a block
  * - Outputs the template with all its blocks and variables dynamically rendered with data.
  * - Provides functions for hiding or showing blocks as well as the global content.
  * - Parses and renders for error messages into an appropriate block. Errors are
