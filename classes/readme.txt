@@ -1,1 +1,1 @@
-You can put your custom application classes here.
+You can put your custom application classes here
