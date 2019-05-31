@@ -16,7 +16,7 @@
  * @filesource framework/BeanAdapter.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
- * @note none
+ * @note none.
  * @see framework/Bean, util/app_create_bean.php
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License
