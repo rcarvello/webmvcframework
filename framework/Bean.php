@@ -8,7 +8,7 @@
  * Bean object.
  * So a Record object uses BeanAdapter object through this Bean interface.
  * A Record object handles the submitted actions by an HTML form designed to execute some DML
- * operations against a MySQL table. After the form submission the Record object intercepts
+ * operations against a MySQL table. After the form submission, the Record object intercepts
  * the request and routes actions to a BeanAdapter. The BeanAdpter calls the methods of a MySQL
  * Bean Class which manage a single MySQL table and provides all necessary services to execute
  * SQL operations.
