@@ -45,3 +45,6 @@ An introduction to PHP WebMVC Framework
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/Dispatch%20and%20Create%20MVC%20Instance.png)
 
 
+![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/wiki_resource/WebMVCRequestHandling.png)
+
+
