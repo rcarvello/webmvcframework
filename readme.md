@@ -4,7 +4,7 @@ The webmvcframework package is an object oriented PHP framework that uses MVC ar
 design pattern for building web applications with MySQL database and HTML.<br><br>
 It offers to developers a complete set of functionalities for rapid development of data 
 intensive web applications. Generally, it provides services for system decomposition that 
-developers can do at different levels when they coding a complex web application. 
+developers can do at different levels when they coding a complex web application.
 Firstly it entire implements services for realizing the MVC design pattern decomposition 
 between PHP code and the HTML code of the GUI. However, this is not the only feature provided 
 by the Framework for acting on the application's decomposition.<br>
