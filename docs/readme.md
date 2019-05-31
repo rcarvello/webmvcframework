@@ -1,4 +1,4 @@
-## UML Diagrams of framework classes
+## UML Diagrams of common framework classes
 ### Overview
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/framework.png)
 ### Dispatcher
