@@ -47,4 +47,17 @@ An introduction to PHP WebMVC Framework
 
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/wiki_resource/WebMVCRequestHandling.png)
 
+The flow description is the following;
+1. An incoming HTTP request is delivered to the Web MVC Dispatcher 
+2. The Dispatcher automatically recognizes in the HTTP request a call for a Controller execution. Then it uses the Loader to load the appropriate Controller class.
+3. The Loader imports Controller class and all its dependencies
+4. The Dispatcher is now enabled to instantiate the appropriate Controller
+   * 4b...z Its also possible that the Controller aggregates and manages the execution of one or more controllers. This is a feature of WebMVC known as "Hierarchical MVC". We will discuss it later,  in this [section](https://github.com/rcarvello/webmvcframework/wiki/Content-based-decomposition)
+5. The Controller uses and runs the Model
+   * 5b Model connects to MySQL to retrieve or store data
+6. The Controller uses and runs the View
+   * 6b The View reads the static design of the web page from an HTML Template. The static design of the Template will be used by the View for generating the dynamic web page also by using data provided by the Model.
+7. The Controller, after loading and processing the Model and View, is enabled to provide back to the Dispatcher the output that was dynamically produced.
+8. Finally, the Dispatcher sends back the output as an HTTP response
+
 
