@@ -20,7 +20,7 @@
     <h1>Welcome to PHP WEB MVC Framework with Examples and Tools</h1>
     <h2>Use the following link to run the examples and tools:</h2>
     <h4>Note:</h4>
-    <h4>- Before using examples run the database installation script <strong>sql\mrp.sql</strong></h4>
+    <h4>- Before using examples you must build the database by running the database installation script <strong>sql\mrp.sql</strong></h4>
     <h4>- Also check and modify <strong>config\application.config.php</strong> and <strong>util\mysqlreflection\mysqlreflection.config.php</strong> according
     to your database configuration</h4>
     <br>
