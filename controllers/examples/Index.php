@@ -6,7 +6,7 @@
  *
  * @package controllers\examples
  * @category Application Controller
- * @author  {AuthorName} - {AuthorEmail}
+ * @author  {AuthorName} {AuthorEmail}
 */
 namespace controllers\examples;
 
