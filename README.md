@@ -61,9 +61,9 @@ The flow description is the following;
 8. Finally, the Dispatcher sends back the output as an HTTP response
 
 # Thanks
-Many and many thanks to    
+Many and many thanks to       
 ![https://www.jetbrains.com](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.png)  
-for giving me an open source license of the magic    
-![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png)  
-I used for developing PHP Web MVC Framework
+for granting me an open source license of magic 
+![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png) PHPStorm      
+that I used in the development PHP Web MVC Framework
 
