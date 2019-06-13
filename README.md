@@ -10,6 +10,15 @@ The **Component Based Development**, that was used for building many frameworkâ€
 Components are easy to use and developers can aggregate them into a root controller by using composition criteria when building complex web pages. 
 The component GUI can also easily updated or replaced to reflect the graphics experience, simply by editing or replacing the component  HTML template. The component internal logic will remain fully reusable without the need for any source code modifications.
 
+## Thanks
+Many and many thanks to       
+![https://www.jetbrains.com](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.png)  
+for granting me an open source license of magic   
+   
+![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png)   **PHPStorm**       
+    
+that I used in the development PHP Web MVC Framework.   
+
 ## How to install
 To install the framework download and copy it into an Apache web folder. Then go to the **config directory** and modify **application.config.php** according to your MySQL server configuration and Apache web folder you want to use for your application.
 By default framework provides a small set  of examples. For using them run the provided SQL script into the **sql** folder.
@@ -59,13 +68,4 @@ The flow description is the following;
    * 6b The View reads the static design of the web page from an HTML Template. The static design of the Template will be used by the View for generating the dynamic web page also by using data provided by the Model.
 7. The Controller, after loading and processing the Model and View, is enabled to provide back to the Dispatcher the output that was dynamically produced.
 8. Finally, the Dispatcher sends back the output as an HTTP response
-
-# Thanks
-Many and many thanks to       
-![https://www.jetbrains.com](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.png)  
-for granting me an open source license of magic   
-   
-![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png)   **PHPStorm**       
-    
-that I used in the development PHP Web MVC Framework.   
 
