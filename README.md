@@ -64,6 +64,8 @@ The flow description is the following;
 Many and many thanks to       
 ![https://www.jetbrains.com](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.png)  
 for granting me an open source license of magic   
+   
 ![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png)   **PHPStorm**       
-that I used in the development PHP Web MVC Framework
+    
+that I used in the development PHP Web MVC Framework.   
 
