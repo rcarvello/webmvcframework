@@ -60,4 +60,7 @@ The flow description is the following;
 7. The Controller, after loading and processing the Model and View, is enabled to provide back to the Dispatcher the output that was dynamically produced.
 8. Finally, the Dispatcher sends back the output as an HTTP response
 
+# Thanks
+Many and many thanks to ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.svg)
+![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.svg)
 
