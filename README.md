@@ -17,7 +17,7 @@ for granting me an open source license of magic
    
 ![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png)   **PHPStorm**       
     
-that I used in the development PHP Web MVC Framework.   
+that I used in the development of PHP Web MVC Framework.   
 
 ## How to install
 To install the framework download and copy it into an Apache web folder. Then go to the **config directory** and modify **application.config.php** according to your MySQL server configuration and Apache web folder you want to use for your application.
