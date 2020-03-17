@@ -1,10 +1,11 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 include_once("mysqlreflection/mysqlreflection.config.php");
+define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
 ?>
 
 <!DOCTYPE html>
-<html xmlns="https://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>MySQL Database Bean Builder</title>
     <meta charset="UTF-8">
@@ -18,7 +19,6 @@ include_once("mysqlreflection/mysqlreflection.config.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/11F1C66A-3ADD-7A47-AD0A-773DFF1E736D/main.js" charset="UTF-8"></script></head>
     <style>
         .progress {
                 background: rgba(204, 237, 220, 1);
@@ -36,6 +36,7 @@ include_once("mysqlreflection/mysqlreflection.config.php");
     <h3>This utility performs automatically  a source code generation of PHP
         Classes from MySQL tables </h3>
     <h4>Current database :<?= DBNAME ?> (to change it edit mysqlreflection.config.php)</h4>
+    <h4>Destination path :<?= DESTINATION_PATH ?></h4>
     <a class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1"><span class="glyphicon glyphicon-wrench"></span> Generate classes</a>
     <a href="../builders/index" class="btn btn-info"><span class="glyphicon glyphicon-home"></span> Home</a>
     <br />  <br />
@@ -112,7 +113,7 @@ if (isset($_GET["build"])) {
     echo "<script>$('#results').append('" . $msg . "');</script>";
 
     // Destination path for the generated classes
-    $destinationPath = dirname(__FILE__) . "/../models/beans/";
+    $destinationPath = DESTINATION_PATH;
     // $destinationPath = "source/";
 
     // Create reflection object and invoke classes generation from the specified schema into mysql_connection.inc.php
