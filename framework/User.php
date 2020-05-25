@@ -1,6 +1,6 @@
 <?php
 /**
- * Class User
+ * Class  User
  *
  * Manages users object, session and the user authentication.
  *
