@@ -4,7 +4,7 @@
  *
  * @package framework
  * @filesource framework/BeanUser.php
- * @author Rosario Carvello <rosario.carvello@gmail.com>
+ * @author Rosario Carvello  <rosario.carvello@gmail.com>
  * @version GIT:v1.1.0
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License.
