@@ -2,7 +2,7 @@
 /**
  * Class BeanAdapter
  *
- * This MVC component is an adapter for all MySQL Bean generated from the provided utility.
+ * This MVC component is  an adapter for all MySQL Bean generated from the provided utility.
  * It implements methods of Bean interface. The interface standardizes the operations
  * consumed by the Record Component.
  * A Record object uses BeanAdapter object through its Bean interface.
