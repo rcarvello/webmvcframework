@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Component
+ * Class Component.
  *
  * The MVC Component class is an abstraction for a set of specialized components.
  * A component is an entity that implements some common and generalized behaviours
