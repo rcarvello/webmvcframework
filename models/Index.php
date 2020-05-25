@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Index
+ * Class Index.
  *
  * {ModelResponsability}
  *
