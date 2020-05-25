@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Controller
+ * Class  Controller
  *
  * @package framework
  * @filesource framework/Controller.php
