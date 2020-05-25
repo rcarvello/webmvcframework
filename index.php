@@ -3,7 +3,7 @@
  * index.php
  *
  * This file is automatically invoked after every URL request and only when the rewrite
- * conditions defined into the .htaccess file are satisfied.
+ * conditions defined into the .htaccess file are satisfied
  * It provides the auto loading of classes and the MVC objects creations, by using
  * framework\Loader and framework\Dispatcher classes, depending on the requested URL.
  *
