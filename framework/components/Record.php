@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Record
+ * Class Record.
  *
  * This MVC component should be used together with a custom controller buided to manage
  * an HTML Form. Record component  automatically rendersand  manages the form
