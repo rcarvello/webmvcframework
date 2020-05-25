@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>You can nest inside a custom controller this simple user managements forms for managing application accounts</h2>
+    <h2>You can nest inside a custom controller this simple users management forms for managing application accounts</h2>
     <a href="{GLOBAL:SITEURL}">Home page</a> | <a href="{GLOBAL:SITEURL}/common/user_accounts?locale=en">English</a> | <a href="{GLOBAL:SITEURL}/common/user_accounts?locale=it-it">Italiano</a><br><br>
     <div class="panel panel-primary">
         <div class="panel-heading">
