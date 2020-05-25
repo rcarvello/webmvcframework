@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ACE
+ * Class Ace
  *
  * @todo Class implementation
  * @package framework
