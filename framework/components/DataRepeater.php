@@ -1,6 +1,6 @@
 <?php
 /**
- * Class DataRepeater
+ * Class DataRepeater.
  *
  * Populate a block's or content_id's variables with array's values or with model result
  * set.
