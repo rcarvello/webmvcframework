@@ -2,7 +2,7 @@
 /**
  * Class ControllerNotFoundException
  *
- * Exception when trying to instantiate a controller and its corresponding class
+ * Exception when trying to instantiate a controller  and its corresponding class
  * was not found.
  *
  * @package framework/exceptions
