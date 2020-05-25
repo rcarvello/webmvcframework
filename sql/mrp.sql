@@ -1,7 +1,7 @@
 -- phpMyAdmin SQL Dump
 -- version 4.2.11
--- http://www.phpmyadmin.net
---
+-- http://www.phpmyadmin.net 
+-- 
 -- Host: localhost:3306
 -- Generation Time: Mag 11, 2018 alle 15:21
 -- Versione del server: 5.6.21-log
