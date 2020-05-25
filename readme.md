@@ -21,7 +21,7 @@ by using a composite criteria for building complex application pages. A componen
 also easily adapted or replaced to reflect the application's experience simply by modifying or 
 replacing its HTML template with a custom one. Component's server logic will remain fully 
 eusable without the need of any source code modifications.<br>
-See the docs folders for more information<br/><br/>
+See the docs folders for more information   
 ## How to install
 To install download and copy it into an Apache web folder. Then go to the config directory and 
 modify application.config.php according to your MySQL server configuration and Apache web 
