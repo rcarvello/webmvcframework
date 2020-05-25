@@ -1,6 +1,6 @@
 <?php
 /**
- * Interface Bean
+ * Interface  Bean
  *
  * The interface designs a contract by defining some public methods that BeanAdpter implements.
  * BeanAdapter, by implementing these methods, provides the interoperability between a Record
