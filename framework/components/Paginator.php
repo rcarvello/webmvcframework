@@ -2,7 +2,7 @@
 
 /**
  * Class Paginator
- * Generates pagination from a database result set.
+ * Generates pagination from a database result set
  * *
  * @package framework
  * @filesource framework/Paginator.php
