@@ -21,7 +21,7 @@ use framework\exceptions\MethodNotFoundException;
 /**
  * Class Dispatcher
  *
- * Dispatch a url request by creating the appropriate MVC controller
+ * Dispatch a url request by creating the  appropriate MVC controller
  * instance and runs its method by passing it the parameters.
  *
  * A url request must be in the formats:
