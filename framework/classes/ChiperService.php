@@ -128,7 +128,7 @@ class ChiperService
     }
 
     /**
-     * Refreshes user credentials cookie expiration date.
+     * Refreshes user credentials cookie expiration date
      *
      * @param $expirationDate
      */
