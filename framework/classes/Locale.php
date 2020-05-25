@@ -87,7 +87,7 @@ class Locale
     }
 
     /**
-     * Gets locale from currente HTTP Headers
+     * Gets locale from currente HTTP  Headers
      *
      * @param string|constant:HTTP_ACCEPT_LANGUAGE $HHTPHeader
      */
