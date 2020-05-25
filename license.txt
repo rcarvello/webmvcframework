@@ -28,7 +28,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Italiano
 
-Web MVC Framework v.1.1.1 2016
+Web MVC Framework v.2.1.1 2019
 Copyright (c) 2016, Rosario Carvello - rosario.carvello@gmail.com
 All rights reserved.
 
