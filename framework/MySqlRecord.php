@@ -1,6 +1,6 @@
 <?php
 /**
- * Class MySqlRecord
+ * Class  MySqlRecord
  *
  * @package framework
  * @filesource framework/MySqlRecord.php
