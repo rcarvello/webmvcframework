@@ -1,6 +1,6 @@
 <?php
 /**
- * Class VIEW
+ * Class View
  *
  * A View of MVC design pattern manages the presentation.
  * Technically speaking it has those main roles:
