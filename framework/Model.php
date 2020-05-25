@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Model
+ * Class  Model
  *
  * @package framework
  * @filesource framework/Model.php
