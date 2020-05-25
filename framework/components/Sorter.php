@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Sorter
+ * Class Sorter.
  *
  * @package framework
  * @filesource framework/components/Sorter.php
