@@ -21,7 +21,7 @@ class HTMLFormatter
      * Converts a submitted HTML5 input type="datetime-local" to a MySQL compatible datetime
      * string.
      * Eg: (HTML) 2016-10-01T12:00 => (MySQL) 2016-10-01 12:00:00
-     * The result is also stored to $_GET and $_POST with a key corresponding
+     * The result is also stored to  $_GET and $_POST with a key corresponding
      * to the input name.
      *
      * @param string $fieldDateTime The value of the HTML input type="datetime-local"
