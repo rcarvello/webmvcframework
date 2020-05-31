@@ -63,7 +63,7 @@ class MySqlRecord extends Model
     {
         $this->lastSqlError = "";
     }
-
+    
     /**
      * parseValue Parses the value and returns NULL if null occurred
      *
@@ -73,15 +73,31 @@ class MySqlRecord extends Model
      * @param string $type The data type of first parameter, default is number (int/float) value
      * @return null|string|int|float quoted or not value
      */
-    protected function parseValue($value=null,$type="number")
+    protected function parseValueOLD($value=null,$type="number")
     {
         $constants = get_defined_constants();
+        var_dump($value);
 
         if ( $type=="int" || $type=="float" || $type=="real" || $type=="double") {
+            if ($value !=null) {
+                switch ($type) {
+                    case "double":
+                        $value = (double)$value;
+                        break;
+                    case "float":
+                        $value = (float)$value;;
+                        break;
+                    case "real":
+                        $value = (real)$value;;
+                        break;
+                    default:
+                        $value = (int)$value;
+                }
+            }
             $type = "number";
         }
-        if ($value==null) {
-            return "NULL";
+        if (!is_null($value) && $value == 0) {
+            return 0;
         } else if ($value !=null && $type!="number" && $type!="date" && $type!="datetime") {
             return "'" . $this->real_escape_string($value) . "'";
         } else if ($value !=null && $type!="number" && $type=="date") {
@@ -94,7 +110,6 @@ class MySqlRecord extends Model
             return "NULL";
         }
     }
-
     /**
      * Replaces backslash present into MySQL strings which containing apostrophes.
      *
