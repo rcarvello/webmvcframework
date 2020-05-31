@@ -73,7 +73,7 @@ class MySqlRecord extends Model
      * @param string $type The data type of first parameter, default is number (int/float) value
      * @return null|string|int|float quoted or not value
      */
-    protected function parseValueOLD($value=null,$type="number")
+    protected function parseValue($value=null,$type="number")
     {
         $constants = get_defined_constants();
         var_dump($value);
