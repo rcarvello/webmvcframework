@@ -95,7 +95,7 @@ class MySqlRecord extends Model
             }
             $type = "number";
         }
-        if (!is_null($value) && $value == 0) {
+        if (!is_null($value) && $value == 0 && $type == "number") {
             return 0;
         } else if ($value !=null && $type!="number" && $type!="date" && $type!="datetime") {
             return "'" . $this->real_escape_string($value) . "'";
