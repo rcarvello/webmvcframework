@@ -2,6 +2,8 @@
 # PHP WEB MVC Framework
 The package **webmvcframework**, with the acronym of **WebMVC**, is an **object oriented** PHP framework that uses the **MVC architectural  pattern** for building web-based MySQL applications.
 
+It is s an open-source web framework that's optimized for programmer happiness and sustainable productivity. It lets you write beautiful code by favoring convention over configuration. The result is a web framework that allows you to transition from idea to implementation in a very short period of time.
+
 It offers to developers a complete set of functionalities for rapid development of data intensive web applications. Generally, it provides services for system decomposition that developers can do at different levels when they coding a complex web application. Firstly it provides the classes to achieve the Model, View, Controller decomposition and also to divide PHP code from HTML during the GUI designing. However, this is not the only feature provided by the Framework for acting on the application's decomposition.
 
 The **Component Based Development**, that was used for building many framework’s features, permits to developers to apply another level of software decomposition and reuse. Framework’s components, in fact, realize **recurrent aspects** of web applications. Many of these aspects are regarding MySQL, e.g. data listing, data listing and sorting, data listing and filtering, data listing and pagination, record management and the common table’s operations of select, insert, delete and update. 
