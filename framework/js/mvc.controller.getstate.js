@@ -223,8 +223,8 @@ function setUrls(index) {
 function getControllerState(index) {
     // console.log(serviceLocation[index]);
     xhr = new XMLHttpRequest();
-    xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhr.open('GET', serviceLocation[index] , true);
+    xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhr.timeout = 4000;
     xhr.send();
     xhr.onreadystatechange = function () {
