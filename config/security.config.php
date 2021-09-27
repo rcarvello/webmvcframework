@@ -103,3 +103,42 @@ define("LoginAuthWarningMessage", "{RES:LoginAuthWarningMessage}");
  *
  */
 define("LoginRBACWarningMessage", "{RES:LoginRBACWarningMessage}");
+
+/* TODO  Add XSS and HTMLPURIFIER */
+
+/**
+ * Securing file access.
+ * Specifies a path, outside HTTP access, where framework and application classes
+ * could be located. In this way, you can protect directory access from HTTP.
+ * Note: if it's value is null all framework files and classes must be located
+ * inside the same application directory (anythings is potentially accessible from HTTP).
+ *
+ * Setting example:
+ *
+ *    define ("SECURING_OUTSIDE_HTTP_FOLDER","C:/Wamp/Apache2.2/mvcout_framework/");
+ *
+ * If you set SECURING_OUTSIDE_HTTP_FOLDER you also must set RELATIVE_PATH inside
+ * index.php
+ *
+ * For example:
+ *
+ *    define ("RELATIVE_PATH", "C:/Wamp/Apache2.2/mvcout_framework/");
+ *
+ *
+ *
+ * WARNING: When using SECURING_OUTSIDE_HTTP_FOLDER you must to separate files and
+ * directors in this way;
+ *
+ * PATH NOT ACCESSIBLE FROM HTTP                PATH ACCESSIBLE FROM HTTP
+ * =============================                =========================
+ * classes                                      css
+ * config                                       js
+ * framework                                    framework/js
+ * controllers                                  util (only if you want to run builders)
+ * models                                       temp (a temporary folder)
+ * views                                        index.php
+ * templates                                    .htaccess
+ * locales
+ *
+ */
+define ("SECURING_OUTSIDE_HTTP_FOLDER","");
