@@ -78,6 +78,7 @@ RewriteRule ^.* - [F]
 
 # Prevent SQL injections
 # Prevenzione SQL injections
+
 RewriteCond %{QUERY_STRING} UNION([%20\ /\*+]*)ALL([%20\ /\*+]*)SELECT [NC,OR]
 RewriteCond %{QUERY_STRING} UNION([%20\ /\*+]*)SELECT [NC,OR]
 RewriteCond %{QUERY_STRING} /\* [NC,OR]
