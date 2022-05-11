@@ -2,7 +2,7 @@
   "lang": "it",
   "dir": "ltr",
   "name": "App name",
-  "description": "Your description",
+  "description": "Your info",
   "manifest_version": 5,
   "short_name": "Short description",
   "icons": [
