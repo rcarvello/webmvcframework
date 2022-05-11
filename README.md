@@ -13,7 +13,8 @@ Components are easy to use and developers can aggregate them into a root control
 The component GUI can also easily updated or replaced to reflect the graphics experience, simply by editing or replacing the component  HTML template. The component internal logic will remain fully reusable without the need for any source code modifications.
 
 ## Thanks
-Many and many thanks to       
+Many and many thanks to   
+
 ![https://www.jetbrains.com](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/jetbrains.png)  
 for granting me an open source license of magic   
    
