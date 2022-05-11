@@ -16,7 +16,7 @@
  * @package framework
  * @filesource framework/Bean.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
- * @version GIT:v1.1.0
+ * @version GIT:v1.1.1
  * @see framework/Record
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License
