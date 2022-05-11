@@ -21,7 +21,7 @@
  * @package framework
  * @filesource framework/Component.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
- * @version GIT:v1.0.0
+ * @version GIT:v1.0.1
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
