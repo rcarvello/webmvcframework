@@ -5,7 +5,7 @@
  * all the necessary information about the controllers data.
  * If the comparison fails observer updates the view with content fetched from the controller.
  * The updating may be on the full page (by using page reload) or on part of it (by using
- * section replacement without page reloading).
+ * section replacement without page reloading)
 
  * @author Rosario Carvello - rosario.carvello@gmail.com
  * @version GIT:v1.0.0
