@@ -6,7 +6,7 @@
  *
  * @package controllers
  * @category Application Controller
- * @author  {AuthorName} - {AuthorEmail}
+ * @author  {AuthorName} - rosario.carvello@gmail.com 
 */
 namespace controllers;
 
