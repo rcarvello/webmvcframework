@@ -5,7 +5,7 @@
  *  Replacement of Global PlaceHolders variables located inside a content,
  *  typically an HTML template, with user predefined PHP constant.
  *
- *  A global variable is in the format {GLOBAL:ConstantVariableName}.
+ *  A global variable is in the format {GLOBAL:ConstantVariableName}
  *  ConstantVariableName must match the name of a predefined  PHP constant.
  *
  *  Example:
