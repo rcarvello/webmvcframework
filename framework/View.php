@@ -22,7 +22,7 @@
  * @package framework
  * @filesource framework/View.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
- * @version GIT:v1.0.0
+ * @version GIT:v1.0.1
  * @note none
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD
