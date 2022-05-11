@@ -12,5 +12,6 @@
 ### Convert MySQL into PHP Classes automatically (Video)
 [![IMAGE ALT TEXT HERE](https://i.ytimg.com/vi/7Aa_k_hWDYk/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=3wURVxGteSMWeF9OtZCnrOpeVRk)]
 (https://www.youtube.com/watch?v=7Aa_k_hWDYk)
+
 #### See the docs folders for more information
 
