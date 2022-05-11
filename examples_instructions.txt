@@ -47,3 +47,6 @@ define("DBNAME","PUT_YOUR_DB_NAME_HERE");
 define('DBPORT', '3306');
 
 E) Run: http://YOUR_HOST/YOUR_FOLDER
+
+
+LIVE EXAMPLES: www.webmvcframework.com
