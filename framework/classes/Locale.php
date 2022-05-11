@@ -5,7 +5,7 @@
  * Manages Localozation Files.
  *  A localization file contains a list of [Resource identifier] = translation strings.
  *  Translations can be applied to all placeholder having the format {RES:Variable}
- *  of a given text file or string.
+ *  of a given text file or string
  *
  * @package framework\classes
  * @filesource framework\classes\Locale.php
