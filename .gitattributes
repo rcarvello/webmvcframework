@@ -1,4 +1,4 @@
-*.php linguist-language=Php
+*.php linguist-languages=Php
 *.tpl linguist-language=Html
 *.js linguist-language=Javascript
 *.html linguist-language=Html
