@@ -1,6 +1,6 @@
 <?php
 /**
- * Demo usage of the generated class SaleAgent
+ * Demo usage of the generated class
  */
 error_reporting(E_ALL);
 header('Content-Type: text/html; charset=utf-8');
