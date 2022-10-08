@@ -28,7 +28,7 @@ define ("RELATIVE_PATH", "");
 error_reporting(E_ALL & ~E_NOTICE);
 
 // Commons initializations and configurations loading
-// Note: for changing framework or application setting see config folder.
+// Note: for change framework or application setting see the config folder.
 header('Content-Type: text/html; charset=utf-8');
 include_once(RELATIVE_PATH . "config/framework.config.php");
 
@@ -43,7 +43,7 @@ use framework\Dispatcher;
 // Set classes auto loader simply by instantiating framework Loader
 $loader = new Loader();
 
-// Create a Dispatcher to dispatch URL request to the appropriate user controller
+// Create a dispatcher for handling URL request to the appropriate user controller
 $dispatcher = new Dispatcher();
 $dispatcher->dispatch();
 
