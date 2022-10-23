@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/webmvclogo.png)
 # PHP WEB MVC Framework
-The package **webmvcframework**, with the acronym of **WebMVC**, is an **object oriented** PHP framework that uses the **MVC architectural  pattern** for building web-based MySQL applications.
+The package **webmvcframework**, with the acronym of **WebMVC**, is an **object oriented** PHP framework designed using **MVC architectural  pattern** for building web-based MySQL applications.
 
 It is s an open-source web framework that's optimized for programmer happiness and sustainable productivity. It lets you write beautiful code by favoring convention over configuration. The result is a web framework that allows you to transition from idea to implementation in a very short period of time.
 
