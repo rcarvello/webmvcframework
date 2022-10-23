@@ -20,22 +20,22 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","YOUR_HOST");
+define("DBHOST","localhost");
 
 /**
  *  MySQL User
  */
-define("DBUSER","YOUR_USER");
+define("DBUSER","user");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","YOUR_PASSWORD");
+define("DBPASSWORD","password");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","YOUR_DB");
+define("DBNAME","webmvcframework");
 
 /**
  *  MySQL Port
@@ -46,7 +46,7 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","http://YOUR_HOST/YOUR_APP");
+define("SITEURL","https://localhost/webmvcframework");
 // Or HTTPS
 // define("SITEURL","https://YOUR_HOST/YOUR_APP");
 
@@ -107,9 +107,9 @@ define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
 /**
  *  Instructs framework if MYSQL uses FULL_GROUP_BY sql mode
  *  On MySQL > 5.7  FULL_GROUP_BY is enabled by default
- *  If on your MySQL ULL_GROUP_BY is ON set it to true else false 
+ *  If on your MySQL FULL_GROUP_BY is ON set it to true else false 
  */
-define ("MYSQL_MODE_FULL_GROUP_BY",false);
+define ("MYSQL_MODE_FULL_GROUP_BY",true);
 /**
  * Globals Placeholders
  */
