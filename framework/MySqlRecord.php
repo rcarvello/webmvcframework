@@ -87,7 +87,7 @@ class MySqlRecord extends Model
                         $value = (float)$value;;
                         break;
                     case "real":
-                        $value = (real)$value;;
+                        $value = (float)$value;;
                         break;
                     default:
                         $value = (int)$value;
