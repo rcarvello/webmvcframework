@@ -26,7 +26,8 @@ define ("RELATIVE_PATH", "");
 
 // Enable error reporting and disable notices
 error_reporting(E_ALL & ~E_NOTICE);
-
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 // Commons initializations and configurations loading
 // Note: for change framework or application setting see the config folder.
 header('Content-Type: text/html; charset=utf-8');
