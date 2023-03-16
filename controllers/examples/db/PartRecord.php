@@ -86,7 +86,7 @@ class PartRecord extends Controller
         // $record->disallowAction(record::UPDATE);
         // $record->disallowAction($record::DELETE);
 
-        // Creates BeanAclActions, its BeanAdapter and select the
+        // Creates BeanPart, its BeanAdapter and select the
         // current record
         $bean = new BeanPart();
         $beanAdapter = new BeanAdapter($bean);
