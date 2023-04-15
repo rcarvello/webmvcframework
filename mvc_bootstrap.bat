@@ -5,9 +5,9 @@ REM For example:
 REM
 REM c:\php_apps\mvc_bootstrap.php
 REM c:\php_apps\php56     folder where are located PHP version 5.3 files
-REM c:\php_apps\php74     folder where are located PHP version 5.3 files
-REM c:\php_apps\php80     folder where are located PHP version 5.3 files
-REM c:\php_apps\php82     folder where are located PHP version 5.3 files
+REM c:\php_apps\php74     folder where are located PHP version 7.4 files
+REM c:\php_apps\php80     folder where are located PHP version 8.0 files
+REM c:\php_apps\php82     folder where are located PHP version 8.2 files
 REM
 REM Note: On each PHP folder you need to configure php.ini according to framework requirements
 @echo off
