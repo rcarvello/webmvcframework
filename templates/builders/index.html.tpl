@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
+          media="screen">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -18,9 +19,12 @@
 <div class="container">
     <h1>{RES:Welcome} {RES:to} PHP WEB MVC Framework</h1>
     <h3>{RES:SelectUtility}</h3>
-    <a href="skeleton_builder" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-wrench"></span> {RES:RunSkeletonBuilderCaption}</a>
-    <a href="../util/app_create_beans.php" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-list-alt"></span>  {RES:RunMySQLBuilderCaption}</a>
-    <a href="../examples/" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span>  {RES:ExamplesHome}</a>
+    <a href="skeleton_builder" class="btn btn-lg btn-success"><span
+                class="glyphicon glyphicon-wrench"></span> {RES:RunSkeletonBuilderCaption}</a>
+    <a href="../util/app_create_beans.php" class="btn btn-lg btn-info"><span
+                class="glyphicon glyphicon-list-alt"></span> {RES:RunMySQLBuilderCaption}</a>
+    <a href="../examples/" class="btn btn-lg btn-default"><span
+                class="glyphicon glyphicon-home"></span> {RES:ExamplesHome}</a>
 
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

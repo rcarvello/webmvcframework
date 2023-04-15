@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link href="../css/template-editor/style.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
@@ -37,7 +37,7 @@
                 <div class="container-fluid framework-actions">
                     <h3>Frameworks actions:</h3>
                     <div class="btn-group" role="group">
-                        <button id="btnUndo"  href="#" class="btn btn-warning">
+                        <button id="btnUndo" href="#" class="btn btn-warning">
                             <i class="fa fa-undo" aria-hidden="true"></i> &nbsp;
                         </button>
                         <button href="#" id="btnBlock" class="btn btn-info">
@@ -48,7 +48,8 @@
                             <span class="glyphicon glyphicon-bookmark"></span> Variable
                         </button>
                         <div class="input-group" style="width: 600px;">
-                            <input type="text" id="elementName" class="form-control" placeholder="Block or Variable name">
+                            <input type="text" id="elementName" class="form-control"
+                                   placeholder="Block or Variable name">
                             <div class="input-group-addon">
                                 <i class="fa fa-tags" aria-hidden="true"></i>
                             </div>
@@ -57,7 +58,8 @@
                 </div>
                 <br/>
                 <div class="container-fluid framework-actions">
-                    <form id="formtemplate" name="formtemplate" class="form-inline" role="form" method="post" action="skeleton_builder">
+                    <form id="formtemplate" name="formtemplate" class="form-inline" role="form" method="post"
+                          action="skeleton_builder">
 
                         <!--
                         <div class="input-group" style="width: 600px;">
@@ -79,7 +81,8 @@
                         <textarea name="design" id="design" style="display:none;"></textarea>
 
 
-                        <a href="skeleton_builder?ResetDesign" onclick="return confirm('Are you sure to exit without saving?')" class="btn btn-danger">
+                        <a href="skeleton_builder?ResetDesign"
+                           onclick="return confirm('Are you sure to exit without saving?')" class="btn btn-danger">
                             <i class="fa fa-times-circle" aria-hidden="true"></i> Exit
                         </a>
                     </form>
@@ -108,9 +111,6 @@
 
     </div>
 </div>
-
-
-
 
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
