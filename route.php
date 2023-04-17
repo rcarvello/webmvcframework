@@ -5,8 +5,9 @@
  *
  * Example (windows):
  * php -c "C:\PHP_INSTALL_DIR\php.ini" -S localhost:8000 "C:\PATH_OF_WEBMVCFRAMEWORK\route.php" -t "C:\PATH_OF_WEBMVCFRAMEWORK"
- *
  * (for Linux or Mac replace path)
+ *
+ * Usage example of route.php is inside mvc_bootstrap.bat batch script
  *
  * This file implements HTTP routing when using PHP built in web server instead of Apache HTTP server.
  * It provides the auto-loading of classes and the MVC objects creations, by using
@@ -61,7 +62,6 @@ include_once RELATIVE_PATH . "config/framework.config.php";
 // Starting and securing session
 session_start();
 session_regenerate_id();
-
 
 // Set url variable (required by framework)
 $_GET['url'] = ltrim($url_path, '/');
