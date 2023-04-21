@@ -22,7 +22,7 @@
   },
   "extra": {
     "installer-paths": {
-      "/": ["/"]
+      "/": ["rcarvello/webmvcframework"]
     }
   }
 
