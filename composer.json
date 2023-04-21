@@ -13,6 +13,7 @@
     "rcarvello/webmvcframework": "dev-master",
     "php": ">=5.3"
   },
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "\\": "/"
@@ -23,5 +24,4 @@
       "/": ["rcarvello/webmvcframework"]
     }
   }
-
 }
