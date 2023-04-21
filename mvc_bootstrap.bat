@@ -30,5 +30,5 @@ REM
 REM ********************************
 REM End configuration variables
 REM ********************************
-start "php" /B "%PHP_ROOT_PATH%\php%PHP_VERSION%\php.exe" -c "%PHP_ROOT_PATH%\php%PHP_VERSION%\php.ini" -S localhost:8000 "%FRAMEWORK_PATH%\route.php" -t "%FRAMEWORK_PATH%\"
-start "browser" /B http://localhost:8000
+start http://localhost:8000
+"%PHP_ROOT_PATH%\php%PHP_VERSION%\php.exe" -c "%PHP_ROOT_PATH%\php%PHP_VERSION%\php.ini" -S localhost:8000 "%FRAMEWORK_PATH%\route.php" -t "%FRAMEWORK_PATH%\"
