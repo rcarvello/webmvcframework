@@ -15,38 +15,41 @@
  * @filesource index.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
- * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2016-2023 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  *
  */
 
-// The path of this script
+/* Path of this script */
 define ("RELATIVE_PATH", "");
 
-// Enable error reporting and disable notices
+/* Enable error reporting and disable notices */
 error_reporting(E_ALL & ~E_NOTICE);
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
-// Commons initializations and configurations loading
-// Note: for change framework or application setting see the config folder.
+
+/*
+  Commons initializations and configurations loading
+  Note: To change framework or application setting see the config folder.
+*/
+
 header('Content-Type: text/html; charset=utf-8');
 include_once(RELATIVE_PATH . "config/framework.config.php");
 
-// Starting and securing session
+/* Starting and securing session */
 session_start();
 session_regenerate_id(true);
 
-// Use of framework classes
+/* Use of framework classes */
 use framework\Loader;
 use framework\Dispatcher;
 
-// Set classes auto loader simply by instantiating framework Loader
+/* Set classes auto loader simply by instantiating framework Loader */
 $loader = new Loader();
 
-// Create a dispatcher for handling URL request to the appropriate user controller
+/* Create a dispatcher for handling URL request to the appropriate user controller */
 $dispatcher = new Dispatcher();
 $dispatcher->dispatch();
-
 
 
