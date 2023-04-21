@@ -16,7 +16,7 @@
     "psr-4": {
       "\\": "/"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "master"
   },
   "extra": {
     "installer-paths": {
