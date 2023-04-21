@@ -10,13 +10,13 @@
     }
   ],
   "require": {
+    "rcarvello/webmvcframework": "dev-master",
     "php": ">=5.3"
   },
   "autoload": {
     "psr-4": {
       "\\": "/"
-    },
-    "minimum-stability": "master"
+    }
   },
   "extra": {
     "installer-paths": {
