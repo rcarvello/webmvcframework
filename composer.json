@@ -13,17 +13,15 @@
   "require": {
     "php": ">=5.3"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "\\": "/"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
   },
   "extra": {
     "installer-paths": {
       "/": ["rcarvello/webmvcframework"]
     }
   }
-
-}
