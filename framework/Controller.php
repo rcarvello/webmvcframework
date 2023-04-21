@@ -11,16 +11,15 @@
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  *
  */
+
 namespace framework;
 
 use \DOMDocument;
-use framework\exceptions\MVCException;
-use framework\exceptions\UserNotLoggedException;
 use \ReflectionClass;
-use \Exception;
 use framework\classes\Locale;
 use framework\classes\Globalize;
-use framework\exceptions\VariableNotFoundException;
+use framework\exceptions\VariableNotFoundExceptionuse;
+use framework\exceptions\NotInitializedViewException;
 use framework\components\Component;
 
 abstract class Controller
@@ -66,24 +65,24 @@ abstract class Controller
      * The .txt is placed inside a directory locales/LOCALE_ID/.. followed by
      * the subsystem name.
      *
-     * @uses framework/classes/Locale to manage Locale e Localization file.
      * @param string $parsedTpl A text to translate with localizations.
-     *                          Tipically the parsed tpl from View
+     *                          (usually it is the template parsed by View)
      * @return string
+     * @uses framework/classes/Locale to manage Locale e Localization file.
      */
     public function localize($parsedTpl)
     {
         $locale = new Locale();
         $currentLocale = $locale->getCurrentLocale();
-        $currentControllerName = str_replace("\\","/",$this->getName());
+        $currentControllerName = str_replace("\\", "/", $this->getName());
 
-        $localeFilename = "locales" . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR. $currentControllerName . ".txt";
-        $defaultLocaleFileName = "locales" . DIRECTORY_SEPARATOR . $locale::DEFAULT_LCID. $currentControllerName . ".txt";
+        $localeFilename = "locales" . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR . $currentControllerName . ".txt";
+        $defaultLocaleFileName = "locales" . DIRECTORY_SEPARATOR . $locale::DEFAULT_LCID . $currentControllerName . ".txt";
         // echo $localeFilename;
         if (file_exists($localeFilename)) {
             $optionals = $locale->loadLocaleFiles($localeFilename);
             $transletedText = $locale->applyLocaleMessages($parsedTpl, $optionals);
-        } elseif (file_exists($defaultLocaleFileName)){
+        } elseif (file_exists($defaultLocaleFileName)) {
             $optionals = $locale->loadLocaleFiles($defaultLocaleFileName);
             $transletedText = $locale->applyLocaleMessages($parsedTpl, $optionals);
         } else {
@@ -114,8 +113,8 @@ abstract class Controller
 
     /**
      * Outputs the controller content managed, computed and fetched from its View.
-     * Apply also translations to the content if locale translation file is presente.
-     * Finally get the output, also compressed if constant COMPRESS_OUTPUT is true.
+     * Apply also translations to the content if locale translation file is present.
+     * Finally, get the output (also compressed if constant COMPRESS_OUTPUT is true).
      *
      */
     public function render()
@@ -165,7 +164,7 @@ abstract class Controller
      * A JSON Service witch gets the Controller state and the content of its specific HTML element id.
      * It returns a state representation of the Controller and its base64 encoded content.
      *
-     * @param string $contentId The HTML element id from whitch obtain the state and content.
+     * @param string $contentId The HTML element id from which obtain the state and content.
      *                          Default is "all" and returning all Controller content
      *
      * @return string A JSON representation of the controller state and its utf-8 content
@@ -205,10 +204,10 @@ abstract class Controller
      * @param string|null $content The content to observe. If null observe all content.
      * @param string $withAlerting Activation flag to manage alert on change. Default is "false".
      *
-     * @throws VariableNotFoundException
-     * @note Use this method only into first level controllers.
+     * @throws NotInitializedViewException
+     * @throws exceptions\VariableNotFoundException
      */
-    public function setAsObserver($content = null,$withAlerting="false")
+    public function setAsObserver($content = null, $withAlerting = "false")
     {
         if (!$this->rootController)
             return;
@@ -225,7 +224,7 @@ abstract class Controller
         $this->observersCounter = $this->observersCounter + 1;
         $this->observerPollingInterval = $this->observerPollingInterval + 500;
 
-        // Prima implementazione -- Non valido per componente Record
+        // First coding, wrong for Record Component
         // $postData = base64_encode(http_build_query($_POST));
         $postData = base64_encode(http_build_query($_GET));
         $jsString = @file_get_contents(JSFRAMEWORK . "/mvc.append.controller.getstate.js");
@@ -249,6 +248,7 @@ abstract class Controller
 
     /**
      * Resets the observers counter. Use it before binding observer in custom methods.
+     * @return void
      */
     public function resetObservers()
     {
@@ -261,7 +261,9 @@ abstract class Controller
      * The variable must be named with the same subusystem\controller class name.
      *
      * @param Controller $controller The controller instance to bind
-     * @throws VariableNotFoundException
+     * @return void
+     * @throws NotInitializedViewException
+     * @throws exceptions\VariableNotFoundException
      */
     public function bindController(Controller $controller)
     {
@@ -286,7 +288,8 @@ abstract class Controller
      *
      * @param Component $component The component instance to bind.
      * @param boolean . If true, default, content is automatically rendered to the screen.
-     * @throws VariableNotFoundException
+     * @throws NotInitializedViewException
+     * @throws exceptions\VariableNotFoundException
      */
     public function bindComponent(Component $component, $render = true)
     {
@@ -376,7 +379,6 @@ abstract class Controller
 
     /**
      * Gets the View.
-     *
      * @return View
      */
     public function getView()
@@ -391,7 +393,7 @@ abstract class Controller
      */
     protected function grantRole($role)
     {
-        $role = (int) $role;
+        $role = (int)$role;
         $this->roleBasedACL[] = $role;
     }
 
@@ -402,19 +404,19 @@ abstract class Controller
      *                         If null it redirects to the default login page.
      * @param null|string $returnLink The return link after loggin in with the the dafault
      *                    login page
-     * @param null|string $LoginWarningMessage  A custom warning message to show
+     * @param null|string $LoginWarningMessage A custom warning message to show
      * @return User
-    */
-    protected function restrictToRBAC($redirect=null, $returnLink=null, $LoginWarningMessage=null)
+     */
+    protected function restrictToRBAC($redirect = null, $returnLink = null, $LoginWarningMessage = null)
     {
-        $user = $this->restrictToAuthentication($redirect,$returnLink,$LoginWarningMessage);
-        if (!empty($this->roleBasedACL)){
+        $user = $this->restrictToAuthentication($redirect, $returnLink, $LoginWarningMessage);
+        if (!empty($this->roleBasedACL)) {
             $userRole = $user->getRole();
             if (!in_array($userRole, $this->roleBasedACL)) {
                 $redirect = (empty($redirect)) ? DEFAULT_LOGIN_PAGE : $redirect;
-                $returnLink = (!empty($returnLink)) ? "?return_link=$returnLink": "";
-                $LoginWarningMessage=(!empty($LoginWarningMessage)) ? "&login_warning_message=$LoginWarningMessage": "";
-                header('Location: ' . SITEURL . "/". $redirect . $returnLink . $LoginWarningMessage);
+                $returnLink = (!empty($returnLink)) ? "?return_link=$returnLink" : "";
+                $LoginWarningMessage = (!empty($LoginWarningMessage)) ? "&login_warning_message=$LoginWarningMessage" : "";
+                header('Location: ' . SITEURL . "/" . $redirect . $returnLink . $LoginWarningMessage);
             }
         }
         return $user;
@@ -427,13 +429,13 @@ abstract class Controller
      *                         If null it redirects to the default login page.
      * @param null|string $returnLink The return link after loggin in with the the
      *                                dafault login page
-     * @param null|string $LoginWarningMessage  A custom warning message to show
+     * @param null|string $LoginWarningMessage A custom warning message to show
      * @return User
      */
-    protected function restrictToAuthentication($redirect=null, $returnLink=null, $LoginWarningMessage=null)
+    protected function restrictToAuthentication($redirect = null, $returnLink = null, $LoginWarningMessage = null)
     {
         $user = new User();
-        $user->checkForLogin($redirect,$returnLink,$LoginWarningMessage);
+        $user->checkForLogin($redirect, $returnLink, $LoginWarningMessage);
         return $user;
     }
 
