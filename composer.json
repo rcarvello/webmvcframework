@@ -15,7 +15,9 @@
   },
   "autoload": {
     "psr-4": {
-      "framework\\": "framework/"
-    }
+      "\\": "/"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
   }
 }
