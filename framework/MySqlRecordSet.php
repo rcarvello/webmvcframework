@@ -11,6 +11,7 @@
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 class MySqlRecordSet extends Model
 {
@@ -21,14 +22,14 @@ class MySqlRecordSet extends Model
 
     public function __construct($sql)
     {
-        $this->sql=$sql;
+        $this->sql = $sql;
         parent::__construct();
     }
 
     public function autorun()
     {
         $result = $this->query($this->sql);
-        $this->resultSet= $result;
+        $this->resultSet = $result;
     }
 
     /*

@@ -45,14 +45,14 @@ class View
     protected $tpl;
 
     /**
-    * @var array Stores each opened blocks contained into the tpl variable.
-    *            Each elements of blocks contain four section:
-    *            - structure       Original content including BEGIN END pseudo tags
-    *            - template        Content to process
-    *            - last_parsed     Last parsed content  (after each call of setVar() or
-    *                              parseCurrentBlock() method)
-    *            - parsed          Final parsed content (after invoking serBlock() method)
-    */
+     * @var array Stores each opened blocks contained into the tpl variable.
+     *            Each elements of blocks contain four section:
+     *            - structure       Original content including BEGIN END pseudo tags
+     *            - template        Content to process
+     *            - last_parsed     Last parsed content  (after each call of setVar() or
+     *                              parseCurrentBlock() method)
+     *            - parsed          Final parsed content (after invoking serBlock() method)
+     */
     protected $blocks;
 
     /**
@@ -79,6 +79,7 @@ class View
 
     function __construct($tplName = null)
     {
+        $this->blocks = array();
         if (!empty($tplName))
             $this->loadTemplate($tplName);
     }
@@ -92,10 +93,10 @@ class View
     protected function loadTemplate($tplName)
     {
         $this->setTplPathDept($tplName);
-        $tpl = APP_TEMPLATES_PATH  . "/" . $tplName . ".html.tpl";
+        $tpl = APP_TEMPLATES_PATH . "/" . $tplName . ".html.tpl";
         $this->tpl = @file_get_contents($tpl);
         if ($this->tpl == false)
-            throw new TemplateNotFoundException("Template $tpl non trovato",101);
+            throw new TemplateNotFoundException("Template $tpl non trovato", 101);
         $this->blocks = array();
     }
 
@@ -111,7 +112,7 @@ class View
         $tpl = RELATIVE_PATH . $tplName . ".html.tpl";
         $this->tpl = @file_get_contents($tpl);
         if ($this->tpl == false)
-            throw new TemplateNotFoundException("Template $tpl non trovato",101);
+            throw new TemplateNotFoundException("Template $tpl non trovato", 101);
         $this->blocks = array();
     }
 
@@ -142,8 +143,8 @@ class View
     public function setVarTemplatePath($useSiteUrl = true)
     {
         if ($useSiteUrl) {
-            $this->setVar("TEMPLATE_PATH", SITEURL. "/");
-        } else{
+            $this->setVar("TEMPLATE_PATH", SITEURL . "/");
+        } else {
             $this->setVar("TEMPLATE_PATH", $this->getTplPathDepth());
         }
     }
@@ -155,8 +156,8 @@ class View
      */
     private function checkLoadedTpl()
     {
-        if(!$this->tpl)
-            throw new NotInitializedViewException("La vista non è stata inizializzata",102);
+        if (!$this->tpl)
+            throw new NotInitializedViewException("La vista non è stata inizializzata", 102);
     }
 
     /**
@@ -168,26 +169,26 @@ class View
      * @return bool
      * @throws NotInitializedViewException If template was not loaded
      */
-    public function checkVar($var, $useBraces =true)
+    public function checkVar($var, $useBraces = true)
     {
         $this->checkLoadedTpl();
-        if($this->currentBlock != "" && $useBraces ){
+        if ($this->currentBlock != "" && $useBraces) {
             $found = strpos($this->blocks[$this->currentBlock]["last_parsed"], "{" . $var . "}");
-            if(!$found) {
+            if (!$found) {
                 return false;
             } else {
                 return true;
             }
         } else if ($useBraces) {
             $found = strpos($this->tpl, "{" . $var . "}");
-            if(!$found) {
+            if (!$found) {
                 return false;
             } else {
                 return true;
             }
         } else if (!$useBraces) {
-            $found = strpos($this->tpl,$var );
-            if(!$found) {
+            $found = strpos($this->tpl, $var);
+            if (!$found) {
                 return false;
             } else {
                 return true;
@@ -205,18 +206,22 @@ class View
      * @throws VariableNotFoundException. If variable/placeholder was not found
      * @throws NotInitializedViewException If template was not loaded
      */
-    public function setVar($var,$value,$useBraces=true)
+    public function setVar($var, $value, $useBraces = true)
     {
         $this->checkLoadedTpl();
-        if($this->currentBlock != "" && $useBraces ){
+
+        if (empty($value))
+            $value = "";
+
+        if ($this->currentBlock != "" && $useBraces) {
             $found = strpos($this->blocks[$this->currentBlock]["last_parsed"], "{" . $var . "}");
-            if(!$found)
-                throw new VariableNotFoundException("Variabile $var non trovata nel template.",101);
+            if (!$found)
+                throw new VariableNotFoundException("Variabile $var non trovata nel template.", 101);
             $this->blocks[$this->currentBlock]["last_parsed"] = str_replace("{" . $var . "}", $value, $this->blocks[$this->currentBlock]["last_parsed"]);
         } else if ($useBraces) {
             $found = strpos($this->tpl, "{" . $var . "}");
-            if(!$found)
-                throw new VariableNotFoundException("Variabile $var non trovata nel template.",101);
+            if (!$found)
+                throw new VariableNotFoundException("Variabile $var non trovata nel template.", 101);
             $this->tpl = str_replace("{" . $var . "}", $value, $this->tpl);
         } else if (!$useBraces && $var != null) {
             $this->tpl = str_replace("" . $var . "", $value, $this->tpl);
@@ -238,16 +243,16 @@ class View
      * @throws BlockNotFoundException. Block name not found into the template
      * @throws NotInitializedViewException
      */
-    public function setBlock($content=null,$block=null)
+    public function setBlock($content = null, $block = null)
     {
         $this->checkLoadedTpl();
-        if ($block==null)
+        if ($block == null)
             $block = $this->currentBlock;
-        if (!array_key_exists($block,$this->blocks)) {
-            throw new BlockNotFoundException("Blocco non trovato o nessun blocco aperto correntemente.",100);
+        if (!array_key_exists($block, $this->blocks)) {
+            throw new BlockNotFoundException("Blocco non trovato o nessun blocco aperto correntemente.", 100);
         }
 
-        if ($content==null)
+        if ($content == null)
             @$content = $this->blocks[$block]["parsed"];
 
         $var = $this->blocks[$block]["template"];
@@ -256,7 +261,7 @@ class View
         $end = "<!-- END " . $this->currentBlock . " -->";
         $blockWithContent = $begin . $content . $end;
 
-        if (!empty($content)) {
+        if (!empty($content) && isset($var)) {
             $this->tpl = str_replace($var, $blockWithContent, $this->tpl);
         }
 
@@ -266,8 +271,8 @@ class View
     /**
      * Outputs to the screen the previously loaded and parsed template.
      *
-     * @throws NotInitializedViewException If template was not loaded
      * @return void
+     * @throws NotInitializedViewException If template was not loaded
      */
     public function render()
     {
@@ -309,7 +314,7 @@ class View
     {
         $this->checkLoadedTpl();
         // Block never opened before
-        if (!@array_key_exists("$this->blocks[$block]",$this->blocks)) {
+        if (!@array_key_exists("$this->blocks[$block]", $this->blocks)) {
             $regex = "/\<\!-- BEGIN $block --\>(.*?)\<\!-- END $block --\>/s";
             @preg_match_all($regex, $this->tpl, $result);
             if (empty($result[0][0]))
@@ -331,10 +336,10 @@ class View
      * @param string|null $block The block name to hide. If is null hides all content
      * @throws NotInitializedViewException If template was not loaded
      */
-    public function hide($block=null)
+    public function hide($block = null)
     {
 
-        if (!empty($block)){
+        if (!empty($block)) {
             $this->checkLoadedTpl();
             $regex = "/\<\!-- BEGIN $block --\>(.*?)\<\!-- END $block --\>/s";
             @preg_match_all($regex, $this->tpl, $result);
@@ -354,15 +359,15 @@ class View
     public function parseCurrentBlock()
     {
         $this->checkLoadedTpl();
-        $block=$this->currentBlock;
-        if ($block == ""){
+        $block = $this->currentBlock;
+        if ($block == "") {
             return "";
-        } else{
+        } else {
             $error_reporting = error_reporting();
-			error_reporting(0);
+            error_reporting(0);
             $this->blocks[$block]["parsed"] .= $this->blocks[$block]["last_parsed"];
             $this->blocks[$block]["last_parsed"] = $this->blocks[$block]["structure"];
-			error_reporting($error_reporting);
+            error_reporting($error_reporting);
             return $this->blocks[$block]["last_parsed"];
             //return $this->blocks[$block]["parsed"];
         }
@@ -392,7 +397,7 @@ class View
     {
         $this->checkLoadedTpl();
 
-        if  ($errors[0] == "" || !isset($errors)) {
+        if ($errors[0] == "" || !isset($errors)) {
             $this->hide("ValidationErrors");
         } else {
             $this->openBlock("RecordErrors");

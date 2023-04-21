@@ -18,10 +18,12 @@
  */
 
 namespace framework\components;
+
 use framework\exceptions\BlockNotFoundException;
 use framework\exceptions\VariableNotFoundException;
 use framework\Model;
 use framework\View;
+
 class DataRepeater extends Component
 {
 
@@ -52,24 +54,24 @@ class DataRepeater extends Component
      * The array containing source values must be an associative array having key's name
      * equals to variable's names inside the block.
      *
-     * @param View|null $view       The view reference
-     * @param Model|null $model     The Model reference
-     * @param null|string $block    The block name to parsing and assigning values from
+     * @param View|null $view The view reference
+     * @param Model|null $model The Model reference
+     * @param null|string $block The block name to parsing and assigning values from
      *                              Model or from the given $datalist. If no block is
      *                              given it does nothing
-     * @param null|array $dataList  Array of values to assign to placeholders of the
+     * @param null|array $dataList Array of values to assign to placeholders of the
      *                              given block (only if a block name was given). If
      *                              null use Model
      *
      */
-    public function __construct(View $view=null, Model $model=null, $block=null,$dataList=null)
+    public function __construct(View $view = null, Model $model = null, $block = null, $dataList = null)
     {
         parent::__construct($view, $model);
 
-        If(!empty($block) && !empty($dataList)){
+        if (!empty($block) && !empty($dataList)) {
             $this->setContentToBlock($block);
             $this->setValuesFromArray($dataList);
-        } else if (!empty($block) && empty($dataList)){
+        } else if (!empty($block) && empty($dataList)) {
             $this->setContentToBlock($block);
             $this->setValuesFromModel();
         }

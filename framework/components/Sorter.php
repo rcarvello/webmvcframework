@@ -10,7 +10,9 @@
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework\components;
+
 use framework\exceptions\TemplateNotFoundException;
 use framework\exceptions\NotInitializedComponent;
 use framework\exceptions\VariableNotFoundException;
@@ -72,7 +74,7 @@ class Sorter extends Component
     /**
      * @var string The value to show for sorter direction when ASC
      */
-    public $captionForDirectionUp   = "[a-z]";
+    public $captionForDirectionUp = "[a-z]";
 
     /**
      * @var string The value to show for sorter direction when DESC
@@ -120,7 +122,7 @@ class Sorter extends Component
             $view->loadCustomTemplate($tpl);
         }
         $this->computeOrderValues();
-        parent::__construct($view,$model);
+        parent::__construct($view, $model);
     }
 
     /**
@@ -132,11 +134,11 @@ class Sorter extends Component
      * @param View $view The custom view for the component. If is null it uses a default
      * @param Model $model The model object to sort
      */
-    public function init(Model $model=null, View $view=null)
+    public function init(Model $model = null, View $view = null)
     {
         $sorterUrlParameterName = $this->sorterUrlParameterName;
-        if (isset($_GET[$sorterUrlParameterName])){
-            $_GET[$sorterUrlParameterName] == $this->getName() ? $this->isActive = true  : $this->isActive =false;
+        if (isset($_GET[$sorterUrlParameterName])) {
+            $_GET[$sorterUrlParameterName] == $this->getName() ? $this->isActive = true : $this->isActive = false;
             if ($this->isActive) {
                 $this->model->sql = $model->sql;
                 $this->setCompononentSql($model);
@@ -159,10 +161,10 @@ class Sorter extends Component
         $sorterDirectionUrlParameterName = $this->sorterDirectionUrlParameterName;
 
         if (!$this->isInitialized)
-            throw new NotInitializedComponent("Sorter component must be initialized before using it",102);
+            throw new NotInitializedComponent("Sorter component must be initialized before using it", 102);
 
-        if (isset($_GET[$sorterUrlParameterName])){
-            $this->sorterDirectionCurrentValue  = $_GET[$sorterDirectionUrlParameterName];
+        if (isset($_GET[$sorterUrlParameterName])) {
+            $this->sorterDirectionCurrentValue = $_GET[$sorterDirectionUrlParameterName];
             $this->computeOrderValues();
             $this->setCompononentSql($this->model);
         } else {
@@ -170,11 +172,11 @@ class Sorter extends Component
             // $this->sql = "";
         }
 
-        $self  =  parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+        $self = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
         // Gets application query string without sorters parameter
-        $this->savedSorterUrlParameter = isset($_GET[$sorterUrlParameterName]) ? $_GET[$sorterUrlParameterName] : NULL ;
-        $this->savedSorterUrlDirectionParameter = isset($_GET[$sorterDirectionUrlParameterName]) ? $_GET[$sorterDirectionUrlParameterName]: NULL;
+        $this->savedSorterUrlParameter = isset($_GET[$sorterUrlParameterName]) ? $_GET[$sorterUrlParameterName] : NULL;
+        $this->savedSorterUrlDirectionParameter = isset($_GET[$sorterDirectionUrlParameterName]) ? $_GET[$sorterDirectionUrlParameterName] : NULL;
         unset($_GET[$sorterUrlParameterName]);
         unset($_GET[$sorterDirectionUrlParameterName]);
         $queryString = http_build_query($_GET);
@@ -182,15 +184,15 @@ class Sorter extends Component
 
         // Format application query string enabling the dynamic addition of sorter parameters
         if ($queryString != "") {
-            $queryString = "?". $queryString . "&";
+            $queryString = "?" . $queryString . "&";
         } else {
             $queryString = "?";
         }
 
         // Parsing view variables
-        $this->view->setVar("SorterLink", $self . $queryString . $sorterUrlParameterName ."=" . $this->getName() ."&". $sorterDirectionUrlParameterName. "=" . $this->sorterDirectionNextValue);
+        $this->view->setVar("SorterLink", $self . $queryString . $sorterUrlParameterName . "=" . $this->getName() . "&" . $sorterDirectionUrlParameterName . "=" . $this->sorterDirectionNextValue);
         $this->view->setVar("SorterCaption", $this->caption);
-        if ($this->isActive==true) {
+        if ($this->isActive == true) {
             $this->view->setVar("SorterDirection", $this->currentDirection);
         } else {
             $this->view->setVar("SorterDirection", $this->captionForDirectionInactive);
@@ -201,10 +203,10 @@ class Sorter extends Component
             $_GET[$sorterUrlParameterName] = $this->getName();
             $_GET[$sorterDirectionUrlParameterName] = $this->sorterDirectionCurrentValue;
         } else {
-            if (!empty($this->savedSorterUrlParameter)){
+            if (!empty($this->savedSorterUrlParameter)) {
                 $_GET[$sorterUrlParameterName] = $this->savedSorterUrlParameter;
             }
-            if (!empty($this->savedSorterUrlDirectionParameter)){
+            if (!empty($this->savedSorterUrlDirectionParameter)) {
                 $_GET[$sorterDirectionUrlParameterName] = $this->savedSorterUrlDirectionParameter;
             }
         }
@@ -239,7 +241,7 @@ class Sorter extends Component
 
         // Inizialize Sorter direction parameter
         if (!isset($_GET[$sorterDirectionUrlParameterName])) {
-            $_GET[$sorterDirectionUrlParameterName]="DESC";
+            $_GET[$sorterDirectionUrlParameterName] = "DESC";
         }
 
         if ($_GET[$sorterDirectionUrlParameterName] == "ASC") {

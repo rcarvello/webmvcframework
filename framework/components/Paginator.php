@@ -10,10 +10,11 @@
  * @version GIT:v1.0.1
  * @note none
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
- * @license BSD Clause 3 License 
+ * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
 namespace framework\components;
+
 use framework\exceptions\TemplateNotFoundException;
 use framework\Model;
 use framework\View;
@@ -23,8 +24,8 @@ class Paginator extends Component
 
     private $fullResult;         // MySQL result from query
     private $totalResult;        // Total number of rows
-    private $resultPage;	 // MySQL Result from each page
-    private $pages;	   	 // Total number of pages from (totalResult/resulPerPge)
+    private $resultPage;     // MySQL Result from each page
+    private $pages;         // Total number of pages from (totalResult/resulPerPge)
     private $openPage = 1;       // Currently opened page
 
     /**
@@ -71,7 +72,7 @@ class Paginator extends Component
     /**
      * @var bool Default true=On. On/Off presentation for GUI pages links/selection
      */
-    public $showPagesLinks  = true;
+    public $showPagesLinks = true;
 
     /**
      * @var bool Default true=On. On/Off presentation for the current page
@@ -113,7 +114,7 @@ class Paginator extends Component
     /**
      * Constructs paginator object.
      *
-     * @param View|null  $view The component view. If null use its basic view
+     * @param View|null $view The component view. If null use its basic view
      * @param Model|null $model The component view. If null use a new model instance
      * @throws TemplateNotFoundException
      */
@@ -124,8 +125,8 @@ class Paginator extends Component
             $view = new View();
             $view->loadCustomTemplate($tpl);
         }
-        parent::__construct($view,$model);
-	    
+        parent::__construct($view, $model);
+
         // mysqli_query("SET SESSION sql_mode = 'TRADITIONAL'");
         $this->autorun();
 
@@ -136,9 +137,9 @@ class Paginator extends Component
      *
      * @param string|null  The sql query to paginate. If null use the model SQL property.
      */
-	public function buildPagination($query = null)
-	{
-        !empty($query) ? $this->query = $query : $this->query =	$this->model->sql;
+    public function buildPagination($query = null)
+    {
+        !empty($query) ? $this->query = $query : $this->query = $this->model->sql;
 
         if (!MYSQL_MODE_FULL_GROUP_BY) {
             // Add limit 0,0 for obtaing all records, Then counting
@@ -149,7 +150,7 @@ class Paginator extends Component
         }
 
         $urlPageParameterName = $this->urlPageParameterName;
-        $this->fullResult =     $this->model->query($this->query . $addLimit);
+        $this->fullResult = $this->model->query($this->query . $addLimit);
         $this->model->setResultSet($this->fullResult);
 
         if (!MYSQL_MODE_FULL_GROUP_BY) {
@@ -164,36 +165,33 @@ class Paginator extends Component
             $this->totalResult = $counting;
         } else {
             // Using num_rows (slowest)
-            $this->totalResult	= $this->fullResult->num_rows;
+            $this->totalResult = $this->fullResult->num_rows;
         }
 
 
-
-        $this->pages = $this->getPages($this->totalResult,$this->resultPerPage);
-		if(isset($_GET[$urlPageParameterName]) && $_GET[$urlPageParameterName]>0) {
-			$this->openPage	=	$_GET["$urlPageParameterName"];
-			if($this->openPage > $this->pages) {
-				$this->openPage	=	1;
-			}
-			$start	=	$this->openPage*$this->resultPerPage-$this->resultPerPage;
-			$end	=	$this->resultPerPage;
-			$this->query.=	" LIMIT $start,$end";
-		}
-		elseif( isset($_GET["$urlPageParameterName"]) && $_GET["$urlPageParameterName"]>$this->pages) {
-			$start	=	$this->pages;
-			$end	=	$this->resultPerPage;
-			$this->query.=	" LIMIT $start,$end";
-		}
-		else {
-			$this->openPage	=	1;
-			$this->query .=	" LIMIT 0,$this->resultPerPage";
-		}
+        $this->pages = $this->getPages($this->totalResult, $this->resultPerPage);
+        if (isset($_GET[$urlPageParameterName]) && $_GET[$urlPageParameterName] > 0) {
+            $this->openPage = $_GET["$urlPageParameterName"];
+            if ($this->openPage > $this->pages) {
+                $this->openPage = 1;
+            }
+            $start = $this->openPage * $this->resultPerPage - $this->resultPerPage;
+            $end = $this->resultPerPage;
+            $this->query .= " LIMIT $start,$end";
+        } elseif (isset($_GET["$urlPageParameterName"]) && $_GET["$urlPageParameterName"] > $this->pages) {
+            $start = $this->pages;
+            $end = $this->resultPerPage;
+            $this->query .= " LIMIT $start,$end";
+        } else {
+            $this->openPage = 1;
+            $this->query .= " LIMIT 0,$this->resultPerPage";
+        }
 
 
-		$this->resultPage =	$this->model->query($this->query);
+        $this->resultPage = $this->model->query($this->query);
         $this->model->setResultSet($this->resultPage);
 
-	}
+    }
 
     /**
      * Calculates the total number of pages.
@@ -202,44 +200,44 @@ class Paginator extends Component
      * @param int $perpage Record per page
      * @return int Total number of pages
      */
-	private function getPages($total,$perpage)
-	{
-		$pages	=	intval($total/$perpage);
-		if($total%$perpage > 0) $pages++;
-		return $pages;
-	}
+    private function getPages($total, $perpage)
+    {
+        $pages = intval($total / $perpage);
+        if ($total % $perpage > 0) $pages++;
+        return $pages;
+    }
 
     /**
      *  Display the pagination.
      */
     public function render()
-	{
+    {
         if ($this->totalResult == 0) {
             $this->view->setVar("Page_Number", "{RES:NoRecordFound}");
             $this->view->setVar("Page_URL", "#");;
             $this->view->setVar("is_active", $this->activeFlag);
         }
         // $self=$_SERVER['PHP_SELF'];
-        $self  =  parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+        $self = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
         $urlPageParameterName = $this->urlPageParameterName;
 
-        if($this->openPage<=0) {
-            $next	=	2;
-		} else {
+        if ($this->openPage <= 0) {
+            $next = 2;
+        } else {
             $next = $this->openPage + 1;
-		}
+        }
 
-        $prev	=	$this->openPage-1;
-        $last	=	$this->pages;
+        $prev = $this->openPage - 1;
+        $last = $this->pages;
 
         // Gets application query string without page parameter
         @$currentPage = $_GET[$urlPageParameterName];
-        unset( $_GET[$urlPageParameterName] );
+        unset($_GET[$urlPageParameterName]);
         $queryString = http_build_query($_GET);
 
         // Format application query string enabling the dynamic addition of page parameter
         if ($queryString != "") {
-            $queryString = "?". $queryString . "&";
+            $queryString = "?" . $queryString . "&";
         } else {
             $queryString = "?";
         }
@@ -253,20 +251,20 @@ class Paginator extends Component
         }
 
         // First and previous page rendering
-        if($this->openPage > 1) {
+        if ($this->openPage > 1) {
             // First
             $this->view->openBlock("First");
-            $this->view->setVar("First_URL", $self . $queryString .$urlPageParameterName."=1");
-            $this->view->setVar("First_On",$this->first);
-            $this->view->setVar("First_Off","");
+            $this->view->setVar("First_URL", $self . $queryString . $urlPageParameterName . "=1");
+            $this->view->setVar("First_On", $this->first);
+            $this->view->setVar("First_Off", "");
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
 
             // Prev
             $this->view->openBlock("Prev");
-            $this->view->setVar("Prev_URL", $self . $queryString . $urlPageParameterName."=" .$prev);
-            $this->view->setVar("Prev_On",$this->previous);
-            $this->view->setVar("Prev_Off","");
+            $this->view->setVar("Prev_URL", $self . $queryString . $urlPageParameterName . "=" . $prev);
+            $this->view->setVar("Prev_On", $this->previous);
+            $this->view->setVar("Prev_Off", "");
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
 
@@ -274,8 +272,8 @@ class Paginator extends Component
             // Apply OFF Value to First and Previous by preventing link action
             // Set First_On to null and First_Off to offValue
             $this->view->openBlock("First");
-            $this->view->setVar("First_URL", $self . $queryString . $urlPageParameterName."=1");
-            if ($this->offModeHidden==true) {
+            $this->view->setVar("First_URL", $self . $queryString . $urlPageParameterName . "=1");
+            if ($this->offModeHidden == true) {
                 $this->view->setVar("First_On", "");
             } else {
                 $this->view->setVar("First_On", $this->first);
@@ -286,16 +284,16 @@ class Paginator extends Component
 
             // Set Prev_On to null and Prev_Off to offValue
             $this->view->openBlock("Prev");
-            $this->view->setVar("Prev_URL", $self . $queryString . $urlPageParameterName ."=". $prev);
-            if ($this->offModeHidden==true) {
+            $this->view->setVar("Prev_URL", $self . $queryString . $urlPageParameterName . "=" . $prev);
+            if ($this->offModeHidden == true) {
                 $this->view->setVar("Prev_On", "");
-            } else{
+            } else {
                 $this->view->setVar("Prev_On", $this->previous);
             }
             $this->view->setVar("Prev_Off", $this->offValue);
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
-		}
+        }
 
         // Pages and active page rendering
         $this->view->openBlock("Pages");
@@ -304,26 +302,26 @@ class Paginator extends Component
         if ($this->paginationSize > $this->pages)
             $this->paginationSize = $this->pages;
 
-        $currentPage+$this->paginationSize < $this->pages ? $start_i_value = $currentPage : $start_i_value= $currentPage - ($this->paginationSize-1);
-        $currentPage + ($this->paginationSize-1) < $this->pages ? $end_i_value = $currentPage + ($this->paginationSize-1): $end_i_value= $this->pages;
+        $currentPage + $this->paginationSize < $this->pages ? $start_i_value = $currentPage : $start_i_value = $currentPage - ($this->paginationSize - 1);
+        $currentPage + ($this->paginationSize - 1) < $this->pages ? $end_i_value = $currentPage + ($this->paginationSize - 1) : $end_i_value = $this->pages;
 
         if (($currentPage + $this->paginationSize) == $this->pages) {
             $val_exceded = ($currentPage + $this->paginationSize) - $this->pages;
-            $start_i_value = ($currentPage - $val_exceded) +0;
+            $start_i_value = ($currentPage - $val_exceded) + 0;
         }
 
         if (($currentPage + $this->paginationSize) > $this->pages) {
             $val_exceded = ($currentPage + $this->paginationSize) - $this->pages;
-            $start_i_value = ($currentPage - $val_exceded) +1;
+            $start_i_value = ($currentPage - $val_exceded) + 1;
         }
 
-        $start_i    =   $currentPage <= $this->paginationSize ? 1:  $start_i_value;
-        $end_i      =   $currentPage <= $this->paginationSize ? $this->paginationSize: $end_i_value;
+        $start_i = $currentPage <= $this->paginationSize ? 1 : $start_i_value;
+        $end_i = $currentPage <= $this->paginationSize ? $this->paginationSize : $end_i_value;
         // End computing start/end pages
 
         // for($i=1;$i<=$this->pages;$i++) {
-        for($i=$start_i;$i<=$end_i;$i++) {
-            if($i == $this->openPage && $this->showActivePage==true) {
+        for ($i = $start_i; $i <= $end_i; $i++) {
+            if ($i == $this->openPage && $this->showActivePage == true) {
                 // Disable link of the current page
                 $this->view->setVar("Page_URL", "#");
                 $this->view->setVar("Page_Number", $i);
@@ -331,64 +329,65 @@ class Paginator extends Component
                 $this->view->parseCurrentBlock();
             } else if ($this->showPagesLinks == true) {
                 // Standards pagination links
-                $this->view->setVar("Page_URL", $self . $queryString . $urlPageParameterName."=" . $i);
+                $this->view->setVar("Page_URL", $self . $queryString . $urlPageParameterName . "=" . $i);
                 $this->view->setVar("Page_Number", $i);
-                $this->view->setVar("is_active",$this->notActiveFlag);
+                $this->view->setVar("is_active", $this->notActiveFlag);
                 $this->view->parseCurrentBlock();
             }
 
-		}
+        }
 
         $this->view->setBlock();
 
         // Next and Last page rendering
-		if($this->openPage < $this->pages) {
-			// Next
+        if ($this->openPage < $this->pages) {
+            // Next
             $this->view->openBlock("Next");
-            $this->view->setVar("Next_URL", $self . $queryString . $urlPageParameterName."=". $next);
-            $this->view->setVar("Next_On",$this->next);
-            $this->view->setVar("Next_Off","");
+            $this->view->setVar("Next_URL", $self . $queryString . $urlPageParameterName . "=" . $next);
+            $this->view->setVar("Next_On", $this->next);
+            $this->view->setVar("Next_Off", "");
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
             // Last
             $this->view->openBlock("Last");
-            $this->view->setVar("Last_URL", $self . $queryString . $urlPageParameterName. "=" .$last);
-            $this->view->setVar("Last_On",$this->last);
-            $this->view->setVar("Last_Off","");
+            $this->view->setVar("Last_URL", $self . $queryString . $urlPageParameterName . "=" . $last);
+            $this->view->setVar("Last_On", $this->last);
+            $this->view->setVar("Last_Off", "");
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
-		} else {
-			// Apply OFF Value to Next and Last by  preventing link action
+        } else {
+            // Apply OFF Value to Next and Last by  preventing link action
             // Set Next_On to null and Next_Off to offValue
             $this->view->openBlock("Next");
-            $this->view->setVar("Next_URL", $self . $queryString . $urlPageParameterName. "=" . $next);
-            if ($this->offModeHidden==true) {
+            $this->view->setVar("Next_URL", $self . $queryString . $urlPageParameterName . "=" . $next);
+            if ($this->offModeHidden == true) {
                 $this->view->setVar("Next_On", "");
             } else {
                 $this->view->setVar("Next_On", $this->next);
             }
-            $this->view->setVar("Next_Off",$this->offValue);
+            $this->view->setVar("Next_Off", $this->offValue);
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
 
             // Set Last_On to null and Last_Off to offValue
             $this->view->openBlock("Last");
-            $this->view->setVar("Last_URL", $self . $queryString . $urlPageParameterName . "=" .$last);
-            if ($this->offModeHidden==true) {
+            $this->view->setVar("Last_URL", $self . $queryString . $urlPageParameterName . "=" . $last);
+            if ($this->offModeHidden == true) {
                 $this->view->setVar("Last_On", "");
             } else {
                 $this->view->setVar("Last_On", $this->last);
             }
-            $this->view->setVar("Last_Off",$this->offValue);
+            $this->view->setVar("Last_Off", $this->offValue);
             $this->view->parseCurrentBlock();
             $this->view->setBlock();
-		}
+        }
 
         // Restores $_GET for external access and use
         $_GET[$urlPageParameterName] = $this->openPage;
 
         // Rendering
         return $this->view->parse();
-	}
+    }
 }
+
 ?>

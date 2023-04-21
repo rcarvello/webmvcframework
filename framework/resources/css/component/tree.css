@@ -1,0 +1,21 @@
+ul#tree li ul {
+    margin-left: 2em;
+}
+
+ul#tree li.collapsible {
+    cursor: pointer;
+    padding-left: 2em;
+    margin-left: -2.8em;
+}
+
+ul#tree li.collapsible::before {
+    content: '\25BE\00a0'; /* &dtrif; */
+}
+
+ul#tree li.collapsible.collapsed::before {
+    content: '\25B8\00a0'; /* &rtrif; */
+}
+
+ul#tree li.collapsible.collapsed ul {
+    display: none;
+}

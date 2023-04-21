@@ -1,7 +1,7 @@
 <?php
 /**
  * Class BeanUser
- * Bean class for object oriented management of the MySQL table user
+ * Bean class for ORM management of the MySQL table user
  *
  * Comment of the managed table user: Users credentials.
  *
@@ -26,7 +26,7 @@
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
  * @note  This is an auto generated PHP class builded with MVCMySqlReflection, a small code generation engine extracted from the author's personal MVC Framework.
- * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2016-2023 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD Public License.
 */
@@ -116,11 +116,25 @@ class BeanUser extends MySqlRecord implements Bean
     private $password;
 
     /**
+     * Class attribute for mapping table field salt
+     *
+     * Comment for field salt: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(200)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $salt
+     */
+    private $salt;
+
+    /**
      * Class attribute for mapping table field enabled
      *
      * Comment for field enabled: Not specified.<br>
      * Field information:
-     *  - Data type: int(11)
+     *  - Data type: int(1)
      *  - Null : NO
      *  - DB Index: 
      *  - Default: 1
@@ -133,7 +147,7 @@ class BeanUser extends MySqlRecord implements Bean
      * Class attribute for storing the SQL DDL of table user
      * @var string base64 encoded $ddl
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGB1c2VyYCAoCiAgYGlkX3VzZXJgIGludCgxMSkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX2FjY2Vzc19sZXZlbGAgaW50KDExKSBOT1QgTlVMTCwKICBgZnVsbF9uYW1lYCB2YXJjaGFyKDQ1KSBOT1QgTlVMTCwKICBgZW1haWxgIHZhcmNoYXIoMTAwKSBOT1QgTlVMTCwKICBgcGFzc3dvcmRgIHZhcmNoYXIoMjAwKSBOT1QgTlVMTCwKICBgZW5hYmxlZGAgaW50KDExKSBOT1QgTlVMTCBERUZBVUxUICcxJywKICBQUklNQVJZIEtFWSAoYGlkX3VzZXJgKSwKICBVTklRVUUgS0VZIGB1bmlxdWVfZW1haWxgIChgZW1haWxgKSwKICBLRVkgYGZrX3VzZXJfYWNjZXNzX2xldmVsX2lkeGAgKGBpZF9hY2Nlc3NfbGV2ZWxgKSwKICBLRVkgYGlkeF9mdWxsX25hbWVgIChgZnVsbF9uYW1lYCksCiAgQ09OU1RSQUlOVCBgZmtfdXNlcl9hY2Nlc3NfbGV2ZWwxYCBGT1JFSUdOIEtFWSAoYGlkX2FjY2Vzc19sZXZlbGApIFJFRkVSRU5DRVMgYGFjY2Vzc19sZXZlbGAgKGBpZF9hY2Nlc3NfbGV2ZWxgKSBPTiBERUxFVEUgTk8gQUNUSU9OIE9OIFVQREFURSBOTyBBQ1RJT04KKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTMgREVGQVVMVCBDSEFSU0VUPXV0ZjggQ09NTUVOVD0nVXNlcnMgY3JlZGVudGlhbHMn";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGB1c2VyYCAoCiAgYGlkX3VzZXJgIGludCgxMSkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX2FjY2Vzc19sZXZlbGAgaW50KDExKSBOT1QgTlVMTCwKICBgZnVsbF9uYW1lYCB2YXJjaGFyKDQ1KSBOT1QgTlVMTCwKICBgZW1haWxgIHZhcmNoYXIoMTAwKSBOT1QgTlVMTCwKICBgcGFzc3dvcmRgIHZhcmNoYXIoMjAwKSBOT1QgTlVMTCwKICBgc2FsdGAgdmFyY2hhcigyMDApIE5PVCBOVUxMLAogIGBlbmFibGVkYCBpbnQoMSkgTk9UIE5VTEwgREVGQVVMVCAnMScsCiAgUFJJTUFSWSBLRVkgKGBpZF91c2VyYCksCiAgVU5JUVVFIEtFWSBgdW5pcXVlX2VtYWlsYCAoYGVtYWlsYCksCiAgS0VZIGBma191c2VyX2FjY2Vzc19sZXZlbF9pZHhgIChgaWRfYWNjZXNzX2xldmVsYCksCiAgS0VZIGBpZHhfZnVsbF9uYW1lYCAoYGZ1bGxfbmFtZWApLAogIENPTlNUUkFJTlQgYGZrX3VzZXJfYWNjZXNzX2xldmVsMWAgRk9SRUlHTiBLRVkgKGBpZF9hY2Nlc3NfbGV2ZWxgKSBSRUZFUkVOQ0VTIGBhY2Nlc3NfbGV2ZWxgIChgaWRfYWNjZXNzX2xldmVsYCkgT04gREVMRVRFIE5PIEFDVElPTiBPTiBVUERBVEUgTk8gQUNUSU9OCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD02IERFRkFVTFQgQ0hBUlNFVD11dGY4IENPTU1FTlQ9J1VzZXJzIGNyZWRlbnRpYWxzJw==";
 
     /**
      * setIdUser Sets the class attribute idUser with a given value
@@ -201,9 +215,22 @@ class BeanUser extends MySqlRecord implements Bean
     }
 
     /**
+     * setSalt Sets the class attribute salt with a given value
+     *
+     * The attribute salt maps the field salt defined as varchar(200).<br>
+     * Comment for field salt: Not specified.<br>
+     * @param string $salt
+     * @category Modifier
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = (string)$salt;
+    }
+
+    /**
      * setEnabled Sets the class attribute enabled with a given value
      *
-     * The attribute enabled maps the field enabled defined as int(11).<br>
+     * The attribute enabled maps the field enabled defined as int(1).<br>
      * Comment for field enabled: Not specified.<br>
      * @param int $enabled
      * @category Modifier
@@ -279,9 +306,22 @@ class BeanUser extends MySqlRecord implements Bean
     }
 
     /**
+     * getSalt gets the class attribute salt value
+     *
+     * The attribute salt maps the field salt defined as varchar(200).<br>
+     * Comment for field salt: Not specified.
+     * @return string $salt
+     * @category Accessor of $salt
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
      * getEnabled gets the class attribute enabled value
      *
-     * The attribute enabled maps the field enabled defined as int(11).<br>
+     * The attribute enabled maps the field enabled defined as int(1).<br>
      * Comment for field enabled: Not specified.
      * @return int $enabled
      * @category Accessor of $enabled
@@ -368,6 +408,7 @@ class BeanUser extends MySqlRecord implements Bean
             @$this->fullName = $this->replaceAposBackSlash($rowObject->full_name);
             @$this->email = $this->replaceAposBackSlash($rowObject->email);
             @$this->password = $this->replaceAposBackSlash($rowObject->password);
+            @$this->salt = $this->replaceAposBackSlash($rowObject->salt);
             @$this->enabled = (integer)$rowObject->enabled;
             $this->allowUpdate = true;
         } else {
@@ -409,12 +450,13 @@ class BeanUser extends MySqlRecord implements Bean
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO user
-            (id_access_level,full_name,email,password,enabled)
+            (id_access_level,full_name,email,password,salt,enabled)
             VALUES(
 			{$this->parseValue($this->idAccessLevel)},
 			{$this->parseValue($this->fullName,'notNumber')},
 			{$this->parseValue($this->email,'notNumber')},
 			{$this->parseValue($this->password,'notNumber')},
+			{$this->parseValue($this->salt,'notNumber')},
 			{$this->parseValue($this->enabled)})
 SQL;
         $this->resetLastSqlError();
@@ -452,6 +494,7 @@ SQL;
 				full_name={$this->parseValue($this->fullName,'notNumber')},
 				email={$this->parseValue($this->email,'notNumber')},
 				password={$this->parseValue($this->password,'notNumber')},
+				salt={$this->parseValue($this->salt,'notNumber')},
 				enabled={$this->parseValue($this->enabled)}
             WHERE
                 id_user={$this->parseValue($idUser,'int')}

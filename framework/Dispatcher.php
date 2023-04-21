@@ -10,6 +10,7 @@
  * @license BSD Clause 3 License.
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 
 use \ReflectionMethod;
@@ -95,14 +96,14 @@ class Dispatcher
     function __construct()
     {
         $get = $_GET;
-        $url= isset($get['url']) ? $get['url'] : null;
+        $url = isset($get['url']) ? $get['url'] : null;
         $currentSubSystem = Loader::getCurrentSubSystem($url);
-        if(!empty($url)) {
+        if (!empty($url)) {
             //$url= $this->capitalizeUrlSegments($url);
-            if(!empty($currentSubSystem))
-                $url = str_replace($currentSubSystem."/","",$url);
+            if (!empty($currentSubSystem))
+                $url = str_replace($currentSubSystem . "/", "", $url);
         }
-        $this->currentSubSystem =  str_replace("/","\\",$currentSubSystem). "\\";
+        $this->currentSubSystem = str_replace("/", "\\", $currentSubSystem) . "\\";
         // $this->currentSubSystem.= DIRECTORY_SEPARATOR;
         $this->urlToDispatch = $url;
         $this->parseUrlAndSetAttributes();
@@ -111,12 +112,12 @@ class Dispatcher
     private function capitalizeUrlSegments($url)
     {
         $capitalizedSegments = "";
-        if (!empty($url)){
-            $urlSegments = explode("/",$url);
-            foreach($urlSegments as $segment){
+        if (!empty($url)) {
+            $urlSegments = explode("/", $url);
+            foreach ($urlSegments as $segment) {
                 $capitalizedSegments .= ucfirst($segment) . "/";
             }
-            return substr($capitalizedSegments,0,-1);
+            return substr($capitalizedSegments, 0, -1);
         }
     }
 
@@ -140,7 +141,7 @@ class Dispatcher
         $this->createMVCControllerInstance();
         $content = ob_get_contents();
         ob_end_clean();
-        if (!isset($_GET["getState"])){
+        if (!isset($_GET["getState"])) {
             echo $content;
         } else {
             $this->contentToJson($content);
@@ -154,11 +155,11 @@ class Dispatcher
      */
     private function parseUrlAndSetAttributes()
     {
-        if($this->currentSubSystem == "\\")
+        if ($this->currentSubSystem == "\\")
             $this->currentSubSystem = "";
 
         // Drop the last char from url string if it is equal to "/"
-        if ( isset($this->urlToDispatch[strlen($this->urlToDispatch)]) && $this->urlToDispatch[strlen($this->urlToDispatch) - 1] == "/")
+        if (isset($this->urlToDispatch[strlen($this->urlToDispatch)]) && $this->urlToDispatch[strlen($this->urlToDispatch) - 1] == "/")
             $this->urlToDispatch = substr($this->urlToDispatch, 0, strlen($this->urlToDispatch) - 1);
 
         // Generates an array from each sement of the url string delimited by a slash
@@ -166,7 +167,7 @@ class Dispatcher
 
         // First segment is the controller  - store its name ad SEO name if controller is passed
         if ($urlSegments[0] != "") {
-            $this->controllerClass = "controllers\\". $this->currentSubSystem . $this->underscoreToCamelCase($urlSegments[0],true);
+            $this->controllerClass = "controllers\\" . $this->currentSubSystem . $this->underscoreToCamelCase($urlSegments[0], true);
             $this->controllerSEOClassName = strtolower($urlSegments[0]);
         } else {
             // if  root subsystem
@@ -174,8 +175,8 @@ class Dispatcher
                 $this->controllerClass = "controllers\\" . $this->underscoreToCamelCase(DEFAULT_CONTROLLER, true);
                 $this->controllerSEOClassName = DEFAULT_CONTROLLER;
             } else {
-            // if root child subsystem
-                $this->controllerClass = "controllers\\". $this->currentSubSystem . $this->underscoreToCamelCase("index",true);
+                // if root child subsystem
+                $this->controllerClass = "controllers\\" . $this->currentSubSystem . $this->underscoreToCamelCase("index", true);
                 $this->controllerSEOClassName = strtolower("index");
                 // throw new ControllerNotFoundException("No Index");
             }
@@ -229,18 +230,18 @@ class Dispatcher
         if (class_exists($controllerClass)) {
             $controller = new $controllerClass;
             if (!empty($method) && method_exists($controller, $method)) {
-                $reflection = new ReflectionMethod($controllerClass,$method);
-                if($reflection->getName() == "__construct") {
+                $reflection = new ReflectionMethod($controllerClass, $method);
+                if ($reflection->getName() == "__construct") {
                     throw new MethodNotFoundException("access denied to __construct");
                 }
-                if ($reflection->isProtected() || $reflection->isPrivate()){
+                if ($reflection->isProtected() || $reflection->isPrivate()) {
                     throw new MethodNotFoundException($reflection->getName() . " access denied");
                 }
                 $reflectionParametersCount = count($reflection->getParameters());
                 if ($reflectionParametersCount != count($this->methodParameters))
                     throw new InvalidMethodParametersException($reflection->getName() . " parameters error");
                 if (count($this->methodParameters) > 0) {
-                    call_user_func_array(array($controller, $method), $this->methodParameters );
+                    call_user_func_array(array($controller, $method), $this->methodParameters);
                 } else {
                     call_user_func(array($controller, $method));
                 }
@@ -264,14 +265,14 @@ class Dispatcher
      */
     private function contentToJson($content)
     {
-        $content = html_entity_decode($content,ENT_QUOTES,"UTF-8");
+        $content = html_entity_decode($content, ENT_QUOTES, "UTF-8");
 
-        empty($_GET["getState"]) ? $contentId="all" : $contentId = $_GET["getState"];
+        empty($_GET["getState"]) ? $contentId = "all" : $contentId = $_GET["getState"];
         if ($contentId != "all") {
             $dom = new DOMDocument('1.0', 'utf-8');
             @$dom->loadHTML($content);
             $dom->removeChild($dom->doctype);
-            $section=$dom->getElementById($contentId);
+            $section = $dom->getElementById($contentId);
             $content = $dom->saveHTML($section);
         }
 
@@ -302,16 +303,16 @@ class Dispatcher
         $func = @create_function('$c', 'return strtoupper($c[1]);');
         return preg_replace_callback('/_([a-z])/', $func, $string);
         */
-        if( $pascalCase == true ) {
+        if ($pascalCase == true) {
             $string[0] = strtoupper($string[0]);
         }
-        $str=$string;
-        $i = array("-","_");
+        $str = $string;
+        $i = array("-", "_");
         $str = preg_replace('/([a-z])([A-Z])/', "\\1 \\2", $str);
         $str = preg_replace('@[^a-zA-Z0-9\-_ ]+@', '', $str);
         $str = str_replace($i, ' ', $str);
         $str = str_replace(' ', '', ucwords(strtolower($str)));
-        $str = strtolower(substr($str,0,1)).substr($str,1);
+        $str = strtolower(substr($str, 0, 1)) . substr($str, 1);
         return $str;
 
     }
@@ -326,7 +327,7 @@ class Dispatcher
     private function bindControllerToSession()
     {
         $last_executed_controller = $this->controllerSEOClassName;
-        $last_executed_method = strtolower($this->method);
+        $last_executed_method = $this->toLower($this->method);
         $last_executed_parameters = @implode("/", $this->methodParameters);
         @$get = $_GET;
         unset($get["getState"]);
@@ -336,7 +337,17 @@ class Dispatcher
         unset($post["getState"]);
         unset($post["url"]);
         $last_post_parameters = @http_build_query($post);
-        $latest= array($last_executed_method,$last_executed_parameters,$last_get_parameters,$last_post_parameters);
+        $latest = array($last_executed_method, $last_executed_parameters, $last_get_parameters, $last_post_parameters);
         $_SESSION[$last_executed_controller] = serialize($latest);
+    }
+
+    /**
+     * Fix strlower DEPRECATED
+     * @param $string
+     * @return mixed|string
+     */
+    private function toLower($string)
+    {
+        return empty($string) ? $string : mb_strtolower($string);
     }
 }

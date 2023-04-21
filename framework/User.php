@@ -12,6 +12,7 @@
  * @license BSD Clause 3 License.
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 
 use framework\classes\ChiperService;
@@ -116,12 +117,12 @@ class User extends MySqlRecord implements BeanUser
             $password = md5($password);
         $sql = "SELECT * FROM {$this->userTable} WHERE {$this->fieldUserEmail}={$this->parseValue($email,'string')} AND {$this->fieldUserPassword}={$this->parseValue($password,'string')}";
         if (USER_ENABLED != "")
-            $sql .=  " AND ". USER_ENABLED . "=1";
+            $sql .= " AND " . USER_ENABLED . "=1";
         $this->resetLastSqlError();
         $result = $this->query($sql);
         $this->resultSet = $result;
         $this->lastSql = $sql;
-        if ($result && $result->num_rows === 1 ) {
+        if ($result && $result->num_rows === 1) {
             $rowObject = $result->fetch_object();
             $this->id = $rowObject->{$this->fieldUserId};
             $this->email = $rowObject->{$this->fieldUserEmail};
@@ -152,7 +153,7 @@ class User extends MySqlRecord implements BeanUser
         }
         $chiper = new ChiperService();
         $secured = isset($_SERVER["HTTPS"]);
-        setcookie($chiper::CREDENTIALS_COOKIE_NAME,"",time() - 3600, "/",null,$secured,true);
+        setcookie($chiper::CREDENTIALS_COOKIE_NAME, "", time() - 3600, "/", null, $secured, true);
         session_destroy();
         return true;
     }
@@ -178,14 +179,14 @@ class User extends MySqlRecord implements BeanUser
      *                         If null it redirects to the default login page.
      * @param null|string $returnLink The return link after loggin in with the the dafault
      *                    login page
-     * @param null|string $LoginWarningMessage  A custom warning message to show
+     * @param null|string $LoginWarningMessage A custom warning message to show
      *
      */
-    public function checkForLogin($redirect = null, $returnLink= null, $LoginWarningMessage=null)
+    public function checkForLogin($redirect = null, $returnLink = null, $LoginWarningMessage = null)
     {
         $this->autoLoginFromCookies();
-        $returnLink = (!empty($returnLink)) ? "?return_link=$returnLink": "";
-        $LoginWarningMessage=(!empty($LoginWarningMessage)) ? "&login_warning_message=$LoginWarningMessage": "";
+        $returnLink = (!empty($returnLink)) ? "?return_link=$returnLink" : "";
+        $LoginWarningMessage = (!empty($LoginWarningMessage)) ? "&login_warning_message=$LoginWarningMessage" : "";
         if (empty($redirect))
             $redirect = SITEURL . "/" . DEFAULT_LOGIN_PAGE;
         if (!$this->isLogged()) {
@@ -198,17 +199,17 @@ class User extends MySqlRecord implements BeanUser
      * Note:
      * It uses ChiperService class to decrypt Cookie
      *
-     *@uses ChiperService
+     * @uses ChiperService
      *
      */
     public function autoLoginFromCookies()
     {
-        if (!$this->isLogged()){
+        if (!$this->isLogged()) {
             $chiper = new ChiperService();
             $parts = $chiper->parseCredentialsCookie($chiper::CREDENTIALS_COOKIE_NAME);
             if (isset($parts) && (count($parts) > 2))
                 list($username, $password, $expirationDate) = $parts;
-            if ( !empty($expirationDate) && $expirationDate > time()) {
+            if (!empty($expirationDate) && $expirationDate > time()) {
                 if (!empty($username) && !empty($password)) {
                     $this->login($username, $password);
                     if ($this->isLogged())

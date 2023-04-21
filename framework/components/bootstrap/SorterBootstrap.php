@@ -12,6 +12,7 @@
  */
 
 namespace framework\components\bootstrap;
+
 use framework\components\Sorter;
 use framework\Model;
 use framework\View;
@@ -21,7 +22,7 @@ class SorterBootstrap extends Sorter
     /**
      * @var string The value to show for sorter direction when ASC
      */
-    public $captionForDirectionUp   = '<i class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></i>';
+    public $captionForDirectionUp = '<i class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></i>';
 
     /**
      * @var string The value to show for sorter direction when DESC

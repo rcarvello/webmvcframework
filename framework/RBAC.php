@@ -12,16 +12,18 @@
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 
 use framework\MySqlRecord;
+
 class RBAC
 {
-    const ADD       = 'record_add';
-    const UPDATE    = 'record_update';
-    const DELETE    = 'record_delete';
-    const CLOSE     = 'record_close';
-    const RESET     = 'record_reset';
+    const ADD = 'record_add';
+    const UPDATE = 'record_update';
+    const DELETE = 'record_delete';
+    const CLOSE = 'record_close';
+    const RESET = 'record_reset';
 
     public static $restricted = false;
     public static $roles = array();

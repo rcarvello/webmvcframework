@@ -11,7 +11,9 @@
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  *
  */
+
 namespace framework;
+
 use framework\exceptions\MVCException;
 use \mysqli;
 use \Exception;
@@ -26,7 +28,7 @@ class Model extends mysqli
      */
     public function __construct()
     {
-        @parent::__construct(DBHOST,DBUSER,DBPASSWORD,DBNAME);
+        @parent::__construct(DBHOST, DBUSER, DBPASSWORD, DBNAME);
         $this->throwIfDBError();
         $this->autorun();
     }
@@ -77,7 +79,7 @@ class Model extends mysqli
      */
     private function throwIfDBError()
     {
-        If ($this->connect_error) {
+        if ($this->connect_error) {
             throw new MVCException($this->connect_error);
         }
         if ($this->error) {
@@ -90,7 +92,7 @@ class Model extends mysqli
      */
     public function envelopeSql()
     {
-        $this->sql = "SELECT mvc_sql_evelop.* FROM (" . $this->sql. ") mvc_sql_evelop";
+        $this->sql = "SELECT mvc_sql_evelop.* FROM (" . $this->sql . ") mvc_sql_evelop";
     }
 
 

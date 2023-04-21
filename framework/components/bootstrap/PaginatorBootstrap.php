@@ -10,7 +10,9 @@
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework\components\bootstrap;
+
 use framework\components\Paginator;
 use framework\Model;
 use framework\View;
@@ -25,13 +27,13 @@ class PaginatorBootstrap extends Paginator
             $view->loadCustomTemplate($tpl);
         }
 
-        parent::__construct($view,$model);
+        parent::__construct($view, $model);
 
         // Bootstrap customizations
-        $this->previous =   "glyphicon glyphicon-step-backward";
-        $this->next =       "glyphicon glyphicon-step-forward";
-        $this->first =      "glyphicon glyphicon-fast-backward";
-        $this->last =       "glyphicon glyphicon-fast-forward";
+        $this->previous = "glyphicon glyphicon-step-backward";
+        $this->next = "glyphicon glyphicon-step-forward";
+        $this->first = "glyphicon glyphicon-fast-backward";
+        $this->last = "glyphicon glyphicon-fast-forward";
         $this->offModeHidden = true;
         $this->offValue = "nav-item hidden";
         $this->activeFlag = "nav-item active";

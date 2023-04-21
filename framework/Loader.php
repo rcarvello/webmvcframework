@@ -10,6 +10,7 @@
  * @license BSD Clause 3 License.
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 
 use framework\exceptions\ControllerNotFoundException;
@@ -19,15 +20,15 @@ class Loader
 {
     private $directories = array();
 
-    public function __construct($mode="psr0")
+    public function __construct($mode = "psr0")
     {
         $this->checkPHPVersion();
         if ($mode == "standard") {
             spl_autoload_register(array($this, 'autoload'));
-        }else if ($mode == "secured") {
+        } else if ($mode == "secured") {
             $this->directories = $this->getDirectories();
             spl_autoload_register(array($this, 'secureAutoload'));
-        } else if ($mode == "psr0"){
+        } else if ($mode == "psr0") {
             spl_autoload_register(array($this, 'psr0Autoload'));
         }
     }
@@ -45,8 +46,7 @@ class Loader
         $requiredClass = $className . ".php";
         if (file_exists($requiredClass)) {
             require_once($requiredClass);
-        }
-        else {
+        } else {
             throw new ControllerNotFoundException();
         }
 
@@ -90,12 +90,12 @@ class Loader
     public function psr0Autoload($className)
     {
         $className = ltrim($className, '\\');
-        $fileName  = '';
+        $fileName = '';
         $namespace = '';
         if ($lastNsPos = strrpos($className, '\\')) {
             $namespace = substr($className, 0, $lastNsPos);
             $className = ucfirst(substr($className, $lastNsPos + 1));
-            $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+            $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
         $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, RELATIVE_PATH);
@@ -120,7 +120,7 @@ class Loader
             foreach ($definedSubSystems as $key => $value) {
                 $subSystems[] = APP_CONTROLLERS_PATH . DIRECTORY_SEPARATOR . $value;
                 $subSystems[] = APP_VIEWS_PATH . DIRECTORY_SEPARATOR . $value;
-                $subSystems[] = APP_MODELS_PATH .DIRECTORY_SEPARATOR . $value;
+                $subSystems[] = APP_MODELS_PATH . DIRECTORY_SEPARATOR . $value;
             }
         }
 
@@ -150,7 +150,7 @@ class Loader
                 }
             }
         }
-        $_SESSION["current_subsystem"]=$currentSubSystem;
+        $_SESSION["current_subsystem"] = $currentSubSystem;
         return $currentSubSystem;
     }
 
@@ -159,9 +159,9 @@ class Loader
      * @param string $minVersion Min supported version.
      * @throws Exception if not.
      */
-    private function checkPHPVersion($minVersion="5.3.6")
+    private function checkPHPVersion($minVersion = "5.3.6")
     {
-        if (!isset($_SESSION["doCheckEnv"])){
+        if (!isset($_SESSION["doCheckEnv"])) {
             if (version_compare(phpversion(), $minVersion, '<')) {
                 echo "<strong>Errore: Versione minima PHP richiesta 5.3.6</strong>";
                 error_reporting(0);
@@ -176,7 +176,8 @@ class Loader
      * Verify if all extensions needed are loaded
      * @throws Exception if not
      */
-    private function checkExtension(){
+    private function checkExtension()
+    {
 
         if (!extension_loaded('dom')) {
             echo "<strong>Errore: DOM Extension is not loaded. Configure PHP with this exrension.</strong>";
@@ -198,15 +199,16 @@ class Loader
      * @param string $dir Starting directory
      * @return array
      */
-    public static function listFolders($dir=APP_CONTROLLERS_PATH){
+    public static function listFolders($dir = APP_CONTROLLERS_PATH)
+    {
         $directory = array();
         $elements = scandir($dir);
-        foreach($elements as $element){
-            if($element != '.' && $element != '..'){
-                if(is_dir($dir.'/'.$element)) {
-                    $folderName = str_replace(APP_CONTROLLERS_PATH . "/","", $dir. "/" . $element);
-                    $directory[] =  $folderName;
-                    $directory = array_merge( $directory, self::listFolders($dir . '/' . $element));
+        foreach ($elements as $element) {
+            if ($element != '.' && $element != '..') {
+                if (is_dir($dir . '/' . $element)) {
+                    $folderName = str_replace(APP_CONTROLLERS_PATH . "/", "", $dir . "/" . $element);
+                    $directory[] = $folderName;
+                    $directory = array_merge($directory, self::listFolders($dir . '/' . $element));
                 }
             }
         }

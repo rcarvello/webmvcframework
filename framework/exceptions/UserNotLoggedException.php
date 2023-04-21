@@ -13,7 +13,7 @@ use Exception;
 
 class UserNotLoggedException extends MVCException
 {
-    public function __construct($message, $code, Exception $previous,$controller)
+    public function __construct($message, $code, Exception $previous, $controller)
     {
         parent::__construct($message, $code, $previous);
     }

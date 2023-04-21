@@ -105,7 +105,112 @@ class Example extends Controller
         $this->view->setVarView($view);
         $this->view->setVarViewFile("views/examples/cms/HelloWorld.php (Shared)");
         $this->view->setVarTemplate($tpl);
-        $this->view->setVarTemplateFile("templates/examples/cms/hellp_world_second.html.tpl");
+        $this->view->setVarTemplateFile("templates/examples/cms/hello_world_second.html.tpl");
+        $this->render();
+    }
+
+
+    public function block(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/Block.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/Block.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/Block.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/block.html.tpl',true));
+        $this->view->setVarExample("Block");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/Block.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/Block.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/Block.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/block.html.tpl");
+        $this->render();
+    }
+
+    public function innerBlocks(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/InnerBlocks.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/InnerBlocks.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/InnerBlocks.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/inner_blocks.html.tpl',true));
+        $this->view->setVarExample("Inner blocks");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/InnerBlocks.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/InnerBlocks.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/InnerBlocks.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/inner_blocks.html.tpl");
+        $this->render();
+    }
+
+    public function blockExtended(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/BlockExtended.php',true);
+        $modelMore      = "BlockExentend inerhit from controller\\examples\cms\Block its Model<br>";
+        $viewMore       = "BlockExentend inerhit from controller\\examples\cms\Block its View<br>";
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/Block.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/Block.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/block_extended.html.tpl',true));
+        $this->view->setVarExample("Inner blocks");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/BlockExtended.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile($modelMore . "models/examples/cms/Blocks.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile($viewMore . "views/examples/cms/Blocks.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/block_extended.html.tpl");
+        $this->render();
+    }
+
+    public function localization(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/Localization.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/Localization.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/Localization.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/localization.html.tpl',true));
+        $this->view->setVarExample("Inner blocks");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/Localization.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/Localization.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/Localization.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/localization.html.tpl");
+        $this->render();
+    }
+
+    public function helloBlock(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/HelloBlock.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/HelloBlock.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/HelloBlock.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/hello_block.html.tpl',true));
+        $this->view->setVarExample("Hello World with block");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/HelloBlock.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/HelloBlock.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/HelloBlock.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/hello_block.html.tpl");
+        $this->render();
+    }
+
+    public function treeDemo(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/TreeDemo.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/TreeDemo.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/TreeDemo.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/tree_demo.html.tpl',true));
+        $this->view->setVarExample("TreeDemo MVC Assembly source Code");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/TreeDemo.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/TreeDemo.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/TreeDemo.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/tree_demo.html.tpl");
         $this->render();
     }
     /**

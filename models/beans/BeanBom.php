@@ -1,7 +1,7 @@
 <?php
 /**
  * Class BeanBom
- * Bean class for object oriented management of the MySQL table bom
+ * Bean class for ORM management of the MySQL table bom
  *
  * Comment of the managed table bom: Bills of matirials.
  *
@@ -26,7 +26,7 @@
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
  * @note  This is an auto generated PHP class builded with MVCMySqlReflection, a small code generation engine extracted from the author's personal MVC Framework.
- * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2016-2023 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD Public License.
 */

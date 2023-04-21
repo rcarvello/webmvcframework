@@ -13,7 +13,9 @@
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework\exceptions;
-class ControllerNotFoundInSubSystemException extends MVCException{
+class ControllerNotFoundInSubSystemException extends MVCException
+{
 
 }

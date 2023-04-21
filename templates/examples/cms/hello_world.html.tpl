@@ -37,8 +37,9 @@
     <h3>{Message}</h3>
     <br /><br />
 
-    <a href="../about/example/helloWorld" class="btn btn-info">Show source code</a>
-    <a href=".." class="btn btn-primary">Examples TOC</a>
+    <a href="{GLOBAL:SITEURL}/examples/about/example/hello_world" class="btn btn-info">Show source code</a>
+    <a href="{GLOBAL:SITEURL}/examples/cms/hello_world" class="btn btn-success">Run again</a>
+    <a href="{GLOBAL:SITEURL}/examples/" class="btn btn-primary">Examples TOC</a>
 
 </div>
 

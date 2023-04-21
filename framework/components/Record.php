@@ -40,42 +40,43 @@ use framework\Model;
 use framework\View;
 use framework\Bean;
 
-class Record extends Component{
+class Record extends Component
+{
 
     /**
      * Costant to define button name for the ADD form's action
      */
-    const ADD       = 'record_add';
+    const ADD = 'record_add';
 
     /**
      * Costant to define button name for the UPDATE form's action
      */
-    const UPDATE    = 'record_update';
+    const UPDATE = 'record_update';
 
     /**
      * Costant to define button name for the DELETE form's action
      */
-    const DELETE    = 'record_delete';
+    const DELETE = 'record_delete';
 
     /**
      * Costant to define button name for the CLOSE form's action
      */
-    const CLOSE     = 'record_close';
+    const CLOSE = 'record_close';
 
     /**
      * Costant to define button name for the RESET form's action
      */
-    const RESET     = 'record_reset';
+    const RESET = 'record_reset';
 
     /**
      * Costant to disable buttons by hiding them
      */
-    const DISALLOW_MODE_WITH_HIDE       = 'hide';
+    const DISALLOW_MODE_WITH_HIDE = 'hide';
 
     /**
      * Costant to disable buttons by disabling them
      */
-    const DISALLOW_MODE_WITH_DISABLE    = 'disabled';
+    const DISALLOW_MODE_WITH_DISABLE = 'disabled';
 
     /**
      * Set/Get Editing (true) or Adding mode.
@@ -86,27 +87,27 @@ class Record extends Component{
     /**
      * @var bool Allows form ADD, default true
      */
-    public $allowAdd=true;
+    public $allowAdd = true;
 
     /**
      * @var bool Allows form UPDATE, default true
      */
-    public $allowUpdate=true;
+    public $allowUpdate = true;
 
     /**
      * @var bool Allow form DELETE, default true
      */
-    public $allowDelete=true;
+    public $allowDelete = true;
 
     /**
      * @var bool Allows form CLOSE, default true
      */
-    public $allowClose=true;
+    public $allowClose = true;
 
     /**
      * @var bool Allows form RESET, default true
      */
-    public $allowReset=true;
+    public $allowReset = true;
 
     /**
      * @var string The buttons separator, default is a space "&nbsp;"
@@ -179,35 +180,35 @@ class Record extends Component{
      *                         different value for name of input button the value can be
      *                         changed with registerAction() method.
      */
-    private $record_add     = self::ADD;
+    private $record_add = self::ADD;
 
     /**
      * @var string Action UPDATE. Default value is Record::RECORD_UPDATE. If template has a
      *                         different value for name of input button the value can be
      *                         changed with registerAction() method.
      */
-    private $record_update  = self::UPDATE;
+    private $record_update = self::UPDATE;
 
     /**
      * @var string Action DELETE. Default value is Record::RECORD_DELETE. If template has a
      *                         different value for name of input button the value can be
      *                         changed with registerAction() method.
      */
-    private $record_delete  = self::DELETE;
+    private $record_delete = self::DELETE;
 
     /**
      * @var string Action CLOSE. Default value is Record::RECORD_CLOSE. If template has a
      *                         different value for name of input button the value can be
      *                         changed with registerAction() method.
      */
-    private $record_close   = self::CLOSE;
+    private $record_close = self::CLOSE;
 
     /**
      * @var string Action RESET. Default value is Record::RECORD_RESET. If template has a
      *                         different value for name of input button the value can be
      *                         changed with registerAction() method.
      */
-    private $record_reset   = self::RESET;
+    private $record_reset = self::RESET;
 
     /**
      * Record constructor.
@@ -221,7 +222,7 @@ class Record extends Component{
             $view = new View();
             $view->loadCustomTemplate($tpl);
         }
-        parent::__construct($view,$model);
+        parent::__construct($view, $model);
     }
 
     /**
@@ -234,10 +235,10 @@ class Record extends Component{
      * @throws BeanActionException If SQL error occurs
      * @throws VariableNotFoundException If component's variable is not found into template
      */
-    public function init(Model $beanAdapter=null, View $view=null,$isBusinessValidationError=false)
+    public function init(Model $beanAdapter = null, View $view = null, $isBusinessValidationError = false)
     {
         $this->beanAdapter = $beanAdapter;
-        $this->view->setVar("Separator",$this->actionsSeparator);
+        $this->view->setVar("Separator", $this->actionsSeparator);
 
         // $this->doAction($beanAdapter,$isBusinessValidationError);
 
@@ -251,7 +252,7 @@ class Record extends Component{
         }
 
         if ($this->record_add == self::ADD)
-            $this->view->setVar(self::ADD,    $this->record_add);
+            $this->view->setVar(self::ADD, $this->record_add);
         if ($this->record_update == self::UPDATE)
             $this->view->setVar(self::UPDATE, $this->record_update);
         if ($this->record_delete == self::DELETE)
@@ -259,7 +260,7 @@ class Record extends Component{
         if ($this->record_close == self::CLOSE)
             $this->view->setVar(self::CLOSE, $this->record_close);
         if ($this->record_reset == self::RESET)
-            $this->view->setVar(self::RESET,  $this->record_reset);
+            $this->view->setVar(self::RESET, $this->record_reset);
         if ($this->allowAdd == false)
             $this->disallowAction(self::ADD);
         if ($this->allowUpdate == false)
@@ -271,7 +272,7 @@ class Record extends Component{
         if ($this->allowReset == false)
             $this->disallowAction(self::RESET);
 
-        $this->doAction($beanAdapter,$isBusinessValidationError);
+        $this->doAction($beanAdapter, $isBusinessValidationError);
 
     }
 
@@ -283,11 +284,11 @@ class Record extends Component{
      */
     private function verifyAction($action)
     {
-        if ($action!=Record::ADD    &&
-            $action!=Record::UPDATE &&
-            $action!=Record::DELETE &&
-            $action!=Record::CLOSE  &&
-            $action!=Record::RESET) {
+        if ($action != Record::ADD &&
+            $action != Record::UPDATE &&
+            $action != Record::DELETE &&
+            $action != Record::CLOSE &&
+            $action != Record::RESET) {
             throw new RecordActionException("Action not in range. Must be one of Record:ADD/UPDATE/DELETE/CLOSE/RESET");
         } else {
             return true;
@@ -311,7 +312,7 @@ class Record extends Component{
     public function registerActionName($action, $formElement)
     {
         $this->verifyAction($action);
-        $this->$action=$formElement;
+        $this->$action = $formElement;
         $this->view->setVar($action, $formElement);
     }
 
@@ -328,7 +329,7 @@ class Record extends Component{
     public function disallowAction($action)
     {
         $this->verifyAction($action);
-        if ($this->disallowMode == self::DISALLOW_MODE_WITH_HIDE){
+        if ($this->disallowMode == self::DISALLOW_MODE_WITH_HIDE) {
             $this->hideAction($action);
         } else {
             $this->disableAction($action);
@@ -350,7 +351,7 @@ class Record extends Component{
         $dom->removeChild($dom->doctype);
         $element_id = $this->$action;
         $element = $dom->getElementById($element_id);
-        $element->setAttribute("disabled","true");
+        $element->setAttribute("disabled", "true");
         $html = $dom->saveHTML();
         $this->view->replaceTpl($this->sanitizeHtml($html));
     }
@@ -366,13 +367,13 @@ class Record extends Component{
     {
         $this->verifyAction($action);
         $dom = new DOMDocument('1.0', 'utf-8');
-         @$dom->loadHTML($this->view->parse());
-         $dom->removeChild($dom->doctype);
-         foreach ($dom->getElementsByTagName('input') as $input) {
-             if ($input->getAttribute('name') == $this->$action) {
-                 $input->parentNode->removeChild($input);
-             }
-         }
+        @$dom->loadHTML($this->view->parse());
+        $dom->removeChild($dom->doctype);
+        foreach ($dom->getElementsByTagName('input') as $input) {
+            if ($input->getAttribute('name') == $this->$action) {
+                $input->parentNode->removeChild($input);
+            }
+        }
         $html = $dom->saveHTML();
         $this->view->replaceTpl($this->sanitizeHtml($html));
     }
@@ -385,10 +386,10 @@ class Record extends Component{
      */
     private function sanitizeHtml($html)
     {
-        $html = str_replace('<html>',"",$html);
-        $html = str_replace('</html>',"",$html);
-        $html = str_replace('<body>',"",$html);
-        $html = str_replace('</body>',"",$html);
+        $html = str_replace('<html>', "", $html);
+        $html = str_replace('</html>', "", $html);
+        $html = str_replace('<body>', "", $html);
+        $html = str_replace('</body>', "", $html);
         return $html;
     }
 
@@ -398,14 +399,15 @@ class Record extends Component{
      *
      * @param string $pkName
      */
-    public function registerPkUrlParameter($pkName){
+    public function registerPkUrlParameter($pkName)
+    {
         $this->pkName[] = $pkName;
-        isset($_GET[$pkName])?  $id_get = $_GET[$pkName] : $id_get =null;
-        isset($_POST[$pkName] )?  $id_post = $_POST[$pkName] : $id_post =null;
-        ($id_get !=null ) ? $id = $id_get : $id = $id_post;
+        isset($_GET[$pkName]) ? $id_get = $_GET[$pkName] : $id_get = null;
+        isset($_POST[$pkName]) ? $id_post = $_POST[$pkName] : $id_post = null;
+        ($id_get != null) ? $id = $id_get : $id = $id_post;
         $this->currentRecord[] = $id;
 
-        if (isset($_GET[$pkName]) || $_POST[$pkName]){
+        if (isset($_GET[$pkName]) || $_POST[$pkName]) {
             $this->editMode = true;
         } else {
             $this->editMode = false;
@@ -430,14 +432,13 @@ class Record extends Component{
     public function isSubmitted()
     {
         // $submitted = false;
-        if ( isset($_REQUEST[$this->record_add]) || isset($_REQUEST[$this->record_update]) || isset($_REQUEST[$this->record_delete]) || isset($_REQUEST[$this->record_close])){
+        if (isset($_REQUEST[$this->record_add]) || isset($_REQUEST[$this->record_update]) || isset($_REQUEST[$this->record_delete]) || isset($_REQUEST[$this->record_close])) {
             $submitted = true;
         } else {
             $submitted = false;
         }
         return $submitted;
     }
-
 
 
     /**
@@ -447,11 +448,11 @@ class Record extends Component{
      * @param bool|false $isBusinessValidationError Set to true if there were business errors excluding any SQL actions.
      * @throws BeanActionException If SQL error occur.
      */
-    private function doAction(BeanAdapter $beanAdapter, $isBusinessValidationError=false)
+    private function doAction(BeanAdapter $beanAdapter, $isBusinessValidationError = false)
     {
         // Unset $_GETs and compute if Editing or Adding mode
         foreach ($this->pkName as $key) {
-            if(isset($_GET[$key])) {
+            if (isset($_GET[$key])) {
                 unset($_GET[$key]);
                 $this->disallowAction(Record::ADD);
             } else {
@@ -464,7 +465,7 @@ class Record extends Component{
         // Note: also excluded in observing mode.
         try {
             if (!isset($_REQUEST["getState"])) {
-                if (isset($_REQUEST[$this->record_add]) && ! $isBusinessValidationError ) {
+                if (isset($_REQUEST[$this->record_add]) && !$isBusinessValidationError) {
                     $beanAdapter->insert();
                     if ($beanAdapter->getBean()->isSqlError()) {
                         $this->redirectAfterAdd = NULL;
@@ -473,7 +474,7 @@ class Record extends Component{
                     if (!empty($this->redirectAfterAdd))
                         header("Location: " . $this->redirectAfterAdd);
                 }
-                if (isset($_REQUEST[$this->record_update]) && ! $isBusinessValidationError) {
+                if (isset($_REQUEST[$this->record_update]) && !$isBusinessValidationError) {
                     $beanAdapter->update($this->currentRecord);
                     if ($beanAdapter->getBean()->isSqlError()) {
                         $this->redirectAfterAdd = NULL;
@@ -483,7 +484,7 @@ class Record extends Component{
                         header("Location: " . $this->redirectAfterUpdate);
                 }
 
-                if (isset($_REQUEST[$this->record_delete]) && ! $isBusinessValidationError) {
+                if (isset($_REQUEST[$this->record_delete]) && !$isBusinessValidationError) {
                     $beanAdapter->delete($this->currentRecord);
                     if ($beanAdapter->getBean()->isSqlError()) {
                         $this->redirectAfterAdd = NULL;
@@ -499,7 +500,7 @@ class Record extends Component{
                 }
             }
 
-        } catch (BeanActionException $e){
+        } catch (BeanActionException $e) {
             $this->addError($e);
         }
 
@@ -515,19 +516,20 @@ class Record extends Component{
      * @param string $controller Name of the controller (in url notation).
      * @return string A url string that reproduce last execution of the given controller.
      */
-    public function getControllerHistoryBack($controller){
+    public function getControllerHistoryBack($controller)
+    {
         if (!isset($_SESSION[$controller]))
             $_SESSION[$controller] = "";
         $urlArray = unserialize($_SESSION[$controller]);
         if (!isset($_SESSION["current_subsystem"]))
             $_SESSION["current_subsystem"] = "";
         $currentSubsystem = $_SESSION["current_subsystem"];
-        $currentSubsystem == "" ? $currentSubsystem = "": $currentSubsystem = $currentSubsystem . "/";
-        $method = (isset($urlArray[0]) && !empty($urlArray[0]) ) ?  "/". $urlArray[0] : "";
-        $parameters = (isset($urlArray[1])&& !empty($urlArray[1])) ?  "/". $urlArray[1] : "";
-        $get = (isset($urlArray[2]) && ! empty($urlArray[2]) ) ?  "?" . $urlArray[2] : "";
-        $post = (isset($urlArray[3]) && ! empty($urlArray[3]) ) ?  "&" . $urlArray[3] : "";
-        return  SITEURL . "/". $currentSubsystem . $controller . $method  . $parameters . $get . $post;
+        $currentSubsystem == "" ? $currentSubsystem = "" : $currentSubsystem = $currentSubsystem . "/";
+        $method = (isset($urlArray[0]) && !empty($urlArray[0])) ? "/" . $urlArray[0] : "";
+        $parameters = (isset($urlArray[1]) && !empty($urlArray[1])) ? "/" . $urlArray[1] : "";
+        $get = (isset($urlArray[2]) && !empty($urlArray[2])) ? "?" . $urlArray[2] : "";
+        $post = (isset($urlArray[3]) && !empty($urlArray[3])) ? "&" . $urlArray[3] : "";
+        return SITEURL . "/" . $currentSubsystem . $controller . $method . $parameters . $get . $post;
     }
 
     /**
@@ -547,7 +549,8 @@ class Record extends Component{
      *
      * @param string $error
      */
-    public function addError($error){
+    public function addError($error)
+    {
         $this->errors[] = $error;
     }
 
@@ -556,8 +559,9 @@ class Record extends Component{
      * @param Bean $bean
      * @param null $redirect The redirect URL. Default is Record:redirectAfterClose
      */
-    public function redirectOnEmpyEdit(Bean $bean, $redirect=null){
-        if ($bean->affected_rows==0 && !$this->isSubmitted() && $this->editMode){
+    public function redirectOnEmpyEdit(Bean $bean, $redirect = null)
+    {
+        if ($bean->affected_rows == 0 && !$this->isSubmitted() && $this->editMode) {
             if (empty($redirect)) {
                 header("location: $this->redirectAfterClose");
             } else {

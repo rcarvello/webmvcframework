@@ -27,6 +27,7 @@
  */
 
 namespace framework\components;
+
 use framework\Controller;
 use framework\Model;
 use framework\View;

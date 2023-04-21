@@ -1,0 +1,5 @@
+#Comment: Loads translations defined
+#Load:locales/it-it/controllers/examples/cms/Localization.txt
+TreeStructureMsg=Struttura ad albero generata con il componente <b>TreeStructure</b>
+ExpandTree=Esplodi albero
+CollapseTree=Comprimi albero
