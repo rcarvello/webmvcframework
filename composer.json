@@ -1,0 +1,21 @@
+{
+  "name": "rcarvello/webmvcframework",
+  "description": "PHP Web MVC Framework",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "homepage": "https://github.com/rcarvello/webmvcframework",
+  "authors": [
+    {
+      "name": "Rosario Carvello",
+      "email": "rosario.carvello@gmail.com.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "framework\\": "framework/"
+    }
+  }
+}
