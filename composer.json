@@ -1,7 +1,6 @@
 {
   "name": "rcarvello/webmvcframework",
   "description": "PHP Web MVC Framework",
-  "minimum-stability": "stable",
   "type": "framework",
   "license": "MIT",
   "homepage": "https://github.com/rcarvello/webmvcframework",
