@@ -17,7 +17,7 @@
     "psr-4": {
       "\\": "/"
     },
-    "minimum-stability": "master",
+    "minimum-stability": "dev",
     "prefer-stable": true
   },
   "extra": {
