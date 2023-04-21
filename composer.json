@@ -11,6 +11,7 @@
     }
   ],
   "require": {
+    "rcarvello/webmvcframework": "1.1.1",
     "php": ">=5.3"
   },
   "minimum-stability": "dev",
