@@ -10,6 +10,7 @@
  * @license BSD Clause 3 License.
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 class MySqlRecord extends Model
 {
@@ -44,7 +45,7 @@ class MySqlRecord extends Model
     }
 
     /**
-     * isSqlError Gets if an Sql error occurred
+     * isSqlError check if Sql error occurred
      * @return bool
      */
     public function isSqlError()
@@ -63,7 +64,7 @@ class MySqlRecord extends Model
     {
         $this->lastSqlError = "";
     }
-    
+
     /**
      * parseValue Parses the value and returns NULL if null occurred
      *
@@ -73,12 +74,12 @@ class MySqlRecord extends Model
      * @param string $type The data type of first parameter, default is number (int/float) value
      * @return null|string|int|float quoted or not value
      */
-    protected function parseValue($value=null,$type="number")
+    protected function parseValue($value = null, $type = "number")
     {
         $constants = get_defined_constants();
-       
-        if ( $type=="int" || $type=="float" || $type=="real" || $type=="double") {
-            if ($value !=null) {
+
+        if ($type == "int" || $type == "float" || $type == "real" || $type == "double") {
+            if ($value != null) {
                 switch ($type) {
                     case "double":
                         $value = (double)$value;
@@ -97,27 +98,29 @@ class MySqlRecord extends Model
         }
         if (!is_null($value) && $value == 0 && $type == "number") {
             return 0;
-        } else if ($value !=null && $type!="number" && $type!="date" && $type!="datetime") {
+        } else if ($value != null && $type != "number" && $type != "date" && $type != "datetime") {
             return "'" . $this->real_escape_string($value) . "'";
-        } else if ($value !=null && $type!="number" && $type=="date") {
-            return    "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATE_FORMAT'] . "')";
-        } else if ($value !=null && $type!="number" && $type=="datetime") {
-            return    "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATETIME_FORMAT'] . "')";
-        } else if ($value !=null && $type=="number" && is_numeric($value)){
+        } else if ($value != null && $type != "number" && $type == "date") {
+            return "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATE_FORMAT'] . "')";
+        } else if ($value != null && $type != "number" && $type == "datetime") {
+            return "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATETIME_FORMAT'] . "')";
+        } else if ($value != null && $type == "number" && is_numeric($value)) {
             return $value;
         } else {
             return "NULL";
         }
     }
+
     /**
      * Replaces backslash present into MySQL strings which containing apostrophes.
      *
-     * @param  string $field The field to replace
+     * @param string $field The field to replace
      * @return string the field without backslash for the aphos
      */
-    protected function replaceAposBackSlash($field){
-        $r1 =  str_replace("\'","'",$field);
-        $r2 =  str_replace("\\\\","\\",$r1);
+    protected function replaceAposBackSlash($field)
+    {
+        $r1 = str_replace("\'", "'", $field);
+        $r2 = str_replace("\\\\", "\\", $r1);
         return $r2;
     }
 
