@@ -261,17 +261,57 @@ abstract class Controller
      * The variable must be named with the same subusystem\controller class name.
      *
      * @param Controller $controller The controller instance to bind
+     * @param $dynamicPlaceholderName
+     * @param $grabOnlyHTMLBody
      * @return void
      * @throws NotInitializedViewException
      * @throws exceptions\VariableNotFoundException
      */
-    public function bindController(Controller $controller)
+    public function bindController(Controller $controller, $dynamicPlaceholderName=null, $grabOnlyHTMLBody=false)
     {
+        if (!empty($dynamicPlaceholderName)){
+            $this->dynamicBindController($dynamicPlaceholderName,$controller,$grabOnlyHTMLBody);
+            return;
+        }
+
         $variable = str_replace(APP_CONTROLLERS_PATH . "\\", "", get_class($controller));
         $variable = "Controller:" . $variable;
-        // $variable = "Controller:" . get_class($controller);
         $controller->setAsChildController();
-        $this->view->setVar($variable, $controller->get());
+
+        if ($grabOnlyHTMLBody) {
+            $regex = '#<\s*?body\b[^>]*>(.*?)</body\b[^>]*>#s';
+            $content = $controller->get();
+            preg_match($regex, $content, $matches);
+            $this->view->setVar($variable, $matches[1]);
+        } else {
+            $this->view->setVar($variable, $controller->get());
+        }
+
+    }
+
+    /**
+     * Dynamic binding of a Controller to a placeholder in the
+     * format {Dynamic:PLACEHOLDERNAME}
+     *
+     * @param string $placeholderName The name defined for the Dynamic placeholder
+     * @param Controller $controller The controller to bind
+     * @param boolean $grabOnlyHTMLBody Default is false. When true it grabs
+     *        from the controller only its content placed inside the body tags.
+     * @return void
+     * @throws NotInitializedViewException
+     * @throws exceptions\VariableNotFoundException
+     */
+    private function dynamicBindController($placeholderName, Controller $controller, $grabOnlyHTMLBody=false)
+    {
+        $currentController = $controller->getName();
+        $controllersPrefix = APP_CONTROLLERS_PATH . "\\";
+        $prefixLenght= strlen($controllersPrefix);
+        $currentControllerPrefix = substr($currentController,0,$prefixLenght);
+        if ($currentControllerPrefix == $controllersPrefix ){
+            $currentControllerVariable = str_replace($currentControllerPrefix,"",$currentController);
+            $this->view->setVar("Dynamic:".$placeholderName,"{Controller:" . $currentControllerVariable. "}");
+            $this->bindController($controller,null,$grabOnlyHTMLBody);
+        }
     }
 
     /**
