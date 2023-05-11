@@ -32,7 +32,7 @@ class InnerBlocks extends Controller
     {
         $this->grantRole(100);  // Administrator
         $this->grantRole(60);   // Manager (see access_level table)
-        $this->restrictToRBAC(null,"examples/cms/inner_blocks",LoginRBACWarningMessage);
+        $this->restrictToRBAC(null,"examples/cms/inner_blocks");
         // Alternatively it requires only to be an athenticated user
         // $this->restrictToAuthentication(null,"examples/cms/inner_blocks");
         $this->view = empty($view) ? $this->getView() : $view;
