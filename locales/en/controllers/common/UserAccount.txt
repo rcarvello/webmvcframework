@@ -26,4 +26,5 @@ Weak=Weak
 OK=Ok
 Strong=Strong
 VeryStrong=Very Strong
+UserRecord=User Record
 
