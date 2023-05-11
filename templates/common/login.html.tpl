@@ -20,6 +20,7 @@
 </head>
 
 <body>
+<div class="container">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 <h2>Login</h2>
 	<h4>{RES:LoginPageTitle}</h4>
@@ -29,6 +30,7 @@
 <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4"></div>
 
 <div role="main" class="col-xs-10 col-sm-6 col-md-4 col-lg-4" >
+
   <!-- BEGIN LoginErrorMessage -->
   <div class="alert alert-danger alert-dismissible ol-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -61,8 +63,14 @@
           <input type="checkbox" id="remember_me" class="form-cotrol" value="1" name="remember_me" >  {RES:RememberMeText}
         </div>
         <div class="form-group">
+          <!-- BEGIN LoginButton -->
           <input class="btn btn-success btn-lg" type="submit" id="login_form_do_login"  class="Button" alt="{RES:LoginButtonCaption}"   value="{RES:LoginButtonCaption}"  name="login_form_do_login">
+          <!-- END LoginButton -->
+
+          <!-- BEGIN LogoutButton -->
           <input class="btn btn-warning btn-lg" type="submit" id="login_form_do_logout"  class="Button" alt="{RES:LogoutButtonCaption}" value="{RES:LogoutButtonCaption}" name="login_form_do_logout" formnovalidate>
+          <!-- END LogoutButton -->
+
           <a class="btn btn-default btn-lg" id="login_form_do_cancel"  value="{RES:CancelButtonCaption}" name="login_form_do_cancel" onclick="history.back()">{RES:CancelButtonCaption}</a>
         </div>
       </div>
@@ -76,7 +84,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 	Copyright © {RES:CopyRightInfo}
 </div>
-
+</div>
 <div id="divLoading"></div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
