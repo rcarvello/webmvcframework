@@ -26,5 +26,5 @@ Weak=Debole
 OK=Ok
 Strong=Forte
 VeryStrong=Molto forte
-
+UserRecord=Record Utente
 
