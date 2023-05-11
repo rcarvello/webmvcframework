@@ -29,6 +29,7 @@ class UserAccount extends Controller
     private $currentEditingUser;
     private $onlyCurrent = false;
     private $isAdmin = false;
+
     /**
     * Object constructor.
     *

@@ -39,6 +39,7 @@ class UserAccounts extends Controller
 
     /**
     * Autorun method. Put your code here for running it after object creation.
+    *
     * @param mixed|null $parameters Parameters to manage
     *
     */
