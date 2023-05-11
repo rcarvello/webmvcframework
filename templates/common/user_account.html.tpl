@@ -32,6 +32,8 @@
 <body>
 
 <div class="container">
+    <h1>{RES:UserRecord}</h1>
+    <hr>
     <form name="user_record_form" id="user_record_form" method="post" class="form-horizontal">
         <div class="panel panel-primary">
 
