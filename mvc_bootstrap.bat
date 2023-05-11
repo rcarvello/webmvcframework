@@ -4,10 +4,10 @@ REM Assuming you have many PHP releases extracted into many different sub folder
 REM For example:
 REM
 REM c:\php_apps\mvc_bootstrap.php
-REM c:\php_apps\php56     folder where are located PHP version 5.3 files
-REM c:\php_apps\php74     folder where are located PHP version 5.3 files
-REM c:\php_apps\php80     folder where are located PHP version 5.3 files
-REM c:\php_apps\php82     folder where are located PHP version 5.3 files
+REM c:\php_apps\php56     folder where are located PHP version 5.6 files
+REM c:\php_apps\php74     folder where are located PHP version 7.4 files
+REM c:\php_apps\php80     folder where are located PHP version 8.0 files
+REM c:\php_apps\php82     folder where are located PHP version 8.2 files
 REM
 REM Note: On each PHP folder you need to configure php.ini according to framework requirements
 @echo off
@@ -21,10 +21,10 @@ REM
 REM Set PHP distributions PATH (for example C:\php_apps or %~dp0 for current .bat folder)
 set PHP_ROOT_PATH=%~dp0
 REM
-REM Set PHP version SUFFIX PATH
-set PHP_VERSION=56
+REM Set PHP version SUFFIX PATH -- CHANGE THIS FOR SETTING PHP VERSION
+set PHP_VERSION=74
 REM
-REM Set WEB MVC Framework PATH
+REM Set WEB MVC Framework PATH -- CHANGE THIS FOR SETTING HTTP ROOT FOLDER
 set FRAMEWORK_PATH=D:\gitmvc
 REM
 REM ********************************
