@@ -44,7 +44,8 @@
         <h4><span aria-hidden="true" class="glyphicon glyphicon-log-in"> </span>{RES:LogiFormTitle}</h4>
       </div>
       <div class="panel-body">
-        
+
+        <!-- BEGIN LoginInputs -->
         <div class="form-group">
           <label for="LoginFormemail">Email</label> 
           <div>
@@ -57,12 +58,28 @@
             <input autocomplete="off" type="password" id="LoginFormpassword" class="form-control" maxlength="100" value="" name="password" required>
           </div>
         </div>
+        <!-- END LoginInputs -->
+
+        <!-- BEGIN IsLoggedInfo -->
+        <div class="form-group">
+          <label for="LoginFormpassword">{RES:IsLoggedLabel}</label>
+          <div>
+            {RES:IsLoggedMessage}
+          </div>
+        </div>
+        <!-- END IsLoggedInfo -->
+
       </div>
       <div class="panel-footer text-center">
+
+        <!-- BEGIN RememberMe -->
         <div class="form-group text-right">
           <input type="checkbox" id="remember_me" class="form-cotrol" value="1" name="remember_me" >  {RES:RememberMeText}
         </div>
+        <!-- END RememberMe -->
+
         <div class="form-group">
+
           <!-- BEGIN LoginButton -->
           <input class="btn btn-success btn-lg" type="submit" id="login_form_do_login"  class="Button" alt="{RES:LoginButtonCaption}"   value="{RES:LoginButtonCaption}"  name="login_form_do_login">
           <!-- END LoginButton -->
