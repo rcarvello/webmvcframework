@@ -50,4 +50,14 @@ define('DBPORT', '3306');
 E) Run: http://YOUR_HOST/YOUR_FOLDER
 
 
+ADDITIONAL INSTRUCTION (FOR WINDOWS USERS ONLY)
+
+If you don't have an installed Apache HTTP server then you can use PHP built-in webserver.
+To do this follow the previous instruction steps but replace the following lines:
+
+C) define("SITEURL","http://localhost:8000/PUT_YOUR_FOLDER");
+
+Edit mvc_bootstrap.bat and update lines "set FRAMEWORK_PATH=D:\gitmvc" with YOUR_FOLDER.
+Choose also your PHP version having the care to have previously downloaded and installed it into your system.
+
 LIVE EXAMPLES: www.webmvcframework.com
