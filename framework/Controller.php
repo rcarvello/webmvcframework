@@ -449,6 +449,8 @@ abstract class Controller
      */
     protected function restrictToRBAC($redirect = null, $returnLink = null, $LoginWarningMessage = null)
     {
+        if (empty($LoginWarningMessage))
+            $LoginWarningMessage = LoginRBACWarningMessage;
         $user = $this->restrictToAuthentication($redirect, $returnLink, $LoginWarningMessage);
         if (!empty($this->roleBasedACL)) {
             $userRole = $user->getRole();
