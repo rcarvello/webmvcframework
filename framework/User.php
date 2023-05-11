@@ -153,7 +153,8 @@ class User extends MySqlRecord implements BeanUser
         }
         $chiper = new ChiperService();
         $secured = isset($_SERVER["HTTPS"]);
-        setcookie($chiper::CREDENTIALS_COOKIE_NAME, "", time() - 3600, "/", null, $secured, true);
+        $domain = "";
+        setcookie($chiper::CREDENTIALS_COOKIE_NAME, "", time() - 3600, "/", $domain, $secured, true);
         session_destroy();
         return true;
     }
