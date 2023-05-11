@@ -9,3 +9,5 @@ LogoutButtonCaption=Logout
 CancelButtonCaption=Annulla
 LoginError=Credenziali di accesso non valide
 CopyRightInfo=2018 - La Tua Azienda - Tutti i diritti riservati
+IsLoggedLabel=L'utente ha già effettuato il login
+IsLoggedMessage=E' possibile effettuare il logout cliccando sul pulsante in basso
