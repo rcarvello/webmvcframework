@@ -67,6 +67,21 @@ class Login extends Controller
         } else {
             $this->hide("LoginErrorMessage");
         }
+
+        $this->evaluateLoginAndGrantStatus();
+    }
+
+    public function evaluateLoginAndGrantStatus(){
+
+        $hasGrant = isset($_REQUEST["login_warning_message"]) ? false: true;
+        if ($this->model->isLogged() && $hasGrant) {
+            $this->hide("LoginButton");
+            $this->hide("LoginInputs");
+            $this->hide("RememberMe");
+        } else   {
+            $this->hide("LogoutButton");
+            $this->hide("IsLoggedInfo");
+        }
     }
 
     /**
