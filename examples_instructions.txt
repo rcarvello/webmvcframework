@@ -47,7 +47,14 @@ define("DBPASSWORD","PUT_YOUR_PASSWORD_HERE");
 define("DBNAME","PUT_YOUR_DB_NAME_HERE");
 define('DBPORT', '3306');
 
-E) Run: http://YOUR_HOST/YOUR_FOLDER
+E)
+
+/**
+ * Defines a constant for a temporary folder
+ */
+define("APP_TEMP_PATH", "D:\\gitmvc\\temp");
+
+F) Run: http://YOUR_HOST/YOUR_FOLDER
 
 
 ADDITIONAL INSTRUCTION (FOR WINDOWS USERS ONLY)
