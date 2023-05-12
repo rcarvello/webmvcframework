@@ -127,6 +127,22 @@ class Example extends Controller
         $this->render();
     }
 
+    public function captcha(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/CaptchaComponent.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/CaptchaComponent.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/cms/CaptchaComponent.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/cms/captcha_component.html.tpl',true));
+        $this->view->setVarExample("CaptchaComponent");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/cms/CaptchaComponent.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/cms/CaptchaComponent.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/cms/CaptchaComponent.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/cms/captcha_component.html.tpl");
+        $this->render();
+    }
     public function innerBlocks(){
         $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/InnerBlocks.php',true);
         $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/InnerBlocks.php',true);
