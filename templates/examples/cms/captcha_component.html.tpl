@@ -31,7 +31,7 @@
                 <label class="col-sm-4 control-label" for="textinput">Full name</label>
                 <div class="col-sm-6">
                     <input id="full_name" name="full_name" type="text" placeholder="Full name" class="form-control input-md">
-                    <span class="help-block">Insert your full name</span>
+                    <span class="help-block">Insert your name</span>
                 </div>
             </div>
 
