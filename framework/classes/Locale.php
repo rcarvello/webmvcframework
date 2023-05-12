@@ -55,6 +55,7 @@ class Locale
         $defaultFrameworkLocaleFileName = "framework" . DIRECTORY_SEPARATOR . APP_LOCALE_PATH . DIRECTORY_SEPARATOR . self::DEFAULT_LCID . DIRECTORY_SEPARATOR . FRAMEWORK_LOCALE_FILE_NAME . ".txt";
         $defaultApplicationLocaleFileName = APP_LOCALE_PATH . DIRECTORY_SEPARATOR . self::DEFAULT_LCID . DIRECTORY_SEPARATOR . APPLICATION_LOCALE_FILE_NAME . ".txt";
 
+
         if (!isset($_SESSION["LocaleMessages"]) || $_SESSION["LocaleMessages"] == "") {
             $this->frameworkLocaleFileName = "framework" . DIRECTORY_SEPARATOR . "locales" . DIRECTORY_SEPARATOR . $this->currentLocale . DIRECTORY_SEPARATOR . FRAMEWORK_LOCALE_FILE_NAME . ".txt";
             $this->applicationLocaleFileName = APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $this->currentLocale . DIRECTORY_SEPARATOR . APPLICATION_LOCALE_FILE_NAME . ".txt";
@@ -93,12 +94,15 @@ class Locale
      */
     private function setLocaleFromHttpHeader($HHTPHeader = HTTP_ACCEPT_LANGUAGE)
     {
-        if (!empty($_SESSION["CurrentLocale"]))
+
+       if (!empty($_SESSION["CurrentLocale"]))
             return;
         if (!empty($this->currentLocale))
             return;
         if (!isset($_SERVER[$HHTPHeader])) {
             $this->currentLocale = "it-it";
+            $_SESSION["CurrentLocale"] = $this->currentLocale;
+            return;
         }
         $localeInfo = explode(",", strtolower($_SERVER[$HHTPHeader]));
         $this->currentLocale = $localeInfo[0];
