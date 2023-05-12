@@ -25,17 +25,17 @@ define("DBHOST","localhost");
 /**
  *  MySQL User
  */
-define("DBUSER","user");
+define("DBUSER","root");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD","password");
+define("DBPASSWORD","letmysql");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","webmvcframework");
+define("DBNAME","mrp");
 
 /**
  *  MySQL Port
@@ -46,7 +46,7 @@ define('DBPORT', '3306');
  * Defines a constant for site URL
  * @note without the ending slash
  */
-define("SITEURL","https://localhost/webmvcframework");
+define("SITEURL","http://localhost:8000");
 // Or HTTPS
 // define("SITEURL","https://YOUR_HOST/YOUR_APP");
 
@@ -110,6 +110,13 @@ define("STORED_DATETIME_FORMAT","%Y-%m-%d %H:%i:%s");
  *  If on your MySQL FULL_GROUP_BY is ON set it to true else false 
  */
 define ("MYSQL_MODE_FULL_GROUP_BY",true);
+
+
+/**
+ * Defines a constant for a temporary folder
+ */
+define("APP_TEMP_PATH", "D:\\gitmvc\\temp");
+
 /**
  * Globals Placeholders
  */
