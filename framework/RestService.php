@@ -41,7 +41,7 @@ abstract class RestService extends Controller
         $this->HTTPRequestMethod = $_SERVER['REQUEST_METHOD'];
         $this->HTTPRequestHeaders = getallheaders();
         $this->restDatas = array_merge($_POST, $_GET);
-        $this->view->replaceTpl("");
+        $this->view->replaceTpl(" ");
 
     }
 
