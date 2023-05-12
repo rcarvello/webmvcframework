@@ -229,6 +229,9 @@ class Dispatcher
 
         if (class_exists($controllerClass)) {
             $controller = new $controllerClass;
+            if ($controller->isChildController()){
+                throw new IsChildControllerException($controllerClass . " A child controller can be invoked only from a parent Controller");
+            }
             if (!empty($method) && method_exists($controller, $method)) {
                 $reflection = new ReflectionMethod($controllerClass, $method);
                 if ($reflection->getName() == "__construct") {
@@ -246,11 +249,26 @@ class Dispatcher
                     call_user_func(array($controller, $method));
                 }
             } else {
-                if (!empty($method) && !method_exists($controller, $method)) {
-                    throw new MethodNotFoundException($method . " is not definied");
-                } else {
-                    call_user_func(array($controller, "render"));
+                // Check if magic __call is present
+                // echo get_parent_class ($controller);
+                try {
+                    $magicCall = new ReflectionMethod($controllerClass, "__call");
+                    if ($magicCall->getName() == "__call") {
+                        if (count($this->methodParameters) > 0) {
+                            call_user_func_array(array($controller, $method), $this->methodParameters);
+                        } else if ($method != "") {
+                            call_user_func(array($controller, $method));
+                        }
+                    }
+                } catch (\Exception $e) {
+                    // ### Outside catch before adding magic __call checking
+                    if (!empty($method) && !method_exists($controller, $method)) {
+                        throw new MethodNotFoundException($method . " is not definied");
+                    } else {
+                        call_user_func(array($controller, "render"));
+                    }
                 }
+                // ### It was here
             }
         } else {
             throw new ControllerNotFoundException($controllerClass . " not found");
