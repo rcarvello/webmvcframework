@@ -50,6 +50,8 @@
                         <li><a href="cms/localization">Localization and multi languages feautures (Use Settings DropDown
                                 Menu)</li>
                         <li><a href="cms/composite_page">Hierarchical MVC</li>
+                        <li><a href="cms/dynamic_binding">Dynamic Binding of Controllers</li>
+                        <li><a href="cms/static_replacement">Static replacement of a template file</li>
                         <li><a href="{GLOBAL:SITEURL}/{GLOBAL:LOGIN_PAGE}?return_link=examples/index/">Login</a></li>
                     </ul>
                 </div>
@@ -70,6 +72,7 @@
                     <ul>
                         <li><a href="cms/block_data_repeater">Blocks management by the Datarepeater Component</li>
                         <li><a href="cms/tree_demo">TreeStructure Component Demo</li>
+                        <li><a href="cms/captcha_component">Captcha Component Demo</li>
                     </ul>
                     Buiders:
                     <ul>
