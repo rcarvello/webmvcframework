@@ -1,1 +1,2 @@
-Welcome=Benvenuto
+Welcome=Welcome
+Placeholder_captcha_code_verification=Codice Captcha
