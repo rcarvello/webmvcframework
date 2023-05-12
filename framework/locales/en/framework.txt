@@ -13,3 +13,4 @@ Delete_Message=Delete record
 Fine=0
 TemplateNotFoudExceptionMessage=Template does not exist
 Observer_Data_Changed_Alert_Message=Data was changed by an external session and will be updated.
+CapPlaceholder=Captcha Code
