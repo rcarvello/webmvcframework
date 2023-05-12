@@ -481,4 +481,23 @@ abstract class Controller
         return $user;
     }
 
+    /**
+     * Returns true when child controller.
+     *
+     * @return bool
+     */
+    public function isChildController()
+    {
+        return !$this->rootController;
+    }
+
+    /**
+     * Returns true when root controller
+     *
+     * @return bool
+     */
+    public function isRootController()
+    {
+        return $this->rootController;
+    }
 }
