@@ -407,7 +407,7 @@ class Record extends Component
         ($id_get != null) ? $id = $id_get : $id = $id_post;
         $this->currentRecord[] = $id;
 
-        if (isset($_GET[$pkName]) || $_POST[$pkName]) {
+        if ( @isset($_GET[$pkName]) || @isset($_POST[$pkName])) {
             $this->editMode = true;
         } else {
             $this->editMode = false;
