@@ -143,6 +143,23 @@ class Example extends Controller
         $this->view->setVarTemplateFile("templates/examples/cms/captcha_component.html.tpl");
         $this->render();
     }
+
+    public function myrest(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/MyRest.php',true);
+        $model      = "";
+        $view       = "";
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'my_rest_gui.html',true));
+        $this->view->setVarExample("REST Service Demo");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("MyRest.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("none");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("none");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("my_rest_gui.html");
+        $this->render();
+    }
     public function innerBlocks(){
         $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/InnerBlocks.php',true);
         $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/InnerBlocks.php',true);
