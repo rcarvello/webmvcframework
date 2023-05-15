@@ -73,6 +73,7 @@
                         <li><a href="cms/block_data_repeater">Blocks management by the Datarepeater Component</li>
                         <li><a href="cms/tree_demo">TreeStructure Component Demo</li>
                         <li><a href="cms/captcha_component">Captcha Component Demo</li>
+                        <li><a href="../my_rest_gui.html">REST Service demo</li>
                     </ul>
                     Buiders:
                     <ul>
