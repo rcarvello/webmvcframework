@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
+          media="screen">
+    <title>Test REST Service</title>
+</head>
+<body>
+<div class="container">
+    <h1>Rest service tester</h1>
+    <hr>
+    This is simple web interface for testing a custom REST service controller <strong>\controllers\MyRest.php</strong>
+    which extends <strong>framework\RestService class</strong> <br>
+    <hr>
+    To create PUT,GET,POST and DELETE rest service simple create a new controller by extending <strong>framework\RestService</strong>
+    by overriding the following methods <br><br><br>
+    <blockquote>
+        public function httpGetRequest($method, $args)
+    </blockquote>
+    <blockquote>
+        public function httpPostRequest($method, $args)
+    </blockquote>
+    <hr>
+    GET requests:
+    <ul>
+        <li><a href="my_rest/part/02"> my_rest/part/02</a></li>
+        <li><a href="my_rest/category/02"> my_rest/category/02</a></li>
+    </ul>
+    POST request:
+    <form class="form-inline">
+    <select id="method" class="form-control">
+        <option value="part">part</option>
+        <option value="category">category</option>
+    </select>
+    <select id="arg" class="form-control">
+        <option value="01">01</option>
+        <option value="02">02</option>
+    </select>
+        <a id="send" class="btn btn-primary" onclick="submitFormAjax()">Send POST request to service</a>
+    </form>
+    <hr>
+
+    <a href="examples/about/example/myrest" class="btn btn-info">Show source code</a>
+    <a href="examples/" class="btn btn-primary">Examples TOC</a>
+
+</div>
+
+
+<script>
+    function submitFormAjax() {
+        let xmlhttp= window.XMLHttpRequest ?
+            new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200)
+                alert(this.responseText); // Here is the response
+        }
+
+        let method = document.getElementById('method').value;
+        let arg = document.getElementById('arg').value;
+        xmlhttp.open("POST","my_rest/"+ method +"/" + arg,true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send();
+    }
+</script>
+
+
+</body>
+</html>
