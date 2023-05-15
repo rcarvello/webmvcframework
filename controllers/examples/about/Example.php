@@ -160,6 +160,23 @@ class Example extends Controller
         $this->view->setVarTemplateFile("my_rest_gui.html");
         $this->render();
     }
+
+    public function restService(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'framework/RestService.php',true);
+        $model      = "";
+        $view       = "";
+        $tpl        = "<b>None</b>";
+        $this->view->setVarExample("RestService Controller");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("RestService.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("None");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("None");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("");
+        $this->render();
+    }
     public function innerBlocks(){
         $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/cms/InnerBlocks.php',true);
         $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/cms/InnerBlocks.php',true);
