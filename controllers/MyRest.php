@@ -1,9 +1,19 @@
 <?php
+/**
+ * Class MyRest.
+ *
+ * A basic REST service responding to client GET and POST requests by using methods overriding
+ * of httpGetRequest and httpPostRequest from base class \framework\RestService
+ *
+ * @package controllers
+ * @category Application Controller
+ * @author  Rosario Carvello - rosario.carvello@gmail.com
+ */
 namespace controllers;
-use framework\RestService;
-use models\beans\BeanCustomer;
-use models\beans\BeanPart;
 
+use framework\RestService;
+use models\beans\BeanPart;
+use models\beans\BeanPartCategory;
 
 class MyRest extends RestService
 {
@@ -11,44 +21,86 @@ class MyRest extends RestService
 
     public function __construct()
     {
-        // $this->restrictToAuthentication();
+
         parent::__construct();
-        $this->allowMethod("customer");
-        $this->addCORS("http://www.tin.it");
-        $this->bean = new BeanPart();
-
+        // TODO
+        // $this->grantRole(100);
+        // $this->restrictToRBAC("common/login","my_rest","You are not allowed to access to this service");
+        $this->allowMethod("part");
+        $this->allowMethod("category");
+        $this->addCORS("https://www.allowedomain.domain");
     }
 
-    public function bean($name, $args=1)
-    {
-        echo $name . "-" . $args;
-    }
 
+    /**
+     * @override httpGetRequest
+     * @param $method
+     * @param $args
+     * @return array
+     *
+     */
     public function httpGetRequest($method, $args)
     {
-        /*
-        echo "HTTP GET method raised \n";
-        echo "User method raised: ". $method . "\n";
-        echo "Method parameters:";
-        print_r($args);
-        */
-        if (! empty($method) && !empty($args) )
-            $this->bean->select($args[0]);
-        return array("custom" => $this->bean->getDescription());
-        //return array("custom" => json_encode(html_entity_decode($args[1])));
-
+        $custom = array();
+        if (!empty($method) && !empty($args)) {
+            switch ($method) {
+                case "part":
+                    $this->bean = new BeanPart();
+                    $this->bean->select($args[0]);
+                    $custom = array("custom" => $this->bean->getDescription());
+                    break;
+                case "category":
+                    $this->bean = new BeanPartCategory();
+                    $this->bean->select($args[0]);
+                    $custom = array("custom" => $this->bean->getName());
+            }
+        }
+        return $custom;
     }
+
+    /**
+     * override httpPostRequest
+     * @param $method
+     * @param $args
+     * @return array|string[]
+     */
     public function httpPostRequest($method, $args)
     {
-        /*
-        echo "HTTP GET method raised \n";
-        echo "User method raised: ". $method . "\n";
-        echo "Method parameters:";
-
-        */
-        $this->bean->select($args[0]);
-        return array("custom" => $this->bean->getPartTypeCode());
-
+        $custom = array();
+        if (!empty($method) && !empty($args)) {
+            switch ($method) {
+                case "part":
+                    $this->bean = new BeanPart();
+                    $custom = array("custom" => "POST on table part");
+                    break;
+                case "category":
+                    $this->bean = new BeanPartCategory();
+                    $custom = array("custom" => "POST on table part_category");
+                    break;
+            }
+        }
+        return $custom;
     }
+
+    /**
+     * @param $method
+     * @param $args
+     * @return array
+     */
+    public function httpPutRequest($method, $args)
+    {
+        return parent::httpPutRequest($method, $args); // TODO
+    }
+
+    /**
+     * @param $method
+     * @param $args
+     * @return array
+     */
+    public function httpDeleteRequest($method, $args)
+    {
+        return parent::httpDeleteRequest($method, $args); // TODO
+    }
+
 
 }
