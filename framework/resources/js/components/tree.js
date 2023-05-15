@@ -1,3 +1,4 @@
+/* Framework JS code for tree component */
 (function ($) {
 
     "use strict";
