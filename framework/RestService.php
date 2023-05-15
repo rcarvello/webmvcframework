@@ -3,9 +3,9 @@
  * Class RestService
  *
  * REST service implementation.
- * It provides basic responsibilities to build local REST service.
- * You can also use it in conjunction with Bean classes for implementing
- * CRUD operations over local HTTP calls.
+ * It provides basic responsibilities to build REST service.
+ * You can use it in conjunction with Bean classes for implementing CRUD operations
+ * over HTTP calls.
  * Developers needs to extend this class to build custom REST methods.
  *
  * @package framework
@@ -19,18 +19,18 @@
 
 namespace framework;
 
-
 abstract class RestService extends Controller
 {
     private $allowedMethods = array();
+
     //TODO Authenticatin
     private $allowedRoles = array();
     private $HTTPRequestMethod;
     private $HTTPRequestHeaders;
-    public $debugPrint = false;
 
     //TODO
     private $restDatas = array();
+
     private $result;
     private $accessControlAllowOrigins = array();
 
@@ -42,7 +42,6 @@ abstract class RestService extends Controller
         $this->HTTPRequestHeaders = getallheaders();
         $this->restDatas = array_merge($_POST, $_GET);
         $this->view->replaceTpl(" ");
-
     }
 
     /**
@@ -54,7 +53,7 @@ abstract class RestService extends Controller
         $this->result = array(
             "status_code:" => 200,
             "status:" => "ok",
-            "request_method:" => (empty($this->HTTPRequestMethod)?"":strtoupper($this->HTTPRequestMethod, MB_CASE_UPPER)),
+            "request_method:" => (empty($this->HTTPRequestMethod) ? "" : strtoupper($this->HTTPRequestMethod, MB_CASE_UPPER)),
             "request_type:" => "informational",
             "request_headers" => $this->HTTPRequestHeaders,
             "body_data:" => array(
@@ -67,29 +66,19 @@ abstract class RestService extends Controller
 
     private function outputResponse()
     {
-        if (!$this->debugPrint) {
-
-            // Prevent caching.
-            header('Cache-Control: no-cache, must-revalidate');
-            header('Expires: Mon, 01 Jan 1996 00:00:00 GMT');
-
-            // The JSON standard MIME header.
-            header('Content-type:application/json;charset=utf-8');
-
-            // CORS
-            if (!empty($this->accessControlAllowOrigins)) {
-                foreach ($this->accessControlAllowOrigins as $allowedOrigin) {
-                    header("Access-Control-Allow-Origin: $allowedOrigin");
-                }
+        /* Prevents caching */
+        header('Cache-Control: no-cache, must-revalidate');
+        header('Expires: Mon, 01 Jan 1996 00:00:00 GMT');
+        /* Adds JSON standard MIME header */
+        header('Content-type:application/json;charset=utf-8');
+        /* Adds Cross Origin Resource Sharing - CORS */
+        if (!empty($this->accessControlAllowOrigins)) {
+            foreach ($this->accessControlAllowOrigins as $allowedOrigin) {
+                header("Access-Control-Allow-Origin: $allowedOrigin");
             }
-
-            // Output in JSON format
-            echo json_encode($this->result);
-
-        } else {
-            var_dump($this->result);
         }
-
+        /* Output in JSON format */
+        echo json_encode($this->result);
     }
 
     public function __call($method, $args)
@@ -97,10 +86,10 @@ abstract class RestService extends Controller
         global $_REST;
         if (in_array($method, $this->allowedMethods)) {
             /*
-            echo "Called __call with $method","\n<br>\n";
-            print_r($args);
-            print_r($_REQUEST);
-            print_r(getallheaders());
+                echo "Called __call with $method","\n<br>\n";
+                print_r($args);
+                print_r($_REQUEST);
+                print_r(getallheaders());
            */
             $this->result = array(
                 "status_code" => 200,
@@ -117,7 +106,6 @@ abstract class RestService extends Controller
                 )
             );
             $this->switchAction($method, $args);
-
         } else {
             $this->result = array(
                 "status_code" => 404,
@@ -160,7 +148,7 @@ abstract class RestService extends Controller
     }
 
     /**
-     * It fires on HTTP GET request
+     * Handle HTTP GET request
      *
      * @param string $method It contains the name of user method
      * @param array $args It contains an array of parameters given to the
@@ -174,7 +162,7 @@ abstract class RestService extends Controller
     }
 
     /**
-     * It fires on HTTP PUT request
+     * Handle HTTP PUT request
      *
      * @param string $method It contains the name of user method
      * @param array $args It contains an array of parameters given to the
@@ -188,7 +176,7 @@ abstract class RestService extends Controller
     }
 
     /**
-     * It fires on HTTP POST request
+     * Handle HTTP POST request
      *
      * @param string $method It contains the name of user method
      * @param array $args It contains an array of parameters given to the
@@ -202,7 +190,7 @@ abstract class RestService extends Controller
     }
 
     /**
-     * It fires on HTTP DELETE request
+     * Handle HTTP DELETE request
      *
      * @param string $method It contains the name of user method
      * @param array $args It contains an array of parameters given to the
