@@ -1,7 +1,7 @@
 English
 
-Web MVC Framework v.2.1.2 2022
-Copyright (c) 2016, Rosario Carvello - rosario.carvello@gmail.com
+Web MVC Framework v.2.1.2 2023
+Copyright (c) 2016-2023, Rosario Carvello - rosario.carvello@gmail.com
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following 
@@ -28,8 +28,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Italiano
 
-Web MVC Framework v.2.1.1 2019
-Copyright (c) 2016, Rosario Carvello - rosario.carvello@gmail.com
+Web MVC Framework v.2.1.1 2023
+Copyright (c) 2016-2023, Rosario Carvello - rosario.carvello@gmail.com
 All rights reserved.
 
 La ridistribuzione e l'uso in forma di codice sorgente e binaria, con o senza modifiche, sono permesse purché siano rispettate le seguenti condizioni:
