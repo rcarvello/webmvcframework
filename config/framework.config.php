@@ -114,14 +114,7 @@ function  IsWindows() {
     return (stristr(PHP_OS, 'winnt')!==false || stristr(PHP_OS, 'win32')!==false);
 }
 
-/**
- * Securing session cookie
- */
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_lifetime ', 0);
-ini_set('session.cookie_secure', isset($_SERVER["HTTPS"]));
-ini_set('session.name','WEBMVCFramework');
+
 
 
 // session.entropy_file = "/dev/urandom" (better entropy source)
