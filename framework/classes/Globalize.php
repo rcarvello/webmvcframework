@@ -94,6 +94,7 @@ class Globalize
         foreach ($this->staticsPlaceHolders as $placeholder) {
             $variableName = "{" . $placeholder . "}";
             $constantName = str_replace("STATICTPL:", "", $placeholder);
+            $constantName = str_replace("\\", "//", $constantName);
             $value = file_get_contents(APP_TEMPLATES_PATH . DIRECTORY_SEPARATOR . strtolower($constantName) . ".html.tpl");
             $this->content = str_replace($variableName, $value, $this->content);
         }
