@@ -31,13 +31,22 @@ class Globalize
     private $content;
     private $placeholders = array();
 
+    private $staticsPlaceHolders = array();
+
     public function __construct($content)
     {
-        $this->checkGlobals($content);
         $this->content = $content;
+
+        $this->checkStatics($content);
+        if (!empty($this->staticsPlaceHolders)) {
+            $this->replaceWithStatics();
+        }
+
+        $this->checkGlobals($this->content);
         if (!empty($this->placeholders)) {
             $this->replaceWithGlobals();
         }
+
     }
 
     /**
@@ -53,6 +62,18 @@ class Globalize
     }
 
     /**
+     * Creates placeholders array containing {STATICTPL:*} variables.
+     *
+     * @param string $content
+     */
+    private function checkStatics($content)
+    {
+        $regexForGlobalPlaceHolder = "/\{(STATICTPL:.*?)\}/s";
+        preg_match_all($regexForGlobalPlaceHolder, $content, $result);
+        $this->staticsPlaceHolders = array_merge($this->staticsPlaceHolders,$result[1]);
+    }
+
+    /**
      * Applies the replacements to GLOBAL: placeholders
      */
     private function replaceWithGlobals()
@@ -61,6 +82,19 @@ class Globalize
             $variableName = "{" . $placeholder . "}";
             $constantName = str_replace("GLOBAL:", "GLOBAL_", $placeholder);
             $value = @constant($constantName);
+            $this->content = str_replace($variableName, $value, $this->content);
+        }
+    }
+
+    /**
+     * Applies the replacements to STATIC: placeholders
+     */
+    private function replaceWithStatics()
+    {
+        foreach ($this->staticsPlaceHolders as $placeholder) {
+            $variableName = "{" . $placeholder . "}";
+            $constantName = str_replace("STATICTPL:", "", $placeholder);
+            $value = file_get_contents(APP_TEMPLATES_PATH . DIRECTORY_SEPARATOR . strtolower($constantName) . ".html.tpl");
             $this->content = str_replace($variableName, $value, $this->content);
         }
     }
