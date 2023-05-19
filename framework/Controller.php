@@ -76,9 +76,9 @@ abstract class Controller
         $currentLocale = $locale->getCurrentLocale();
         $currentControllerName = str_replace("\\", "/", $this->getName());
 
-        $localeFilename = "locales" . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR . $currentControllerName . ".txt";
-        $defaultLocaleFileName = "locales" . DIRECTORY_SEPARATOR . $locale::DEFAULT_LCID . $currentControllerName . ".txt";
-        // echo $localeFilename;
+        $localeFilename = SECURING_OUTSIDE_HTTP_FOLDER . DIRECTORY_SEPARATOR . APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR . $currentControllerName . ".txt";
+        $defaultLocaleFileName = SECURING_OUTSIDE_HTTP_FOLDER . DIRECTORY_SEPARATOR . APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $locale::DEFAULT_LCID . $currentControllerName . ".txt";
+
         if (file_exists($localeFilename)) {
             $optionals = $locale->loadLocaleFiles($localeFilename);
             $transletedText = $locale->applyLocaleMessages($parsedTpl, $optionals);
@@ -207,7 +207,7 @@ abstract class Controller
      * @throws NotInitializedViewException
      * @throws exceptions\VariableNotFoundException
      */
-    public function setAsObserver($content = null, $withAlerting = "false")
+    public function setAsObserver($content = null, $withAlerting = "false", $callBack=null)
     {
         if (!$this->rootController)
             return;
@@ -226,12 +226,18 @@ abstract class Controller
 
         // First coding, wrong for Record Component
         // $postData = base64_encode(http_build_query($_POST));
+
+        $locale = new Locale();
+        $contentExpiredMessage = $locale->getResLocaleMessage('Content_Expired_Message');
+
         $postData = base64_encode(http_build_query($_GET));
         $jsString = @file_get_contents(JSFRAMEWORK . "/mvc.append.controller.getstate.js");
         $jsString = str_replace("{polling_interval}", $pollingInterval, $jsString);
         $jsString = str_replace("{content_check}", $content, $jsString);
         $jsString = str_replace("{serialized_post}", $postData, $jsString);
         $jsString = str_replace("{alert_flag}", $withAlerting, $jsString);
+        $jsString = str_replace("{call_back}", $callBack, $jsString);
+        $jsString = str_replace("{content_expired_message}", $contentExpiredMessage, $jsString);
         $jsString = str_replace("{id}", $id, $jsString);
         $jsString = str_replace("{JSFRAMEWORK}", SITEURL . "/" . JSFRAMEWORK, $jsString);
         $jsString = str_replace("{SERVER_OS_ENCODING}", SERVER_OS_ENCODING, $jsString);
@@ -274,7 +280,12 @@ abstract class Controller
             return;
         }
 
-        $variable = str_replace(APP_CONTROLLERS_PATH . "\\", "", get_class($controller));
+        if (SECURING_OUTSIDE_HTTP_FOLDER === "") {
+            $variable = str_replace(APP_CONTROLLERS_PATH . "\\", "", get_class($controller));
+        } else {
+            $controllerFolder = str_replace(SECURING_OUTSIDE_HTTP_FOLDER,"",APP_CONTROLLERS_PATH);
+            $variable = str_replace($controllerFolder. "\\", "", get_class($controller));
+        }
         $variable = "Controller:" . $variable;
         $controller->setAsChildController();
 
@@ -451,6 +462,7 @@ abstract class Controller
     {
         if (empty($LoginWarningMessage))
             $LoginWarningMessage = LoginRBACWarningMessage;
+
         $user = $this->restrictToAuthentication($redirect, $returnLink, $LoginWarningMessage);
         if (!empty($this->roleBasedACL)) {
             $userRole = $user->getRole();
@@ -481,7 +493,27 @@ abstract class Controller
         return $user;
     }
 
-    /**
+    /** TODO
+     * Cleans against XSS attack.
+     *
+     * @param mixed|array $data Data to purify
+     * @param string $charset The data charset code. Default is CHARSET constant
+     */
+
+    public function xssClean(&$data,$charset = CHARSET)
+    {
+        /* TODO
+        if (is_array($data)){
+            foreach ($data as $k => $v) {
+                $data[$k] = $this->view->xssCleanString($v, $charset);
+            }
+        } else {
+            $this->view->xssCleanString($data, $charset);
+        }
+        */
+    }
+
+            /**
      * Returns true when child controller.
      *
      * @return bool
