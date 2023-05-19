@@ -8,6 +8,6 @@ LoginButtonCaption=Login
 LogoutButtonCaption=Logout
 CancelButtonCaption=Cancel
 LoginError=Login incorrect
-CopyRightInfo=2018 - Your Company - All righs reseverd
+CopyRightInfo=2023 - Your Company - All righs reseverd
 IsLoggedLabel=User is already logged in
 IsLoggedMessage=Logout from the system by clicking the down button
