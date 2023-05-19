@@ -30,7 +30,7 @@ define("DBUSER","root");
 /**
  * MySQL Password
  */
-define("DBPASSWORD","password");
+define("DBPASSWORD","letmysql");
 
 /**
  *  MySQL Database
@@ -116,6 +116,18 @@ define ("MYSQL_MODE_FULL_GROUP_BY",true);
  * Defines a constant for a temporary folder
  */
 define("APP_TEMP_PATH", "D:\\gitmvc\\temp");
+
+
+/** TODO
+ * Outuput charset
+ */
+define ("CHARSET","UTF-8");
+
+/** TODO
+ *  Shows MVC Assembly debug information
+ */
+define ("SHOW_ASSEMBLY_DEBUG_INFO",true);
+
 
 /**
  * Globals Placeholders
