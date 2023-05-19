@@ -76,8 +76,9 @@ abstract class Controller
         $currentLocale = $locale->getCurrentLocale();
         $currentControllerName = str_replace("\\", "/", $this->getName());
 
-        $localeFilename = SECURING_OUTSIDE_HTTP_FOLDER . DIRECTORY_SEPARATOR . APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR . $currentControllerName . ".txt";
-        $defaultLocaleFileName = SECURING_OUTSIDE_HTTP_FOLDER . DIRECTORY_SEPARATOR . APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $locale::DEFAULT_LCID . $currentControllerName . ".txt";
+        $prefix = empty(SECURING_OUTSIDE_HTTP_FOLDER) ? "" : SECURING_OUTSIDE_HTTP_FOLDER . DIRECTORY_SEPARATOR;
+        $localeFilename =  $prefix. APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $currentLocale . DIRECTORY_SEPARATOR . $currentControllerName . ".txt";
+        $defaultLocaleFileName = $prefix . APP_LOCALE_PATH . DIRECTORY_SEPARATOR . $locale::DEFAULT_LCID . $currentControllerName . ".txt";
 
         if (file_exists($localeFilename)) {
             $optionals = $locale->loadLocaleFiles($localeFilename);
