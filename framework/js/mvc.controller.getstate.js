@@ -5,12 +5,12 @@
  * all the necessary information about the controllers data.
  * If the comparison fails observer updates the view with content fetched from the controller.
  * The updating may be on the full page (by using page reload) or on part of it (by using
- * section replacement without page reloading)
+ * section replacement without page reloading).
 
  * @author Rosario Carvello - rosario.carvello@gmail.com
  * @version GIT:v1.0.0
  * @note none
- * @copyright (c) 2016 Rosario Carvello rosario.carvello@gmail.com- - All rights reserved. See License.txt file
+ * @copyright (c) 2016-2023 Rosario Carvello rosario.carvello@gmail.com- - All rights reserved. See License.txt file
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
@@ -26,13 +26,13 @@ if (setup == undefined) {
     // The controllers observer array
     var observer = [];
 
-    // The views content states array
+    // The views objectContent states array
     var viewState = [];
 
-    // The controllers content states array
+    // The controllers objectContent states array
     var controllerState = [];
 
-    // The controllers content array
+    // The controllers objectContent array
     var controllerContent = [];
 
     // The contents url locations
@@ -50,6 +50,9 @@ if (setup == undefined) {
     // The contents ID array
     var alertFlag = [];
 
+    // The call_back ID array
+    var call_back = [];
+
     // The XHR object
     var xhr;
 
@@ -65,7 +68,7 @@ if (setup == undefined) {
     var path = window.location.pathname;
     var currentUrlParameters = window.location.search;
 
-    // Creates Base64 object to handling controller content obtained from its JSON service
+    // Creates Base64 object to handling controller objectContent obtained from its JSON service
     var Base64 = {
         _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
         encode: function (e) {
@@ -157,7 +160,7 @@ if (setup == undefined) {
         }
     }
 
-    // UTF8 encode/decode object to handling JSON content
+    // UTF8 encode/decode object to handling JSON objectContent
     UTF8 = {
         encode: function (s) {
             for (var c, i = -1, l = (s = s.split("")).length, o = String.fromCharCode; ++i < l;
@@ -197,19 +200,29 @@ function startObserver(index) {
 function setDynamicVariable(index) {
     // Sets the polling intervall for http request of the controller JSON service
     pollingInterval[index] = document.getElementById("observer_manager" + index).getAttribute("data-polling");
-    // Set the content to request
-    contentCheck[index] = document.getElementById("observer_manager" + index).getAttribute("data-content");
+    // Set the objectContent to request
+    contentCheck[index] = document.getElementById("observer_manager" + index).getAttribute("data-objectContent");
     // Set the alerting flag
     alertFlag[index] = document.getElementById("observer_manager" + index).getAttribute("data-alert");
+    // Set call_back index
+    call_back[index] = document.getElementById("observer_manager" + index).getAttribute("data-call-back");
     // Set the posted data if is a form
     postData = document.getElementById("observer_manager" + index).getAttribute("data-post");
 
     postData = Base64.decode(postData);
+
     if (postData != "") {
         postData = "&" + postData;
     }
     // Inizialize the client state
     viewState[index] = "";
+
+    // Set home url  to redirect when content expired
+    homeUrl = document.getElementById("observer_manager" + index).getAttribute("data-url");
+
+    // Set alerting message text when content is expired
+    expiredMessage = document.getElementById("observer_manager" + index).getAttribute("data-expired-message");
+
 }
 
 // Gets the current view url location and the controller JSON getState() service location
@@ -224,13 +237,15 @@ function setUrls(index) {
     refreshLocation[index] = refreshLocation[index] + postData;
 }
 
-// Calls the controller JSON services getState to gets controller state and content.
+// Calls the controller JSON services getState to gets controller state and objectContent.
 function getControllerState(index) {
     // console.log(serviceLocation[index]);
     xhr = new XMLHttpRequest();
-    xhr.open('GET', serviceLocation[index], true);
     xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+    request = serviceLocation[index] + '&_' + new Date().getTime();
+    xhr.open('GET', request, true);
     xhr.timeout = 4000;
+    xhr.setRequestHeader('Cache-Control', 'no-cache');
     xhr.send();
     xhr.onreadystatechange = function () {
         compareStates(index);
@@ -241,7 +256,13 @@ function getControllerState(index) {
 function compareStates(index) {
     if (xhr.readyState == 4 && xhr.status == 200) {
         // console.log(xhr.responseText);
-        var response = JSON.parse(xhr.responseText);
+        try {
+            var response = JSON.parse(xhr.responseText);
+        } catch (e) {
+            alert(expiredMessage);
+            window.location.href = homeUrl;
+        }
+
         controllerState[index] = response.controllerState;
 
         if (serverOSEncoding == "Linux") {
@@ -291,26 +312,32 @@ function updatePage(index) {
     window.location.href = refreshLocation[index];
 }
 
-// Updates a specific content id of a page
+// Updates a specific objectContent id of a page
 function updateContent(index) {
     var viewElement = document.getElementById(contentCheck[index]);
-    var swapElement = document.createElement('content');
+    var swapElement = document.createElement('objectContent');
     swapElement.innerHTML = controllerContent[index];
     var controllerElement = swapElement.firstChild;
-    viewElement.innerHTML = controllerElement.innerHTML;
+    var jsObserverCallBack = "<img src onerror='observerCallBack();'>";
+    viewElement.innerHTML = controllerElement.innerHTML + jsObserverCallBack;
+    // Call a custom call back function if defined when state is changed
+    if (call_back[index] != "") {
+        eval(call_back[index]);
+    }
 }
 
 // Shows information about the observer
 function showStatus(index) {
     console.log('Index:' + index);
     console.log('Polling interval:' + pollingInterval[index]);
-    console.log('Observes content:' + contentCheck[index]);
+    console.log('Observes objectContent:' + contentCheck[index]);
     console.log('Controller state:' + controllerState[index]);
     console.log('View State :' + viewState[index]);
     console.log('JSON Service:' + serviceLocation[index]);
     console.log('Alert mode:' + alertFlag[index]);
     console.log("\n");
 }
+
 
 
 
