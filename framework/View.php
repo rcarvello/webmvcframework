@@ -36,6 +36,11 @@ use framework\exceptions\TemplateNotFoundException;
 use framework\exceptions\NotInitializedViewException;
 use framework\exceptions\BlockNotFoundException;
 
+/** TODO
+ * use HTMLPurifier;
+ * use HTMLPurifier_Config;
+ */
+
 class View
 {
     /**
@@ -77,11 +82,14 @@ class View
      * @throws TemplateNotFoundException. If static template file was not found
      */
 
+    protected $tplFileName = "";
+
     function __construct($tplName = null)
     {
         $this->blocks = array();
         if (!empty($tplName))
             $this->loadTemplate($tplName);
+        $this->tplFileName = $tplName;
     }
 
     /**
@@ -410,4 +418,23 @@ class View
 
     }
 
+    /**
+     * @return null|string The tpl file name
+     */
+    public function getTplFileName()
+    {
+        return $this->tplFileName;
+    }
+
+    /** TODO
+     * Cleans a string against XSS attack
+     *
+     * @param string $string String to purify
+     * @param string $charset Charset string. Default is CHARSET constant
+     * @return string
+     */
+    public function xssCleanString($string, $charset = CHARSET)
+    {
+        return null;
+    }
 }
