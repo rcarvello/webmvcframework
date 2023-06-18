@@ -10,9 +10,12 @@
  * Usage example of route.php is inside mvc_bootstrap.bat batch script
  *
  * This file implements HTTP routing when using PHP built in web server instead of Apache HTTP server.
- * It provides the auto-loading of classes and the MVC objects creations, by using
- * framework\Loader and framework\Dispatcher classes, depending on the requested URL.
- *
+ * It can detect both application or content centric HTTP request.
+ * 1) When application centric:
+ *      It provides the auto-loading of classes and the MVC objects creations, by using
+ *      framework\Loader and framework\Dispatcher classes, depending on the requested URL.
+ * 2) When content centric:
+ *      Just serve the content of requested resource
  *
  * @filesource index.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
