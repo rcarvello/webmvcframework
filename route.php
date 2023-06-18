@@ -34,14 +34,22 @@ $filePath = ltrim($url_path, '/');
 
 // First check if request is regarding a physical resource
 if ($filePath && is_file($filePath)) {
+    $ext = pathinfo($filePath, PATHINFO_EXTENSION);
     // if is .php file include it and run
-    if (strtolower(substr($filePath, -4)) == '.php') {
+    if (strtoupper($ext) == 'php') {
         $current_path = dirname($filePath);
         chdir($current_path);
         include_once $filePath;
     // else (is not a .php file, for example .css, .js and more) echoing it
     } else {
+        $extensions = array (
+            "js"=>"text/javascript",
+            "css"=>"text/css",
+            "json"=>"text/json",
+            "xml"=>"text/xml");
         $content = file_get_contents($filePath);
+        $contentTypeExt = array_key_exists($ext,$extensions) ? $extensions[$ext]: "text/html";
+        header('Content-Type: '.$contentTypeExt);
         echo $content;
     }
     // no virtual request need to be processed so exiting the route execution
