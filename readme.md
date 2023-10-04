@@ -24,6 +24,8 @@ for granting me an open source license of magic
     
 that I used in the development of PHP Web MVC Framework.   
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+
 ## How to install
 To install the framework download and copy it into an Apache web folder. Then go to the **config directory** and modify **application.config.php** according to your MySQL server configuration and Apache web folder you want to use for your application.
 By default framework provides a small set  of examples. For using them run the provided SQL script into the **sql** folder.
