@@ -1,5 +1,12 @@
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/webmvclogo.png)
 <sup>Supported PHP versions from 5.3 to 8.2</sup>
+>
+> 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=bugs)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
 
 # PHP WEB MVC Framework 
 The package **webmvcframework**, with the acronym of **WebMVC**, is an **object oriented** PHP framework designed using **MVC architectural  pattern** for building web-based MySQL applications.
@@ -23,12 +30,6 @@ for granting me an open source license of magic
 ![https://www.jetbrains.com/phpstorm/](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/phpstorm.png)   **PHPStorm**       
     
 that I used in the development of PHP Web MVC Framework.   
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=bugs)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
 
 ## How to install
 To install the framework download and copy it into an Apache web folder. Then go to the **config directory** and modify **application.config.php** according to your MySQL server configuration and Apache web folder you want to use for your application.
