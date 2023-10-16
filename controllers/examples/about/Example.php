@@ -263,6 +263,23 @@ class Example extends Controller
         $this->view->setVarTemplateFile("templates/examples/cms/tree_demo.html.tpl");
         $this->render();
     }
+
+    public function partList(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/db/PartList.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/db/PartList.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/db/PartList.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/db/part_list.html.tpl',true));
+        $this->view->setVarExample("PartList MVC Assembly source Code");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/db/PartList.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/db/PartList.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/db/PartList.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/db/part_list.html.tpl");
+        $this->render();
+    }
     /**
      * Convert camelCase/PascalCase to under_score notation.
      *
