@@ -88,7 +88,7 @@ class Locale
     }
 
     /**
-     * Gets locale from currente HTTP  Headers
+     * Gets locale from current HTTP  Headers
      *
      * @param string|constant:HTTP_ACCEPT_LANGUAGE $HHTPHeader
      */
@@ -222,6 +222,8 @@ class Locale
      */
     public function getCurrentLocale()
     {
+        if (empty($_SESSION["CurrentLocale"]))
+            $_SESSION["CurrentLocale"] = CURRENT_LOCALE;
         return $_SESSION["CurrentLocale"];
     }
 }
