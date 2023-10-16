@@ -280,6 +280,40 @@ class Example extends Controller
         $this->view->setVarTemplateFile("templates/examples/db/part_list.html.tpl");
         $this->render();
     }
+
+    public function partPaginator(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/db/PartPaginator.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/db/PartPaginator.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/db/PartPaginator.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/db/part_paginator.html.tpl',true));
+        $this->view->setVarExample("PartPaginator MVC Assembly source Code");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/db/PartPaginator.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/db/PartPaginator.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/db/PartPaginator.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/db/part_paginator.html.tpl");
+        $this->render();
+    }
+    public function partListManager(){
+        $controller = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'controllers/examples/db/PartListManager.php',true);
+        $model      = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'models/examples/db/PartListManager.php',true);
+        $view       = highlight_file(SECURING_OUTSIDE_HTTP_FOLDER .'views/examples/db/PartListManager.php',true);
+        $tpl        = htmlentities(file_get_contents(SECURING_OUTSIDE_HTTP_FOLDER .'templates/examples/db/part_list_manager.html.tpl',true));
+        $this->view->setVarExample("PartListManager MVC Assembly source Code");
+        $this->view->setVarController($controller);
+        $this->view->setVarControllerFile("controllers/examples/db/PartListManager.php");
+        $this->view->setVarModel($model);
+        $this->view->setVarModelFile("models/examples/db/PartListManager.php");
+        $this->view->setVarView($view);
+        $this->view->setVarViewFile("views/examples/db/PartListManager.php");
+        $this->view->setVarTemplate($tpl);
+        $this->view->setVarTemplateFile("templates/examples/db/part_list_manager.html.tpl");
+        $this->render();
+    }
+
     /**
      * Convert camelCase/PascalCase to under_score notation.
      *
