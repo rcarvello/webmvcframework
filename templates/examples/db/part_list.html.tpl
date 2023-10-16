@@ -53,7 +53,13 @@
                     <td class = "text-center" colspan="9">{RES:AllParts}</td>
                 </tr>
             </tfoot>
-        </table> 
+        </table>
+
+        <hr>
+        <a href="{GLOBAL:SITEURL}/examples/about/example/part_list" class="btn btn-info">{RES:ShowCode}</a>
+        <a href="{GLOBAL:SITEURL}/examples/db/part_list/" class="btn btn-success">{RES:ShowTemplate}</a>
+        <a href="{GLOBAL:SITEURL}/examples/db/part_list" class="btn btn-success">{RES:ShowRun}</a>
+        <a href="{GLOBAL:SITEURL}/examples/" class="btn btn-primary">{RES:ShowToc}</a>
     </div>
 
 </div>
