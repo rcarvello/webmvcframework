@@ -1,1 +1,5 @@
 Welcome=Welcome
+ShowCode=Mostra codice sorgente
+ShowTemplate=Mostra il template
+ShowRun=Ricarica
+ShowToc=Indice degli esempi
