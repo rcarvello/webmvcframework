@@ -51,7 +51,7 @@ class Login extends Controller
         // Handles login form submission
         if (isset($_POST["login_form_do_cancel"])){
             header("Location: " . SITEURL);
-        } else if (isset($_POST["login_form_do_login"])) {
+        } elseif (isset($_POST["login_form_do_login"])) {
             $this->configCookies();
             $email = $_POST["email"];
             $password = $_POST["password"];
@@ -61,7 +61,7 @@ class Login extends Controller
                $returnPage = (isset($_GET["return_link"])) ? SITEURL . "/" . $_GET["return_link"] : SITEURL;
                header("Location:". $returnPage);
             }
-        } else if (isset($_POST["login_form_do_logout"])) {
+        } elseif (isset($_POST["login_form_do_logout"])) {
             $this->model->logout();
             header("Location:". SITEURL);
         } else {

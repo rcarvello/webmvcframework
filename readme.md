@@ -1,5 +1,12 @@
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/webmvclogo.png)
 <sup>Supported PHP versions from 5.3 to 8.2</sup>
+>
+> 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=bugs)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
 
 # PHP WEB MVC Framework 
 The package **webmvcframework**, with the acronym of **WebMVC**, is an **object oriented** PHP framework designed using **MVC architectural  pattern** for building web-based MySQL applications.
