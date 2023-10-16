@@ -3,7 +3,7 @@
  * Class MyRest.
  *
  * A basic REST service responding to client GET and POST requests by using methods overriding
- * of httpGetRequest and httpPostRequest from base class \framework\RestService
+ * of httpGetRequest and httpPostRequest from the base class \framework\RestService
  *
  * @package controllers
  * @category Application Controller
@@ -21,11 +21,9 @@ class MyRest extends RestService
 
     public function __construct()
     {
-
         parent::__construct();
-        // TODO
-        // $this->grantRole(100);
-        // $this->restrictToRBAC("common/login","my_rest","You are not allowed to access to this service");
+        $this->grantRole(100);
+        $this->restrictToRBAC();
         $this->allowMethod("part");
         $this->allowMethod("category");
         $this->addCORS("https://www.allowedomain.domain");
