@@ -57,6 +57,11 @@
             </tr>
             </tfoot>
         </table>
+        <hr>
+        <a href="{GLOBAL:SITEURL}/examples/about/example/partListManager" class="btn btn-info">{RES:ShowCode}</a>
+        <a href="{GLOBAL:SITEURL}/examples/db/part_list/" class="btn btn-success">{RES:ShowTemplate}</a>
+        <a href="{GLOBAL:SITEURL}/examples/db/part_list" class="btn btn-success">{RES:ShowRun}</a>
+        <a href="{GLOBAL:SITEURL}/examples/" class="btn btn-primary">{RES:ShowToc}</a>
     </div>
 
 </div>
