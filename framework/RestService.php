@@ -22,15 +22,9 @@ namespace framework;
 abstract class RestService extends Controller
 {
     private $allowedMethods = array();
-
-    //TODO Authenticatin
-    private $allowedRoles = array();
+    private $allowed = true;
     private $HTTPRequestMethod;
     private $HTTPRequestHeaders;
-
-    //TODO
-    private $restDatas = array();
-
     private $result;
     private $accessControlAllowOrigins = array();
 
@@ -68,7 +62,7 @@ abstract class RestService extends Controller
     {
         /* Prevents caching */
         header('Cache-Control: no-cache, must-revalidate');
-        header('Expires: Mon, 01 Jan 1996 00:00:00 GMT');
+        header('Expires: Mon, 01 Jan 2000 00:00:00 GMT');
         /* Adds JSON standard MIME header */
         header('Content-type:application/json;charset=utf-8');
         /* Adds Cross Origin Resource Sharing - CORS */
@@ -79,6 +73,7 @@ abstract class RestService extends Controller
         }
         /* Output in JSON format */
         echo json_encode($this->result);
+
     }
 
     public function __call($method, $args)
@@ -107,19 +102,29 @@ abstract class RestService extends Controller
             );
             $this->switchAction($method, $args);
         } else {
-            $this->result = array(
-                "status_code" => 404,
-                "status:" => "ko",
-                "request_method" => $this->HTTPRequestMethod,
-                "request_type" => "informational",
-                "body_data:" => array(
-                    "message" => "Not found",
-                    "status" => "ko",
-                )
-            );
-
+            $this->setResposeError("404", "Method not found");
         }
+
+        if ($this->allowed == false) {
+            $this->setResposeError("404", "Not allowed");
+        }
+
         $this->outputResponse();
+
+    }
+
+    private function setResposeError($errorCode, $errorMessage)
+    {
+        $this->result = array(
+            "status_code" => $errorCode,
+            "status:" => "ko",
+            "request_method" => $this->HTTPRequestMethod,
+            "request_type" => "informational",
+            "body_data:" => array(
+                "message" => $errorMessage,
+                "status" => "ko",
+            )
+        );
 
     }
 
@@ -186,7 +191,7 @@ abstract class RestService extends Controller
      */
     public function httpPostRequest($method, $args)
     {
-        return array();
+        return $this->result;
     }
 
     /**
@@ -217,5 +222,45 @@ abstract class RestService extends Controller
     public function addCORS($origin)
     {
         $this->accessControlAllowOrigins[] = $origin;
+    }
+
+
+    /**
+     * Grant access only to authenticated users
+     * @override parent method
+     *
+     * @param string $redirect Set to null.
+     * @param string $returnLink Set to null
+     * @param string $LoginWarningMessage Set to null
+     * @return User
+     */
+    protected function restrictToAuthentication($redirect = null, $returnLink = null, $LoginWarningMessage = null)
+    {
+        $user = new User();
+        if (empty($user->getId())) {
+            $this->allowed = false;
+        }
+        return $user;
+    }
+
+    /**
+     * Grant access only to the given user role
+     * @override parent method
+     *
+     * @param string $redirect Set to null.
+     * @param string $returnLink Set to null
+     * @param string $LoginWarningMessage Set to null
+     * @return User
+     */
+    protected function restrictToRBAC($redirect = null, $returnLink = null, $LoginWarningMessage = null)
+    {
+        $user = new User();
+        if (!empty($this->roleBasedACL)) {
+            $userRole = $user->getRole();
+            if (!in_array($userRole, $this->roleBasedACL)) {
+                $this->allowed = false;
+            }
+        }
+        return $user;
     }
 }
