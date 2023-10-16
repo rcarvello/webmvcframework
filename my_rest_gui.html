@@ -10,8 +10,9 @@
 <body>
 <div class="container">
     <h1>Rest service tester</h1>
+    <h2>You need <a href="../common/login">admin</a> grants to call Rest Service</h2>
     <hr>
-    This is simple web interface for testing a custom REST service controller <strong>\controllers\MyRest.php</strong>
+    This is a simple web interface for testing a custom REST service controller <strong>\controllers\MyRest.php</strong>
     which extends <a href="examples/about/example/rest_service"><strong>framework\RestService</strong></a> class <br>
     <hr>
     To create PUT,GET,POST and DELETE rest service simple create a new controller by extending <strong>framework\RestService</strong>
@@ -21,6 +22,12 @@
     </blockquote>
     <blockquote>
         public function httpPostRequest($method, $args)
+    </blockquote>
+    <blockquote>
+        public function httpPutRequest($method, $args)
+    </blockquote>
+    <blockquote>
+        public function httpDeleteRequest($method, $args)
     </blockquote>
     <hr>
     GET requests:
