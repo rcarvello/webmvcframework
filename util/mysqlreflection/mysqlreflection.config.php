@@ -1,12 +1,18 @@
 <?php
-
 /**
  * Defines the constants for MySQL database connection parameters.
- */
+
 define("DBHOST","YOUR_HOST");
 define("DBUSER","YOUR_USER");
 define("DBPASSWORD","YPUR_PASSWORD");
 define("DBNAME","YOUR_DB");
+define('DBPORT', '3306');
+ */
+
+define("DBHOST", "localhost");
+define("DBUSER", "root");
+define("DBPASSWORD", "letmysql");
+define("DBNAME", "mrp");
 define('DBPORT', '3306');
 
 /**
