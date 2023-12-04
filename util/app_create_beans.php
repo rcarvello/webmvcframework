@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 include_once("mysqlreflection/mysqlreflection.config.php");
-define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
+define("DESTINATION_PATH", dirname(__FILE__) . "/../models/beans/");
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -11,7 +11,8 @@ define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap core  CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
+          media="screen">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,25 +21,27 @@ define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
     <![endif]-->
     <style>
         .progress {
-                background: rgba(204, 237, 220, 1);
-                border: 5px solid rgba(56, 46, 166, 0.27);
-                border-radius: 10px; height: 36px;
+            background: rgba(204, 237, 220, 1);
+            border: 5px solid rgba(56, 46, 166, 0.27);
+            border-radius: 10px;
+            height: 36px;
         }
     </style>
-<script>
-    var globalCount =0 ;
-    var globalPercent = 0;
-</script>
+    <script>
+        var globalCount = 0;
+        var globalPercent = 0;
+    </script>
 <body>
 <div class="container">
     <h1>MySQL Database Beans generator</h1>
-    <h3>This utility performs automatically  a source code generation of PHP
+    <h3>This utility performs automatically a source code generation of PHP
         Classes from MySQL tables </h3>
     <h4>Current database :<?= DBNAME ?> (to change it edit mysqlreflection.config.php)</h4>
     <h4>Destination path :<?= DESTINATION_PATH ?></h4>
-    <a class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1"><span class="glyphicon glyphicon-wrench"></span> Generate classes</a>
+    <a class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1"><span
+                class="glyphicon glyphicon-wrench"></span> Generate classes</a>
     <a href="../builders/index" class="btn btn-info"><span class="glyphicon glyphicon-home"></span> Home</a>
-    <br />  <br />
+    <br/> <br/>
     <div class="progress progress-striped">
         <div class="progress-bar" role="progressbar" aria-valuenow="0"
              aria-valuemin="0" aria-valuemax="100" style="width:0%">
@@ -56,40 +59,40 @@ define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <script>
-    function aggiornaProgressBar(done=false) {
+    function aggiornaProgressBar(done = false) {
         var step = 2;
         var progress = $('.progress-bar');
         var currentValue = parseInt(progress.attr("aria-valuenow"));
-        globalCount = globalCount +1;
-        globalPercent = globalPercent +1;
-        if (currentValue==100) {
+        globalCount = globalCount + 1;
+        globalPercent = globalPercent + 1;
+        if (currentValue == 100) {
             currentValue = 50;
         }
         currentValue += 1;
-        progress.attr("aria-valuenow",currentValue);
+        progress.attr("aria-valuenow", currentValue);
         var percValue = currentValue + '%';
-        progress.css('width',percValue);
+        progress.css('width', percValue);
 
         var textarea = document.getElementById('results');
         textarea.scrollTop = textarea.scrollHeight;
 
         if (done) {
-            progress.attr("aria-valuenow",100);
-            progress.css('width',"100%");
+            progress.attr("aria-valuenow", 100);
+            progress.css('width', "100%");
             percValue = "Done. " + globalCount + " classes were generated";
         }
         progress.html(percValue);
     }
 
-    function aggiornaTextArea(msg){
+    function aggiornaTextArea(msg) {
         var m = msg + '&#xA;';
         $('#results').append(m);
 
     }
 
-    function setNumberOfTables(ntables){
+    function setNumberOfTables(ntables) {
         if (numberOfTables === 'undefined' || !numberOfTables)
-            var numberOfTables=ntables;
+            var numberOfTables = ntables;
     }
 </script>
 
