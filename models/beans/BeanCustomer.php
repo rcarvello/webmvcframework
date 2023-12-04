@@ -60,24 +60,66 @@ class BeanCustomer extends MySqlRecord implements Bean
     private $isPkAutoIncrement = true;
 
     /**
-     * Class attribute for mapping table field customer_name
+     * Class attribute for mapping table field name
      *
-     * Comment for field customer_name: Not specified.<br>
+     * Comment for field name: Not specified.<br>
      * Field information:
      *  - Data type: varchar(45)
      *  - Null : YES
      *  - DB Index: 
      *  - Default: 
      *  - Extra:  
-     * @var string $customerName
+     * @var string $name
      */
-    private $customerName;
+    private $name;
+
+    /**
+     * Class attribute for mapping table field email
+     *
+     * Comment for field email: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(100)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $email
+     */
+    private $email;
+
+    /**
+     * Class attribute for mapping table field nationality
+     *
+     * Comment for field nationality: Not specified.<br>
+     * Field information:
+     *  - Data type: varchar(4)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var string $nationality
+     */
+    private $nationality;
+
+    /**
+     * Class attribute for mapping table field assurance
+     *
+     * Comment for field assurance: Not specified.<br>
+     * Field information:
+     *  - Data type: int(1)
+     *  - Null : NO
+     *  - DB Index: 
+     *  - Default: 
+     *  - Extra:  
+     * @var int $assurance
+     */
+    private $assurance;
 
     /**
      * Class attribute for storing the SQL DDL of table customer
      * @var string base64 encoded $ddl
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBjdXN0b21lcmAgKAogIGBjdXN0b21lcl9pZGAgaW50KDExKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgY3VzdG9tZXJfbmFtZWAgdmFyY2hhcig0NSkgREVGQVVMVCBOVUxMLAogIFBSSU1BUlkgS0VZIChgY3VzdG9tZXJfaWRgKQopIEVOR0lORT1Jbm5vREIgREVGQVVMVCBDSEFSU0VUPXV0Zjg=";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBjdXN0b21lcmAgKAogIGBjdXN0b21lcl9pZGAgaW50KDExKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgbmFtZWAgdmFyY2hhcig0NSkgREVGQVVMVCBOVUxMLAogIGBlbWFpbGAgdmFyY2hhcigxMDApIE5PVCBOVUxMLAogIGBuYXRpb25hbGl0eWAgdmFyY2hhcig0KSBOT1QgTlVMTCwKICBgYXNzdXJhbmNlYCBpbnQoMSkgTk9UIE5VTEwsCiAgUFJJTUFSWSBLRVkgKGBjdXN0b21lcl9pZGApCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD0zIERFRkFVTFQgQ0hBUlNFVD11dGY4";
 
     /**
      * setCustomerId Sets the class attribute customerId with a given value
@@ -93,16 +135,55 @@ class BeanCustomer extends MySqlRecord implements Bean
     }
 
     /**
-     * setCustomerName Sets the class attribute customerName with a given value
+     * setName Sets the class attribute name with a given value
      *
-     * The attribute customerName maps the field customer_name defined as varchar(45).<br>
-     * Comment for field customer_name: Not specified.<br>
-     * @param string $customerName
+     * The attribute name maps the field name defined as varchar(45).<br>
+     * Comment for field name: Not specified.<br>
+     * @param string $name
      * @category Modifier
      */
-    public function setCustomerName($customerName)
+    public function setName($name)
     {
-        $this->customerName = (string)$customerName;
+        $this->name = (string)$name;
+    }
+
+    /**
+     * setEmail Sets the class attribute email with a given value
+     *
+     * The attribute email maps the field email defined as varchar(100).<br>
+     * Comment for field email: Not specified.<br>
+     * @param string $email
+     * @category Modifier
+     */
+    public function setEmail($email)
+    {
+        $this->email = (string)$email;
+    }
+
+    /**
+     * setNationality Sets the class attribute nationality with a given value
+     *
+     * The attribute nationality maps the field nationality defined as varchar(4).<br>
+     * Comment for field nationality: Not specified.<br>
+     * @param string $nationality
+     * @category Modifier
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = (string)$nationality;
+    }
+
+    /**
+     * setAssurance Sets the class attribute assurance with a given value
+     *
+     * The attribute assurance maps the field assurance defined as int(1).<br>
+     * Comment for field assurance: Not specified.<br>
+     * @param int $assurance
+     * @category Modifier
+     */
+    public function setAssurance($assurance)
+    {
+        $this->assurance = (int)$assurance;
     }
 
     /**
@@ -119,16 +200,55 @@ class BeanCustomer extends MySqlRecord implements Bean
     }
 
     /**
-     * getCustomerName gets the class attribute customerName value
+     * getName gets the class attribute name value
      *
-     * The attribute customerName maps the field customer_name defined as varchar(45).<br>
-     * Comment for field customer_name: Not specified.
-     * @return string $customerName
-     * @category Accessor of $customerName
+     * The attribute name maps the field name defined as varchar(45).<br>
+     * Comment for field name: Not specified.
+     * @return string $name
+     * @category Accessor of $name
      */
-    public function getCustomerName()
+    public function getName()
     {
-        return $this->customerName;
+        return $this->name;
+    }
+
+    /**
+     * getEmail gets the class attribute email value
+     *
+     * The attribute email maps the field email defined as varchar(100).<br>
+     * Comment for field email: Not specified.
+     * @return string $email
+     * @category Accessor of $email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * getNationality gets the class attribute nationality value
+     *
+     * The attribute nationality maps the field nationality defined as varchar(4).<br>
+     * Comment for field nationality: Not specified.
+     * @return string $nationality
+     * @category Accessor of $nationality
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * getAssurance gets the class attribute assurance value
+     *
+     * The attribute assurance maps the field assurance defined as int(1).<br>
+     * Comment for field assurance: Not specified.
+     * @return int $assurance
+     * @category Accessor of $assurance
+     */
+    public function getAssurance()
+    {
+        return $this->assurance;
     }
 
     /**
@@ -204,7 +324,10 @@ class BeanCustomer extends MySqlRecord implements Bean
         if ($result){
             $rowObject = $result->fetch_object();
             @$this->customerId = (integer)$rowObject->customer_id;
-            @$this->customerName = $this->replaceAposBackSlash($rowObject->customer_name);
+            @$this->name = $this->replaceAposBackSlash($rowObject->name);
+            @$this->email = $this->replaceAposBackSlash($rowObject->email);
+            @$this->nationality = $this->replaceAposBackSlash($rowObject->nationality);
+            @$this->assurance = (integer)$rowObject->assurance;
             $this->allowUpdate = true;
         } else {
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
@@ -245,9 +368,12 @@ class BeanCustomer extends MySqlRecord implements Bean
         // $constants = get_defined_constants();
         $sql = <<< SQL
             INSERT INTO customer
-            (customer_name)
+            (name,email,nationality,assurance)
             VALUES(
-			{$this->parseValue($this->customerName,'notNumber')})
+			{$this->parseValue($this->name,'notNumber')},
+			{$this->parseValue($this->email,'notNumber')},
+			{$this->parseValue($this->nationality,'notNumber')},
+			{$this->parseValue($this->assurance)})
 SQL;
         $this->resetLastSqlError();
         $result = $this->query($sql);
@@ -280,7 +406,10 @@ SQL;
             UPDATE
                 customer
             SET 
-				customer_name={$this->parseValue($this->customerName,'notNumber')}
+				name={$this->parseValue($this->name,'notNumber')},
+				email={$this->parseValue($this->email,'notNumber')},
+				nationality={$this->parseValue($this->nationality,'notNumber')},
+				assurance={$this->parseValue($this->assurance)}
             WHERE
                 customer_id={$this->parseValue($customerId,'int')}
 SQL;

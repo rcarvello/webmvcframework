@@ -223,7 +223,6 @@ class BeanBom extends MySqlRecord
     */
     public function close()
     {
-        unset($this);
     }
 
     /**
