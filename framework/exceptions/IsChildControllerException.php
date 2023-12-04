@@ -1,12 +1,11 @@
 <?php
 /**
- * Class ControllerNotFoundException
+ * Class IsChildControllerException
  *
- * Exception when trying to instantiate a controller and its corresponding class
- * was not found.
+ * Exception when not child controller
  *
  * @package framework/exceptions
- * @filesource framework/exception/ControllerNotFoundException.php
+ * @filesource framework/exception/IsChildControllerException.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.1.0
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
