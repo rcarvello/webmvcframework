@@ -3,7 +3,6 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 include_once("mysqlreflection/mysqlreflection.config.php");
 define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
 ?>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -97,6 +96,7 @@ define("DESTINATION_PATH",dirname(__FILE__) . "/../models/beans/" );
 </body>
 
 <?php
+
 if (isset($_GET["build"])) {
     /**
      *  Demo application: generate classes from a mysql db schema
