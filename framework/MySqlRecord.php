@@ -126,4 +126,9 @@ class MySqlRecord extends Model
         return $r2;
     }
 
+    public function successLast()
+    {
+        return $this->affected_rows > 0 ? true : false;
+    }
+
 }
