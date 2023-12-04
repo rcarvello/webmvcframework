@@ -223,7 +223,7 @@ class BeanStock extends MySqlRecord
     */
     public function close()
     {
-        unset($this);
+        //unset($this);
     }
 
     /**
