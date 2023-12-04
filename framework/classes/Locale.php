@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Locale
+ *  Class Locale
  *
  *  Manages Localization Files.
  *  A localization file contains a list of [Resource identifier] = translation strings.
