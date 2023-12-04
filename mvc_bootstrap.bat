@@ -4,6 +4,7 @@ REM Assuming you have many PHP releases extracted into many different sub folder
 REM For example:
 REM
 REM C:\Users\Saro\Desktop\Applicazioni PHP Desktop\phpapp Is the root path of installed PHP distributions
+REM and
 REM C:\Users\Saro\Desktop\Applicazioni PHP Desktop\phpapp\php56  folder where are located PHP version 5.6 files
 REM C:\Users\Saro\Desktop\Applicazioni PHP Desktop\phpapp\php74  folder where are located PHP version 7.4 files
 REM C:\Users\Saro\Desktop\Applicazioni PHP Desktop\phpapp\php80  folder where are located PHP version 8.0 files
