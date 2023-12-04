@@ -93,6 +93,8 @@ class MySqlRecord extends Model
                     default:
                         $value = (int)$value;
                 }
+            } else {
+                return $value;
             }
             $type = "number";
         }
