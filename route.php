@@ -12,10 +12,10 @@
  * This file implements HTTP routing when using PHP built in web server instead of Apache HTTP server.
  * It can detect both application or content centric HTTP request.
  * 1) When application centric:
- *      It provides the auto-loading of classes and the MVC objects creations, by using
- *      framework\Loader and framework\Dispatcher classes, depending on the requested URL.
+ *      It provides the autoloading features of classes and the MVC objects creations, by using
+ *      framework\Loader and framework\Dispatcher classes (depending on the requested URL).
  * 2) When content centric:
- *      Just serve the content of requested resource
+ *      Just serve the content of requested resource (or execute a standard php file)
  *
  * @filesource index.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
@@ -39,7 +39,7 @@ $filePath = ltrim($url_path, '/');
 if ($filePath && is_file($filePath)) {
     $ext = pathinfo($filePath, PATHINFO_EXTENSION);
     // if is .php file include it and run
-    if (strtoupper($ext) == 'php') {
+    if (strtoupper($ext) == 'PHP') {
         $current_path = dirname($filePath);
         chdir($current_path);
         include_once $filePath;
@@ -87,4 +87,3 @@ $loader = new Loader();
 // Create a Dispatcher to dispatch URL request to the appropriate user controller
 $dispatcher = new Dispatcher();
 $dispatcher->dispatch();
-
