@@ -7,7 +7,7 @@
  * The array containing source values must be an associative array having key's name
  * equals to variable's names inside the block.
  *
- * @extends Component
+ * @extends \framework\components\Component
  * @filesource framework/DataRepeater.php
  * @package framework
  * @author Rosario Carvello <rosario.carvello@gmail.com>
