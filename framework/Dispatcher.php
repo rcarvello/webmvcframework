@@ -18,6 +18,7 @@ use \DOMDocument;
 use framework\exceptions\ControllerNotFoundException;
 use framework\exceptions\InvalidMethodParametersException;
 use framework\exceptions\MethodNotFoundException;
+use framework\exceptions\IsChildControllerException;
 
 /**
  * Class Dispatcher
