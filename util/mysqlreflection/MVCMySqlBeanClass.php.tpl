@@ -149,7 +149,6 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
     */
     public function close()
     {
-        unset($this);
     }
 <!-- END ConstructorForMultiplePK -->
 <!-- BEGIN Setters -->
