@@ -2,7 +2,7 @@
 /**
  * application.config.php
  *
- * Main application configuration parameters.
+ * Main application configuration parameters
  * You can change those values according to your application environment.
  *
  * @filesource application.config.php
@@ -30,7 +30,7 @@ define("DBUSER","root");
 /**
  * MySQL Password
  */
-define("DBPASSWORD","password");
+define("DBPASSWORD", "letmysql");
 
 /**
  *  MySQL Database
