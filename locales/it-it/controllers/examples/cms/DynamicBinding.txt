@@ -1,0 +1,4 @@
+#Comment: Carica le traduzioni
+#Load:{APP_LOCALE_PATH}/it-it/controllers/examples/cms/Localization.txt
+#Load:{APP_LOCALE_PATH}/it-it/controllers/examples/db/PartPaginatorSorterSearch.txt
+AddNewPart= Aggiungi parte

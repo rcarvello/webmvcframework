@@ -1,0 +1,5 @@
+#Comment: Loads defined translations
+#Load:{APP_LOCALE_PATH}/en/controllers/examples/cms/Localization.txt
+#Load:{APP_LOCALE_PATH}/en/controllers/examples/db/PartPaginatorSorterSearch.txt
+AddNewPart= Add a new part
+
