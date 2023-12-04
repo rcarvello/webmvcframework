@@ -2,7 +2,7 @@
 /**
  * Class MySqlRecordSet
  *
- * @todo Class Implemetation
+ * @TODO
  * @package framework
  * @filesource framework/MySqlRecordSet.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
@@ -16,6 +16,7 @@ namespace framework;
 class MySqlRecordSet extends Model
 {
     public $sql;
+
     public $where;
     public $orderBy;
     public $groupBy;
@@ -26,18 +27,25 @@ class MySqlRecordSet extends Model
         parent::__construct();
     }
 
-    public function autorun()
+    public function fetch()
     {
-        $result = $this->query($this->sql);
-        $this->resultSet = $result;
+        if (!empty($this->sql)) {
+            $result = $this->query($this->sql);
+            $this->resultSet = $result;
+        }
     }
 
-    /*
+
+    /**
+     * TODO
+     * @return void
+     */
     private function setSql()
     {
         (!empty($this->where) ? $this->sql .= " WHERE " . $this->where:$this->sql);
         (!empty($this->orderBy) ? $this->sql .= " ORDER BY " . $this->orderBy:$this->sql);
         (!empty($this->groupBy) ? $this->sql .= " GROUP BY " . $this->groupBy:$this->sql);
     }
-    */
+
+
 }
