@@ -18,7 +18,7 @@ use \DOMDocument;
 use \ReflectionClass;
 use framework\classes\Locale;
 use framework\classes\Globalize;
-use framework\exceptions\VariableNotFoundExceptionuse;
+use framework\exceptions\VariableNotFoundException;
 use framework\exceptions\NotInitializedViewException;
 use framework\components\Component;
 
