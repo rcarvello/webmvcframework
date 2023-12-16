@@ -28,13 +28,15 @@ abstract class RestService extends Controller
     private $result;
     private $accessControlAllowOrigins = array();
 
+    //private $restDatas = array();
+
     public function __construct()
     {
         parent::__construct();
         /* $this->HTTPRequestMethod = getenv('REQUEST_METHOD'); */
         $this->HTTPRequestMethod = $_SERVER['REQUEST_METHOD'];
         $this->HTTPRequestHeaders = getallheaders();
-        $this->restDatas = array_merge($_POST, $_GET);
+        // $this->restDatas = array_merge($_POST, $_GET);
         $this->view->replaceTpl(" ");
     }
 
