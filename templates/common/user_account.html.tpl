@@ -30,10 +30,8 @@
 
 </head>
 <body>
-
+<br>
 <div class="container">
-    <h1>{RES:UserRecord}</h1>
-    <hr>
     <form name="user_record_form" id="user_record_form" method="post" class="form-horizontal">
         <div class="panel panel-primary">
 
@@ -194,6 +192,20 @@ $(document).ready(function() {
         passwordInput: "#password",
         ratings: ["{RES:VeryWeak}", "{RES:Weak}", "{RES:OK}", "{RES:Strong}", "{RES:VeryStrong}"]
     });
+
+    $('#user_record_form').find('input:submit').on('click', function (e) {
+        var currentValidity = true;
+        var elementIndex;
+        var lastElementIndex = e.currentTarget.form.length - 1;
+        for (elementIndex = 0; elementIndex <= lastElementIndex; elementIndex++) {
+            currentValidity = e.currentTarget.form[elementIndex].validity.valid;
+            if (!currentValidity) {
+                $("#divLoading").removeClass('show');
+                break;
+            }
+        }
+    });
+
 });
 </script>
 <script src="{GLOBAL:SITEURL}/js/spinner/spinner.js"></script>
