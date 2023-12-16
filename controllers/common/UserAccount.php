@@ -7,7 +7,8 @@
  * @package controllers\common
  * @category Application Controller
  * @author  Rosario Carvello - rosario.carvello@gmail.com
-*/
+ */
+
 namespace controllers\common;
 
 use framework\Controller;
@@ -31,62 +32,72 @@ class UserAccount extends Controller
     private $isAdmin = false;
 
     /**
-    * Object constructor.
-    *
-    * @param View $view
-    * @param Model $mode
-    */
-    public function __construct(View $view=null, Model $model=null)
+     * Object constructor.
+     *
+     * @param View $view
+     * @param Model $mode
+     * @throws \framework\exceptions\TemplateNotFoundException
+     */
+    public function __construct(View $view = null, Model $model = null)
     {
         // Computes variables to store current edited record
         // and current logged user
         $user = new User();
         $this->currentLoggedUser = $user->getId();
-        @$this->currentEditingUser = $_GET["id_user"];
+        if (isset($_GET["id_user"])) {
+            $this->currentEditingUser = $_GET["id_user"];
+        } else {
+            $this->currentEditingUser = 0;
+        }
 
-        // Grants access to non admin only on editing its own record
-        if ($this->currentLoggedUser == $this->currentEditingUser ) {
-            // $this->grantRole(50);
-            // $this->grantRole(60);
-            $nonAdminRoles = $user->query("SELECT " . USER_ROLE . " FROM ". USER_TABLE . " WHERE " . USER_ROLE . "!=" . ADMIN_ROLE_ID);
-            if ($nonAdminRoles){
-                while ($role=$nonAdminRoles->fetch_array()){
-                    $this->grantRole($role[0]);
-                }
-            }
+        // A generic user can always access and update only its
+        // own information. So we grant access to enabling the update
+        // of the record corresponding to the logged in user.
+        if ($this->currentLoggedUser == $this->currentEditingUser) {
+            $this->grantRole($user->getRole());
             $this->onlyCurrent = true;
         }
 
         // Computes if current user is admin
-        if ($user->getRole()==ADMIN_ROLE_ID)
+        if ($user->getRole() == ADMIN_ROLE_ID)
             $this->isAdmin = true;
 
+        // We always give the grant access to admins
         $this->grantRole(ADMIN_ROLE_ID);
-        $this->restrictToRBAC(null,"common/user_accounts",LoginRBACWarningMessage);
+
+        // Applies access restrictions
+        $this->restrictToRBAC(null, "common/user_accounts", LoginRBACWarningMessage);
+
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
-        parent::__construct($this->view,$this->model);
+        parent::__construct($this->view, $this->model);
     }
 
     /**
-    * Autorun method. Put your code here for running it after object creation.
-    * @param mixed|null $parameters Parameters to manage
-    *
-    */
+     * Autorun method. Put your code here for running it after object creation.
+     * @param mixed|null $parameters Parameters to manage
+     * @throws \framework\exceptions\NotInitializedViewException
+     * @throws \framework\exceptions\VariableNotFoundException
+     */
     protected function autorun($parameters = null)
     {
         $options = $this->model->getAccessLevelOptionsList();
         $this->view->renderAccessLevelOptionsList($options);
         $this->buildRecord();
-        if ($this->onlyCurrent && !$this->isAdmin){
-            $this->view->setVar("NoUpdate","hide");
+        if ($this->onlyCurrent && !$this->isAdmin) {
+            $this->view->setVar("NoUpdate", "hide");
         } else {
-            $this->view->setVar("NoUpdate","");
+            $this->view->setVar("NoUpdate", "");
         }
     }
 
     /**
      * Builds Record component for UserAccount forms.
+     * @throws \ReflectionException
+     * @throws \framework\exceptions\BeanActionException
+     * @throws \framework\exceptions\BlockNotFoundException
+     * @throws \framework\exceptions\NotInitializedViewException
+     * @throws \framework\exceptions\VariableNotFoundException
      */
     protected function buildRecord()
     {
@@ -101,21 +112,21 @@ class UserAccount extends Controller
 
         // Sets history back for button close and delete
         // Note: for non admin temporary granted on editing its own
-        // record history back is setted to home
+        // record history back is the SITEURL constant value
         $historyBack = $record->getControllerHistoryBack("user_accounts");
         if ($this->onlyCurrent && !$this->isAdmin)
-            $historyBack = SITEURL . "/hr/home";
+            $historyBack = SITEURL;
 
         $record->redirectAfterClose = $historyBack;
         $record->redirectAfterDelete = $historyBack;
-        $record->redirectAfterAdd =$historyBack;
-        $record->redirectAfterUpdate=$historyBack;
+        $record->redirectAfterAdd = $historyBack;
+        $record->redirectAfterUpdate = $historyBack;
 
         // Hides when non admin temporary granted on editing
         // its own record
         if ($this->onlyCurrent && !$this->isAdmin) {
-            $record->allowAdd =false;
-            $record->allowDelete =false;
+            $record->allowAdd = false;
+            $record->allowDelete = false;
         }
 
         // Sets disallow mode
@@ -139,24 +150,24 @@ class UserAccount extends Controller
         }
 
         // Initializes record component with its BeanAdapter and (automatically) with its managed Bean
-        $record->init($beanAdapter,null,$customValidationErrors);
+        $record->init($beanAdapter, null, $customValidationErrors);
 
         // Binding Record Component to the view (without rendering)
-        $this->bindComponent($record,false);
+        $this->bindComponent($record, false);
 
         // Set others view fields values with bean data
         $this->view->setFieldsWithBeanData($bean);
 
         // Processes record errors
         $this->view->parseErrors($record->getErrors());
-
     }
 
-
     /**
-     * Funzione open: Apre la schermata relativa al record dei dati anagrafici associato all'id dipendente selezionato dall'utente.
+     * Open a user record for editing
+     * @param null|int $pk The record id to edit
+     * @throws \Exception
      */
-    public function open($pk=null)
+    public function open($pk = null)
     {
         $_GET["id_user"] = $pk;
         $this->currentEditingUser = $pk;
@@ -165,7 +176,9 @@ class UserAccount extends Controller
     }
 
     /**
-     * Funzione add: Viene invocata quando l'utente vuole inserire un nuovo dipendente.
+     * Add a new user record
+     * @param $dummy
+     * @throws \Exception
      */
     public function add($dummy)
     {
@@ -176,26 +189,26 @@ class UserAccount extends Controller
     /**
      * Custom server side validations
      * @param Record $record
-     * @return bool return true if error cccurs else false
+     * @return bool return true if error occurs else false
      */
     private function customValidation(Record $record)
     {
         $isError = false;
-        if ($record->isSubmitted()){
+        if ($record->isSubmitted()) {
             // Checks password /confirmation matching if changing user password
-            if ($_POST["password_is_changed"]==1){
-                if ( $_POST["password"] != $_POST["re_password"]){
+            if ($_POST["password_is_changed"] == 1) {
+                if ($_POST["password"] != $_POST["re_password"]) {
                     $record->addError("{RES:PasswordDoesntMatch}");
                     return true;
                 }
             }
 
-            // Checks constraints when editing builtin admin
-            if ($_POST["id_user"]==1) {
-                if ($_POST["id_access_level"]!=ADMIN_ROLE_ID) {
+            // Checks constraints when editing builtin admin (having pk=1)
+            if ($_POST["id_user"] == 1) {
+                if ($_POST["id_access_level"] != ADMIN_ROLE_ID) {
                     $record->addError("{RES:CannotEditBuiltInPermission}");
                     $isError = true;
-                } elseif(!isset($_POST["enabled"])){
+                } elseif (!isset($_POST["enabled"])) {
                     $record->addError("{RES:CannotEditBuiltInStatus}");
                     $isError = true;
                 } elseif ($_POST[$record::DELETE]) {
@@ -207,15 +220,17 @@ class UserAccount extends Controller
             } else {
                 $isError = false;
             }
+
+            // TODO Add Server Side Validation for fields
         }
         return $isError;
     }
 
     /**
-    * Inizialize the View by loading static design of /common/user.html.tpl
-    * managed by views\common\User class
-    *
-    */
+     * Inizialize the View by loading static design of /common/user.html.tpl
+     * managed by views\common\User class
+     *
+     */
     public function getView()
     {
         $view = new UserView("/common/user_account");
@@ -223,9 +238,9 @@ class UserAccount extends Controller
     }
 
     /**
-    * Inizialize the Model by loading models\common\User class
-    *
-    */
+     * Inizialize the Model by loading models\common\User class
+     *
+     */
     public function getModel()
     {
         $model = new UserModel();

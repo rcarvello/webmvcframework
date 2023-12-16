@@ -10,6 +10,7 @@
 */
 namespace models\common;
 
+use framework\classes\ChiperService;
 use framework\Model;
 use models\beans\BeanUser;
 
@@ -34,7 +35,10 @@ class UserAccount extends Model
         $bean->setFullName($_POST["full_name"]);
         $bean->setEmail($_POST["email"]);
         if ($_POST["password_is_changed"] == 1) {
-            $bean->setPassword(md5($_POST["password"]));
+            $salt = ChiperService::getNewSalt();
+            $password = ChiperService::encryptDBPassword($_POST["password"], $salt);
+            $bean->setSalt($salt);
+            $bean->setPassword($password);
         }
         $bean->setEnabled( isset($_POST["enabled"])?1:-1);
         $bean->setIdAccessLevel($_POST["id_access_level"]);
