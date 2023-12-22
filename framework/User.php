@@ -2,13 +2,13 @@
 /**
  * Class  User
  *
- * Manages users object, session and the user authentication.
+ * Manages User object, session and the user authentication.
  *
  * @package framework
  * @filesource framework/User.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.1.1
- * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2023 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License.
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
@@ -31,8 +31,9 @@ class User extends MySqlRecord implements BeanUser
     private $useMd5Password;
 
     /**
-     * Gets user id
-     * @return mixed
+     * Gets user ID
+     *
+     * @return int
      */
     public function getId()
     {
@@ -41,7 +42,8 @@ class User extends MySqlRecord implements BeanUser
 
     /**
      * Gets user email
-     * @return mixed
+     *
+     * @return string
      */
     public function getEmail()
     {
@@ -50,6 +52,7 @@ class User extends MySqlRecord implements BeanUser
 
     /**
      * Gets user password
+     *
      * @return mixed
      */
     public function getPassword()
@@ -59,7 +62,8 @@ class User extends MySqlRecord implements BeanUser
 
     /**
      * Gets user role
-     * @return mixed
+     *
+     * @return int
      */
     public function getRole()
     {
@@ -69,11 +73,11 @@ class User extends MySqlRecord implements BeanUser
     /**
      * User constructor.
      *
-     * Create a  Session User object using the given credentials.
-     * - If credentials were null and a user was previously logged in, it gets user
-     * data from a Session variable or Cookies.
-     * - If no user is previously logged in and any credential were given it returns
-     * an empty object.
+     * Create a Session User object using the given credentials.
+     * - If credentials are null and a user was previously logged in, it gets user
+     *   data from Session or Cookies.
+     * - If user is not previously logged in and no credentials were given it returns
+     *   an empty object.
      *
      * @param string|null $email User email
      * @param string|null $password User Password
@@ -90,9 +94,10 @@ class User extends MySqlRecord implements BeanUser
         $this->fieldUserRole = USER_ROLE;
         $this->useMd5Password = $useMd5Password;
 
-        // If email and password are null try to set
-        // them with cookie values.
-        // $this->autoLoginFromCookies();
+        /* If email and password are null try to set values from cookie.
+           Is better to manage from application
+           $this->autoLoginFromCookies();
+        */
 
         if (isset($_SESSION["user"])) {
             $this->unserializeUser();
@@ -106,7 +111,8 @@ class User extends MySqlRecord implements BeanUser
      *
      * @param string $mail User email
      * @param string $password User password
-     * @return bool True if login oke, else false
+     *
+     * @return bool True if login ok, else False
      */
     public function login($email, $password)
     {
@@ -140,7 +146,7 @@ class User extends MySqlRecord implements BeanUser
     /**
      * Logout user
      *
-     * @return bool always true
+     * @return bool Always true
      */
     public function logout()
     {
@@ -160,7 +166,7 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Checks if user is logged
+     * Checks if user is logged in
      *
      * @return bool True or False
      */
@@ -174,13 +180,19 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Checks if user is logged in. If none it redirects.
+     * Checks if a user is logged in. If false it redirects to a custom link used for showing
+     * the login form and requiring authentication. If true it redirects to a custom link given.
      *
-     * @param string $redirect The Controller url path to redirecting if user is not logged in.
-     *                         If null it redirects to the default login page.
-     * @param null|string $returnLink The return link after loggin in with the the dafault
-     *                    login page
-     * @param null|string $LoginWarningMessage A custom warning message to show
+     * @param null|string $redirect
+     *                The Controller URL for redirecting when the user is not logged in.
+     *                If null it automatically redirects to the default login page.
+     * @param null|string $returnLink
+     *                The return link is to be used for redirecting if the user is successfully logged in.
+     *                If null it (still) will be the default login page
+     * @param null|string $LoginWarningMessage
+     *                A custom warning message to show in the login form after
+     *                unsuccessful login
+     *                If null it will be the default message
      *
      */
     public function checkForLogin($redirect = null, $returnLink = null, $LoginWarningMessage = null)
@@ -198,7 +210,7 @@ class User extends MySqlRecord implements BeanUser
     /**
      * Auto login by using Cookies
      * Note:
-     * It uses ChiperService class to decrypt Cookie
+     * ChiperService class is used to decrypt Cookie
      *
      * @uses ChiperService
      *
@@ -221,7 +233,7 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Serializes User
+     * Serializes User into Session
      *
      * @return bool
      */
@@ -232,7 +244,7 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Unserializes user.
+     * Un serializes User from Session.
      *
      * @return bool
      */
