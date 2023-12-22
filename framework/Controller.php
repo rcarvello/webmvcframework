@@ -1,6 +1,7 @@
 <?php
 /**
  * Class  Controller
+ * Base Abstract Controller
  *
  * @package framework
  * @filesource framework/Controller.php
@@ -450,13 +451,14 @@ abstract class Controller
     }
 
     /**
-     * Restricts on RBAC. User role must have a role contained into RBACL.
+     * Restricts on RBAC.
+     * User role must have a role contained into RBACL.
      *
-     * @param string $redirect The Controller url path to redirecting when access is denied.
+     * @param string $redirect The Controller URL path to redirecting when access is denied.
      *                         If null it redirects to the default login page.
-     * @param null|string $returnLink The return link after loggin in with the the dafault
-     *                    login page
+     * @param null|string $returnLink The return link after logging in with the default login page
      * @param null|string $LoginWarningMessage A custom warning message to show
+     *
      * @return User
      */
     protected function restrictToRBAC($redirect = null, $returnLink = null, $LoginWarningMessage = null)
@@ -480,13 +482,13 @@ abstract class Controller
     /**
      * Restricts access only to authenticated users
      *
-     * @param string $redirect The Controller url path to redirecting when user is not logged in.
+     * @param string $redirect The Controller URL path to redirecting when the user is not logged in.
      *                         If null it redirects to the default login page.
-     * @param null|string $returnLink The return link after loggin in with the the
-     *                                dafault login page
+     * @param null|string $returnLink The return link after logging in with the default login page
      * @param null|string $LoginWarningMessage A custom warning message to show
      * @return User
      */
+
     protected function restrictToAuthentication($redirect = null, $returnLink = null, $LoginWarningMessage = null)
     {
         $user = new User();
