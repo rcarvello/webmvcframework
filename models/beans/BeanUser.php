@@ -1,13 +1,13 @@
 <?php
 /**
  * Class BeanUser
- * Bean class for ORM management of the MySQL table user
+ * Bean class for object oriented management of the MySQL table user
  *
  * Comment of the managed table user: Users credentials.
  *
  * Responsibility:
  *
- *  - provides instance constructors for both managing of a fetched table or for a new row
+ *  - provides instance constructor for both managing of a fetched table or for a new row
  *  - provides destructor to automatically close database connection
  *  - defines a set of attributes corresponding to the table fields
  *  - provides setter and getter methods for each attribute
@@ -26,10 +26,10 @@
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.0.0
  * @note  This is an auto generated PHP class builded with MVCMySqlReflection, a small code generation engine extracted from the author's personal MVC Framework.
- * @copyright (c) 2016-2023 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD Public License.
-*/
+ */
 namespace models\beans;
 use framework\MySqlRecord;
 use framework\Bean;
@@ -67,8 +67,8 @@ class BeanUser extends MySqlRecord implements Bean
      *  - Data type: int(11)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var int $idAccessLevel
      */
     private $idAccessLevel;
@@ -81,8 +81,8 @@ class BeanUser extends MySqlRecord implements Bean
      *  - Data type: varchar(45)
      *  - Null : NO
      *  - DB Index: MUL
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var string $fullName
      */
     private $fullName;
@@ -95,8 +95,8 @@ class BeanUser extends MySqlRecord implements Bean
      *  - Data type: varchar(100)
      *  - Null : NO
      *  - DB Index: UNI
-     *  - Default: 
-     *  - Extra:  
+     *  - Default:
+     *  - Extra:
      * @var string $email
      */
     private $email;
@@ -108,9 +108,9 @@ class BeanUser extends MySqlRecord implements Bean
      * Field information:
      *  - Data type: varchar(200)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $password
      */
     private $password;
@@ -122,9 +122,9 @@ class BeanUser extends MySqlRecord implements Bean
      * Field information:
      *  - Data type: varchar(200)
      *  - Null : NO
-     *  - DB Index: 
-     *  - Default: 
-     *  - Extra:  
+     *  - DB Index:
+     *  - Default:
+     *  - Extra:
      * @var string $salt
      */
     private $salt;
@@ -136,9 +136,9 @@ class BeanUser extends MySqlRecord implements Bean
      * Field information:
      *  - Data type: int(1)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index:
      *  - Default: 1
-     *  - Extra:  
+     *  - Extra:
      * @var int $enabled
      */
     private $enabled;
@@ -150,6 +150,22 @@ class BeanUser extends MySqlRecord implements Bean
     private $ddl = "Q1JFQVRFIFRBQkxFIGB1c2VyYCAoCiAgYGlkX3VzZXJgIGludCgxMSkgTk9UIE5VTEwgQVVUT19JTkNSRU1FTlQsCiAgYGlkX2FjY2Vzc19sZXZlbGAgaW50KDExKSBOT1QgTlVMTCwKICBgZnVsbF9uYW1lYCB2YXJjaGFyKDQ1KSBOT1QgTlVMTCwKICBgZW1haWxgIHZhcmNoYXIoMTAwKSBOT1QgTlVMTCwKICBgcGFzc3dvcmRgIHZhcmNoYXIoMjAwKSBOT1QgTlVMTCwKICBgc2FsdGAgdmFyY2hhcigyMDApIE5PVCBOVUxMLAogIGBlbmFibGVkYCBpbnQoMSkgTk9UIE5VTEwgREVGQVVMVCAnMScsCiAgUFJJTUFSWSBLRVkgKGBpZF91c2VyYCksCiAgVU5JUVVFIEtFWSBgdW5pcXVlX2VtYWlsYCAoYGVtYWlsYCksCiAgS0VZIGBma191c2VyX2FjY2Vzc19sZXZlbF9pZHhgIChgaWRfYWNjZXNzX2xldmVsYCksCiAgS0VZIGBpZHhfZnVsbF9uYW1lYCAoYGZ1bGxfbmFtZWApLAogIENPTlNUUkFJTlQgYGZrX3VzZXJfYWNjZXNzX2xldmVsMWAgRk9SRUlHTiBLRVkgKGBpZF9hY2Nlc3NfbGV2ZWxgKSBSRUZFUkVOQ0VTIGBhY2Nlc3NfbGV2ZWxgIChgaWRfYWNjZXNzX2xldmVsYCkgT04gREVMRVRFIE5PIEFDVElPTiBPTiBVUERBVEUgTk8gQUNUSU9OCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD02IERFRkFVTFQgQ0hBUlNFVD11dGY4IENPTU1FTlQ9J1VzZXJzIGNyZWRlbnRpYWxzJw==";
 
     /**
+     * Class attribute for storing the JSON result of a user selected row
+     * @var string jsonResults
+     */
+    private $jsonResults = array();
+
+    /**
+     * Get JSON results
+     * # @note You need to call select method before getting updated data
+     * @return array JSON results
+     */
+    public function getJsonResults()
+    {
+        return $this->jsonResults;
+    }
+
+    /**
      * setIdUser Sets the class attribute idUser with a given value
      *
      * The attribute idUser maps the field id_user defined as int(11).<br>
@@ -159,7 +175,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setIdUser($idUser)
     {
-        $this->idUser = (int)$idUser;
+        // $this->idUser = (int)$idUser;
+        $this->idUser = (int)$this->real_escape_string($idUser);
     }
 
     /**
@@ -172,7 +189,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setIdAccessLevel($idAccessLevel)
     {
-        $this->idAccessLevel = (int)$idAccessLevel;
+        // $this->idAccessLevel = (int)$idAccessLevel;
+        $this->idAccessLevel = (int)$this->real_escape_string($idAccessLevel);
     }
 
     /**
@@ -185,7 +203,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setFullName($fullName)
     {
-        $this->fullName = (string)$fullName;
+        // $this->fullName = (string)$fullName;
+        $this->fullName = (string)$this->real_escape_string($fullName);
     }
 
     /**
@@ -198,7 +217,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setEmail($email)
     {
-        $this->email = (string)$email;
+        // $this->email = (string)$email;
+        $this->email = (string)$this->real_escape_string($email);
     }
 
     /**
@@ -211,7 +231,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setPassword($password)
     {
-        $this->password = (string)$password;
+        // $this->password = (string)$password;
+        $this->password = (string)$this->real_escape_string($password);
     }
 
     /**
@@ -224,7 +245,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setSalt($salt)
     {
-        $this->salt = (string)$salt;
+        // $this->salt = (string)$salt;
+        $this->salt = (string)$this->real_escape_string($salt);
     }
 
     /**
@@ -237,7 +259,8 @@ class BeanUser extends MySqlRecord implements Bean
      */
     public function setEnabled($enabled)
     {
-        $this->enabled = (int)$enabled;
+        // $this->enabled = (int)$enabled;
+        $this->enabled = (int)$this->real_escape_string($enabled);
     }
 
     /**
@@ -342,10 +365,10 @@ class BeanUser extends MySqlRecord implements Bean
     }
 
     /**
-    * Gets the name of the managed table
-    * @return string
-    * @category Accessor
-    */
+     * Gets the name of the managed table
+     * @return string
+     * @category Accessor
+     */
     public function getTableName()
     {
         return "user";
@@ -411,6 +434,12 @@ class BeanUser extends MySqlRecord implements Bean
             @$this->salt = $this->replaceAposBackSlash($rowObject->salt);
             @$this->enabled = (integer)$rowObject->enabled;
             $this->allowUpdate = true;
+            $resultArray = $this->query($sql);
+            while ($row = $resultArray->fetch_array(MYSQLI_ASSOC)) {
+                $resultsArray[] = $row;
+            }
+            if (!empty($resultsArray))
+                $this->jsonResults = json_encode($resultsArray);
         } else {
             $this->lastSqlError = $this->sqlstate . " - ". $this->error;
         }
@@ -514,11 +543,11 @@ SQL;
     }
 
     /**
-     * Facility for updating a row of user previously loaded.
+     * Facility for updating a rows of user previously loaded.
      *
      * All class attribute values defined for mapping all table fields are automatically used during updating.
-     * @category DML Helper
      * @return mixed MySQLi update result
+     *@category DML Helper
      */
     public function updateCurrent()
     {
