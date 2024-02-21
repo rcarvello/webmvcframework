@@ -1,18 +1,17 @@
 <?php
 /**
- * Class  User
+ * Class User
  *
- * Manages User object, session and the user authentication.
+ * Manages users object, session and the user authentication.
  *
  * @package framework
  * @filesource framework/User.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
- * @version GIT:v1.1.1
- * @copyright (c) 2023 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
- * @license BSD Clause 3 License.
+ * @version GIT:v1.1.0
+ * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
-
 namespace framework;
 
 use framework\classes\ChiperService;
@@ -24,16 +23,17 @@ class User extends MySqlRecord implements BeanUser
     private $fieldUserEmail;
     private $fieldUserPassword;
     private $fieldUserRole;
+    private $fieldUserSalt;
     private $id;
     private $email;
     private $password;
     private $role;
-    private $useMd5Password;
+    private $salt = CHIPER_CREDENTIALS_COOKIE_SALT;
+    private $useEncryptedPassword;
 
     /**
-     * Gets user ID
-     *
-     * @return int
+     * Gets user id
+     * @return mixed
      */
     public function getId()
     {
@@ -42,8 +42,7 @@ class User extends MySqlRecord implements BeanUser
 
     /**
      * Gets user email
-     *
-     * @return string
+     * @return mixed
      */
     public function getEmail()
     {
@@ -52,7 +51,6 @@ class User extends MySqlRecord implements BeanUser
 
     /**
      * Gets user password
-     *
      * @return mixed
      */
     public function getPassword()
@@ -62,8 +60,7 @@ class User extends MySqlRecord implements BeanUser
 
     /**
      * Gets user role
-     *
-     * @return int
+     * @return mixed
      */
     public function getRole()
     {
@@ -73,18 +70,18 @@ class User extends MySqlRecord implements BeanUser
     /**
      * User constructor.
      *
-     * Create a Session User object using the given credentials.
-     * - If credentials are null and a user was previously logged in, it gets user
-     *   data from Session or Cookies.
-     * - If user is not previously logged in and no credentials were given it returns
-     *   an empty object.
+     * Create a  Session User object using the given credentials.
+     * - If credentials were null and a user was previously logged in, it gets user
+     * data from a Session variable or Cookies.
+     * - If no user is previously logged in and any credential were given it returns
+     * an empty object.
      *
      * @param string|null $email User email
      * @param string|null $password User Password
-     * @param bool|true $useMd5Password Default use md5 password to check against
+     * @param bool|true $encryptPassword Default use md5 password to check against
      *                                  db stored credentials
      */
-    public function __construct($email = null, $password = null, $useMd5Password = true)
+    public function __construct($email = null, $password = null, $encryptPassword = true)
     {
         parent::__construct();
         $this->userTable = USER_TABLE;
@@ -92,12 +89,12 @@ class User extends MySqlRecord implements BeanUser
         $this->fieldUserEmail = USER_EMAIL;
         $this->fieldUserPassword = USER_PASSWORD;
         $this->fieldUserRole = USER_ROLE;
-        $this->useMd5Password = $useMd5Password;
+        $this->fieldUserSalt = USER_SALT;
+        $this->useEncryptedPassword = $encryptPassword;
 
-        /* If email and password are null try to set values from cookie.
-           Is better to manage from application
-           $this->autoLoginFromCookies();
-        */
+        // If email and password are null try to set
+        // them with cookie values.
+        // $this->autoLoginFromCookies();
 
         if (isset($_SESSION["user"])) {
             $this->unserializeUser();
@@ -111,16 +108,22 @@ class User extends MySqlRecord implements BeanUser
      *
      * @param string $mail User email
      * @param string $password User password
-     *
-     * @return bool True if login ok, else False
+     * @return bool True if login oke, else false
      */
     public function login($email, $password)
     {
         $email = $this::real_escape_string($email);
         $password = $this::real_escape_string($password);
-        // TODO use  PHP 5.4 password() crypt algo
-        if ($this->useMd5Password)
-            $password = md5($password);
+
+        if ($this->useEncryptedPassword) {
+            if (USER_SALT != "") {
+                $salt = $this->getUserSalt($email);
+            } else {
+                $salt = CHIPER_CREDENTIALS_COOKIE_SALT;
+            }
+            $password = ChiperService::encryptDBPassword($password, $salt);
+        }
+
         $sql = "SELECT * FROM {$this->userTable} WHERE {$this->fieldUserEmail}={$this->parseValue($email,'string')} AND {$this->fieldUserPassword}={$this->parseValue($password,'string')}";
         if (USER_ENABLED != "")
             $sql .= " AND " . USER_ENABLED . "=1";
@@ -146,7 +149,7 @@ class User extends MySqlRecord implements BeanUser
     /**
      * Logout user
      *
-     * @return bool Always true
+     * @return bool always true
      */
     public function logout()
     {
@@ -159,14 +162,13 @@ class User extends MySqlRecord implements BeanUser
         }
         $chiper = new ChiperService();
         $secured = isset($_SERVER["HTTPS"]);
-        $domain = "";
-        setcookie($chiper::CREDENTIALS_COOKIE_NAME, "", time() - 3600, "/", $domain, $secured, true);
+        setcookie($chiper::CREDENTIALS_COOKIE_NAME, "", time() - 3600, "/", null, $secured, true);
         session_destroy();
         return true;
     }
 
     /**
-     * Checks if user is logged in
+     * Checks if user is logged
      *
      * @return bool True or False
      */
@@ -180,19 +182,13 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Checks if a user is logged in. If false it redirects to a custom link used for showing
-     * the login form and requiring authentication. If true it redirects to a custom link given.
+     * Checks if user is logged in. If none it redirects.
      *
-     * @param null|string $redirect
-     *                The Controller URL for redirecting when the user is not logged in.
-     *                If null it automatically redirects to the default login page.
-     * @param null|string $returnLink
-     *                The return link is to be used for redirecting if the user is successfully logged in.
-     *                If null it (still) will be the default login page
-     * @param null|string $LoginWarningMessage
-     *                A custom warning message to show in the login form after
-     *                unsuccessful login
-     *                If null it will be the default message
+     * @param string $redirect The Controller url path to redirecting if user is not logged in.
+     *                         If null it redirects to the default login page.
+     * @param null|string $returnLink The return link after loggin in with the the dafault
+     *                    login page
+     * @param null|string $LoginWarningMessage A custom warning message to show
      *
      */
     public function checkForLogin($redirect = null, $returnLink = null, $LoginWarningMessage = null)
@@ -210,7 +206,7 @@ class User extends MySqlRecord implements BeanUser
     /**
      * Auto login by using Cookies
      * Note:
-     * ChiperService class is used to decrypt Cookie
+     * It uses ChiperService class to decrypt Cookie
      *
      * @uses ChiperService
      *
@@ -233,7 +229,7 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Serializes User into Session
+     * Serializes User
      *
      * @return bool
      */
@@ -244,7 +240,7 @@ class User extends MySqlRecord implements BeanUser
     }
 
     /**
-     * Un serializes User from Session.
+     * Unserializes user.
      *
      * @return bool
      */
@@ -258,4 +254,24 @@ class User extends MySqlRecord implements BeanUser
         return true;
     }
 
+    /**
+     * Get user salt
+     * @param $email
+     * @return string|bool  The salt, false if none
+     */
+    private function getUserSalt($email)
+    {
+        $sql = "SELECT * FROM {$this->userTable} WHERE {$this->fieldUserEmail}={$this->parseValue($email,'string')}";
+        $this->resetLastSqlError();
+        $result = $this->query($sql);
+        $this->resultSet = $result;
+        $this->lastSql = $sql;
+        if ($result && $result->num_rows === 1) {
+            $rowObject = $result->fetch_object();
+            $salt = $rowObject->{$this->fieldUserSalt};
+            return $salt;
+        } else {
+            return false;
+        }
+    }
 }
