@@ -3,8 +3,8 @@
  * Class ChiperService
  * Crypt/Encrypt for user credentials cookie.
  *
- * @package framework
- * @filesource framework/User.php
+ * @package framework/classes
+ * @filesource framework/classes/ChiperService.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.1.0
  * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
@@ -48,10 +48,41 @@ class ChiperService
         return $this->bytesToString($this->cipherEnDeCrypt($this->hexToBytes($inputStr), $key));
     }
 
-    public function encryptDBPassword($password) {
-        return md5($password);
+    /**
+     * Password one-way crypt algo
+     *
+     * @param string $password The password
+     * @param string| null $salt The salt, if null use system default salt
+     * @return string encrypted password
+     */
+    public static function encryptDBPassword($password, $salt = null)
+    {
+        if (empty($salt)) {
+            $salt = CHIPER_CREDENTIALS_COOKIE_SALT;
+        }
+        CRYPT_ALGO == "" ? $cryptAlgo = "sha256" : $cryptAlgo = CRYPT_ALGO;
+        return hash($cryptAlgo, $salt . $password);
+        // return crypt("password",$salt);
     }
 
+    /**
+     * Create a salt for using for password one-way crypt algo
+     *
+     * @return string A new generated Salt
+     */
+    public static function getNewSalt()
+    {
+
+        return uniqid(mt_rand(), true);
+    }
+
+    /**
+     * Internal function to EnDec a given string with a given key
+     *
+     * @param $inputStr
+     * @param $key
+     * @return array
+     */
     private function cipherEnDeCrypt($inputStr, $key) {
         global $CipherBox;
         $result = array();
@@ -128,7 +159,7 @@ class ChiperService
     }
 
     /**
-     * Refreshes user credentials cookie expiration date
+     * Refreshes user credentials cookie expiration date.
      *
      * @param $expirationDate
      */
@@ -159,7 +190,5 @@ class ChiperService
         }
         return $parts;
     }
-
-
 
 }
