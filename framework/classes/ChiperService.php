@@ -1,13 +1,13 @@
 <?php
 /**
  * Class ChiperService
- * Crypt/Encrypt for user credentials cookie.
+ * Crypt/Encrypt functions for the management of user credentials and cookie.
  *
  * @package framework/classes
  * @filesource framework/classes/ChiperService.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.1.0
- * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2016-2024 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
