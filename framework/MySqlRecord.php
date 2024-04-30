@@ -94,7 +94,7 @@ class MySqlRecord extends Model
                         $value = (int)$value;
                 }
             } else {
-                return $value;
+                return "NULL";
             }
             $type = "number";
         }
