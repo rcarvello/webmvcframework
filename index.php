@@ -23,9 +23,9 @@
 
 /* Path of this script */
 define ("RELATIVE_PATH", "");
-
+ini_set('display_errors', 1);
 /* Enable error reporting and disable notices */
-error_reporting(E_ALL & ~E_NOTICE);
+// error_reporting(E_ALL & ~E_NOTICE);
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 
