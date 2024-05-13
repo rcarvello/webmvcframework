@@ -1,5 +1,5 @@
 util/mysqlreflection/mysqlreflection.config.php
-config/application.config.php
+/config/application.config.php
 /wiki
 qodana.yaml
 readme_old.md
