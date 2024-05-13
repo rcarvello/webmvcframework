@@ -2,12 +2,14 @@
 /**
  * MailService
  * PHP Mail wrapper
+ * Original package from Eoghan O'Brien <eoghan@eoghanobrien.com>
+ * http://github.com/eoghanobrien/php-simple-mail
  *
  * @package framework/classes
- * @filesource framework/classes/Captcha.php
+ * @filesource framework/classes/MailService.php
  * @author Rosario Carvello <rosario.carvello@gmail.com>
  * @version GIT:v1.1.0
- * @copyright (c) 2016 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
+ * @copyright (c) 2024 Rosario Carvello <rosario.carvello@gmail.com> - All rights reserved. See License.txt file
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
@@ -129,7 +131,7 @@ class MailService
      *
      * @return self
      */
-    public function setFrom($email, $name)
+    public function setFrom($email = DEFAULT_EMAIL, $name = DEFAULT_EMAIL_ACCOUNT_NAME)
     {
         $this->addMailHeader('From', (string)$email, (string)$name);
         return $this;
@@ -297,7 +299,7 @@ class MailService
     public function addMailHeaders($header, array $pairs)
     {
         if (count($pairs) === 0) {
-            throw new InvalidArgumentException(
+            throw new \Exception(
                 'You must pass at least one name => email pair.'
             );
         }

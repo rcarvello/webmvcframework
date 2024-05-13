@@ -84,6 +84,12 @@ include_once(RELATIVE_PATH . "config/application.config.php");
 
 
 /**
+ * Includes Mail configuration parameters.
+ */
+include_once(RELATIVE_PATH . "config/mail.config.inc");
+
+
+/**
  * Auto generated Constants.
  * Do not change any lines in the sections below.
  */
