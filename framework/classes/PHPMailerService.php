@@ -1,7 +1,7 @@
 <?php
 /**
  * PHPMailService
- * PHPMailer wrapper
+ * A simple PHPMailer wrapper
  *
  * @package framework/classes
  * @filesource framework/classes/PHPMailerService.php
