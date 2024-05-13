@@ -33,9 +33,12 @@ class Uploader
     private $allowAll;
     private $maxSize;
     private $uploadName;
-    private $seqnence;
+
     public $name = 'Uploader';
-    public $useTable = false;
+    private $sameFileName;
+    private $sameName;
+    private $imageSeq;
+
 
     function setDir($path)
     {
@@ -70,7 +73,7 @@ class Uploader
         try {
             $parts = explode(".", $string);
             $ext = strtolower($parts[count($parts) - 1]);
-        } catch (Exception $c) {
+        } catch (\Exception $c) {
             $ext = "";
         }
         return $ext;
