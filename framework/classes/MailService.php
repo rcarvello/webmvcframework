@@ -2,6 +2,7 @@
 /**
  * MailService
  * PHP Mail wrapper
+ *
  * Original package from Eoghan O'Brien <eoghan@eoghanobrien.com>
  * http://github.com/eoghanobrien/php-simple-mail
  *
