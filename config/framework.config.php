@@ -84,7 +84,7 @@ include_once(RELATIVE_PATH . "config/application.config.php");
 
 
 /**
- * Includes Mail configuration parameters.
+ * Includes PHP mail() and PHPMailer configuration parameters.
  */
 include_once(RELATIVE_PATH . "config/mail.config.inc");
 
