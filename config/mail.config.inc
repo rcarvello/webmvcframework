@@ -1,7 +1,4 @@
 <?php
-/*
-PHP Internal Mail and PHPMailer constants settings
-*/
 
 /* PHPMailer constants */
 define('LIBS_DIR', '');
