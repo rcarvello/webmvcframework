@@ -143,7 +143,7 @@ class Loader
         $subSystems = unserialize(SUBSYSTEMS);
         if (is_array($subSystems)) {
             foreach ($subSystems as $key => $value) {
-                if (substr($url, 0, strlen($value)) === $value) {
+                if (!empty($url) && substr($url, 0, strlen($value)) === $value) {
                     $temp = substr($url, 0, strlen($value));
                     if (strlen($temp) > strlen($currentSubSystem))
                         $currentSubSystem = $temp;
