@@ -283,6 +283,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `full_name` varchar(45) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(200) NOT NULL,
+`salt` varchar(200) NOT NULL,
   `enabled` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Users credentials';
 
@@ -290,9 +291,13 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dump dei dati per la tabella `user`
 -- ALL PASSWORDS ARE: 'password'
 
-INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `enabled`) VALUES
-(1, 100, 'Administrator', 'admin@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(2, 60, 'Manager', 'manager@email.it', '5f4dcc3b5aa765d61d8327deb882cf99', 1);
+INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `salt`, `enabled`)
+VALUES (1, 100, 'Administrator', 'admin@email.com',
+        '163e821c6ece715c5053e40bfcc46b27f4751fe3e85a53c297ee2aa7df1f5252339d24b6f0849b1dcf914fb96d6cad2220609d43e2b04c45ab3a1cb68d178b14',
+        '194744212166472874e64879.46699751', 1),
+       (2, 60, 'Manager', 'manager@email.com',
+        '96887d1dd423fc6164cd51cf752bd363146b7fddfb0f0afb7f82f1c12c0d90943480ca599a2a05560c309884c925e06ad4d12fa1885c9ea50fd9bc368e62dc1d',
+        '205310676366472958b81a35.14153631', 1);
 
 -- --------------------------------------------------------
 
