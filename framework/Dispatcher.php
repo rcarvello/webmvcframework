@@ -160,14 +160,14 @@ class Dispatcher
             $this->currentSubSystem = "";
 
         // Drop the last char from url string if it is equal to "/"
-        if (isset($this->urlToDispatch[strlen($this->urlToDispatch)]) && $this->urlToDispatch[strlen($this->urlToDispatch) - 1] == "/")
+        if (!empty($this->urlToDispatch) && isset($this->urlToDispatch[strlen($this->urlToDispatch)]) && $this->urlToDispatch[strlen($this->urlToDispatch) - 1] == "/")
             $this->urlToDispatch = substr($this->urlToDispatch, 0, strlen($this->urlToDispatch) - 1);
 
-        // Generates an array from each sement of the url string delimited by a slash
-        $urlSegments = explode("/", $this->urlToDispatch);
+        // Generates an array from each segment of the url string delimited by a slash
+        $urlSegments = !empty($this->urlToDispatch) ? explode("/", $this->urlToDispatch) : "";
 
         // First segment is the controller  - store its name ad SEO name if controller is passed
-        if ($urlSegments[0] != "") {
+        if (!empty($urlSegments) && $urlSegments[0] != "") {
             $this->controllerClass = "controllers\\" . $this->currentSubSystem . $this->underscoreToCamelCase($urlSegments[0], true);
             $this->controllerSEOClassName = strtolower($urlSegments[0]);
         } else {
