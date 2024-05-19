@@ -234,6 +234,7 @@ class Paginator extends Component
         @$currentPage = $_GET[$urlPageParameterName];
         unset($_GET[$urlPageParameterName]);
         $queryString = http_build_query($_GET);
+        $queryString = str_replace("getState", "off", $queryString);
 
         // Format application query string enabling the dynamic addition of page parameter
         if ($queryString != "") {
