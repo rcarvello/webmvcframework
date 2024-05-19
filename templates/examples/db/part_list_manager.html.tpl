@@ -81,6 +81,7 @@
     function myCallBack() {
         console.log("Call back from custom call back");
     }
+
     function observerCallBack() {
         console.log("Call back from observer");
     }
