@@ -112,7 +112,7 @@ class PartListManager extends Controller
 
         $this->bindComponent($parts);
 
-        $this->setAsObserver("parts", true, "myCallBack");
+        $this->setAsObserver("parts");
 
     }
 
