@@ -318,8 +318,12 @@ function updateContent(index) {
     var swapElement = document.createElement('objectContent');
     swapElement.innerHTML = controllerContent[index];
     var controllerElement = swapElement.firstChild;
+
+    /* Used to debug a callback function
     var jsObserverCallBack = "<img src onerror='observerCallBack();'>";
     viewElement.innerHTML = controllerElement.innerHTML + jsObserverCallBack;
+    */
+
     // Call a custom call back function if defined when state is changed
     if (call_back[index] != "") {
         eval(call_back[index]);
