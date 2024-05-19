@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
+          media="screen">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,7 +21,8 @@
     <h1>{RES:PartsList}</h1>
 
     {Searcher:ricerca}
-    <a href="part_record/add/new" class="btn btn-info"><span class="glyphicon glyphicon-plus-sign"></span> {RES:AddNewPart}</a>
+    <a href="part_record/add/new" class="btn btn-info"><span
+                class="glyphicon glyphicon-plus-sign"></span> {RES:AddNewPart}</a>
     <div class="table table-responsive">
         <table class="table table-bordered" id="parts">
             <thead>
@@ -36,6 +38,7 @@
                 <th>{SorterBootstrap:bom_levels}</th>
             </tr>
             </thead>
+
             <tbody>
             <!-- BEGIN Parts -->
             <tr>
@@ -51,17 +54,20 @@
             </tr>
             <!-- END Parts -->
             </tbody>
+
             <tfoot>
             <tr>
-                <td class = "text-center" colspan="9">{PaginatorBootstrap:Bottom}</td>
+                <td class="text-center" colspan="9">{PaginatorBootstrap:Bottom}</td>
             </tr>
             </tfoot>
         </table>
+
         <hr>
         <a href="{GLOBAL:SITEURL}/examples/about/example/partListManager" class="btn btn-info">{RES:ShowCode}</a>
         <a href="{GLOBAL:SITEURL}/examples/db/part_list_manager/" class="btn btn-success">{RES:ShowTemplate}</a>
         <a href="{GLOBAL:SITEURL}/examples/db/part_list_manager" class="btn btn-success">{RES:ShowRun}</a>
         <a href="{GLOBAL:SITEURL}/examples/" class="btn btn-primary">{RES:ShowToc}</a>
+
     </div>
 
 </div>
@@ -72,10 +78,12 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script>
-    function observerCallBack() {
-        console.log("ok callback");
+    function myCallBack() {
+        console.log("Call back from custom call back");
     }
-
+    function observerCallBack() {
+        console.log("Call back from observer");
+    }
 </script>
 </body>
 </html>
