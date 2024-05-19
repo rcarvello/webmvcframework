@@ -241,9 +241,9 @@ function setUrls(index) {
 function getControllerState(index) {
     // console.log(serviceLocation[index]);
     xhr = new XMLHttpRequest();
-    xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     request = serviceLocation[index] + '&_' + new Date().getTime();
     xhr.open('GET', request, true);
+    xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhr.timeout = 4000;
     xhr.setRequestHeader('Cache-Control', 'no-cache');
     xhr.send();
