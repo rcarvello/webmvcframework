@@ -178,7 +178,7 @@ abstract class Controller
         $content = html_entity_decode($content, ENT_QUOTES, "UTF-8");
         $contentState = hash('sha512', $content);
         $content = base64_encode($content);
-        header('Content-Type: application/json');
+        header('Content-Type: application/json;charset=utf-8');
         if ($contentId == "all") {
             echo json_encode(array("controllerState" => $contentState, "controllerContent" => "", "section" => "all"));
         } else {
