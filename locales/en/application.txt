@@ -3,4 +3,5 @@ ShowCode=Show source code
 ShowTemplate=Show template
 ShowRun=Run again
 ShowToc=Table of contents
+Content_Expired_Message=Content expired
 
