@@ -241,9 +241,11 @@ function setUrls(index) {
 function getControllerState(index) {
     // console.log(serviceLocation[index]);
     xhr = new XMLHttpRequest();
-    request = serviceLocation[index] + '&_' + new Date().getTime();
+    // request = serviceLocation[index] + '&_' + new Date().getTime();
+    request = serviceLocation[index];
     xhr.open('GET', request, true);
     xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+    xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
     xhr.timeout = 4000;
     xhr.setRequestHeader('Cache-Control', 'no-cache');
     xhr.send();
@@ -265,10 +267,12 @@ function compareStates(index) {
 
         controllerState[index] = response.controllerState;
 
-        if (serverOSEncoding == "Linux") {
+        if (serverOSEncoding === "Linux") {
             controllerContent[index] = Base64.decode(response.controllerContent);
         } else {
-            controllerContent[index] = UTF8.decode(Base64.decode(response.controllerContent));
+            // controllerContent[index] = UTF8.decode(Base64.decode(response.controllerContent));
+            controllerContent[index] = Base64.decode(response.controllerContent);
+
         }
 
         if (viewState[index] == "") {
