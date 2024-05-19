@@ -71,5 +71,11 @@
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+    function observerCallBack() {
+        console.log("ok callback");
+    }
+
+</script>
 </body>
 </html>
