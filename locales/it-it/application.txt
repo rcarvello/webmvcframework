@@ -3,3 +3,4 @@ ShowCode=Mostra codice sorgente
 ShowTemplate=Mostra il template
 ShowRun=Ricarica
 ShowToc=Indice degli esempi
+Content_Expired_Message=Contenuto scaduto
