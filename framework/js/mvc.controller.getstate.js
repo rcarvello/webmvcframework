@@ -300,7 +300,7 @@ function compareStates(index) {
 
 // Verifies if controller state is equal or not to the view state
 function stateChanged(index) {
-    if (controllerState[index] != viewState[index]) {
+    if (controllerState[index] !== viewState[index]) {
         return true;
     } else {
         return false
@@ -319,10 +319,9 @@ function updateContent(index) {
     swapElement.innerHTML = controllerContent[index];
     var controllerElement = swapElement.firstChild;
 
-    /* Used to debug a callback function
-    var jsObserverCallBack = "<img src onerror='observerCallBack();'>";
-    viewElement.innerHTML = controllerElement.innerHTML + jsObserverCallBack;
-    */
+    // var jsObserverCallBack = "<img src onerror='observerCallBack();'>";
+    // viewElement.innerHTML = controllerElement.innerHTML + jsObserverCallBack;
+    viewElement.innerHTML = controllerElement.innerHTML;
 
     // Call a custom call back function if defined when state is changed
     if (call_back[index] != "") {
