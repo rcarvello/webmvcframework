@@ -55,7 +55,12 @@ class PartListManager extends Controller
         return $model;
     }
 
-
+    /**
+     * @param $parameters
+     * @return void
+     * @throws \framework\exceptions\NotInitializedViewException
+     * @throws \framework\exceptions\VariableNotFoundException
+     */
     public function autorun($parameters = null)
     {
         parent::autorun($parameters);
@@ -107,7 +112,7 @@ class PartListManager extends Controller
 
         $this->bindComponent($parts);
 
-        //$this->setAsObserver("parts");
+        $this->setAsObserver("parts", true, "myCallBack");
 
     }
 
