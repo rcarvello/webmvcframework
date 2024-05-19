@@ -34,6 +34,7 @@ class PartList extends Controller
         parent::__construct($this->view,$this->model);
         $navigation = new NavigationBar();
         $this->bindController($navigation);
+        $this->setAsObserver("parts", true, "myCallBack()");
     }
 
 
