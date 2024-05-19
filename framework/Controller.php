@@ -209,7 +209,7 @@ abstract class Controller
      * @throws NotInitializedViewException
      * @throws exceptions\VariableNotFoundException
      */
-    public function setAsObserver($content = null, $withAlerting = "false", $callBack=null)
+    public function setAsObserver($content = null, $withAlerting = "false", $callBack = "")
     {
         if (!$this->rootController)
             return;
