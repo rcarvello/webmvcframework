@@ -19,7 +19,7 @@
 <div class="container">
     <h1>{RES:PartsList}</h1>
     <div class="table table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="parts">
             <thead>
                 <tr>
                     <th>{RES:part_code}</th>
@@ -69,5 +69,14 @@
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+    function myCallBack() {
+        console.log("Call back from custom call back");
+    }
+
+    function observerCallBack() {
+        console.log("Call back from observer");
+    }
+</script>
 </body>
 </html>
