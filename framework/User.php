@@ -12,6 +12,7 @@
  * @license BSD Clause 3 License
  * @license https://opensource.org/licenses/BSD-3-Clause This software is distributed under BSD-3-Clause Public License
  */
+
 namespace framework;
 
 use framework\classes\ChiperService;
@@ -28,6 +29,8 @@ class User extends MySqlRecord implements BeanUser
     private $email;
     private $password;
     private $role;
+    private $token;
+    private $tokenTimeStamp;
     private $salt = CHIPER_CREDENTIALS_COOKIE_SALT;
     private $useEncryptedPassword;
 
@@ -65,6 +68,17 @@ class User extends MySqlRecord implements BeanUser
     public function getRole()
     {
         return $this->role;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+
+    public function getTokenTimeStamp()
+    {
+        return $this->tokenTimeStamp;
     }
 
     /**
@@ -137,6 +151,8 @@ class User extends MySqlRecord implements BeanUser
             $this->email = $rowObject->{$this->fieldUserEmail};
             $this->password = $rowObject->{$this->fieldUserPassword};
             $this->role = $rowObject->{$this->fieldUserRole};
+            $this->generateToken();
+            $this->updateLastLogin();
             $this->serializeUser();
             return true;
         } else {
@@ -155,11 +171,15 @@ class User extends MySqlRecord implements BeanUser
     {
         if (isset($_SESSION["user"])) {
             unset($_SESSION["user"]);
+            $this->destroyToken();
             $this->id = null;
             $this->email = null;
             $this->password = null;
             $this->role = null;
+            $this->token = null;
+            $this->tokenTimeStamp = null;
         }
+
         $chiper = new ChiperService();
         $secured = isset($_SERVER["HTTPS"]);
         setcookie($chiper::CREDENTIALS_COOKIE_NAME, "", time() - 3600, "/", "", $secured, true);
@@ -231,7 +251,7 @@ class User extends MySqlRecord implements BeanUser
     /**
      * Serializes User
      *
-     * @return bool
+     * @return boolean
      */
     private function serializeUser()
     {
@@ -251,6 +271,8 @@ class User extends MySqlRecord implements BeanUser
         $this->email = $user->getEmail();
         $this->password = $user->getPassword();
         $this->role = $user->getRole();
+        $this->token = $user->getToken();
+        $this->tokenTimeStamp = $user->getTokenTimeStamp();
         return true;
     }
 
@@ -274,4 +296,66 @@ class User extends MySqlRecord implements BeanUser
             return false;
         }
     }
+
+    /**
+     * Generate a Usr Token
+     * @return void
+     * @throws \Random\RandomException
+     */
+    private function generateToken()
+    {
+        $token = bin2hex(random_bytes(32));
+        $sql = "UPDATE {$this->userTable} SET " . USER_TOKEN . "='" . $token . "' WHERE {$this->fieldUserId} = $this->id";
+        $this->resetLastSqlError();
+        $this->query($sql);
+        $this->scanToken();
+    }
+
+    /**
+     * Scan/Rescan Token from DB
+     * @return void
+     */
+    public function scanToken()
+    {
+        $user = new \models\beans\BeanUser($this->id);
+        $this->token = $user->getToken();
+        $this->tokenTimeStamp = $user->getTokenTimeStamp();
+    }
+
+    /** Updates las login date
+     * @return void
+     */
+    private function updateLastLogin()
+    {
+        $sql = "UPDATE {$this->userTable} SET " . USER_LAST_LOGIN . " = NOW() WHERE {$this->fieldUserId} = $this->id";
+        $this->resetLastSqlError();
+        $this->query($sql);
+    }
+
+    /**
+     * Destroy token
+     * @return void
+     */
+    private function destroyToken()
+    {
+        $sql = "UPDATE {$this->userTable} SET " . USER_TOKEN . "= NULL WHERE {$this->fieldUserId} = $this->id";
+        $this->resetLastSqlError();
+        $this->query($sql);
+    }
+
+    /**
+     * Validate current user token
+     * @return bool
+     */
+
+    public function validateToken()
+    {
+        $tokenValidity = strtotime('8 Hour', strtotime($this->tokenTimeStamp));
+        if (!empty($this->token)) {
+            return time() < $tokenValidity;
+        } else {
+            return false;
+        }
+    }
 }
+
