@@ -79,7 +79,7 @@ class BeanCategory extends MySqlRecord implements Bean
      * Comment for field list_order: Not specified.<br>
      * Field information:
      *  - Data type: int(11)
-     *  - Null : NO
+     *  - Null : YES
      *  - DB Index: 
      *  - Default: 0
      *  - Extra:  
@@ -91,7 +91,7 @@ class BeanCategory extends MySqlRecord implements Bean
      * Class attribute for storing the SQL DDL of table category
      * @var string base64 encoded $ddl
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBjYXRlZ29yeWAgKAogIGBjYXRlZ29yeV9pZGAgaW50KDExKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgY2F0ZWdvcnlfbmFtZWAgdmFyY2hhcigyMCkgTk9UIE5VTEwsCiAgYGxpc3Rfb3JkZXJgIGludCgxMSkgTk9UIE5VTEwgREVGQVVMVCAnMCcsCiAgUFJJTUFSWSBLRVkgKGBjYXRlZ29yeV9pZGApCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD00IERFRkFVTFQgQ0hBUlNFVD11dGY4IFBBQ0tfS0VZUz0w";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBjYXRlZ29yeWAgKAogIGBjYXRlZ29yeV9pZGAgaW50KDExKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgY2F0ZWdvcnlfbmFtZWAgdmFyY2hhcigyMCkgTk9UIE5VTEwsCiAgYGxpc3Rfb3JkZXJgIGludCgxMSkgREVGQVVMVCAnMCcsCiAgUFJJTUFSWSBLRVkgKGBjYXRlZ29yeV9pZGApCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD0xOSBERUZBVUxUIENIQVJTRVQ9dXRmOCBQQUNLX0tFWVM9MA==";
 
     /**
      * setCategoryId Sets the class attribute categoryId with a given value

@@ -80,7 +80,7 @@ class BeanCustomer extends MySqlRecord implements Bean
      * Field information:
      *  - Data type: varchar(100)
      *  - Null : NO
-     *  - DB Index: 
+     *  - DB Index: UNI
      *  - Default: 
      *  - Extra:  
      * @var string $email
@@ -119,7 +119,7 @@ class BeanCustomer extends MySqlRecord implements Bean
      * Class attribute for storing the SQL DDL of table customer
      * @var string base64 encoded $ddl
      */
-    private $ddl = "Q1JFQVRFIFRBQkxFIGBjdXN0b21lcmAgKAogIGBjdXN0b21lcl9pZGAgaW50KDExKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgbmFtZWAgdmFyY2hhcig0NSkgREVGQVVMVCBOVUxMLAogIGBlbWFpbGAgdmFyY2hhcigxMDApIE5PVCBOVUxMLAogIGBuYXRpb25hbGl0eWAgdmFyY2hhcig0KSBOT1QgTlVMTCwKICBgYXNzdXJhbmNlYCBpbnQoMSkgTk9UIE5VTEwsCiAgUFJJTUFSWSBLRVkgKGBjdXN0b21lcl9pZGApCikgRU5HSU5FPUlubm9EQiBBVVRPX0lOQ1JFTUVOVD0zIERFRkFVTFQgQ0hBUlNFVD11dGY4";
+    private $ddl = "Q1JFQVRFIFRBQkxFIGBjdXN0b21lcmAgKAogIGBjdXN0b21lcl9pZGAgaW50KDExKSBOT1QgTlVMTCBBVVRPX0lOQ1JFTUVOVCwKICBgbmFtZWAgdmFyY2hhcig0NSkgREVGQVVMVCBOVUxMLAogIGBlbWFpbGAgdmFyY2hhcigxMDApIE5PVCBOVUxMLAogIGBuYXRpb25hbGl0eWAgdmFyY2hhcig0KSBOT1QgTlVMTCwKICBgYXNzdXJhbmNlYCBpbnQoMSkgTk9UIE5VTEwsCiAgUFJJTUFSWSBLRVkgKGBjdXN0b21lcl9pZGApLAogIFVOSVFVRSBLRVkgYGN1c3RvbWVyX2VtYWlsX3VxYCAoYGVtYWlsYCkKKSBFTkdJTkU9SW5ub0RCIEFVVE9fSU5DUkVNRU5UPTcgREVGQVVMVCBDSEFSU0VUPXV0Zjg=";
 
     /**
      * setCustomerId Sets the class attribute customerId with a given value
