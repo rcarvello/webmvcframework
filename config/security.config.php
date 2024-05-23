@@ -72,6 +72,24 @@ define('USER_SALT', 'salt');
 define('USER_ENABLED', 'enabled');
 
 /**
+ *  Defines a constant representing  the USER token
+ *  field
+ */
+define('USER_TOKEN', 'token');
+
+/**
+ *  Defines a constant representing  the USER token timestamp
+ *  field used to manage token expiration
+ */
+define('USER_TOKEN_TS', 'token_timestamp');
+
+/**
+ *  Defines a constant representing  the last_login
+ *  field used to store last user log in
+ */
+define('USER_LAST_LOGIN', 'last_login');
+
+/**
  *  Defines a constant for identifying administrators role vale
  *  Note: Framework need to known the value you want use for identifying
  *  administrators role. So it can automatically assign
