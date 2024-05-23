@@ -37,6 +37,10 @@ class InnerBlocks extends Controller
         // $this->restrictToAuthentication(null,"examples/cms/inner_blocks");
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
+        $user = new User();
+        $user->scanToken();
+        $msg = $user->validateToken() ? "Valido" : "Non valido";
+        echo "token $msg";
         parent::__construct($this->view,$this->model);
     }
 
