@@ -13,7 +13,12 @@
   "require": {
     "php": ">=5.3",
     "ext-json": "*",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "ext-mysqli": "*",
+    "ext-ctype": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*",
+    "ext-gd": "*"
   },
   "minimum-stability": "dev",
   "extra": {
