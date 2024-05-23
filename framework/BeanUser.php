@@ -45,4 +45,17 @@ interface BeanUser
      * @return mixed User Role
      */
     public function getRole();
+
+    /**
+     * Return user auth token.
+     *
+     * @return string
+     */
+    public function getToken();
+
+    /**
+     * Returns token creation/refresh timestamp
+     * @return string
+     */
+    public function getTokenTimeStamp();
 }
