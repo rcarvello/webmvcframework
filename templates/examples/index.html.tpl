@@ -98,6 +98,8 @@
             <div id="Database" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
                     <ul>
+                        <li><a href="{GLOBAL:SITEURL}/wiki/customers_manager">The wiki DB application (without DB
+                                Components)<a></li>
                         <li><a href="db/part_list">Part table listing</li>
                         <li><a href="db/part_paginator">Part table listing and paginating</li>
                         <li><a href="db/part_custom_paginator">Part table listing and paginating with a custom paginator
