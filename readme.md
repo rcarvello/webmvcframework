@@ -1,5 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/rcarvello/webmvcframework/master/docs/webmvclogo.png)
 <sup>Supported PHP versions from 5.3 to 8.3</sup>
+>[![trophy](https://github-profile-trophy.vercel.app/?username=rcarvello)](https://github.com/ryo-ma/github-profile-trophy)
 >
 > 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rcarvello_webmvcframework&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rcarvello_webmvcframework)
