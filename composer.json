@@ -13,7 +13,7 @@
   "config": {
         "allow-plugins": true
    },
-  "minimum-stability": "dev-master",
+  "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
     "php": ">=5.3",
