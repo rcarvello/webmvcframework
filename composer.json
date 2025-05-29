@@ -24,7 +24,7 @@
   "minimum-stability": "stable",
   "extra": {
     "installer-paths": {
-      "/": ["/"]
+      "rcarvello/webmvcframework": ["/"]
     }
   },
  "autoload": {
