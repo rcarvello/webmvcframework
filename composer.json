@@ -26,9 +26,10 @@
       "/": ["rcarvello/webmvcframework"]
     }
   },
-   "autoload": {
+ "autoload": {
     "psr-4": {
       "\\": "/"
-    },
+    }
+  },
 
 }
