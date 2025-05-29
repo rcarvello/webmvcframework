@@ -11,6 +11,7 @@
     }
   ],
   "require": {
+    "mnsami/composer-custom-directory-installer": "1.1.*",
     "php": ">=5.3",
     "ext-json": "*",
     "ext-dom": "*",
@@ -23,7 +24,7 @@
   "minimum-stability": "stable",
   "extra": {
     "installer-paths": {
-      "/": ["rcarvello/webmvcframework"]
+      "/": ["/"]
     }
   },
  "autoload": {
