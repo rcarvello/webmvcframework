@@ -13,6 +13,8 @@
   "config": {
         "allow-plugins": true
    },
+  "minimum-stability": "dev-master",
+  "prefer-stable": true,
   "require": {
     "php": ">=5.3",
     "ext-json": "*",
