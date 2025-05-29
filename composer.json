@@ -14,7 +14,6 @@
         "allow-plugins": true
    },
   "require": {
-    "composer/installers": "~1.0",
     "php": ">=5.3",
     "ext-json": "*",
     "ext-dom": "*",
@@ -23,11 +22,6 @@
     "ext-mbstring": "*",
     "ext-openssl": "*",
     "ext-gd": "*"
-  },
-  "extra": {
-    "installer-paths": {
-      ".": ["rcarvello/webmvcframework"]
-    }
   },
  "autoload": {
     "psr-4": {
