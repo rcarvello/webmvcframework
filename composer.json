@@ -25,6 +25,10 @@
     "installer-paths": {
       "/": ["rcarvello/webmvcframework"]
     }
-  }
+  },
+   "autoload": {
+    "psr-4": {
+      "\\": "/"
+    },
 
 }
