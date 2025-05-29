@@ -20,7 +20,7 @@
     "ext-openssl": "*",
     "ext-gd": "*"
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "extra": {
     "installer-paths": {
       "/": ["rcarvello/webmvcframework"]
