@@ -10,6 +10,9 @@
       "email": "rosario.carvello@gmail.com"
     }
   ],
+  "config": {
+        "allow-plugins": true
+   },
   "require": {
     "composer/installers": "~1.0",
     "php": ">=5.3",
@@ -24,7 +27,7 @@
   "minimum-stability": "stable",
   "extra": {
     "installer-paths": {
-      "/": ["rcarvello/webmvcframework"]
+      ".": ["rcarvello/webmvcframework"]
     }
   },
  "autoload": {
