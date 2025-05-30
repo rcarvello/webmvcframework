@@ -18,9 +18,9 @@ It offers to developers a complete set of functionalities for rapid development 
 
 The **Component Based Development**, which was used for building many framework’s features, permits to developers to apply another level of software decomposition and reuse. Framework’s components, in fact, realize **recurrent aspects** of web applications. Many of these aspects are regarding MySQL, e.g. data listing, data listing and sorting, data listing and filtering, data listing and pagination, record management and the common table’s operations of select, insert, delete and update. 
 
-> WebMVC offers a set of pre-built components for implementing the necessary server logic for frequently database management operations. Each component is itself designed with an MVC architecture and is equipped by a Controller, Model, View, and HTML Template. 
-Components are easy to use and developers can aggregate them into a root controller by using composition criteria when building complex web pages. 
-The component GUI can also easily updated or replaced to reflect the graphics experience, simply by editing or replacing the component  HTML template. The component internal logic will remain fully reusable without the need for any source code modifications.
+> WebMVC offers a set of pre-built components for implementing the necessary server logic for frequently database management operations. Each component is itself designed with an MVC architecture and is equipped by a Controller, Model, View, and HTML Template.
+> Components are easy to use and developers can aggregate them into a root controller by using composition criteria when building complex web pages.
+> The component GUI can also easily updated or replaced to reflect the graphics experience, simply by editing or replacing the component HTML template. The component internal logic will remain fully reusable without the need for any source code modifications.
 
 ## Thanks
 Many and many thanks to   
@@ -35,7 +35,15 @@ that I used in the development of PHP Web MVC Framework.
 ## How to install
 To install the framework download and copy it into an Apache web folder. Then go to the **config directory** and modify **application.config.php** according to your MySQL server configuration and Apache web folder you want to use for your application.
 By default framework provides a small set  of examples. For using them run the provided SQL script into the **sql** folder.
-In a future time, I will provide you with more examples illustrating its functionalities.  
+In a future time, I will provide you with more examples illustrating its functionalities.
+
+### Using composer
+
+To create a new PHP Web MVC project into a given project folder open a terminal session and run:
+
+```
+composer create-project rcarvello/webmvcframework PROJECT-FOLDER
+```
 
 ## How to autogenerate PHP Model classes from your MySQL database
 The util directory contains a file named **app_create_beans.php**.
