@@ -29,7 +29,10 @@ class Loader
             $this->directories = $this->getDirectories();
             spl_autoload_register(array($this, 'secureAutoload'));
         } else if ($mode == "psr0") {
-            spl_autoload_register(array($this, 'psr0Autoload'));
+            spl_autoload_register(array($this, 'psr0Autoload'), true, true);
+            // Add Composer support
+            if (file_exists(__DIR__ . "/../vendor/autoload.php"))
+                require_once __DIR__ . '/../vendor/autoload.php';
         }
     }
 
@@ -100,8 +103,11 @@ class Loader
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
         $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, RELATIVE_PATH);
         $fileName = $relativePath . $fileName;
-        if (file_exists($fileName))
+        if (file_exists($fileName)) {
             require $fileName;
+            return true;
+        }
+        return false;
 
     }
 
