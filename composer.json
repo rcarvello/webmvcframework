@@ -1,7 +1,7 @@
 {
   "name": "rcarvello/webmvcframework",
   "description": "PHP Web MVC Framework",
-  "type": "framework",
+  "type": "project",
   "license": "MIT",
   "homepage": "https://github.com/rcarvello/webmvcframework",
   "authors": [
@@ -10,9 +10,6 @@
       "email": "rosario.carvello@gmail.com"
     }
   ],
-  "config": {
-        "allow-plugins": true
-   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
