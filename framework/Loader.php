@@ -18,21 +18,22 @@ use \Exception;
 
 class Loader
 {
-    private $directories = array();
+    private $directories = [];
 
     public function __construct($mode = "psr0")
     {
         $this->checkPHPVersion();
         if ($mode == "standard") {
-            spl_autoload_register(array($this, 'autoload'));
+            spl_autoload_register([$this, 'autoload']);
         } else if ($mode == "secured") {
             $this->directories = $this->getDirectories();
-            spl_autoload_register(array($this, 'secureAutoload'));
+            spl_autoload_register([$this, 'secureAutoload']);
         } else if ($mode == "psr0") {
-            spl_autoload_register(array($this, 'psr0Autoload'), true, true);
-            // Add Composer support
-            if (file_exists(__DIR__ . "/../vendor/autoload.php"))
+            // Add Composer support if present
+            if (file_exists(__DIR__ . "/../vendor/autoload.php")) {
                 require_once __DIR__ . '/../vendor/autoload.php';
+            }
+            spl_autoload_register([$this, 'psr0Autoload'], true, true);
         }
     }
 
@@ -48,7 +49,7 @@ class Loader
     {
         $requiredClass = $className . ".php";
         if (file_exists($requiredClass)) {
-            require_once($requiredClass);
+            require_once $requiredClass;
         } else {
             throw new ControllerNotFoundException();
         }
@@ -75,7 +76,7 @@ class Loader
             foreach ($directories as $key => $value) {
                 $requiredClass = RELATIVE_PATH . $value . "/" . $className . '.php';
                 if (file_exists($requiredClass)) {
-                    require_once($requiredClass);
+                    require_once $requiredClass;
                     break;
                 }
             }
@@ -92,20 +93,32 @@ class Loader
      */
     public function psr0Autoload($className)
     {
-        $className = ltrim($className, '\\');
-        $fileName = '';
-        $namespace = '';
-        if ($lastNsPos = strrpos($className, '\\')) {
-            $namespace = substr($className, 0, $lastNsPos);
-            $className = ucfirst(substr($className, $lastNsPos + 1));
-            $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+        $php_web_mvc_namespace_paths = ["framework", APP_CONTROLLERS_PATH, APP_MODELS_PATH, APP_VIEWS_PATH, "classes", "util"];
+        $is_classname_in_namespaces_path = false;
+        foreach ($php_web_mvc_namespace_paths as $namespace_path) {
+            if (str_starts_with($className, "$namespace_path\\")) {
+                $is_classname_in_namespaces_path = true;
+                break;
+            }
         }
-        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-        $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, RELATIVE_PATH);
-        $fileName = $relativePath . $fileName;
-        if (file_exists($fileName)) {
-            require $fileName;
-            return true;
+
+        if ($is_classname_in_namespaces_path) {
+            $className = ltrim($className, '\\');
+            $fileName = '';
+            $namespace = '';
+            if ($lastNsPos = strrpos($className, '\\')) {
+                $namespace = substr($className, 0, $lastNsPos);
+                $className = ucfirst(substr($className, $lastNsPos + 1));
+                $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+            }
+            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+            $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, RELATIVE_PATH);
+            $fileName = $relativePath . $fileName;
+            // if (file_exists($fileName)){
+            if (is_file($fileName)) {
+                require $fileName;
+                return true;
+            }
         }
         return false;
 
@@ -119,7 +132,7 @@ class Loader
     public static function getDirectories()
     {
         $directories = unserialize(CLASSES);
-        $subSystems = array();
+        $subSystems = [];
         $definedSubSystems = unserialize(SUBSYSTEMS);
 
         if (is_array($definedSubSystems)) {
@@ -131,8 +144,9 @@ class Loader
         }
 
         // Merges arrays of subsystems and classes directories
-        if (!empty($subSystems))
+        if (!empty($subSystems)) {
             $directories = array_merge($subSystems, $directories);
+        }
 
         return $directories;
     }
@@ -151,8 +165,10 @@ class Loader
             foreach ($subSystems as $key => $value) {
                 if (!empty($url) && substr($url, 0, strlen($value)) === $value) {
                     $temp = substr($url, 0, strlen($value));
-                    if (strlen($temp) > strlen($currentSubSystem))
+                    if (strlen($temp) > strlen($currentSubSystem)) {
                         $currentSubSystem = $temp;
+                    }
+
                 }
             }
         }
@@ -207,7 +223,7 @@ class Loader
      */
     public static function listFolders($dir = APP_CONTROLLERS_PATH)
     {
-        $directory = array();
+        $directory = [];
         $elements = scandir($dir);
         foreach ($elements as $element) {
             if ($element != '.' && $element != '..') {
