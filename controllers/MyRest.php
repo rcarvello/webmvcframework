@@ -26,7 +26,7 @@ class MyRest extends RestService
         $this->restrictToRBAC();
         $this->allowMethod("part");
         $this->allowMethod("category");
-        $this->addCORS("https://www.allowedomain.domain");
+        $this->addCORS("http://localhost:8000");
     }
 
 
