@@ -1,5 +1,6 @@
 {
   "name": "rcarvello/webmvcframework",
+  "version": "1.0.0",
   "description": "PHP Web MVC Framework",
   "type": "project",
   "license": "MIT",
@@ -13,7 +14,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=5.3",
+    "php": ">=5.6",
     "ext-json": "*",
     "ext-dom": "*",
     "ext-mysqli": "*",
