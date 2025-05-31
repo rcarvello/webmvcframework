@@ -14,12 +14,6 @@
  */
 
 /**
- *  Basic initialization
- */
-require_once(RELATIVE_PATH . "framework/Loader.php");
-use framework\Loader;
-
-/**
  * Defines a constant for compressing HTML output
  */
 define("COMPRESS_OUTPUT", false);
@@ -60,10 +54,17 @@ define("JSFRAMEWORK","framework/js/");
 define("CLASSES", serialize(array("framework", "framework/exceptions", APP_CONTROLLERS_PATH, APP_VIEWS_PATH, APP_MODELS_PATH, APP_MODELS_PATH . "/beans", "util/mysqlreflection")));
 
 /**
+ *  Basic initialization for SUBSYSTEMS
+ */
+
+require_once(RELATIVE_PATH . "framework/Loader.php");
+
+use framework\Loader;
+
+/**
  * Defines a constant for application's subsystems directories
  */
 define ("SUBSYSTEMS",serialize(Loader::listFolders(APP_CONTROLLERS_PATH)));
-
 
 
 /**
