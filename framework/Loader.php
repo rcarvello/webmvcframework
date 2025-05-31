@@ -96,7 +96,7 @@ class Loader
         $php_web_mvc_namespace_paths = ["framework", APP_CONTROLLERS_PATH, APP_MODELS_PATH, APP_VIEWS_PATH, "classes", "util"];
         $is_classname_in_namespaces_path = false;
         foreach ($php_web_mvc_namespace_paths as $namespace_path) {
-            if (str_starts_with($className, "$namespace_path\\")) {
+            if (strpos($className, "$namespace_path\\") == 0) {
                 $is_classname_in_namespaces_path = true;
                 break;
             }
