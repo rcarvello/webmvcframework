@@ -42,7 +42,7 @@ if ($filePath && is_file($filePath)) {
     return false;
 
 }
-// If no physical resource is requested then assuming request is a virtual resource to be managed by the Framework (APPLICATION CENTRIC REQUEST)
+// If no physical resource is requested then is a virtual resource to be managed by the Framework (APPLICATION CENTRIC REQUEST)
 
 // Set path CONSTANT (required by the Framework)
 define("RELATIVE_PATH", "");
