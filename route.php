@@ -1,4 +1,5 @@
 <?php
+
 /**
  * route.php
  * Routing for PHP built-in web server
@@ -26,44 +27,27 @@
  */
 
 
-// Enable error reporting and disable notices
-// error_reporting(E_ALL & ~E_DEPRECATED);
+// Enable error reporting. Optionally disable notices by replacing with: error_reporting(E_ALL & ~E_DEPRECATED)
 error_reporting(E_ALL);
 
-// Only when using PHP built in web server
+// Only when using PHP built-in web server
 chdir(__DIR__);
+
+// Parse the request
 $url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $filePath = ltrim($url_path, '/');
 
-// First check if request is regarding a physical resource
+// If request is an existing physical resource handle it with the server (CONTENT CENTRIC REQUEST)
 if ($filePath && is_file($filePath)) {
-    $ext = pathinfo($filePath, PATHINFO_EXTENSION);
-    // if is .php file include it and run
-    if (strtoupper($ext) == 'PHP') {
-        $current_path = dirname($filePath);
-        chdir($current_path);
-        include_once $filePath;
-    // else (is not a .php file, for example .css, .js and more) echoing it
-    } else {
-        $extensions = array (
-            "js"=>"text/javascript",
-            "css"=>"text/css",
-            "json"=>"text/json",
-            "xml"=>"text/xml");
-        $content = file_get_contents($filePath);
-        $contentTypeExt = array_key_exists($ext,$extensions) ? $extensions[$ext]: "text/html";
-        header('Content-Type: '.$contentTypeExt);
-        echo $content;
-    }
-    // no virtual request need to be processed so exiting the route execution
-    exit;
-}
-// If no physical resource is requested then assuming to request a virtual resource
+    return false;
 
-// Set path CONSTANT (required by framework)
+}
+// If no physical resource is requested then assuming request is a virtual resource to be managed by the Framework (APPLICATION CENTRIC REQUEST)
+
+// Set path CONSTANT (required by the Framework)
 define("RELATIVE_PATH", "");
 
-// Commons initializations and configurations loading
+// Common initializations and configurations loading
 // Note: for changing framework or application setting see config folder.
 header('Content-Type: text/html; charset=utf-8');
 
@@ -74,14 +58,14 @@ include_once RELATIVE_PATH . "config/framework.config.php";
 session_start();
 session_regenerate_id();
 
-// Set url variable (required by framework)
+// Set url variable (required by th Framework)
 $_GET['url'] = ltrim($url_path, '/');
 
-// Use of framework classes for handling request
+// Use of Framework classes for handling request
 use framework\Dispatcher;
 use framework\Loader;
 
-// Set classes autoloader simply by instantiating framework Loader
+// Set classes autoloader simply by instantiating the framework Loader
 $loader = new Loader();
 
 // Create a Dispatcher to dispatch URL request to the appropriate user controller
