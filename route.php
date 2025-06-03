@@ -33,6 +33,20 @@ error_reporting(E_ALL);
 // Only when using PHP built-in web server
 chdir(__DIR__);
 
+// Console Output
+$green = "\033[32m";
+$yellow = "\033[33m";
+$cyan = "\033[36m";
+$red = "\033[31m";
+$blue = "\033[34m";
+$reset = "\033[0m";
+
+$uri = $_SERVER['REQUEST_URI'];
+$method = $_SERVER['REQUEST_METHOD'];
+$time = date('Y-m-d H:i:s');
+
+file_put_contents('php://stdout', "\033[33m $time \033[36m $method  \033[32m $uri \033[0m \n");
+
 // Parse the request
 $url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $filePath = ltrim($url_path, '/');
