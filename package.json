@@ -1,0 +1,10 @@
+{
+  "name": "webmvc-browsersync-windows",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "browser-sync start --config .bs-config.js"
+  },
+  "devDependencies": {
+    "browser-sync": "2.29.3"
+  }
+}
