@@ -21,7 +21,13 @@
     "ext-openssl": "*",
     "ext-gd": "*"
   },
- "autoload": {
+  "scripts": {
+    "dev": "node start-dev.js"
+  },
+  "scripts-descriptions": {
+    "dev": "Start PHP server + BrowserSync concurrently"
+  },
+  "autoload": {
     "psr-4": {
       "\\": "/"
     }

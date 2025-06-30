@@ -1,6 +1,9 @@
+const config = require('./config.json'); // carica la porta dal file JSON
+
 module.exports = {
-    proxy: 'localhost:8000',
+    proxy: `localhost:${config.PORT}`,
     files: [
+        './**/*.php',
         'src/**/*.php',
         'src/**/*.css',
         'src/**/*.js',
@@ -12,6 +15,8 @@ module.exports = {
         'locales/**/*.txt',
         'css/**/*.cs',
         'js/**/*.cs',
+        'config/**/*.php',
+
     ],
     open: true,
     notify: true,

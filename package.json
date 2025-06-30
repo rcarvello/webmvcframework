@@ -5,6 +5,7 @@
     "dev": "browser-sync start --config .bs-config.js"
   },
   "devDependencies": {
-    "browser-sync": "2.29.3"
+    "browser-sync": "2.29.3",
+    "concurrently": "^8.2.0"
   }
 }
