@@ -22,7 +22,10 @@
     "ext-gd": "*"
   },
   "scripts": {
-    "dev": "node start-dev.js"
+    "dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "node start-dev.js"
+    ]
   },
   "scripts-descriptions": {
     "dev": "Start PHP server + BrowserSync concurrently"
