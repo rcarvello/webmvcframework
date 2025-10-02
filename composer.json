@@ -28,7 +28,7 @@
     ],
     "post-create-project-cmd": [
       "npm install",
-      "php setup-config.php"
+      "echo Please run \\033[1;33m php scripts/setup-config.php\\033[0m\\ to setup the Environment"
     ]
   },
   "scripts-descriptions": {
