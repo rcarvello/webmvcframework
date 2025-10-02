@@ -20,27 +20,27 @@
 /**
  *  MySQL Host
  */
-define("DBHOST","localhost");
+define("DBHOST", "{DB_HOST}");
 
 /**
  *  MySQL User
  */
-define("DBUSER","root");
+define("DBUSER", "{DB_USER}");
 
 /**
  * MySQL Password
  */
-define("DBPASSWORD", "password");
+define("DBPASSWORD", "{DB_PASSWORD}");
 
 /**
  *  MySQL Database
  */
-define("DBNAME","mrp");
+define("DBNAME", "{DB_NAME}");
 
 /**
  *  MySQL Port
  */
-define('DBPORT', '3306');
+define('DBPORT', '{DB_PORT}');
 
 /**
  * Defines a constant for site URL
