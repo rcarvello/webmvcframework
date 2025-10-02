@@ -25,6 +25,10 @@
     "dev": [
       "Composer\\Config::disableProcessTimeout",
       "node start-dev.js"
+    ],
+    "post-create-project-cmd": [
+      "npm install",
+      "php setup-config.php"
     ]
   },
   "scripts-descriptions": {
