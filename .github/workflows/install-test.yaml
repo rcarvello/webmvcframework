@@ -1,0 +1,71 @@
+name: Test Framework Installation
+
+on:
+  push:
+    tags:
+      - "v*.*.*"   # es. v1.0.6
+
+jobs:
+  install-test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: testdb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_mysql
+          coverage: none
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Composer
+        run: |
+          EXPECTED_CHECKSUM="$(php -r 'copy(\"https://composer.github.io/installer.sig\", \"php://stdout\");')"
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          ACTUAL_CHECKSUM="$(php -r \"echo hash_file('sha384', 'composer-setup.php');\")"
+          if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
+              >&2 echo 'ERROR: Invalid composer installer checksum'
+              exit 1
+          fi
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          rm composer-setup.php
+
+      - name: Wait for MySQL
+        run: |
+          for i in {1..10}; do
+            if mysql -h127.0.0.1 -P3306 -uroot -proot -e "SELECT 1;" &> /dev/null; then
+              echo "MySQL is ready"
+              break
+            fi
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
+
+      - name: Test create-project
+        run: |
+          composer create-project rcarvello/webmvcframework testapp --prefer-dist --no-interaction
+          cd testapp
+          php setup-config.php
+          composer run dev
+    
