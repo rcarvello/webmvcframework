@@ -231,7 +231,8 @@ if (!file_exists($sqlFile)) {
 echo "DB Setup...\n";
 
 try {
-    $dsn = "mysql:host=" . $params["DB_HOST"] . ";charset=utf8mb4";
+    $db = $params['DB_HOST'] === 'localhost' ? '127.0.0.1' : $params['DB_HOST'];
+    $dsn = "mysql:host=" . $db . ";charset=utf8mb4";
     $pdo = new PDO($dsn, $params["DB_USER"], $params["DB_PASSWORD"], [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::MYSQL_ATTR_MULTI_STATEMENTS => true
