@@ -92,7 +92,7 @@ function setup_php()
     $config['PHP_INI_PATH'] = $iniPathFinal;
 
     file_put_contents($configFile, json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-
+    echo "\n";
     echo "\033[0;32m config.json updated successfully!\033[0m\n";
     return true;
 }
@@ -193,11 +193,14 @@ foreach ($placeholders as $key => $default) {
     // Replacing placeholder
     $content = str_replace("{" . $key . "}", $value, $content);
 }
+
+
 echo "Testing MySQL connection...\n";
 
 try {
     // Connessione senza specificare DB
-    $mysqli = @new mysqli($params["DB_HOST"], $params["DB_USER"], $params["DB_PASSWORD"]);
+    $db = $params['DB_HOST'] === 'localhost' ? '127.0.0.1' : $params['DB_HOST'];
+    $mysqli = @new mysqli($db, $params["DB_USER"], $params["DB_PASSWORD"]);
 
     if ($mysqli->connect_error) {
         throw new Exception("Connection failed: " . $mysqli->connect_error);
