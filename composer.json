@@ -19,7 +19,8 @@
     "ext-ctype": "*",
     "ext-mbstring": "*",
     "ext-openssl": "*",
-    "ext-gd": "*"
+    "ext-gd": "*",
+    "ext-pdo": "*"
   },
   "scripts": {
     "dev": [
@@ -32,7 +33,7 @@
     ]
   },
   "scripts-descriptions": {
-    "dev": "Start PHP server + BrowserSync concurrently"
+    "dev": "Start PHP server with hot reload (by using BrowserSync concurrently)"
   },
   "autoload": {
     "psr-4": {
