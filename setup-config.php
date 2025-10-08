@@ -233,20 +233,19 @@ try {
 echo "Setup process is successfully completed!\n";
 
 // PHP > 8.4 Fixing
-if (version_compare($phpVersion, '8.4.0', '>=')) {
-    echo "\033[0;36mℹ️ PHP >= 8.4 detected, installing php-cs-fixer...\033[0m\n";
+if (PHP_VERSION_ID >= 80400) {
+    echo "\033[0;36m PHP >= 8.4 detected, installing php-cs-fixer...\033[0m\n";
 
-    // Installing php-cs-fixer as a dev dependency
     passthru("composer require --dev friendsofphp/php-cs-fixer");
 
-    // Run the fixer
     if (stripos(PHP_OS, 'WIN') === 0) {
         passthru(".\\vendor\\bin\\php-cs-fixer fix");
     } else {
         passthru("./vendor/bin/php-cs-fixer fix");
     }
+
     echo "\033[0;32m Code style fixed with php-cs-fixer.\033[0m\n";
 } else {
-    echo "\033[0;33m PHP version < 8.4 → skipping php-cs-fixer installation.\033[0m\n";
+    echo "\033[0;33m PHP version < 8.4 → skipping php-cs-fixer.\033[0m\n";
 }
 
