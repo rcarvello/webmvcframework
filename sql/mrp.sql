@@ -1,12 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Creato il: Ott 08, 2025 alle 11:00
--- Versione del server: 5.6.21-log
--- Versione PHP: 8.2.3
+-- SQL Dump
 
+SET FOREIGN_KEY_CHECKS = 0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -16,16 +10,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `mrp`
---
-CREATE
-DATABASE IF NOT EXISTS `mrp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE
-`mrp`;
-
--- --------------------------------------------------------
 
 --
 -- Struttura della tabella `access_level`
@@ -70,7 +54,7 @@ CREATE TABLE `bom`
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`
 (
-    `category_id`   int(11) NOT NULL,
+    `category_id`   int(11)     NOT NULL,
     `category_name` varchar(20) NOT NULL,
     `list_order`    int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 PACK_KEYS=0;
@@ -89,7 +73,7 @@ VALUES (1, 'Computer', 1),
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `customer`
+-- Struttura della tabella customer
 --
 
 DROP TABLE IF EXISTS `customer`;
@@ -238,15 +222,46 @@ CREATE TABLE `part` (
 -- Dump dei dati per la tabella `part`
 --
 
-INSERT INTO `part` (`part_code`, `description`, `source`, `source_lead_time`, `measurement_unit_code`, `part_type_code`, `part_category_code`, `wastage`, `bom_levels`) VALUES
-('01', 'Simple product', 'BUY', 10000, 'kg', 'PRODUCT', '01', 1, 10),
+INSERT INTO `part` (`part_code`, `description`, `source`, `source_lead_time`, `measurement_unit_code`, `part_type_code`, `part_category_code`, `wastage`, `bom_levels`) VALUES ('01',
+                                                                                                                                                                                'Descrizione',
+                                                                                                                                                                                'BUY',
+                                                                                                                                                                                10000,
+                                                                                                                                                                                'kg',
+                                                                                                                                                                                'PRODUCT',
+                                                                                                                                                                                '01',
+                                                                                                                                                                                1,
+                                                                                                                                                                                10),
 ('02', 'Demodulator', 'MAKE', 4, 'pz', 'RAW', '01', 1, 1),
 ('03', 'Converter', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 1),
 ('04', 'Jack', 'BUY', 10, 'pz', 'PRODUCT', '02', 1, 2),
-('05', 'Mouse Wheel', 'MAKE', 5, 'kg', 'ASSEMBLY', '01', 10, NULL),
+                                                                                                                                                                               ('05',
+                                                                                                                                                                                'Mouse Wheel2',
+                                                                                                                                                                                'MAKE',
+                                                                                                                                                                                5,
+                                                                                                                                                                                'kg',
+                                                                                                                                                                                'ASSEMBLY',
+                                                                                                                                                                                '01',
+                                                                                                                                                                                10,
+                                                                                                                                                                                NULL),
 ('06', 'Board rz-048', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, NULL),
-('07', 'Led red', 'MAKE', 5, 'pz', 'RAW', '01', 2, 0),
-('08', 'Led green', 'BUY', 10, 'kg', 'SUB-ASSEMBLY', '02', 1, NULL),
+                                                                                                                                                                               ('07',
+                                                                                                                                                                                'Led mm 02 red',
+                                                                                                                                                                                'MAKE',
+                                                                                                                                                                                5,
+                                                                                                                                                                                'pz',
+                                                                                                                                                                                'RAW',
+                                                                                                                                                                                '01',
+                                                                                                                                                                                2,
+                                                                                                                                                                                0),
+                                                                                                                                                                               ('08',
+                                                                                                                                                                                'Led mm 02 green',
+                                                                                                                                                                                'BUY',
+                                                                                                                                                                                10,
+                                                                                                                                                                                'kg',
+                                                                                                                                                                                'SUB-ASSEMBLY',
+                                                                                                                                                                                '02',
+                                                                                                                                                                                1,
+                                                                                                                                                                                NULL),
 ('09', 'RS232', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 0),
 ('10', 'RJ45', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, 0),
 ('11', 'Cable', 'BUY', 5, 'pz', 'PRODUCT', '02', 10, 0);
@@ -414,14 +429,20 @@ CREATE TABLE `user` (
   `last_login` datetime DEFAULT NULL COMMENT 'Use last login date'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Users credentials';
 
+
 --
 -- Dump dei dati per la tabella `user`
--- ALL PASSWORDS ARE: 'password'
+-- ALL PASSWORDS ARE: password
+--
 
-INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `salt`, `enabled`)
-VALUES 
+INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `salt`, `token`, `token_timestamp`,
+                    `enabled`, `last_login`)
+VALUES
 (1, 100, 'Administrator', 'admin@email.com','163e821c6ece715c5053e40bfcc46b27f4751fe3e85a53c297ee2aa7df1f5252339d24b6f0849b1dcf914fb96d6cad2220609d43e2b04c45ab3a1cb68d178b14','194744212166472874e64879.46699751', 1),
 (2, 60, 'Manager', 'manager@email.com','96887d1dd423fc6164cd51cf752bd363146b7fddfb0f0afb7f82f1c12c0d90943480ca599a2a05560c309884c925e06ad4d12fa1885c9ea50fd9bc368e62dc1d','205310676366472958b81a35.14153631', 1);
+--
+-- --------------------------------------------------------
+
 --
 -- Struttura stand-in per le viste `users_roles_names`
 -- (Vedi sotto per la vista effettiva)
@@ -815,6 +836,7 @@ ALTER TABLE `user`
 ALTER TABLE `wiki_users_roles`
   ADD CONSTRAINT `fk_user_has_application_role_application_role` FOREIGN KEY (`role_id`) REFERENCES `wiki_application_role` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_has_application_role_user` FOREIGN KEY (`user_id`) REFERENCES `wiki_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
