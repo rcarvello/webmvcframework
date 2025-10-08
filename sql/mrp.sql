@@ -1,4 +1,11 @@
--- SQL Dump
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Creato il: Ott 08, 2025 alle 13:22
+-- Versione del server: 5.6.21-log
+-- Versione PHP: 8.2.3
 
 SET FOREIGN_KEY_CHECKS = 0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -12,10 +19,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+-- Database: `mrp`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `access_level`
 --
 
-DROP TABLE IF EXISTS `access_level`;
 CREATE TABLE `access_level`
 (
   `id_access_level` int(11) NOT NULL,
@@ -37,7 +49,6 @@ INSERT INTO `access_level` (`id_access_level`, `name`) VALUES
 -- Struttura della tabella `bom`
 --
 
-DROP TABLE IF EXISTS `bom`;
 CREATE TABLE `bom`
 (
   `parent_part_code` varchar(40) NOT NULL,
@@ -51,7 +62,6 @@ CREATE TABLE `bom`
 -- Struttura della tabella `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`
 (
     `category_id`   int(11)     NOT NULL,
@@ -73,10 +83,9 @@ VALUES (1, 'Computer', 1),
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella customer
+-- Struttura della tabella `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
@@ -89,9 +98,12 @@ CREATE TABLE `customer` (
 -- Dump dei dati per la tabella `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `name`, `email`, `nationality`, `assurance`) VALUES
-(11, 'Mario Rossi', 'm.rossi@email.com', 'it', 1),
-(12, 'Elena Verdi', 'elena.verdi@email.com', 'it', 1);
+INSERT INTO `customer` (`customer_id`, `name`, `email`, `nationality`, `assurance`) VALUES (11, 'Mario Rossi',
+                                                                                            'mario.rossi@email.it',
+                                                                                            'it', 3),
+                                                                                           (12, 'Elen Green',
+                                                                                            'elen.green@email.com',
+                                                                                            'out', 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +111,6 @@ INSERT INTO `customer` (`customer_id`, `name`, `email`, `nationality`, `assuranc
 -- Struttura della tabella `customer_order`
 --
 
-DROP TABLE IF EXISTS `customer_order`;
 CREATE TABLE `customer_order` (
   `order_id` int(11) NOT NULL,
   `order_date` date DEFAULT NULL,
@@ -113,7 +124,6 @@ CREATE TABLE `customer_order` (
 -- Struttura della tabella `file_type`
 --
 
-DROP TABLE IF EXISTS `file_type`;
 CREATE TABLE `file_type` (
   `file_type_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL
@@ -125,7 +135,6 @@ CREATE TABLE `file_type` (
 -- Struttura della tabella `good_movement`
 --
 
-DROP TABLE IF EXISTS `good_movement`;
 CREATE TABLE `good_movement` (
   `good_movement_id` int(11) NOT NULL,
   `movement_date` varchar(45) DEFAULT NULL,
@@ -140,7 +149,6 @@ CREATE TABLE `good_movement` (
 -- Struttura della tabella `measurement_unit`
 --
 
-DROP TABLE IF EXISTS `measurement_unit`;
 CREATE TABLE `measurement_unit` (
   `measurement_unit_code` varchar(10) NOT NULL,
   `name` varchar(45) DEFAULT NULL
@@ -160,7 +168,6 @@ INSERT INTO `measurement_unit` (`measurement_unit_code`, `name`) VALUES
 -- Struttura della tabella `order_file`
 --
 
-DROP TABLE IF EXISTS `order_file`;
 CREATE TABLE `order_file` (
   `order_file_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
@@ -177,7 +184,6 @@ CREATE TABLE `order_file` (
 -- Struttura della tabella `order_macro_activity`
 --
 
-DROP TABLE IF EXISTS `order_macro_activity`;
 CREATE TABLE `order_macro_activity` (
   `activity_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -193,7 +199,6 @@ CREATE TABLE `order_macro_activity` (
 -- Struttura della tabella `order_status`
 --
 
-DROP TABLE IF EXISTS `order_status`;
 CREATE TABLE `order_status` (
   `order_status_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL
@@ -205,7 +210,6 @@ CREATE TABLE `order_status` (
 -- Struttura della tabella `part`
 --
 
-DROP TABLE IF EXISTS `part`;
 CREATE TABLE `part` (
   `part_code` varchar(40) NOT NULL,
   `description` varchar(45) DEFAULT NULL,
@@ -222,46 +226,16 @@ CREATE TABLE `part` (
 -- Dump dei dati per la tabella `part`
 --
 
-INSERT INTO `part` (`part_code`, `description`, `source`, `source_lead_time`, `measurement_unit_code`, `part_type_code`, `part_category_code`, `wastage`, `bom_levels`) VALUES ('01',
-                                                                                                                                                                                'Descrizione',
-                                                                                                                                                                                'BUY',
-                                                                                                                                                                                10000,
-                                                                                                                                                                                'kg',
-                                                                                                                                                                                'PRODUCT',
-                                                                                                                                                                                '01',
-                                                                                                                                                                                1,
-                                                                                                                                                                                10),
-('02', 'Demodulator', 'MAKE', 4, 'pz', 'RAW', '01', 1, 1),
+INSERT INTO `part` (`part_code`, `description`, `source`, `source_lead_time`, `measurement_unit_code`, `part_type_code`,
+                    `part_category_code`, `wastage`, `bom_levels`)
+VALUES ('01', 'Simple product', 'BUY', 10000, 'kg', 'PRODUCT', '01', 1, 10),
+       ('02', 'Demodulator', 'MAKE', 4, 'pz', 'SUB-ASSEMBLY', '01', 1, 1),
 ('03', 'Converter', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 1),
 ('04', 'Jack', 'BUY', 10, 'pz', 'PRODUCT', '02', 1, 2),
-                                                                                                                                                                               ('05',
-                                                                                                                                                                                'Mouse Wheel2',
-                                                                                                                                                                                'MAKE',
-                                                                                                                                                                                5,
-                                                                                                                                                                                'kg',
-                                                                                                                                                                                'ASSEMBLY',
-                                                                                                                                                                                '01',
-                                                                                                                                                                                10,
-                                                                                                                                                                                NULL),
-('06', 'Board rz-048', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, NULL),
-                                                                                                                                                                               ('07',
-                                                                                                                                                                                'Led mm 02 red',
-                                                                                                                                                                                'MAKE',
-                                                                                                                                                                                5,
-                                                                                                                                                                                'pz',
-                                                                                                                                                                                'RAW',
-                                                                                                                                                                                '01',
-                                                                                                                                                                                2,
-                                                                                                                                                                                0),
-                                                                                                                                                                               ('08',
-                                                                                                                                                                                'Led mm 02 green',
-                                                                                                                                                                                'BUY',
-                                                                                                                                                                                10,
-                                                                                                                                                                                'kg',
-                                                                                                                                                                                'SUB-ASSEMBLY',
-                                                                                                                                                                                '02',
-                                                                                                                                                                                1,
-                                                                                                                                                                                NULL),
+       ('05', 'Mouse Wheel', 'MAKE', 5, 'kg', 'PRODUCT', '01', 10, 0),
+       ('06', 'Main Board Asus', 'BUY', 10, 'pz', 'ASSEMBLY', '01', 1, 0),
+       ('07', 'Red Led', 'MAKE', 5, 'pz', 'RAW', '01', 2, 0),
+       ('08', 'Green Led', 'BUY', 10, 'kg', 'RAW', '02', 1, 0),
 ('09', 'RS232', 'BUY', 5, 'pz', 'PRODUCT', '01', 10, 0),
 ('10', 'RJ45', 'BUY', 10, 'pz', 'PRODUCT', '01', 1, 0),
 ('11', 'Cable', 'BUY', 5, 'pz', 'PRODUCT', '02', 10, 0);
@@ -272,7 +246,6 @@ INSERT INTO `part` (`part_code`, `description`, `source`, `source_lead_time`, `m
 -- Struttura della tabella `part_category`
 --
 
-DROP TABLE IF EXISTS `part_category`;
 CREATE TABLE `part_category` (
   `part_category_code` varchar(20) NOT NULL,
   `name` varchar(45) DEFAULT NULL
@@ -292,7 +265,6 @@ INSERT INTO `part_category` (`part_category_code`, `name`) VALUES
 -- Struttura della tabella `part_type`
 --
 
-DROP TABLE IF EXISTS `part_type`;
 CREATE TABLE `part_type` (
   `part_type_code` varchar(20) NOT NULL,
   `name` varchar(45) DEFAULT NULL
@@ -314,7 +286,6 @@ INSERT INTO `part_type` (`part_type_code`, `name`) VALUES
 -- Struttura della tabella `product`
 --
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(20) NOT NULL,
@@ -342,7 +313,6 @@ INSERT INTO `product` (`product_id`, `product_name`, `category_id`, `list_order`
 -- Struttura della tabella `product_option`
 --
 
-DROP TABLE IF EXISTS `product_option`;
 CREATE TABLE `product_option` (
   `product_option_id` int(11) NOT NULL,
   `option_name` varchar(30) NOT NULL,
@@ -376,7 +346,6 @@ INSERT INTO `product_option` (`product_option_id`, `option_name`, `product_id`, 
 -- Struttura della tabella `stock`
 --
 
-DROP TABLE IF EXISTS `stock`;
 CREATE TABLE `stock` (
   `store_code` int(11) NOT NULL,
   `part_code` varchar(40) NOT NULL,
@@ -389,7 +358,6 @@ CREATE TABLE `stock` (
 -- Struttura stand-in per le viste `stock_store`
 -- (Vedi sotto per la vista effettiva)
 --
-DROP VIEW IF EXISTS `stock_store`;
 CREATE TABLE `stock_store` (
 `part_code` varchar(40)
 ,`store_code` int(11)
@@ -403,7 +371,6 @@ CREATE TABLE `stock_store` (
 -- Struttura della tabella `store`
 --
 
-DROP TABLE IF EXISTS `store`;
 CREATE TABLE `store` (
   `store_code` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL
@@ -415,7 +382,6 @@ CREATE TABLE `store` (
 -- Struttura della tabella `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL COMMENT 'User ID',
   `id_access_level` int(11) NOT NULL COMMENT 'User Ascce Level',
@@ -429,25 +395,29 @@ CREATE TABLE `user` (
   `last_login` datetime DEFAULT NULL COMMENT 'Use last login date'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Users credentials';
 
-
 --
 -- Dump dei dati per la tabella `user`
--- ALL PASSWORDS ARE: password
 --
 
 INSERT INTO `user` (`id_user`, `id_access_level`, `full_name`, `email`, `password`, `salt`, `token`, `token_timestamp`,
                     `enabled`, `last_login`)
-VALUES
-(1, 100, 'Administrator', 'admin@email.com','163e821c6ece715c5053e40bfcc46b27f4751fe3e85a53c297ee2aa7df1f5252339d24b6f0849b1dcf914fb96d6cad2220609d43e2b04c45ab3a1cb68d178b14','194744212166472874e64879.46699751', 1),
-(2, 60, 'Manager', 'manager@email.com','96887d1dd423fc6164cd51cf752bd363146b7fddfb0f0afb7f82f1c12c0d90943480ca599a2a05560c309884c925e06ad4d12fa1885c9ea50fd9bc368e62dc1d','205310676366472958b81a35.14153631', 1);
---
+VALUES (1, 100, 'Administrators', 'admin@email.com',
+        'f35d51264735fb85246c06120994aaa9c412bb8bf97dca68ba919296eb59ea3a80c5be96df92c539ceec0eaf9d7f13de88fbb97892e915ce4a5ba5676f9f89a1',
+        '131150533065d5aee20ebf29.70637320', '0f3a8e1670a8ea050cf9d06335766254b368ad4ef739f62680d891b6589baed4',
+        '2025-10-08 11:12:03', 1, '2025-10-08 13:12:03'),
+       (2, 60, 'Manager', 'manager@email.com',
+        '3df3965b3ad4816d1ae0b85d672ec8892b7f7be7887c06e9ea0cc6b3e1f7d3dc671ac51f9ee84e9aeef50aadb81cae4a4ce145cbed2ab0c022f7deba529a75ac',
+        '88806375568e646421fa677.66983201', NULL, '2024-05-22 09:41:30', 1, NULL),
+       (3, 50, 'User', 'user@email.com',
+        '714201669d3ae4f70af67eb6648d0bd5bb501d5f8c5718a352bea32aab1234a58f63e942034f47ea0ee76bf181a21a55f63eb36785e2c0d08cd11f3e52bb05c7',
+        '18381957068e6466552e2f6.84727060', NULL, '2024-05-22 09:41:30', 1, NULL);
+
 -- --------------------------------------------------------
 
 --
 -- Struttura stand-in per le viste `users_roles_names`
 -- (Vedi sotto per la vista effettiva)
 --
-DROP VIEW IF EXISTS `users_roles_names`;
 CREATE TABLE `users_roles_names` (
 `user_email` varchar(100)
 ,`role_name` varchar(45)
@@ -459,7 +429,6 @@ CREATE TABLE `users_roles_names` (
 -- Struttura della tabella `wiki_application_role`
 --
 
-DROP TABLE IF EXISTS `wiki_application_role`;
 CREATE TABLE `wiki_application_role` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(45) DEFAULT NULL
@@ -482,7 +451,6 @@ INSERT INTO `wiki_application_role` (`role_id`, `role_name`) VALUES
 -- Struttura della tabella `wiki_user`
 --
 
-DROP TABLE IF EXISTS `wiki_user`;
 CREATE TABLE `wiki_user` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(45) DEFAULT NULL,
@@ -504,7 +472,6 @@ INSERT INTO `wiki_user` (`user_id`, `user_name`, `user_email`) VALUES
 -- Struttura della tabella `wiki_users_roles`
 --
 
-DROP TABLE IF EXISTS `wiki_users_roles`;
 CREATE TABLE `wiki_users_roles` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
@@ -531,7 +498,6 @@ INSERT INTO `wiki_users_roles` (`user_id`, `role_id`) VALUES
 --
 DROP TABLE IF EXISTS `stock_store`;
 
-DROP VIEW IF EXISTS `stock_store`;
 CREATE OR REPLACE VIEW `stock_store`  AS SELECT `stock`.`part_code` AS `part_code`, `stock`.`store_code` AS `store_code`, `stock`.`quantity` AS `quantity`, `store`.`name` AS `name` FROM (`stock` join `store`) WHERE (`store`.`store_code` = `stock`.`store_code`) ;
 
 -- --------------------------------------------------------
@@ -541,7 +507,6 @@ CREATE OR REPLACE VIEW `stock_store`  AS SELECT `stock`.`part_code` AS `part_cod
 --
 DROP TABLE IF EXISTS `users_roles_names`;
 
-DROP VIEW IF EXISTS `users_roles_names`;
 CREATE OR REPLACE VIEW `users_roles_names`  AS SELECT `wiki_user`.`user_email` AS `user_email`, `wiki_application_role`.`role_name` AS `role_name` FROM ((`wiki_user` join `wiki_users_roles` on((`wiki_user`.`user_id` = `wiki_users_roles`.`user_id`))) join `wiki_application_role` on((`wiki_users_roles`.`role_id` = `wiki_application_role`.`role_id`))) ;
 
 --
