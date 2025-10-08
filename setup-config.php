@@ -232,7 +232,7 @@ try {
 
 echo "Setup process is successfully completed!\n";
 
-// PHP > 8.4 Fixing
+// PHP > 8.4 Fix
 if (PHP_VERSION_ID >= 80400) {
     echo "\033[0;36m PHP >= 8.4 detected, installing php-cs-fixer...\033[0m\n";
 
