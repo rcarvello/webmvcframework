@@ -75,18 +75,31 @@ class CustomerRecord extends Controller
             if (isset($_POST["operation_update"])) {
                 $this->handlePostFields();
                 $this->model->updateCurrent();
+                $this->handleSqlError($this->model);
             }
             if (isset($_POST["operation_delete"])) {
                 $this->model->delete($_POST["customer_id"]);
+                $this->handleSqlError($this->model);
                 $this->closeAndRedirect();
             }
             if (isset($_POST["operation_insert"])) {
                 $this->handlePostFields();
                 $this->model->insert();
+                $this->handleSqlError($this->model);
                 $this->closeAndRedirect();
             }
         } catch (\mysqli_sql_exception $e) {
             $_SESSION["mysql_error"] = $e->getMessage();
+        }
+    }
+
+    /**
+     * Handle CRUD SQL Errors
+     */
+    private function handleSqlError($model)
+    {
+        if ($model->isSqlError()) {
+            $_SESSION["mysql_error"] = $model->lastSqlError();
         }
     }
 
