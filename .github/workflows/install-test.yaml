@@ -71,13 +71,16 @@ jobs:
           php setup-config.php
           composer run dev > server.log 2>&1 &
           echo $! > server.pid
-          sleep 5
+          sleep 15
 
       - name: Test server
-        run: curl -s http://localhost:8000 | head -n 20
+        run: |
+          sleep 15
+          curl -s http://localhost:8000 | head -n 20
 
       - name: Stop dev server
         run: |
+          sleep 15
           pkill -f "composer run dev" || true
           
     
