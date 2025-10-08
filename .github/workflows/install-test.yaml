@@ -69,8 +69,7 @@ jobs:
           composer create-project rcarvello/webmvcframework testapp --prefer-dist --no-interaction
           cd testapp
           php setup-config.php
-          composer run dev > server.log 2>&1 &
-          echo $! > server.pid
+          composer run dev 
           sleep 15
 
       - name: Test server
