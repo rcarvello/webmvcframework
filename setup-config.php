@@ -112,10 +112,32 @@ function getVersion($cmd)
     return $returnVar === 0 ? $output[0] : false;
 }
 
+// --------------
+// Initialization
+// --------------
+
+$templateFile = __DIR__ . '/application.config.template.php';
+$configFile = __DIR__ . '/application.config.php';
+$sqlFile = __DIR__ . "/sql/mrp.sql";
+
+if (!file_exists($templateFile)) {
+    echo "\033[0;31m Template file not found: application.config.template.php\033[0m\n";
+    exit(1);
+}
+
+if (!copy($templateFile, $configFile)) {
+    echo "\033[0;31m Failed to initialize application.config.php from template.\033[0m\n";
+    exit(1);
+}
+
+echo "\033[0;36m File application.config.php reinitialized from template.\033[0m\n\n";
+
+
 
 // -------------------------
 // 1. Checking dependencies
 // -------------------------
+
 
 echo "Checking dependencies...\n";
 
@@ -143,16 +165,13 @@ if (!setup_php()) {
 // 2. Configuration
 // -------------------------
 
-$configFile = __DIR__ . "/config/application.config.php";
-$sqlFile = __DIR__ . "/sql/mrp.sql";
-
 // get the project name (current folder)
 $projectName = basename(getcwd());
 
 $placeholders = [
     "DB_HOST" => "localhost",
     "DB_USER" => "root",
-    "DB_PASSWORD" => "",
+    "DB_PASSWORD" => "root",
     "DB_NAME" => strtolower($projectName), // default: project name (current directory)
     "DB_PORT" => "3306"
 ];
