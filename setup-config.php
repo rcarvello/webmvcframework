@@ -116,8 +116,8 @@ function getVersion($cmd)
 // Initialization
 // --------------
 
-$templateFile = __DIR__ . '/application.config.template.php';
-$configFile = __DIR__ . '/application.config.php';
+$templateFile = __DIR__ . '/config/application.config.template.php';
+$configFile = __DIR__ . '/config/application.config.php';
 $sqlFile = __DIR__ . "/sql/mrp.sql";
 
 if (!file_exists($templateFile)) {
