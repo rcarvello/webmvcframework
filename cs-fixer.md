@@ -39,7 +39,7 @@ composer require --dev friendsofphp/php-cs-fixer
    ```
 4) To fix run
    ```bash
-    .\vendor\bin\php-cs-fixer check
+    .\vendor\bin\php-cs-fixer fix
    ```
 
 Note: after applying the fix you can only use PHP version >= 7.1
