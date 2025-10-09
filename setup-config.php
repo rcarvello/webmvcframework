@@ -162,7 +162,7 @@ if (!setup_php()) {
 }
 
 // -------------------------
-// 2. Configuration
+// 2. Project Configuration
 // -------------------------
 
 // get the project name (current folder)
