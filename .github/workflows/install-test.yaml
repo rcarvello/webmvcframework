@@ -75,7 +75,7 @@ jobs:
 
       - name: Test server
         run: |
-          curl -s http://localhost:8000/info.php | head -n 20
+          curl -s http://127.0.0.1:3000 | head -n 20
 
       - name: Stop dev server
         run: |
