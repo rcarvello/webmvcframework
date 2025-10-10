@@ -37,7 +37,7 @@ To install the framework download and copy it into an Apache web folder. Then go
 By default framework provides a small set  of examples. For using them run the provided SQL script into the **sql** folder.
 In a future time, I will provide you with more examples illustrating its functionalities.
 
-### Using composer
+## Setup Using composer
 
 To create a new PHP Web MVC project in a given project folder, open a terminal session and run:
 
@@ -45,17 +45,29 @@ To create a new PHP Web MVC project in a given project folder, open a terminal s
 composer create-project rcarvello/webmvcframework PROJECT-FOLDER
 ```
 
-Then install node dependencies:
+Then go into PROJECT-FOLDER:
 
 ```
-npm install
+cd  PROJECT-FOLDER
 ```
 
-Finally run:
+Configure DB access:
+
+```
+php setup-config.php
+```
+
+You will be prompted to specify certain configuration variables, such as the database host, username, password, etc.
+
+Finally, you can run the development server simply by typing:
 
 ```
 composer run dev
 ```
+
+The development server will be started by enabling hot reload on any code changes.
+
+Your web browser will open the demo page at **http://localhost:3000**
 
 ## How to autogenerate PHP Model classes from your MySQL database
 The util directory contains a file named **app_create_beans.php**.
