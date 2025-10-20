@@ -6,7 +6,7 @@ use framework\Model;
 use framework\View;
 
 // Define minimal configuration constants required by the framework.
-$rootPath = realpath(__DIR__ . '/tests');
+$rootPath = realpath(__DIR__ . '/..');
 $projectRoot = dirname($rootPath);
 
 if (!defined('RELATIVE_PATH')) {
