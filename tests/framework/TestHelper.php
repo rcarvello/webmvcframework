@@ -1,5 +1,5 @@
 <?php
-$projectRoot = dirname(__DIR__, 2);
+$projectRoot = dirname(__DIR__, 4);
 
 if (!defined('RELATIVE_PATH')) {
     define('RELATIVE_PATH', $projectRoot . DIRECTORY_SEPARATOR);
@@ -116,16 +116,4 @@ if (session_status() === PHP_SESSION_NONE) {
 
 if (!isset($_SESSION)) {
     $_SESSION = [];
-}
-if (!function_exists('getallheaders')) {
-    function getallheaders()
-    {
-        $headers = [];
-        foreach ($_SERVER as $name => $value) {
-            if (substr($name, 0, 5) == 'HTTP_') {
-                $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
-            }
-        }
-        return $headers;
-    }
 }

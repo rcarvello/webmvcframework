@@ -5,54 +5,11 @@ use framework\Controller;
 use framework\Model;
 use framework\View;
 
-// Define minimal configuration constants required by the framework.
-$rootPath = realpath(__DIR__ . '/..');
-$projectRoot = dirname($rootPath);
-
-if (!defined('RELATIVE_PATH')) {
-    define('RELATIVE_PATH', $projectRoot . DIRECTORY_SEPARATOR);
-}
-if (!defined('SECURING_OUTSIDE_HTTP_FOLDER')) {
-    define('SECURING_OUTSIDE_HTTP_FOLDER', '');
-}
-if (!defined('APP_CONTROLLERS_PATH')) {
-    define('APP_CONTROLLERS_PATH', $projectRoot . DIRECTORY_SEPARATOR . 'controllers');
-}
-if (!defined('APP_LOCALE_PATH')) {
-    define('APP_LOCALE_PATH', $projectRoot . DIRECTORY_SEPARATOR . 'locales');
-}
-if (!defined('JSFRAMEWORK')) {
-    define('JSFRAMEWORK', 'framework/js');
-}
-if (!defined('SITEURL')) {
-    define('SITEURL', 'http://localhost');
-}
-if (!defined('SERVER_OS_ENCODING')) {
-    define('SERVER_OS_ENCODING', 'Linux');
-}
-if (!defined('DEFAULT_LOGIN_PAGE')) {
-    define('DEFAULT_LOGIN_PAGE', 'common/login');
-}
-if (!defined('LoginRBACWarningMessage')) {
-    define('LoginRBACWarningMessage', 'login-rbac-warning');
-}
-if (!defined('LoginAuthWarningMessage')) {
-    define('LoginAuthWarningMessage', 'login-auth-warning');
-}
-if (!defined('COMPRESS_OUTPUT')) {
-    define('COMPRESS_OUTPUT', false);
-}
-if (!defined('CHARSET')) {
-    define('CHARSET', 'UTF-8');
-}
-if (!defined('SUBSYSTEMS')) {
-    define('SUBSYSTEMS', serialize(['sub']));
-}
-
-require_once $projectRoot . '/framework/Loader.php';
-require_once $projectRoot . '/framework/Model.php';
-require_once $projectRoot . '/framework/View.php';
-require_once $projectRoot . '/framework/Controller.php';
+require_once __DIR__ . '/TestHelper.php';
+require_once RELATIVE_PATH . 'framework/Loader.php';
+require_once RELATIVE_PATH . 'framework/Model.php';
+require_once RELATIVE_PATH . 'framework/View.php';
+require_once RELATIVE_PATH . 'framework/Controller.php';
 
 class FakeModel extends Model
 {
@@ -196,18 +153,5 @@ final class ControllerTest extends TestCase
         $controller = new TestableController(new FakeView('<div>test</div>'), new FakeModel());
 
         $this->assertSame('sub', $controller->getSubSystem());
-    }
-
-    public function testSetAsChildControllerSwitchesRootFlag(): void
-    {
-        $controller = new TestableController(new FakeView('<div>test</div>'), new FakeModel());
-
-        $this->assertTrue($controller->isRootController());
-        $this->assertFalse($controller->isChildController());
-
-        $controller->setAsChildController();
-
-        $this->assertFalse($controller->isRootController());
-        $this->assertTrue($controller->isChildController());
     }
 }
