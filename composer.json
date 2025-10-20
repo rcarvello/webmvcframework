@@ -22,10 +22,16 @@
     "ext-gd": "*",
     "ext-pdo": "*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5"
+  },
   "scripts": {
     "dev": [
       "Composer\\Config::disableProcessTimeout",
       "node start-dev.js"
+    ],
+    "test": [
+      "@php vendor/bin/phpunit"
     ],
     "post-create-project-cmd": [
       "npm install",
@@ -33,11 +39,17 @@
     ]
   },
   "scripts-descriptions": {
-    "dev": "Start PHP server with hot reload (by using BrowserSync concurrently)"
+    "dev": "Start PHP server with hot reload (by using BrowserSync concurrently)",
+    "test": "Start PHPUnit test"
   },
   "autoload": {
     "psr-4": {
       "\\": "/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   }
 }
