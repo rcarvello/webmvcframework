@@ -5,10 +5,64 @@ use PHPUnit\Framework\TestCase;
 require_once __DIR__ . '/TestHelper.php';
 require_once RELATIVE_PATH . 'framework/Model.php';
 require_once RELATIVE_PATH . 'framework/MySqlRecord.php';
+require_once RELATIVE_PATH . 'framework/BeanUser.php';
 require_once RELATIVE_PATH . 'framework/User.php';
+
 
 class UserStub extends \framework\User
 {
+    private $id;
+    private $email;
+    private $password;
+    private $role;
+    private $token;
+    private $tokenTimeStamp;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    public function getTokenTimeStamp()
+    {
+        return $this->tokenTimeStamp;
+    }
+
+    public function isLogged(): bool
+    {
+        return $this->id !== null && $this->email !== null && $this->password !== null;
+    }
+
+    public function validateToken(int $expirationHours = 8): bool
+    {
+        if ($this->token === null || $this->tokenTimeStamp === null) {
+            return false;
+        }
+        $tokenTime = strtotime($this->tokenTimeStamp);
+        $currentTime = time();
+        return ($currentTime - $tokenTime) <= ($expirationHours * 3600);
+    }
+
     public function __construct()
     {
         // Skip parent constructor to avoid database connection and session dependencies.
