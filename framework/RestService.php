@@ -30,9 +30,9 @@ abstract class RestService extends Controller
 
     //private $restDatas = array();
 
-    public function __construct()
+    public function __construct($view = null, $model = null)
     {
-        parent::__construct();
+        parent::__construct($view, $model);
         /* $this->HTTPRequestMethod = getenv('REQUEST_METHOD'); */
         $this->HTTPRequestMethod = $_SERVER['REQUEST_METHOD'];
         $this->HTTPRequestHeaders = getallheaders();
@@ -264,5 +264,15 @@ abstract class RestService extends Controller
             }
         }
         return $user;
+    }
+
+    public function getAllowedMethods(): array
+    {
+        return $this->allowedMethods;
+    }
+
+    public function getAccessControlAllowOrigins(): array
+    {
+        return $this->accessControlAllowOrigins;
     }
 }
