@@ -106,8 +106,10 @@ class Validator
         'minlength' => 'The :field field must be a minimum of :satisfied length',
         'maxlength' => 'The :field field must be a maximum of :satisfied length',
         'email' => 'That is not a valid email address',
+        'activeemail' => 'That is not a valid domain email address',
         'activeemail' => 'The :field field must be active email address',
         'url' => 'The :field field must be url',
+        'activeurl' => 'The :field field must be a vaild domain url',
         'activeurl' => 'The :field field must be activeurl',
         'ip' => 'The :field field must be valid ip',
         'alpha' => 'The :field field must be alphabetic',
@@ -381,7 +383,8 @@ class Validator
      **/
     protected function alphadash($field, $value, $satisfied)
     {
-        return preg_match('^[A-Za-z-]+$', $value);
+        // return preg_match('^[A-Za-z-]+$', $value);
+        return (bool)preg_match('/^[a-zA-Z0-9_-]+$/', $value);
     }
 
     /**
@@ -436,5 +439,51 @@ class Validator
         return (strcmp($value, $this->items[$satisfied]) == 0) ? true : false;
     }
 
+    /**
+     * activeemail
+     * Verifica se il dominio dell'email esiste (record MX)
+     *
+     * @param string $field
+     * @param string $value
+     * @param string $satisfied
+     * @return boolean
+     */
+    protected function activeemail($field, $value, $satisfied)
+    {
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        }
 
+        $domain = substr(strrchr($value, "@"), 1);
+        if (!$domain) {
+            return false;
+        }
+
+        // Verifica record MX del dominio (richiede funzione checkdnsrr)
+        return function_exists('checkdnsrr') && checkdnsrr($domain, 'MX');
+    }
+
+    /**
+     * activeurl
+     * Verifica se l'URL è valido e il dominio risponde
+     *
+     * @param string $field
+     * @param string $value
+     * @param string $satisfied
+     * @return boolean
+     */
+    protected function activeurl($field, $value, $satisfied)
+    {
+        if (!filter_var($value, FILTER_VALIDATE_URL)) {
+            return false;
+        }
+
+        $host = parse_url($value, PHP_URL_HOST);
+        if (!$host) {
+            return false;
+        }
+
+        // Controlla se il dominio ha un record DNS valido (A o AAAA)
+        return function_exists('checkdnsrr') && (checkdnsrr($host, 'A') || checkdnsrr($host, 'AAAA'));
+    }
 }
