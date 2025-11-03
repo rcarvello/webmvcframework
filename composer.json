@@ -23,7 +23,10 @@
     "ext-pdo": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^10.5"
+    "phpunit/phpunit": "^10.5 || ^11.0"
+  },
+  "suggest": {
+    "phpunit/phpunit": "Install PHPUnit (PHP >= 8.0) to enable running tests"
   },
   "scripts": {
     "dev": [
@@ -31,11 +34,12 @@
       "node start-dev.js"
     ],
     "test": [
-      "@php vendor/bin/phpunit"
+      "@php vendor/bin/phpunit --display-all-issues --testdox"
     ],
     "post-create-project-cmd": [
       "npm install",
-      "php post-setup-info.php"
+      "php post-setup-info.php",
+      "@php -r \"if (PHP_VERSION_ID >= 80000) { echo 'Installing dev dependencies (PHPUnit)...\\n'; passthru('composer install --no-interaction --prefer-dist --dev'); } else { echo 'Skipping PHPUnit installation: requires PHP >= 8.0\\n'; }\""
     ]
   },
   "scripts-descriptions": {
