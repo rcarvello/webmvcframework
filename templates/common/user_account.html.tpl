@@ -48,9 +48,9 @@
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span>
                             <span class="sr-only">Close</span></button>{RES:ErrorMessageTitle}
                         <br/>
-                        <!-- BEGIN RecordErrors -->
-                        <span id="campione_record_inccampioneErrorBlock">{RecordError}</span>
-                        <!-- END RecordErrors -->
+                        <!-- BEGIN Errors -->
+                        <span>{Error}</span>
+                        <!-- END Errors -->
                     </div>
                     <div class="col-sm-1"></div>
                 </div>
