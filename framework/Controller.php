@@ -505,7 +505,7 @@ abstract class Controller
 
     public function xssClean(&$data,$charset = CHARSET)
     {
-        /* TODO
+
         if (is_array($data)){
             foreach ($data as $k => $v) {
                 $data[$k] = $this->view->xssCleanString($v, $charset);
@@ -513,7 +513,7 @@ abstract class Controller
         } else {
             $this->view->xssCleanString($data, $charset);
         }
-        */
+
     }
 
             /**

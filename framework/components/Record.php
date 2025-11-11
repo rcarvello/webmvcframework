@@ -239,7 +239,8 @@ class Record extends Component
     {
         $this->beanAdapter = $beanAdapter;
         $this->view->setVar("Separator", $this->actionsSeparator);
-
+        $this->view->setVar("CSRF_TOKEN_FORM_FIELD", CSRF_TOKEN_FORM_FIELD);
+        $this->view->setVar("CRSFTOKEN", $this->getCSRFToken());
         // $this->doAction($beanAdapter,$isBusinessValidationError);
 
         if (!empty($this->currentRecord[0])) {
@@ -274,6 +275,43 @@ class Record extends Component
 
         $this->doAction($beanAdapter, $isBusinessValidationError);
 
+    }
+
+    /**
+     * Manages and gets CSRF Token
+     * @return string The CSRF Token
+     */
+    protected function getCSRFToken()
+    {
+        if (@empty($_SESSION['token'])) {
+            if (function_exists('mcrypt_create_iv')) {
+                // TODO random_bytes
+                $_SESSION['token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+            } else {
+                $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+            }
+        }
+        // print_r($_SESSION['token']);
+        return $_SESSION['token'];
+
+    }
+
+    /**
+     * Detects CSRF attack
+     * @return bool True if it detetecs a pibble attack.
+     */
+    public function detectedCSRF()
+    {
+        $csrf_token_field = CSRF_TOKEN_FORM_FIELD;
+        if (@!empty($_POST[$csrf_token_field])) {
+            if ($_SESSION["token"] == $_POST[$csrf_token_field]) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -465,6 +503,16 @@ class Record extends Component
         // Note: also excluded in observing mode.
         try {
             if (!isset($_REQUEST["getState"])) {
+
+                // Handles CSRF
+                if (isset($_REQUEST[$this->record_add]) || isset($_REQUEST[$this->record_update]) || isset($_REQUEST[$this->record_delete])) {
+                    if ($this->detectedCSRF()) {
+                        $isBusinessValidationError = true;
+                        $this->addError("{RES:CRSFErrorMessage}");
+                    }
+                }
+
+                // Handles ADD
                 if (isset($_REQUEST[$this->record_add]) && !$isBusinessValidationError) {
                     $beanAdapter->insert();
                     if ($beanAdapter->getBean()->isSqlError()) {
@@ -474,6 +522,8 @@ class Record extends Component
                     if (!empty($this->redirectAfterAdd))
                         header("Location: " . $this->redirectAfterAdd);
                 }
+
+                // Handles UPDATE
                 if (isset($_REQUEST[$this->record_update]) && !$isBusinessValidationError) {
                     $beanAdapter->update($this->currentRecord);
                     if ($beanAdapter->getBean()->isSqlError()) {
@@ -484,6 +534,7 @@ class Record extends Component
                         header("Location: " . $this->redirectAfterUpdate);
                 }
 
+                // Handles DELETE
                 if (isset($_REQUEST[$this->record_delete]) && !$isBusinessValidationError) {
                     $beanAdapter->delete($this->currentRecord);
                     if ($beanAdapter->getBean()->isSqlError()) {
@@ -494,6 +545,7 @@ class Record extends Component
                         header("Location: " . $this->redirectAfterDelete);
                 }
 
+                // Handles Reset
                 if (isset($_REQUEST[$this->record_close])) {
                     if (!empty($this->redirectAfterClose))
                         header("Location: " . $this->redirectAfterClose);
