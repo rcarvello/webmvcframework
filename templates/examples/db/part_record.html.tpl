@@ -30,7 +30,7 @@
             </div>
 
             <div class="panel-body">
-                {STATICTPL:common\herror_handler}
+                {STATICTPL:common\error_handler}
                 <div class="form-group col-sm-12">
                     <div class="col-sm-4 control-label">
                         <label class="text-danger">{RES:part_code}</label> 
