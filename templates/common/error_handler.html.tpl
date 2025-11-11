@@ -3,9 +3,11 @@
     <div class="col-sm-1"></div>
     <div class="alert alert-danger alert-dismissible col-sm-10" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span>
-            <span class="sr-only">Close</span></button>{RES:errormsg}
+            <span class="sr-only">Close</span></button>{RES:ErrorMessageTitle}
         <br/>
-        <span id="campione_record_inccampioneErrorBlock">{Error}</span>
+        <!-- BEGIN Errors -->
+        <span>{Error}</span>
+        <!-- END Errors -->
     </div>
     <div class="col-sm-1"></div>
 </div>
