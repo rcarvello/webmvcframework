@@ -228,15 +228,16 @@ define("XSS_PROTECTION", true);
  */
 define("USE_HTMLPURIFIER", false);
 
+/*Old implementation without composer (by using htmlpurifier folder)
 if (XSS_PROTECTION) {
     if (USE_HTMLPURIFIER) {
         require_once(RELATIVE_PATH . 'framework/htmlpurifier/HTMLPurifier.auto.php');
     }
 }
-
+*/
 /**
  * Securing forms
- * Specifies csrftoken token fields for Record Component
+ * Specifies the csrftoken token fields for Record Component
  */
 
 define("CSRF_TOKEN_FORM_FIELD", "csrftoken");

@@ -36,10 +36,9 @@ use framework\exceptions\TemplateNotFoundException;
 use framework\exceptions\NotInitializedViewException;
 use framework\exceptions\BlockNotFoundException;
 
-/** TODO
- * use HTMLPurifier;
- * use HTMLPurifier_Config;
- */
+use HTMLPurifier;
+use HTMLPurifier_Config;
+
 
 class View
 {
@@ -425,7 +424,7 @@ class View
         return $this->tplFileName;
     }
 
-    /** TODO
+    /**
      * Cleans a string against XSS attack
      *
      * @param string $string String to purify
@@ -434,6 +433,42 @@ class View
      */
     public function xssCleanString($string, $charset = CHARSET)
     {
-        return null;
+
+        if (!USE_HTMLPURIFIER) {
+            // Fix &entity\n;
+            $string = str_replace(array('&amp;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;lt;', '&amp;gt;'), $string);
+            $string = preg_replace('/(&#*\w+)[\x00-\x20]+;/u', '$1;', $string);
+            $string = preg_replace('/(&#x*[0-9A-F]+);*/iu', '$1;', $string);
+            $string = html_entity_decode($string, ENT_COMPAT, $charset);
+
+            // Remove any attribute starting with "on" or xmlns
+            $string = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $string);
+
+            // Remove javascript: and vbscript: protocols
+            $string = preg_replace('#([a-z]*)[\x00-\x20]*=[\x00-\x20]*([`\'"]*)[\x00-\x20]*j[\x00-\x20]*a[\x00-\x20]*v[\x00-\x20]*a[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iu', '$1=$2nojavascript...', $string);
+            $string = preg_replace('#([a-z]*)[\x00-\x20]*=([\'"]*)[\x00-\x20]*v[\x00-\x20]*b[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iu', '$1=$2novbscript...', $string);
+            $string = preg_replace('#([a-z]*)[\x00-\x20]*=([\'"]*)[\x00-\x20]*-moz-binding[\x00-\x20]*:#u', '$1=$2nomozbinding...', $string);
+
+            // Only works in IE: <span style="width: expression(alert('Ping!'));"></span>
+            $string = preg_replace('#(<[^>]+?)style[\x00-\x20]*=[\x00-\x20]*[`\'"]*.*?expression[\x00-\x20]*\([^>]*+>#i', '$1>', $string);
+            $string = preg_replace('#(<[^>]+?)style[\x00-\x20]*=[\x00-\x20]*[`\'"]*.*?behaviour[\x00-\x20]*\([^>]*+>#i', '$1>', $string);
+            $string = preg_replace('#(<[^>]+?)style[\x00-\x20]*=[\x00-\x20]*[`\'"]*.*?s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:*[^>]*+>#iu', '$1>', $string);
+
+            // Remove namespaced elements (we do not need them)
+            $string = preg_replace('#</*\w+:\w[^>]*+>#i', '', $string);
+
+            do {
+                // Remove really unwanted tags
+                $oldString = $string;
+                $string = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $string);
+            } while ($oldString !== $string);
+        } else {
+            // Using HTMLPurifier
+            $config = HTMLPurifier_Config::createDefault();
+            $purifier = new HTMLPurifier($config);
+            $string = $purifier->purify($string);
+        }
+        return $string;
     }
+
 }
