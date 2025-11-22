@@ -18,7 +18,10 @@ class CSVExporter
 {
 
     /**
-     * @param \mysqli_result|null $result The given mysqli_result to export as CSV
+     * Initializes the object and exports a MySQL result set to a CSV file for download.
+     *
+     * @param \mysqli_result|null $result A MySQLi result object. If null or invalid, no action is taken.
+     * @return void|false Returns false if the provided result is null or invalid.
      */
     public function __construct(\mysqli_result $result = null)
     {
