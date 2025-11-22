@@ -2,9 +2,19 @@
 
 namespace framework\components;
 
+$projectRoot = dirname(__DIR__, 3);
+if (!defined('RELATIVE_PATH')) {
+    define('RELATIVE_PATH', $projectRoot . DIRECTORY_SEPARATOR);
+}
+include_once(RELATIVE_PATH . "tests/framework/TestHelper.php");
+
+
 use framework\Model;
 use framework\View;
+use framework\Loader;
 use PHPUnit\Framework\TestCase;
+
+$loader = new Loader();
 
 /**
  * Test class for DataRepeater.
