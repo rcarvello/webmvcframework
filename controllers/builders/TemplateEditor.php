@@ -24,7 +24,7 @@ class TemplateEditor extends Controller
     * @param View $view
     * @param Model $mode
     */
-    public function __construct(View $view=null, Model $model=null)
+    public function __construct(?View $view=null, ?Model $model=null)
     {
         $this->view = empty($view) ? $this->getView() : $view;
         $this->model = empty($model) ? $this->getModel() : $model;
@@ -43,7 +43,9 @@ class TemplateEditor extends Controller
         } else {
             $currenDesign = file_get_contents(APP_TEMPLATES_PATH . "/builders/editor_default.html.tpl" );
         }
-        $this->view->setVar("EditorDefaultHTML",htmlspecialchars($currenDesign,ENT_QUOTES));
+        // $this->view->setVar("EditorDefaultHTML",htmlspecialchars($currenDesign,ENT_QUOTES));
+        $content = preg_replace('#</script>#i', '<\/script>', $currenDesign);
+        $this->view->setVar("EditorDefaultHTML",$content);
     }
 
     /**
