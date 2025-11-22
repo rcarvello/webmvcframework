@@ -12,13 +12,13 @@
     <style>
         html, body { height: 100%; margin: 0; overflow: hidden; }
         #editor-container, #preview-container {
-        height: calc(100vh - 140px); /* top bar (50) + tabs (40) + bottom bar (50) */
-        overflow: hidden;
+            height: calc(100vh - 140px); /* top bar (50) + tabs (40) + bottom bar (50) */
+            overflow: hidden;
         }
         #editor {
-        width: 100%;
-        height: 93%;
-        padding-bottom: 60px; /* prevent bottom overlap */
+            width: 100%;
+            height: 93%;
+            padding-bottom: 60px; /* prevent bottom overlap */
         }
         iframe {
         width: 100%;
@@ -89,8 +89,9 @@
     <button href="#" id="btnVariable" class="btn btn-primary">
         <span class="glyphicon glyphicon-bookmark"></span> Variable
     </button>
-    <input id="elementName" bottom" type="text" class="form-control ms-3" placeholder="Block or Variable name" style="width:250px;" />
-    &nbsp;
+    <input id="elementName" type="text" class="form-control ms-3" placeholder="Block or Variable name"
+           style="width:250px;"/>
+
     <form id="formtemplate" name="formtemplate" class="form-inline" style="display: flex; justify-content: flex-end" role="form" method="post" action="skeleton_builder">
         <button href="skeleton_builder" id="btnSave" class="btn btn-success">
             <i class="fa fa-check-circle" aria-hidden="true"></i> Save template
