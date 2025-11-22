@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 $projectRoot = dirname(__DIR__, 3);
 
@@ -48,14 +49,14 @@ class ValidatorTest extends TestCase
         return $m->invokeArgs($this->validator, $args);
     }
 
-    /** @test */
+    #[Test]
     public function required()
     {
         $this->assertTrue((bool)$this->invokeProtected('required', 'field', 'value', ''));
         $this->assertFalse((bool)$this->invokeProtected('required', 'field', '', ''));
     }
 
-    /** @test */
+    #[Test]
     public function minlength_and_maxlength()
     {
         $this->assertTrue((bool)$this->invokeProtected('minlength', 'username', 'abcd', 3));
@@ -65,7 +66,7 @@ class ValidatorTest extends TestCase
         $this->assertFalse((bool)$this->invokeProtected('maxlength', 'username', 'abcdefghijklmnop', 5));
     }
 
-    /** @test */
+    #[Test]
     public function email_and_activeemail()
     {
         $this->assertNotFalse($this->invokeProtected('email', 'email', 'user@example.com', ''));
@@ -75,7 +76,7 @@ class ValidatorTest extends TestCase
         $this->assertIsBool((bool)$this->invokeProtected('activeemail', 'email', 'user@gmail.com', ''));
     }
 
-    /** @test */
+    #[Test]
     public function url_and_activeurl()
     {
         $this->assertNotFalse($this->invokeProtected('url', 'site', 'https://example.com', ''));
@@ -84,7 +85,7 @@ class ValidatorTest extends TestCase
         $this->assertIsBool((bool)$this->invokeProtected('activeurl', 'site', 'https://www.google.com', ''));
     }
 
-    /** @test */
+    #[Test]
     public function ip_should_validate_ipv4_and_ipv6()
     {
         $this->assertNotFalse($this->invokeProtected('ip', 'addr', '127.0.0.1', ''));
@@ -92,7 +93,7 @@ class ValidatorTest extends TestCase
         $this->assertFalse($this->invokeProtected('ip', 'addr', '999.999.999.999', ''));
     }
 
-    /** @test */
+    #[Test]
     public function alpha_and_variants()
     {
         // ctype_alpha ritorna true solo se TUTTI i caratteri sono lettere, nessun numero/spazio
@@ -113,7 +114,7 @@ class ValidatorTest extends TestCase
         $this->assertFalse((bool)$resultInvalid, 'alphadash() should reject hello_world!');
     }
 
-    /** @test */
+    #[Test]
     public function alphanum_hexadecimal_numeric()
     {
         $this->assertTrue((bool)$this->invokeProtected('alphanum', 'field', 'abc123', ''));
@@ -126,7 +127,7 @@ class ValidatorTest extends TestCase
         $this->assertFalse((bool)$this->invokeProtected('numeric', 'field', '12a', ''));
     }
 
-    /** @test */
+    #[Test]
     public function matches_should_compare_two_fields()
     {
         $ref = new ReflectionClass($this->validator);
