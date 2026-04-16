@@ -65,7 +65,7 @@ class MailService
      */
     public static function make()
     {
-        return new SimpleMail();
+        return new MailSer();
     }
 
     /**

@@ -10,7 +10,7 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../models/beans/");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap core  CSS -->
+    <!-- Bootstrap core  CSS. -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
           media="screen">
 
@@ -38,9 +38,13 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../models/beans/");
         Classes from MySQL tables </h3>
     <h4>Current database :<?= DBNAME ?> (to change it edit mysqlreflection.config.php)</h4>
     <h4>Destination path :<?= DESTINATION_PATH ?></h4>
-    <a class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1"><span
+    <a class="btn btn-success" onclick="document.getElementById('results').value = ''" href="?build=1">
+    <span
                 class="glyphicon glyphicon-wrench"></span> Generate classes</a>
+    <a class="btn btn-warning" href="app_create_selected_bean.php">
+        <span class="glyphicon glyphicon-list"></span> Generate beans by selecting tables</a>
     <a href="../builders/index" class="btn btn-info"><span class="glyphicon glyphicon-home"></span> Home</a>
+
     <br/> <br/>
     <div class="progress progress-striped">
         <div class="progress-bar" role="progressbar" aria-valuenow="0"

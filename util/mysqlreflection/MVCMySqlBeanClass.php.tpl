@@ -100,22 +100,6 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
             $this->select(${ClassPkAttributeName});
         }
     }
-
-    /**
-     * The implicit destructor
-     */
-    public function __destruct()
-    {
-        $this->close();
-    }
-
-    /**
-     * Explicit destructor. It calls the implicit destructor automatically.
-     */
-    public function close()
-    {
-        // unset($this);
-    }
 <!-- END Constructor -->
 <!-- BEGIN ConstructorForMultiplePK -->
     /**
@@ -136,20 +120,6 @@ class {ClassName} extends {ClassParent} implements {ClassImplements}
         }
     }
 
-    /**
-    * The implicit destructor
-    */
-    public function __destruct()
-    {
-        $this->close();
-    }
-
-    /**
-    * Explicit destructor. It calls the implicit destructor automatically.
-    */
-    public function close()
-    {
-    }
 <!-- END ConstructorForMultiplePK -->
 <!-- BEGIN Setters -->
     /**

@@ -76,37 +76,39 @@ class MySqlRecord extends Model
      */
     protected function parseValue($value = null, $type = "number")
     {
-        $constants = get_defined_constants();
+        $isEmpty = ($value === null || $value === '');
 
         if ($type == "int" || $type == "float" || $type == "real" || $type == "double") {
-            if ($value != null) {
-                switch ($type) {
-                    case "double":
-                        $value = (double)$value;
-                        break;
-                    case "float":
-                        $value = (float)$value;;
-                        break;
-                    case "real":
-                        $value = (float)$value;;
-                        break;
-                    default:
-                        $value = (int)$value;
-                }
-            } else {
+            // For numeric DB fields, NULL/empty must stay SQL NULL (for example PK auto-increment).
+            if ($isEmpty) {
                 return "NULL";
+            }
+
+            switch ($type) {
+                case "double":
+                    $value = (double)$value;
+                    break;
+                case "float":
+                    $value = (float)$value;
+                    break;
+                case "real":
+                    $value = (float)$value;
+                    break;
+                default:
+                    $value = (int)$value;
             }
             $type = "number";
         }
-        if (!is_null($value) && $value == 0 && $type == "number") {
+
+        if (!$isEmpty && $value == 0 && $type == "number") {
             return 0;
-        } else if ($value != null && $type != "number" && $type != "date" && $type != "datetime") {
+        } else if (!$isEmpty && $type != "number" && $type != "date" && $type != "datetime") {
             return "'" . $this->real_escape_string($value) . "'";
-        } else if ($value != null && $type != "number" && $type == "date") {
-            return "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATE_FORMAT'] . "')";
-        } else if ($value != null && $type != "number" && $type == "datetime") {
-            return "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . $constants['STORED_DATETIME_FORMAT'] . "')";
-        } else if ($value != null && $type == "number" && is_numeric($value)) {
+        } else if (!$isEmpty && $type == "date") {
+            return "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . STORED_DATE_FORMAT . "')";
+        } else if (!$isEmpty && $type == "datetime") {
+            return "STR_TO_DATE('" . $this->real_escape_string($value) . "','" . STORED_DATETIME_FORMAT . "')";
+        } else if (!$isEmpty && $type == "number" && is_numeric($value)) {
             return $value;
         } else {
             return "NULL";
