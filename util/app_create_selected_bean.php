@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
-include_once("../mysqlreflection/mysqlreflection.config.php");
-define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
+include_once("mysqlreflection/mysqlreflection.config.php");
+define("DESTINATION_PATH", dirname(__FILE__) . "/../models/beans/");
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -27,7 +27,6 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
             border-radius: 10px;
             height: 36px;
         }
-
         .table-list {
             max-height: 400px;
             overflow-y: auto;
@@ -36,15 +35,12 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
             border-radius: 6px;
             background: #fafafa;
         }
-
         .toolbar {
             margin-bottom: 15px;
         }
-
         .table-row.hidden-by-filter {
             display: none;
         }
-
         .counter-box {
             margin-top: 10px;
             font-weight: bold;
@@ -55,6 +51,7 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
         var globalCount = 0;
         var globalPercent = 0;
         var numberOfTables = 0;
+        var generationCompleted = false;
     </script>
 </head>
 <body>
@@ -77,11 +74,11 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
                     <button type="button" class="btn btn-default" onclick="selectAllTables(false)">
                         <span class="glyphicon glyphicon-unchecked"></span> Unselect all
                     </button>
-                    <a href="app_create_beans.php" class="btn btn-warning">
+                    <a href="../app_create_beans.php" class="btn btn-warning">
                         <span class="glyphicon glyphicon-list"></span> Generate all beans
                     </a>
-                    <a href="../../builders/index" class="btn btn-info">
-                        <span class="glyphicon glyphicon-home"></span> Home
+                    <a href="app_create_beans.php" class="btn btn-info">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Back to main builder
                     </a>
                 </p>
 
@@ -104,7 +101,7 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
                             $safeTable = htmlspecialchars($table, ENT_QUOTES, 'UTF-8');
                             echo '<div class="checkbox table-row">';
                             echo '<label>';
-                            echo '<input type="checkbox" class="table-checkbox" name="tables[]" value="' . $safeTable . '" checked onclick="updateSelectedCounter()"> ';
+                            echo '<input type="checkbox" class="table-checkbox" name="tables[]" value="' . $safeTable . '" onclick="updateSelectedCounter()"> ';
                             echo '<span class="table-name">' . $safeTable . '</span>';
                             echo '</label>';
                             echo '</div>';
@@ -171,20 +168,35 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
     }
 
     function aggiornaProgressBar(done = false) {
+        if (generationCompleted) {
+            return;
+        }
+
         var progress = $('.progress-bar');
         var currentValue = parseInt(progress.attr("aria-valuenow"), 10);
         if (isNaN(currentValue)) {
             currentValue = 0;
         }
 
-        globalCount = globalCount + 1;
-        globalPercent = globalPercent + 1;
-
-        if (currentValue >= 100) {
-            currentValue = 0;
+        if (!done) {
+            globalCount = globalCount + 1;
+            if (numberOfTables > 0 && globalCount > numberOfTables) {
+                globalCount = numberOfTables;
+            }
+        } else if (numberOfTables > 0) {
+            globalCount = numberOfTables;
         }
 
-        currentValue += 1;
+        if (numberOfTables > 0) {
+            currentValue = Math.round((globalCount / numberOfTables) * 100);
+        } else {
+            currentValue = Math.min(currentValue + 1, 99);
+        }
+
+        if (!done && currentValue >= 100) {
+            currentValue = 99;
+        }
+
         progress.attr("aria-valuenow", currentValue);
 
         var percValue = currentValue + '%';
@@ -194,9 +206,11 @@ define("DESTINATION_PATH", dirname(__FILE__) . "/../../models/beans/");
         textarea.scrollTop = textarea.scrollHeight;
 
         if (done) {
+            generationCompleted = true;
             progress.attr("aria-valuenow", 100);
             progress.css('width', "100%");
             percValue = "Done. " + globalCount + " classes were generated";
+            $('.progress').removeClass('progress-striped active');
         }
 
         progress.html(percValue);
@@ -249,7 +263,6 @@ if (isset($_POST["build_selected"])) {
         $reflection->generateClassesFromSelectedTables($selectedTables, $destinationPath);
 
         echo "<script>$('#results').append('Done.&#xA;');</script>";
-        echo "<script>aggiornaProgressBar(true);</script>";
     }
 }
 ?>
