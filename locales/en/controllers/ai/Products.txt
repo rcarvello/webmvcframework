@@ -1,0 +1,26 @@
+#Comment: Locale resources for Products assembly
+#Load:locales/en/controllers/examples/cms/NavigationBar.txt
+Products_Page_Title=Examples / DB / Products
+Products_Page_Description=Product table listing in AJAX DataTable format.
+
+product_id=Product ID
+product_name=Product name
+category_name=Category
+list_order=List order
+
+AddNewProduct=New product
+ReloadProducts=Reload products
+EditProductTitle=Open product
+
+record_per_pagina=records per page
+zero_records=No matching records found
+info_page=Page _PAGE_ of _PAGES_
+info_empty=No records available
+search_label=Search
+search_placeholder_products=Filter products
+info_filtered=(filtered from _MAX_ total records)
+paginate_first=First
+paginate_last=Last
+paginate_next=Next
+paginate_previous=Previous
+clear_filter_aria=Clear filter

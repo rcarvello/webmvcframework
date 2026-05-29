@@ -1,0 +1,14 @@
+#Comment: Locale resources for Product assembly
+#Load:locales/en/controllers/examples/cms/NavigationBar.txt
+Product_Form_Page_Title=Product Form
+ErrorMessageTitle=Validation errors
+
+New_Record=New Product
+Edit_Record=Edit Product
+
+product_id=Product ID
+product_name=Product name
+category_name=Category
+list_order=List order
+no_category_option=No category
+ID_Label=ID

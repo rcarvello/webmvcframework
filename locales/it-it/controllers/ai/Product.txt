@@ -1,0 +1,14 @@
+#Comment: Risorse locali per assembly Product
+#Load:locales/it-it/controllers/examples/cms/NavigationBar.txt
+Product_Form_Page_Title=Scheda Prodotto
+ErrorMessageTitle=Errori di validazione
+
+New_Record=Nuovo Prodotto
+Edit_Record=Modifica Prodotto
+
+product_id=ID Prodotto
+product_name=Nome prodotto
+category_name=Categoria
+list_order=Ordine
+no_category_option=Nessuna categoria
+ID_Label=ID

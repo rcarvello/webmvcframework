@@ -1,0 +1,26 @@
+#Comment: Risorse locali per assembly Products
+#Load:locales/it-it/controllers/examples/cms/NavigationBar.txt
+Products_Page_Title=Esempi / DB / Prodotti
+Products_Page_Description=Elenco della tabella product in formato DataTable AJAX.
+
+product_id=ID Prodotto
+product_name=Nome prodotto
+category_name=Categoria
+list_order=Ordine
+
+AddNewProduct=Nuovo prodotto
+ReloadProducts=Ricarica prodotti
+EditProductTitle=Apri prodotto
+
+record_per_pagina=record per pagina
+zero_records=Nessun record trovato
+info_page=Pagina _PAGE_ di _PAGES_
+info_empty=Nessun record disponibile
+search_label=Cerca
+search_placeholder_products=Filtra prodotti
+info_filtered=(filtrati da _MAX_ record totali)
+paginate_first=Prima
+paginate_last=Ultima
+paginate_next=Successiva
+paginate_previous=Precedente
+clear_filter_aria=Cancella filtro
