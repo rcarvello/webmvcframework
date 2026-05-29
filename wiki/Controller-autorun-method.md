@@ -9,9 +9,9 @@ will need to extend it to a more specialized behavior.
 
 ## Usage example of autorun
 
-First, consider the following and simple extension of the previous `controllers\EchoController`, we call
-it `controllers\WebPageProductsList` and we use it for simulating the behavior that must be executed automatically
-inside a web page having the responsibility of showing a list of products for a hypothetical e-commerce application.
+First, consider the following and simple extension of the previous `controllers\EchoController`, we call it
+`controllers\WebPageProductsList` and we use it for simulating the behavior that must be executed automatically inside a
+web page having the responsibility of showing a list of products for a hypothetical e-commerce application.
 
 ```php
 
@@ -44,7 +44,6 @@ Now suppose we need a new web page, we call it  `controllers\WebPageProductDetai
 section regarding navigation, credits information and status bar but it must show a product detail rather than the
 products list.  
 We can code `controllers\WebPageProductDetail` in this way:
-
 ```php
 
 <?php
@@ -122,7 +121,6 @@ class WebPageProductsList extends EchoController
     }
 }
 ```
-
 ```php
 <?php
 namespace controllers;
@@ -155,14 +153,14 @@ So by running these two controllers, you will get the same result as above becau
       will be shown
     * then, its autorun() method will be automatically invoked by showing you the message about product detail
 
+
 ## Insights: using autorun
 
 Finally, you understand the Controller and some advantages of using OOP and of the method autorun. With this premise,
 now we want to show you how you can build HelloWorld in a more efficient way.
 First of all, we customizing the generic behavior of the abstract `framework\Controller` by writing a reusable abstract
-Controller we can use any time having the need of printing out a simple text message. We call
-it `controllers\EchoWebPage`;
-
+Controller we can use any time having the need of printing out a simple text message. We call it
+`controllers\EchoWebPage`;
 ```php
 <?php
 namespace controllers;
@@ -203,8 +201,8 @@ class HelloWorld extends EchoWebPage
 ```
 
 Note that in the above `controllers\HelloWorld` we are extending and concretizing the abstract `controllers\EchoWebPage`
-also by omitting the initial instruction 'use controllers\EchoWebPage'. That's because both `controllers\HelloWorld`
-and `contollers\EchoWebPage` are encapsulated in the same `controllers` namespace (we will discuss its details later).
+also by omitting the initial instruction 'use controllers\EchoWebPage'. That's because both `controllers\HelloWorld` and
+`contollers\EchoWebPage` are encapsulated in the same `controllers` namespace (we will discuss its details later).
 
 By typing
 

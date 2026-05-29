@@ -12,9 +12,9 @@ splitting into model, view, and controller can be done. MVC is a canonical archi
 a great variety of software applications, and in a certain sense, we can say that the MVC decomposition pattern can be
 used for many application domains regardless of their structure.   
 Another decomposition perspective concerns how to split a software with respect to an application domain. Consider, for
-example, a software system that has the purpose to manage some fundamental functions of an enterprise such
-as `manufacturing`and `crm`(customers relationship management); we call it `minierp`. After the system design phase made
-by the software engineer, **the subsystems structure can be represented in WebMVC by means of two fundamental concepts
+example, a software system that has the purpose to manage some fundamental functions of an enterprise such as
+`manufacturing`and `crm`(customers relationship management); we call it `minierp`. After the system design phase made by
+the software engineer, **the subsystems structure can be represented in WebMVC by means of two fundamental concepts
 strictly related to each other**. They are:
 
 * a **hierarchy of directories**, by which, we can organize the different source code files used to compose the software
@@ -66,8 +66,8 @@ Figure 6.1. _An excerpt of the static system decomposition of minierp._
 
 ![](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/minierp_structure.png)
 
-In the minierp software, the initial application domain decomposition is made by the subsystems `crm `,
-and `manufacturing`; the latter comprises the class `Inventory`.
+In the minierp software, the initial application domain decomposition is made by the subsystems `crm `, and
+`manufacturing`; the latter comprises the class `Inventory`.
 Note that the directory `controllers `is the root directory from which all application controllers for the defined
 subsystems can be invoked. This is because in WebMVC the directory controllers is the entry point to access application
 software functionalities. You can also note the replica of application domain directories structure (we did at
@@ -92,6 +92,7 @@ where the automatic conversion from the URL to the class name works, for example
 
 `http://site/subsystem/.../subsystem/controller/method/param1/param2/.../paramn.`
 
+
 ## Managing the inventory record
 
 An example taken from the minierp web application concerns the presentation of the _inventory records list_ whose code
@@ -104,7 +105,6 @@ minierp and is made of the following attributes:
 * `stock` -> quantity in stock
 
 The task to retrieve the inventory records is in charge of the `Inventory model`:
-
 ```php
 namespace models\manufacturing;
 

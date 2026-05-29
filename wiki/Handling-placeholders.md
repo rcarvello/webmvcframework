@@ -227,8 +227,8 @@ for showing the GUI to the screen.
 When you are writing a public method of a Controller, you need to manually invoke method `render()` anytime you want to
 output the GUI to the screen. Differently, you will not need to invoke it when you are writing a Controller constructor.
 The reason is that WebMVC, by default, when you are invoking a Controller without calling any of its methods,
-automatically executes `render()` for you. See the previous `controller\Home` source and you will find that we
-invoke `render()` inside `userToGreet()` but never in `__construct()`;
+automatically executes `render()` for you. See the previous `controller\Home` source and you will find that we invoke
+`render()` inside `userToGreet()` but never in `__construct()`;
 
 ## Summary
 

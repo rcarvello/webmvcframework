@@ -44,7 +44,6 @@ For this purpose, we add a new block called `ContenUsers` in the template. See t
 </body>
 </html>
 ```
-
 The view `views\UsersManager` will remain the same of the previous example
 
 ```php
@@ -192,5 +191,4 @@ learned another capability of the `setBlock()` method. In fact by calling `setBl
 message you can replace the content of an opened block with the given message.
 
 ## Whats Next
-
 In the next page, we speak about [nesting blocks](https://github.com/rcarvello/webmvcframework/wiki/Nesting-of-blocks)

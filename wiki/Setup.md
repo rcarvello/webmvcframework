@@ -3,9 +3,7 @@
 This section provides you with basic information for download, setup and configure WebMVC framework.
 
 ## Software requirements
-
 In order to develop using WebMVC framework you need:
-
 * Operating System: Linux, Mac or Windows
 * Server: Apache web server with mod_rewrite enabled
 * Database: MySQL (from 5.0 to the latest version)
@@ -19,10 +17,40 @@ The technical skills you need for developing with WebMVC are:
 * Basic knowledge of HTML, JavaScript, and CSS
 * Basic knowledge of MySQL database
 
-## Setup and configuration
+## Setup Using composer
 
+To create a new PHP Web MVC project in a given project folder, open a terminal session and run:
+
+```
+composer create-project rcarvello/webmvcframework PROJECT-FOLDER
+```
+
+Then go into PROJECT-FOLDER:
+
+```
+cd  PROJECT-FOLDER
+```
+
+Configure DB access:
+
+```
+php setup-config.php
+```
+
+You will be prompted to specify certain configuration variables, such as the database host, username, password, etc.
+
+Finally, you can run the development server simply by typing:
+
+```
+composer run dev
+```
+
+The development server will be started by enabling hot reload on any code changes.
+
+Your web browser will open the demo page at **http://localhost:3000**
+
+## Manual Setup and Configuration
 To install the framework:
-
 1. [Download](https://github.com/rcarvello/webmvcframework/archive/master.zip) it from Github
 2. Create a project folder in the root folder of your web server
 3. Copy all the directories downloaded from Github into the project folder
@@ -30,7 +58,6 @@ To install the framework:
    passwords
 5. Go into the project folder and modify the following lines of `config/application.config.php` according to your MySQL
    database and Apache Web Server configuration
-
 ```php
 /**
  *  MySQL User

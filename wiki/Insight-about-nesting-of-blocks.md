@@ -164,7 +164,6 @@ find these blocks named `mark@email.comRoles`, `elen@email.comRoles`, and `john@
 Now, by having distinct blocks regarding each user's roles, for dynamically assigning him the corresponding set of
 values, we need to rearrange the `views\NetsedBlocks` by adding the method `setUsersRoles($usersRoles)`. See the code
 below and also pay attention to its comments:
-
 ```php
 <?php
 
@@ -243,7 +242,6 @@ class NestedBlocks extends View
     }
 }
 ```
-
 Finally we udate the `controllers\NestedBlocks` for providing users' roles data and for handling the View
 
 ```php
@@ -352,10 +350,10 @@ class NestedBlocks extends Controller
     }
 }
 ```
-
 Now by running `http://localhost/nested_blocks` you will see the following result:
 
 ![nested bocks](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/nested_blocks04.png)
+
 
 ## Insight the example
 

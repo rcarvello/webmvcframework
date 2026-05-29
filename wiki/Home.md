@@ -1,6 +1,6 @@
 ## Introduction
 
-Welcome to the **webmvcframework** wiki.   
+Welcome to the **webmvcframework** [WIKI](https://github.com/rcarvello/webmvcframework/wiki).   
 The package webmvcframework, with the acronym of **WebMVC**, is a powerful object-oriented PHP framework, suitable as a
 web design and development tool.   
 You can use WebMVC to effectively create small and medium-sized web projects regarding data-intensive web applications,
@@ -9,7 +9,6 @@ sites, mobile web apps and web APIs.
 ## WebMVC concepts
 
 WebMVC defines:
-
 * A set of assumptions, models, and practices constituting a way for building and compounding software application
 * A software system that is intended to be instantiated for:
     * defining the architecture for a family of sub-systems and providing the basic building blocks to create them
@@ -17,59 +16,71 @@ WebMVC defines:
 
 ## WebMVC features
 
-Main features:
+<div class="markdown prose w-full break-words dark:prose-invert light">
 
-* Providing a set of functionalities to organize your application using the Model View Controller (MVC) architecture for
-  acting the Separation of Concern (SOC) regarding Business, User Interface, and Processing responsibilities
-* Let you organize an application in subsystems to cope with the complexity of big projects
-* Extending the basic MVC architecture by providing hierarchical and composition capabilities (HMVC) among different
-  Controllers. HMVC, by adopting the "divide and impera" paradigm, accelerates the development of complex web pages that
-  can be realized through the composition of many smaller and simple MVC sections
-* Avoiding the mixing of client-side programming languages, like HTML, CSS, and JavaScript, necessary for building the
-  GUI o web application, together with server-side programming languages, needed for implementing the application logic.
-  By unmixing those technologies it improves the collaboration process among people having different skills (e.g. GUI,
-  PHP and Database designers and developers) needed for building complex projects
-* Using only standard web technologies without introducing new ad hoc syntax both in client-side and server-side
-  programming languages
-* Providing ORM code automatic generation by reversing engineering a given MySQL database schema
-* Bundling a set of ready to run and useful software components for implementing some recurring problems in web
-  development
-* Providing facilities with pre-built and customizable solutions for the rapid development of frequently occurring
-  software functionalities in a WEB application like internationalization, SEO URL, authentication, users management and
-  role-based access control
+<p>WebMvcFramework provides a comprehensive set of features that emphasize the principles of the Model-View-Controller (MVC) architecture, Separation of Concerns (SOC), and Hierarchical Model-View-Controller (HMVC). Here's a summary of the key features:</p>
+<ol>
+<li><p><strong>MVC Architecture:</strong></p>
+
+<ul><li>WebMVC follows the Model-View-Controller architecture for organizing applications, separating concerns related to business logic, user interface, and processing responsibilities.</li></ul></li>
+
+<li><p><strong>Subsystem Organization:</strong></p>
+<ul><li>The framework allows for organizing applications into subsystems, which can be beneficial in managing the complexity of larger projects.</li></ul></li>
+
+<li><p><strong>HMVC Support:</strong></p>
+<ul><li>WebMVC extends the basic MVC architecture by providing Hierarchical and Composition capabilities (HMVC). This approach facilitates the development of complex web pages by dividing them into smaller and simpler MVC sections.</li></ul></li>
+
+<li><p><strong>Technology Unmixing:</strong></p>
+<ul><li>WebMVC aims to avoid mixing client-side programming languages (e.g., HTML, CSS, JavaScript) with server-side programming languages (PHP, SQL). This separation helps in collaboration among individuals with different skills required for building complex projects.</li></ul></li>
+
+<li><p><strong>Standard Web Technologies:</strong></p>
+<ul><li>The framework utilizes standard web technologies without introducing new syntax in client-side and server-side programming languages.</li></ul></li>
+
+<li><p><strong>ORM Code Generation:</strong></p>
+<ul><li>WebMVC offers automatic generation of Object-Relational Mapping (ORM) code by reverse engineering a given MySQL database schema.</li></ul></li>
+
+<li><p><strong>Ready-to-Run Components:</strong></p>
+<ul><li>The framework includes a set of pre-built and customizable software components that address common challenges in web development.</li></ul></li>
+
+<li><p><strong>Facilities for Rapid Development:</strong></p>
+<ul><li>WebMVC provides facilities and pre-built solutions for the rapid development of recurring functionalities in web applications, such as internationalization, SEO-friendly URLs, authentication, user management, and role-based access control.</li></ul></li>
+
+</ol>
+<p>This feature set suggests that WebMVC aims to provide developers with tools and conventions to streamline the development of web applications while adhering to established architectural principles.</p>
+</div>
 
 ## Why WebMVC
 
-The guidelines that led the development process of WebMVC are the need to having a design environment in which many key
-principles of software engineering could be easily applied when developing web applications. Particularly:
+<div class="markdown prose w-full break-words dark:prose-invert light">
 
-* **OOP** - Having a simple mechanism for treating web pages like classes, with the capabilities to apply them all the
-  fundamental properties of the OOP, such as extension, override, reuse and composition
+<p>The outlined principles and guidelines for developing WebMVC provide a clear insight into the philosophy and goals of the framework. Let's break down each of these principles:</p>
+<ol>
+<li><p><strong>Object-Oriented Programming (OOP):</strong></p>
+<ul><li>WebMVC is designed to treat web pages as classes, allowing for the application of fundamental OOP principles such as extension, override, reuse, and composition. This approach aims to make the development process more modular and maintainable.</li></ul></li>
 
-* **AVOID MIXING OF PROGRAMMING LANGUAGES** - Having, at the same time, the capability for decoupling server-side
-  technologies from client-side ones, avoiding mixing them when writing code of classes handling the GUI design
+<li><p><strong>Avoid Mixing of Programming Languages:</strong></p>
+<ul><li>The framework emphasizes the decoupling of server-side technologies from client-side ones. This separation is intended to prevent the mixing of languages, making it easier to manage and understand code related to GUI design without intertwining it with server-side logic.</li></ul></li>
 
-* **DECOMPOSITION** - Having the capability to simultaneously decompose an application and web pages under different
-  engineering principles: first of all MVC but also sub-systems, internationalization, page contents, access roles
+<li><p><strong>Decomposition:</strong></p><ul><li>WebMVC supports the simultaneous decomposition of an application and web pages using various engineering principles, including MVC, sub-systems, internationalization, page contents, and access roles. This allows for a structured and organized development process.</li></ul></li>
 
-* **COMPONENT BASED DEVELOPMENT** - Getting a set of reusable, customizable, and useful server-side components, also
-  built as MVC parts, for implementing recurring patterns in data-intensive web applications
+<li><p><strong>Component-Based Development:</strong></p>
+<ul><li>The framework promotes a component-based development approach, offering reusable, customizable, and useful server-side components. These components are designed as MVC parts, streamlining the implementation of recurring patterns in data-intensive web applications.</li></ul></li>
 
-* **NAMING CONVENTION OVER CONFIGURATION** - Having an OOP-like, simple, and intuitive naming notation to be used for
-  the logical representations of MVC classes and sub-systems, their correspondent physical representation into files and
-  sub-directories, their usage, as well as for making easy and automatic the object instantiation of Controllers by
-  using HTTP requests without the need of manual configurations of routing
+<li><p><strong>Naming Convention Over Configuration:</strong></p>
+<ul><li>WebMVC adopts a naming convention over configuration approach. This involves using an OOP-like, simple, and intuitive naming notation for logical representations of MVC classes and sub-systems. It also simplifies the instantiation of controllers by using HTTP requests without the need for manual configuration of routing.</li></ul>
 
-* **INTERNATIONALIZATION SUPPORT**
-  Disposing of a simple and useful mechanism for applying language translations of a software application
+</li><li><p><strong>Internationalization Support:</strong></p><ul><li>The framework provides a simple and useful mechanism for applying language translations in a software application. This ensures that the application can easily support multiple languages.</li></ul></li>
 
-* **TOOLS AIDED FRAMEWORK**
-  Providing a set of software tools to facilitate the prototyping and automatic code generation to be used for building
-  web pages and interacting with MySQL
+<li><p><strong>Tools-Aided Framework:</strong></p><ul>
+<li>WebMVC includes a set of software tools to facilitate prototyping and automatic code generation. These tools are intended to streamline the process of building web pages and interacting with MySQL, providing developers with aids for efficient development.</li></ul></li>
+
+</ol>
+<p>These principles collectively aim to create a framework that not only adheres to sound software engineering practices but also provides developers with a toolset and conventions that simplify and enhance the development of web applications.</p>
+</div>
 
 ## Summary
 
-By putting all these guidelines principles of WebMVC in the order:
+By putting all these guidelines and principles of WebMVC in order:
 
 * **C**OMPONENT BASED DEVELOPMENT
 * **A**VOID MIXING OF PROGRAMMING LANGUAGES
@@ -79,7 +90,7 @@ By putting all these guidelines principles of WebMVC in the order:
 * **I**NTERNATIONALIZATION SUPPORT
 * **T**OOLS AIDED FRAMEWORK
 
-we could imagine using the acronym of "**CAN DO IT**" for indicating the criteria by which a WebMVC application could be
+we could imagine using the acronym "**CAN DO IT**" to indicate the criteria by which a WebMVC application could be
 designed and developed.
 
 ## Whats next

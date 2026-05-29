@@ -117,11 +117,9 @@ Assemblies** for implementing the application :
   Because the system is very simple we do not have the need for any **Subsystems Design**
 
 ## System Implementation
-
 The implementation details of both assemblies will be exposed in the section below
 
 ### CustomersManager
-
 The following sections contain the template and MVC source code of the `CustomersManager` assembly.
 
 file `templates\customers_manager.html.tpl`
@@ -226,7 +224,6 @@ file `templates\customers_manager.html.tpl`
 ```
 
 file `controllers\CustomersManager.php`
-
 ```php
 namespace controllers;
 
@@ -393,8 +390,8 @@ class CustomersManager extends View
 ```
 
 The View renders the customer list
-by [processing the template Block](https://github.com/rcarvello/webmvcframework/wiki/Handling-blocks#repetitions-andor-dynamic-valorizations-of-the-content) `CustomersList`.
-If no data are retrieved from Model it shows an information text. To perform this action it uses
+by [processing the template Block](https://github.com/rcarvello/webmvcframework/wiki/Handling-blocks#repetitions-andor-dynamic-valorizations-of-the-content)
+`CustomersList`. If no data are retrieved from Model it shows an information text. To perform this action it uses
 the [block hiding](https://github.com/rcarvello/webmvcframework/wiki/Hiding-and-replacing-the-content-of-a-block#hiding-and-replacing-the-content-of-a-block)
 feature
 
@@ -406,7 +403,6 @@ ORM engine we [previously discussed](https://github.com/rcarvello/webmvcframewor
 The database Bean code is shown below
 
 file `models\beans\BeanCustomer.php`
-
 ```php
 /**
  * Class BeanCustomer
@@ -1117,19 +1113,22 @@ class CustomerRecord extends Controller
      */
     private function handleFormActionsSubmission()
     {
-
-        if (isset($_POST["operation_update"])) {
-            $this->handlePostFields();
-            $this->model->updateCurrent();
-        }
-        if (isset($_POST["operation_delete"])) {
-            $this->model->delete($_POST["customer_id"]);
-            $this->closeAndRedirect();
-        }
-        if (isset($_POST["operation_insert"])) {
-            $this->handlePostFields();
-            $this->model->insert();
-            $this->closeAndRedirect();
+        try {
+            if (isset($_POST["operation_update"])) {
+                $this->handlePostFields();
+                $this->model->updateCurrent();
+            }
+            if (isset($_POST["operation_delete"])) {
+                $this->model->delete($_POST["customer_id"]);
+                $this->closeAndRedirect();
+            }
+            if (isset($_POST["operation_insert"])) {
+                $this->handlePostFields();
+                $this->model->insert();
+                $this->closeAndRedirect();
+            }
+        } catch (\mysqli_sql_exception $e) {
+            $_SESSION["mysql_error"] = $e->getMessage();
         }
     }
 
@@ -1231,11 +1230,11 @@ class CustomerRecord extends View
 
         }
 
-        if (!$model->isSqlError()){
+        if (!isset($_SESSION["mysql_error"])){
             $this->hide("DBError");
         } else {
-            $this->setVar("Errors", $model->lastSqlError());
-
+            $this->setVar("Errors", $_SESSION["mysql_error"]);
+            unset($_SESSION["mysql_error"]);
         }
     }
 
@@ -1272,9 +1271,9 @@ class CustomerRecord extends View
 
 ```
 
-The View initializes the GUI elements depending on the Model (and by its status) it receives. Look at
-the `initFormFields` method. So behaviors of all GUI elements are depending on inserting or updating mode, which is
-strictly related to the database bean status. The status can be expressed with the following roles:
+The View initializes the GUI elements depending on the Model (and by its status) it receives. Look at the
+`initFormFields` method. So behaviors of all GUI elements are depending on inserting or updating mode, which is strictly
+related to the database bean status. The status can be expressed with the following roles:
 
 * inserting mode = when no record is selected by the received bean
 * updating mode = an existing record is selected by the received bean
@@ -1285,7 +1284,6 @@ The example we just discussed is a simple demonstration for the basic features o
 engine for easily building of database applications.
 In the next pages of the current wiki, we expose you how to improve this basic example with advanced functionalities
 like:
-
 * Internationalization
 * Hierarchical MVC (HMVC) for content decompositions ad reuse
 * Authentication and role-based access management

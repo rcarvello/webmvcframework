@@ -118,8 +118,8 @@ Sanitize your data depending on what it's being used for and, by using different
   for numbers would be the way to go (or ideally use "prepared statements"). Regarding database, WebMVC provides the
   autogeneration of special ORM classes equipped with sanitizing functionalities.
 
-* If you plan on outputting the data onto the webpage then we would recommend something like the
-  PHP `htmlspecialchars()`. WebMVC provides a special function, `setVar`, that automatically includes this capability.
+* If you plan on outputting the data onto the webpage then we would recommend something like the PHP
+  `htmlspecialchars()`. WebMVC provides a special function, `setVar`, that automatically includes this capability.
 
 * About sending emails or HTML forms, the following should suffice:    
   `filter_var($_POST['variable'], FILTER_SANITIZE_CONSTANT) `    

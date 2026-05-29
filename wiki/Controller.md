@@ -9,7 +9,6 @@ public methods, WebMVC will enable you to instantiate and execute it's logic, si
 from your browser.
 
 ## Let's start coding
-
 Coding and running your first controller is extremely simple!   
 Just write and save the following file **HelloWorld.php** into the **controllers** folder:
 
@@ -31,30 +30,33 @@ class HelloWorld extends Controller
 The figure below shows you the path for **HelloWorld.php**. Note that **you must use the _PascalCase_ notation for
 naming a controller**.
 
+<p>Here's a breakdown of the code:</p><ul><li><p><strong>Namespace:</strong></p><ul><li>The controller is placed within the <code>controllers</code> namespace. Namespaces help organize classes and avoid naming conflicts.</li></ul></li><li><p><strong>Class Declaration:</strong></p><ul><li>The class is named <code>HelloWorld</code> and extends the <code>Controller</code> class provided by the WebMVC framework.</li></ul></li><li><p><strong>Method (<code>sayHello</code>):</strong></p><ul><li>The class contains a method named <code>sayHello</code>. This method will be executed when the corresponding action is triggered.</li></ul></li><li><p><strong>Action Logic:</strong></p><ul><li>The logic inside the <code>sayHello</code> method is simple: it echoes the string "Hello World."</li></ul></li></ul><p>To use this controller, you typically follow the URL structure that corresponds to the MVC pattern. For example, if your application is hosted at <code>http://example.com</code>, accessing <code>http://example.com/HelloWorld/sayHello</code> would trigger the <code>sayHello</code> method of the <code>HelloWorld</code> controller.</p><p>Make sure that the file is saved in the correct location, and the namespace corresponds to the folder structure. The WebMVC framework likely has conventions for organizing controllers and other components.</p>
+
 ![](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/controller.png)
 
-At this point, the only thing you have to understand is how to instantiate the `HelloWorld` Controller and execute
-its `sayHello` method. Just open your favorite web browser and type the following URL address:
+At this point, the only thing you have to understand is how to instantiate the `HelloWorld` Controller and execute its
+`sayHello` method. Just open your favorite web browser and type the following URL address:
 
-`http://localhost/hello_world/say_hello` [(Click to run)](https://www.webmvcframework.com/hello_world/say_hello)
+`http://localhost/hello_world/say_hello` [(Click to run)](https://www.webmvcframework.com/webmvc/hello_world/say_hello)
 
 You should see:
 
 **Hello World**
 
 Congratulations, you have just developed and executed your first application using the WebMVC framework!
+<p>Remember that this is a basic example, and in a real-world application, your controllers would handle more complex logic, interact with models, and generate views to render dynamic content.</p>
 
 ## Explanation: How coding and executing Controller
 
 WebMVC requires you to code a custom Controller for implementing application logic. In general, a Controller has the
 responsibility to handle the logic and control flow of a software application. To do this you must create a PHP Class
-that extends the `framework\Controller` and save it under the `controllers` directory. That is what we did by
-providing `HelloWorld` controller. Later we ran it by requesting it from browser URL, that's mean we typed its name and
-its `sayHello`method by using a **snake_case notation**. This notation is very intuitive because it mirrors the *
-*PascalCase or camelCase notation that must be mandatory used when naming classes or methods**. It simply consists of
-typing the HTTP request by specifying both the Controller and Method names you want to run, using lowercase and by
-separating names with a slash. Snake_case notation also requires an underscore for separating an eventual occurrence of
-composite names for the controller or for methods. In fact, we used:
+that extends the `framework\Controller` and save it under the `controllers` directory. That is what we did by providing
+`HelloWorld` controller. Later we ran it by requesting it from browser URL, that's mean we typed its name and its
+`sayHello`method by using a **snake_case notation**. This notation is very intuitive because it mirrors the **PascalCase
+or camelCase notation that must be mandatory used when naming classes or methods**. It simply consists of typing the
+HTTP request by specifying both the Controller and Method names you want to run, using lowercase and by separating names
+with a slash. Snake_case notation also requires an underscore for separating an eventual occurrence of composite names
+for the controller or for methods. In fact, we used:
 
 **hello_world** -> for specifying **HelloWorld** Controller that must mandatory named by using the PascalCase notation
 
@@ -115,7 +117,7 @@ class HelloWorld extends Controller
 
 Now type the following address:
 
-`http://localhost/hello_world/say_hello_message/Mark` [(Click to run)](https://www.webmvcframework.com/hello_world/say_hello_message/Mark)
+`http://localhost/hello_world/say_hello_message/Mark` [(Click to run)](https://www.webmvcframework.com/webmvc/hello_world/say_hello_message/Mark)
 
 The output will be
 
@@ -123,7 +125,7 @@ The output will be
 
 Also type:
 
-`http://localhost/hello_world/say_hello_message/John` [(Click to run)](https://www.webmvcframework.com/hello_world/say_hello_message/John)
+`http://localhost/hello_world/say_hello_message/John` [(Click to run)](https://www.webmvcframework.com/webmvc/hello_world/say_hello_message/John)
 
 The output now will be:
 

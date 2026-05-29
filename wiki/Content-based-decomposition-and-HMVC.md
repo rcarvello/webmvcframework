@@ -50,16 +50,16 @@ Note that, just for simplifying, we are only considering controller classes. Mod
 design.   
 The diagram defines:
 
-- Two primary subsystems illustrated using two boundary rectangles: `framework` (obtained from WebMVC)
-  and `e-commerce` (we will use it for encapsulating all e-commerce classes). Also, you must remember that subsystems
-  must be logically encapsulated by using namespaces (in the figure the names preceding colon)
+- Two primary subsystems illustrated using two boundary rectangles: `framework` (obtained from WebMVC) and
+  `e-commerce` (we will use it for encapsulating all e-commerce classes). Also, you must remember that subsystems must
+  be logically encapsulated by using namespaces (in the figure the names preceding colon)
 - Inside the `e-commerce` subsystem, we design two child subsystems: `store` and `common` respectively used for
   encapsulating the store classes and the common classes we need to reuse across the e-commerce application.
 - Inside `store` namespace we put `ProductsList `and `ProductDetail` controllers for managing their respective pages
 - Inside `common `namespace we put `NavigationBar`controller for managing the content needed for painting a navigation
   bar
 - Finally, the diagram shows you the following relationships representing pages composition:
-    - `ProductsList` contains a `NavigationBar`. Look at the composition relationship into the UML diagram.
+      - `ProductsList` contains a `NavigationBar`. Look at the composition relationship into the UML diagram.
     - `ProductDetails` also contains the previous `NavigationBar`
     - `ProductsList`, `ProductDetail` and `NavigationBar` are controllers extending the base class `Controller` provided
       by WebMC
@@ -301,7 +301,6 @@ class NavigationBar extends Controller
     }
 }
 ```
-
 and its GUI template `navigation_bar.html.tpl`
 
 ```html
@@ -453,7 +452,6 @@ A very simple GUI template (`product_detail.html.tpl`) for the product detail ..
 </body>
 </html>
 ```
-
 Running `https://server/ecommerce/store/product_detail` you will produce:
 
 ![HMVC product detail](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/ecommerce-grab-03.png)

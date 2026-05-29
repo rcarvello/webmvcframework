@@ -8,7 +8,6 @@ There are two general purposes of using the nesting of blocks:
 ## Nesting of blocks for showing a subset of shared values
 
 We start by showing you the following `templates\nested_blocks.html.tpl`
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -54,15 +53,15 @@ differnt users.
 
 To achieve this goal, we nested the block `UserActions` inside the main block `Users` we used to show users list. Then
 we designed inside `UserActions` the static representation of an unnumbered list of actions links. Also note that, like
-we have done for the user data, we coded only the static representation of one action link by representing a call
-to `doAction()` method of `controller\NestedBlocks` controller and by passing it two parameters: the action name and the
+we have done for the user data, we coded only the static representation of one action link by representing a call to
+`doAction()` method of `controller\NestedBlocks` controller and by passing it two parameters: the action name and the
 user email, their respectively designed by using `{ActionName}` and `{UserEmail}` placeholders.
 Pay also attention that:
 
 * We used the placeholder {CurrentAction} for dynamically showing an information about the link clicked by the user
 * We used
-  the [global placeholder](https://github.com/rcarvello/webmvcframework/wiki/Dynamic-content#special-placeholders) `{GLOBAL:SITEURL}`
-  for getting the root URL of links that will be generated at runtime
+  the [global placeholder](https://github.com/rcarvello/webmvcframework/wiki/Dynamic-content#special-placeholders)
+  `{GLOBAL:SITEURL}` for getting the root URL of links that will be generated at runtime
 
 The following picture shows you the output of the static design in which we highlighted with green the Users block and
 its inner block UserActions with red:
@@ -302,7 +301,6 @@ arrays `$userActions`, and `$user` of the controller `controllers\NestedBlocks`.
 </body>
 </html>
 ```
-
 ## Summary
 
 In this page, we showed how to code the nesting of blocks for producing a set of multiple values relating to parent

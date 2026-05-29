@@ -2,15 +2,15 @@
 
 Object-relational mapping (ORM) is a mechanism that makes it possible to address, access and manipulate objects without
 having to consider how those objects relate to their database tables.     
-WebMVC provides you with a useful tool for the Object Relation Mapping of MySQL. The tool generates automatically Model
-classes for any tables of a given database schema.
+WebMVC provides you with a useful tool for the Object Relation Mapping of MySQL.
+This tool generates automatically Model classes for any tables of a given database schema.
 
 ## WebMVC Model and ORM - Object Relational Mapping
 
-To generate Model classes with the purpose of mapping database tables you need to:
+To generate Model classes to map database tables you need to:
 
-1) Use lowercase with the underscore, which is the widely used MySQL naming notation, on your database tables and fields
-   names.
+1) Use lowercase with the underscore, which is the widely used MySQL naming notation (formerly named as snake case
+   notation), on your database tables and field names.
 
 2) Configure your database schema by modifying `util\mysqlreflection\mysqlreflection.config.php` file and, assigning
    appropriate values to DBHOST, DBNAME, DBUSER, DBPASSWORD, and DBPORT PHP constants, according to your MySQL settings.
@@ -20,16 +20,15 @@ To generate Model classes with the purpose of mapping database tables you need t
    Note that, the GUI of the utility uses Bootstrap and jQuery from CDN. So you also need an internet connection alive
    before running it.
 
-4) Once the utility is started, click "_Generate classes_" button.
+4) Once the utility is started, click the "_Generate classes_" button.
 
 The following figure shows you the startup screen of the utility:
 
 ### Utility GUI
-
 ![alt tag](https://raw.githubusercontent.com/rcarvello/mysqlreflection/master/docs/gui.png)
 
-After running the generation of classes you can close the utility. You will find all the generated classes
-under `models\beans` folder.
+After running the generation of classes you can close the utility. You will find all the generated classes under
+`models\beans` folder.
 
 Notice that:
 

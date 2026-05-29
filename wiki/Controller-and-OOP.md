@@ -12,8 +12,8 @@ discuss later).
 
 In
 the [previous example](https://github.com/rcarvello/webmvcframework/wiki/Controller#insights-controller-and-object-methods),
-we used the **OOP inheritance** to take the advantages of extending the "_abstract responsibilities_"
-of `framework\Controller` class to "_custom and specialized responsibilities_" of the concrete `controllers\HelloWorld`
+we used the **OOP inheritance** to take the advantages of extending the "_abstract responsibilities_" of
+`framework\Controller` class to "_custom and specialized responsibilities_" of the concrete `controllers\HelloWorld`
 class.   
 Now we will give you another example regarding another OOP feature: **method overriding**, but before you must know
 that:
@@ -53,16 +53,16 @@ obtain an exception:
 `framework\exceptions\NotInitializedViewException`
 
 Are you surprised? That happens because, by typing  `http://localhost/hello_world`, we invoke the `controller\HelloWord`
-standard behavior inherited from its parent: the `__construct()` method which is defined and built into the
-abstract `framework\Controller` class.   
+standard behavior inherited from its parent: the `__construct()` method which is defined and built into the abstract
+`framework\Controller` class.   
 The parent  `__construct()`, implements the following behavior: it uses a generic and null View when it does not have
 any reference to a custom instance of it. It does the same for the Model. But, when WebMVC tries to show the View it
 throws an exception because the design of a generic null View, by default, is not initialized. In the example, we have
 an uninitialized design because we are just echoing a message rather than printing an HTML GUI design.
 
-Fortunately, by using the OOP method overriding we can build an extended version, we call
-it `controllers\EchoController`, of `framework\Controller` that will implement an "overridden" behavior with the purpose
-of avoiding the exception when we don't want use any GUI design.   
+Fortunately, by using the OOP method overriding we can build an extended version, we call it
+`controllers\EchoController`, of `framework\Controller` that will implement an "overridden" behavior with the purpose of
+avoiding the exception when we don't want use any GUI design.   
 Take a look at the following class:
 
 ```php
@@ -94,12 +94,11 @@ class EchoController extends Controller
 ``` 
 
 In this version, we override the standard parent behavior by building (and automatically calling) a hook to the View
-initialization, because we haven't the need of using a GUI design. You must don't take care, right now,
-of `hookViewInitialization` implementation. Simply you must consider that by calling it we are always able to initialize
+initialization, because we haven't the need of using a GUI design. You must don't take care, right now, of
+`hookViewInitialization` implementation. Simply you must consider that by calling it we are always able to initialize
 the View avoiding the exception.   
 So with the availability of `controllers\EchoController`, in witch a GUI design is always initialized, we can now
 refactor the previous  `controllers\HelloWorld` in this way:
-
 ```php
 <?php
 namespace controllers;
@@ -114,7 +113,6 @@ class HelloWorld extends EchoController
     }
 }
 ```  
-
 Now by making the request `http://localhost/hello_world` no exception will be thrown.   
 Finally, if you want to automatically show the echo message by using the previous request, override the __construct in
 this way:

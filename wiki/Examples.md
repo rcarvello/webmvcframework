@@ -1,5 +1,4 @@
 ## Subsystem examples
-
 Into WebMVC package you will find different examples of source code located under the `examples` subfolder.
 They give you a demonstration of the main WebMVC functionalities, as well as, how to organize software into subsystems.
 Subsystems of the provided examples are organized as follow:
@@ -15,8 +14,8 @@ Subsystems of the provided examples are organized as follow:
 Below is the directory/files structure:
 
 ![Exaple](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/examples_folders-controllers.png).  
-Rember that, due to the MVC design pattern, you will find a replica of `examples` folders/files structure also
-under `models`, `views` and, `templates` folders.
+Rember that, due to the MVC design pattern, you will find a replica of `examples` folders/files structure also under
+`models`, `views` and, `templates` folders.
 
 You can run a demo from [here](https://www.webmvcframework.com/)
 

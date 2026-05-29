@@ -3,7 +3,6 @@
 We are now introducing the concrete class `frameworks\View.php` which is the WebMVC entity that provides you all the
 necessary methods to interact with the HTML pages. You will learn to use it as an object instance or, when occurring the
 need to produce complex and dynamic web pages, by extending it with custom classes designed for your needs.
-
 ## Using the View
 
 In MVC Design pattern the View layer has the prior responsibility to manage and show data in graphical structures like
@@ -24,7 +23,6 @@ typing an HTTP request).
 Pratically:
 
 Create the template `templates\home.html.tpl` containing the HTML of the web page:
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +35,6 @@ Create the template `templates\home.html.tpl` containing the HTML of the web pag
 </body>
 </html>
 ```
-
 Then create the Hello controller `controllers\Home.php` as follow (pay attention to the comments):
 
 ```php
@@ -109,11 +106,10 @@ output simply by instantiating form HTTP the controller without the need of invo
 ## Insights: Best practices of using OOP and autorun for extending the GUI design
 
 The purpose of this section is to give you another example regarding the advantages deriving from using OOP and autorun.
-Supposing we want to have a "Bootstrap" mobile version of the previous page. We can do this job simply by extending
-the `controllers\Home.php` by creating `controllers\HomeBootstrap.php` in which we quickly hook the `autorun` by loading
-a different GUI template appositely designed for mobile devices.     
+Supposing we want to have a "Bootstrap" mobile version of the previous page. We can do this job simply by extending the
+`controllers\Home.php` by creating `controllers\HomeBootstrap.php` in which we quickly hook the `autorun` by loading a
+different GUI template appositely designed for mobile devices.     
 See the code below:
-
 ```php
 namespace controllers;
 
@@ -138,7 +134,6 @@ class HomeBootstrap extends Home
 
 Now we use Bootstrap for the mobile template of GUI. Note that it is ineffective on the server-side code developed so
 far thanks to the features of WebMVC that isolate client-side technologies in external template files
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -160,7 +155,6 @@ far thanks to the features of WebMVC that isolate client-side technologies in ex
 </body>
 </html>
 ```
-
 Now run by typing:
 
 `http://localhost/home_bootstrap`

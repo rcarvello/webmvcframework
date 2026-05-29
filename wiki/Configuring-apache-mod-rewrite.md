@@ -19,7 +19,6 @@ Apache:
 mod_rewrite is now fully enabled.
 
 ### Step 2 - Configure Apache2 Virtual Host
-
 Before you start using mod_rewrite you’ll need to set up and secure a few more settings.
 
 By default, Apache prohibits using rewrite (with is configured by the framework into .htaccess file) so first, you need
@@ -45,7 +44,6 @@ indented:
     . . .
 </VirtualHost>
 ```
-
 Save and close the file. If you used nano, do so by pressing CTRL+X, Y, then ENTER.  
 Note: Do the same changes for SSL sites.
 

@@ -10,5 +10,4 @@ the [previous page](https://github.com/rcarvello/webmvcframework/wiki/Setup) wil
 doing something else**. In fact, all the other WebMVC configuration options can be used with their default values.
 
 ## Basic organization of configurations files
-
 // TODO

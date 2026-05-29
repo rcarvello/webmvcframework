@@ -22,8 +22,8 @@ folders:
 ## Load and Dispatch by "Convention over Configuration"
 
 When you build a traditional PHP application, there is a one-to-one correspondence between a URL and a PHP page. If you
-make an HTTP request like `http://server/home.php` from the server, then there had better be a page on disk
-named `home.php`. If the `home.php` file does not exist, you get an ugly 404 - Page Not Found error.
+make an HTTP request like `http://server/home.php` from the server, then there had better be a page on disk named
+`home.php`. If the `home.php` file does not exist, you get an ugly 404 - Page Not Found error.
 
 When building a WebMVC application, in contrast, there is no correspondence between the URL that you type into your
 browser's address bar and the files that you find in your application.
@@ -45,9 +45,7 @@ contains the flow control logic for an application. A controller determines what
 user makes a browser request.    
 Technically speaking a controller is just a concrete class of the abstract `framework\Controller` class. When you write
 a controller class it must be saved under the `controllers` folder of your web application to allow its instantiation.
-
 ## Understanding View and Template
-
 The View has the responsibility to organize and show data in graphical structures.   
 The development of a View in the web environment, unlike what happened for desktop applications, involves the use of
 different programming languages: some server-side, like PHP, and other client-side, like HTML, CSS, and JavaScript. In
@@ -68,29 +66,41 @@ tables of a given MySQL schema.
 
 ## Handling incoming HTTP requests
 
-Now you learned that WebMVC, as a result of an HTTP request, loads and runs a Controller, connected in turn with the
-View and with the Model. Below, we show a flow diagram to illustrate you the interaction of all these entities:
+Now you know how WebMVC, as a result of an HTTP request, loads and runs a Controller, connected in turn with the View,
+Template, and Model.
+The following figure shows you how the framework handles incoming HTTP requests and processes data and operations.
 
 ![WebMVCRequestHandling](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/WebMVCRequestHandling.png)
 
-The flow description is the following;
+Let's summarize the key points in the flow
 
-1. An incoming HTTP request is delivered to the Web MVC Dispatcher
-2. The Dispatcher automatically recognizes in the HTTP request a call for a Controller execution. Then it uses the
-   Loader to load the appropriate Controller class.
-3. The Loader imports Controller class and all its dependencies
-4. The Dispatcher is now enabled to instantiate the appropriate Controller
-    * 4b...z Its also possible that the Controller aggregates and manages the execution of one or more controllers. This
-      is a feature of WebMVC known as "Hierarchical MVC". We will discuss it later, in
-      this [section](https://github.com/rcarvello/webmvcframework/wiki/Content-based-decomposition-and-HMVC)
-5. The Controller uses and runs the Model
-    * 5b Model connects to MySQL to retrieve or store data
-6. The Controller uses and runs the View
-    * 6b The View reads the static design of the web page from an HTML Template. The static design of the Template will
-      be used by the View for generating the dynamic web page also by using data provided by the Model.
-7. The Controller, after loading and processing the Model and View, is enabled to provide back to the Dispatcher the
-   output that was dynamically produced.
-8. Finally, the Dispatcher sends back the output as an HTTP response
+<div class="markdown prose w-full break-words dark:prose-invert light">
+
+<ol>
+<li><p><strong>Incoming HTTP Request:</strong></p><ul><li>An HTTP request is delivered to the WebMVC Dispatcher.</li></ul></li>
+<li><p><strong>Using Dispatcher for Recognition of the Controller call:</strong></p><ul>
+
+<li>The Dispatcher automatically recognizes the HTTP request as a call for Controller execution.</li></ul></li>
+
+<li><p><strong>Importing and using Controller:</strong></p><ul><li>The Dispatcher uses the Loader to use and load the appropriate Controller class.</li></ul></li><li><p><strong>Controller Loading and Instantiation:</strong></p><ul>
+
+<li><p>The Loader imports the Controller class and its dependencies.</p></li><li><p>The Dispatcher instantiates the appropriate Controller.</p></li><li><p><strong>Possibility of Hierarchical MVC:</strong></p>
+<ul><li>It's noted that the Controller might aggregate and manage the execution of one or more controllers, a feature known as "Hierarchical MVC." We will discuss it later,  in this <a href="https://github.com/rcarvello/webmvcframework/wiki/Content-based-decomposition-and-HMVC">section</a></li></ul>
+</li></ul></li>
+
+<li><p><strong>Model Execution:</strong></p><ul><li>The Controller uses and runs the Model.</li><li>The Model may connect to MySQL to retrieve or store data.</li></ul></li>
+
+<li><p><strong>View Execution:</strong></p><ul><li>The Controller uses and runs the View.</li><li>The View reads the static design of the web page from an HTML Template.</li><li>The static design, along with data from the Model, is used to generate the dynamic web page.</li></ul></li>
+
+<li><p><strong>Controller Output to Dispatcher:</strong></p><ul><li>After loading and processing the Model and View, the Controller provides the output dynamically produced back to the Dispatcher.</li></ul></li>
+
+<li><p><strong>Dispatcher HTTP Response:</strong></p><ul><li>Finally, the Dispatcher sends back the output as an HTTP response.</li></ul></li>
+
+</ol>
+
+<p>This flow illustrates a typical request-response cycle in the WebMVC framework, where the Dispatcher plays a central role in managing the flow of control, and the Model, View, and Controller collaborate to handle different aspects of the request.</p>
+<p> In summary, the WebMVC framework uses a Dispatcher to handle incoming HTTP requests. It recognizes the need for Controller execution, loads the appropriate Controller class, and manages the flow of control between the Model, View, and Controller to generate a response, which is then sent back to the client. This process follows the principles of the Model-View-Controller architecture, with additional support for hierarchical MVC and other features provided by the WebMVC framework.</p>
+</div>
 
 ## Naming convention
 
@@ -105,10 +115,11 @@ translation files, which we will show you later. See the following figure:
 > From a conceptual point of view, this means that you can specify a unique name that identifies the MVC triad
 > cooperation. In this example, we call it _Home_ and it identifies a **WebMVC assembly** that will be generated at
 > runtime for the aggregating of the MVC triad and the template.   
-> Summarizing, a WebMVC assembly identifies an entity generated at runtime that will provide a primary service (typically
-> a web page) and we can identify by a name. Then we can use this name for physically naming the MVC triad and template
-> that cooperate together for producing the service. The name of a WebMVC assembly will match the Controller name of the
-> triad and will be also used by the framework for providing to you an endpoint you will use for consuming the service.
+> Summarizing, a WebMVC assembly identifies an entity generated at runtime that will provide a primary service (
+> typically a web page) and we can identify by a name. Then we can use this name for physically naming the MVC triad and
+> template that cooperate together for producing the service. The name of a WebMVC assembly will match the Controller name
+> of the triad and will be also used by the framework for providing to you an endpoint you will use for consuming the
+> service.
 
 Although we can use the same name for the different MVC classes triad, the unique identification of a single class name
 still will be possible because WebMVC uses the **PHP namespaces** for encapsulating each class; this convention allows
@@ -140,14 +151,12 @@ consuming the service provided by the `Home` WebMVC assembly. The name of the ca
 provided to you by the framework. It will be represented in snake_notation and it will match exactly the Assembly name.
 
 Note that the convention we discussed so far, of using a single name for all the main parts of MVC assembly, is not
-mandatory. If you prefer you can also decide to name classes and templates by using the traditional suffixes,
-eg. `HomeController.php`, `HomeModel.php`, `HomeView.php` and `home_template.html.tpl`
+mandatory. If you prefer you can also decide to name classes and templates by using the traditional suffixes, eg.
+`HomeController.php`, `HomeModel.php`, `HomeView.php` and `home_template.html.tpl`
 
 ## Summary
-
 We exposed the basic concepts you need to understand before using WebMVC framework for developing an application.
 They are:
-
 - The roles of models, views, controllers (MVC) classes and of templates.
 - Files organization by using special folders: models, views, controllers, and templates for storing MVC classes and
   HTML templates.
@@ -159,7 +168,6 @@ They are:
   when naming files.
 
 So you simply:
-
 - Code your MVC classes and the GUI HTML template.
 - Use PascalCase, camelCase notations when coding/saving classes and snake_case notation when saving the template.
 - We strongly suggest to you to identify WebMVC assembly name representing the service produced by the MVC triad and

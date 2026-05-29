@@ -34,12 +34,11 @@ These aspects are considered by WebMVC by means of a standard way to build multi
 In the following figure, we show an example
 of [WebMVC Assembly](https://github.com/rcarvello/webmvcframework/wiki/Understanding-WebMVC#insights-webmvc-assembly),
 named **Localization**, that manages a GUI capable to shift the language from a page written in English to a page
-written in Italian. The showed example is taken from examples we provide with the framework and it is located
-under `examples/cms/localization` path of `controllers`, `models`, `views`, and `templates` directories.
+written in Italian. The showed example is taken from examples we provide with the framework and it is located under
+`examples/cms/localization` path of `controllers`, `models`, `views`, and `templates` directories.
 
-So, by assuming your server is `localhost` and your project root is `webmvcframwork`, by
-running `https://localhost/webmvcframework/examples/cms/localization?locale=en` the output will be showned in **English
-**:
+So, by assuming your server is `localhost` and your project root is `webmvcframwork`, by running
+`https://localhost/webmvcframework/examples/cms/localization?locale=en` the output will be showned in **English**:
 
 ![Sample GUI using WebMVC localization_en](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/locale_gui_en.png)
 
@@ -56,8 +55,8 @@ showned in the default browser language:
 
 WebMVC manages the technicalities of internationalization/localization providing the folder `locales` where resource
 files containing the presentation content can be placed in different subfolders, one for each natural language. Again,
-the folder locales have to reflect the structure of system decomposition that we made for our
-project `examples/cms/controllers`.   
+the folder locales have to reflect the structure of system decomposition that we made for our project
+`examples/cms/controllers`.   
 The following image shows the files structure for `controllers`, `models`, `views`, `templates`, and `locales`
 
 ![locales](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/locale_folders.png)
@@ -65,8 +64,8 @@ The following image shows the files structure for `controllers`, `models`, `view
 As you can see, insides the folders locales (the blue box) you need to reflect the same system decomposition assigned to
 the `controllers` folder (the red box, as well as `models`, `views`, and `templates`).  
 In the blu box, the directories `en` and `it-it` contain the resource files for the translation of the content shown in
-GUI. In particular, for the welcome page managed by the
-controller `https://localhost/webmvcframework/examples/cms/localization`, the following files:
+GUI. In particular, for the welcome page managed by the controller
+`https://localhost/webmvcframework/examples/cms/localization`, the following files:
 
 `locales/en/application.txt ` and `locales/it-it/application.txt`
 
@@ -151,7 +150,6 @@ The code for HTM template file:  `template/examples/cms/localization.html.tpl` i
 </body>
 </html>
 ```
-
 In the above template we used a new type of placeholders defined by the format `{RES:PlaceHolderName}`.  
 In the above HTML code they are:
 

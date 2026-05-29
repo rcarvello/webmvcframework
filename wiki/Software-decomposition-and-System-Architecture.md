@@ -164,6 +164,7 @@ described in the following sections, are:
 * Determine the Quality Attributes
 * Determine the Crosscutting Concerns
 
+
 ### Determine the Application Type
 
 Choosing the appropriate application type is the key part of the process of designing an application. Your choice is
@@ -258,7 +259,6 @@ applications:
 
 After introducing the basic principles of the Systems' Architectures, we can now describe the key features of WebMVC
 framework that allow you to apply different levels of decomposition to a software application. These are:
-
 * [Objects Orientend Programming](https://github.com/rcarvello/webmvcframework/wiki/Controller-and-OOP)
 * [MVC Design Pattern](https://github.com/rcarvello/webmvcframework/wiki/Understanding-WebMVC)
 * [Subsystems](https://github.com/rcarvello/webmvcframework/wiki/Subsystems)

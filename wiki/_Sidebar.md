@@ -5,9 +5,7 @@
     1. [Apache mod rewrite](https://github.com/rcarvello/webmvcframework/wiki/Configuring-apache-mod-rewrite)
     2. [Options](https://github.com/rcarvello/webmvcframework/wiki/Advanced-configuration)
 3. [Understanding WebMVC](https://github.com/rcarvello/webmvcframework/wiki/Understanding-WebMVC)
-
 ## Basic concepts
-
 4. [Controller](https://github.com/rcarvello/webmvcframework/wiki/Controller)
     1. [Handling of HTTP Request Methods](https://github.com/rcarvello/webmvcframework/wiki/Handling-of-HTTP-Request-Methods)
     1. [Controller and OOP](https://github.com/rcarvello/webmvcframework/wiki/Controller-and-OOP)
@@ -23,9 +21,7 @@
     1. [Interacting with MySQL](https://github.com/rcarvello/webmvcframework/wiki/Interacting-with-MySQL)
     2. [MySQL ORM](https://github.com/rcarvello/webmvcframework/wiki/MySQL-ORM)
     3. [Example of a DB Application](https://github.com/rcarvello/webmvcframework/wiki/A-fully-functioning-DB-application)
-
 ## Advanced concepts
-
 7. [System decomposition](https://github.com/rcarvello/webmvcframework/wiki/Software-decomposition-and-System-Architecture)
     1. [Subsystems](https://github.com/rcarvello/webmvcframework/wiki/Subsystems)
         * [Examples](https://github.com/rcarvello/webmvcframework/wiki/Examples)
@@ -35,9 +31,7 @@
     6. [Component Based Development](https://github.com/rcarvello/webmvcframework/wiki/Component-Based-Development)
     7. [Role-based decomposition ](https://github.com/rcarvello/webmvcframework/wiki/Role-Based-Decomposition)
 8. [Content observing](#)
-
 ## Securing WebMVC
-
 9. [Security](https://github.com/rcarvello/webmvcframework/wiki/Security)
     1. [Authentication](#)
     2. [RBAC](https://github.com/rcarvello/webmvcframework/wiki/RBAC)
@@ -45,9 +39,7 @@
     4. [CSRF and XSS](#)
     5. [Encryption](#)
     6. [Securing your application files](#)
-
 ## Components
-
 10. [Using components](https://github.com/rcarvello/webmvcframework/wiki/Using-Components)
     1. [DataRepeater](https://github.com/rcarvello/webmvcframework/wiki/DataRepeater)
     2. [Sorter](#)
@@ -55,35 +47,26 @@
     4. [Searcher](#)
     5. [Record](#)
     6. [TreeList](#)
-
 ## Helpers
-
 11. [Helpers](#)
     1. [Email](#)
     2. [File uploader](#)
     3. [Session](#)
     4. [Cookies](#)
-
 ## Programming techniques
-
 12. [Logic Hook](#)
     1. [Creating your own Hooks](#)
 13. [Error Handling](#)
-
 ## Services development
-
 14. [Services and API development](#)
     1. [JSON](#)
     2. [REST API](#)
-
 ## WebMVC Tools
-
 15. [Tools](#)
     1. [MVC instance skeleton builder](#)
     2. [MySQL ORM builder](#)
-
+    3. [Running Tests](https://github.com/rcarvello/webmvcframework/wiki/Running-Test-Cases)
 ## Best Practices
-
 16. [WebMVC Best Practices](#)
     1. [Naming convention summary](#)
     2. [Web development](#)

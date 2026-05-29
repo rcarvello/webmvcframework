@@ -9,18 +9,18 @@ We can modify the [previous example](https://github.com/rcarvello/webmvcframewor
 users and roles from a database. Before we do so, it must be taken into account that:
 
 * WebMVC `framework\Model` extends the PHP `\mysqli` class to interact with MySQL database
-* `framework\Model` also provides you with a custom `$sql` attribute, the methods `updateResultSet()`,
-  and `getResultSet()` for:
+* `framework\Model` also provides you with a custom `$sql` attribute, the methods `updateResultSet()`, and
+  `getResultSet()` for:
     * `Model->$sql` is a class attribute designed to store any valid SQL statement, e.g a SELECT query, INSERT, UPDATE,
       DELETE, and more.
-    * With `Model->updateResultSet() ` you can execute the SQL statement you previously stored in the
-      attribute `Model->$sql`
-    * With `Model->getResultSet() ` you are able to access the result of the executed SQL statement by means
-      of `Model->updateResultSet()`.
+    * With `Model->updateResultSet() ` you can execute the SQL statement you previously stored in the attribute
+      `Model->$sql`
+    * With `Model->getResultSet() ` you are able to access the result of the executed SQL statement by means of
+      `Model->updateResultSet()`.
       The result can be one of the following:
         * FALSE on failure regarding the execution of the SQL statement
-        * for successful SELECT, SHOW, DESCRIBE or EXPLAIN statements (which returning data rows) it returns a
-          PHP `\mysqli_result` object. The object will contain some data rows you can fetch by using some specialized
+        * for successful SELECT, SHOW, DESCRIBE or EXPLAIN statements (which returning data rows) it returns a PHP
+          `\mysqli_result` object. The object will contain some data rows you can fetch by using some specialized
           methods it provides, or better it inherits from parent mysqli class. These methods are (see the \mysqli_result
           full documentation [here](http://php.net/manual/en/class.mysqli-result.php)):
           ```php
@@ -34,8 +34,8 @@ users and roles from a database. Before we do so, it must be taken into account 
           ```
 
         * for other successful SQL statements (which do not return any data rows) it returns TRUE.
-* You can also consume all public methods and attributes provided by the parent PHP `\mysqli` class,
-  eg. `mysqli:query()`, `mysqli:real_escape_string`, etc. (see the `mysqli` full
+* You can also consume all public methods and attributes provided by the parent PHP `\mysqli` class, eg.
+  `mysqli:query()`, `mysqli:real_escape_string`, etc. (see the `mysqli` full
   documentation [here](http://php.net/manual/en/book.mysqli.php)).
 * You must configure the file `config\application.config.php`. Specifically, you must modify the constants **DBHOST**, *
   *DBUSER**, **DBPASSWORD**, **DBNAME**, and **DBPORT** according to your MySQL setting.    
@@ -355,7 +355,6 @@ automatically executed by WebMVC
 The following figure gives a graphical representation of these points:
 
 ![mvc mysql summary](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/request-handling-in-webmvc-mysql.png)
-
 ## Whats next
 
 In the [next page](https://github.com/rcarvello/webmvcframework/wiki/MySQL-ORM), we show you how to INSERT, UPDATE, and

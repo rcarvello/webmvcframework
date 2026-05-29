@@ -16,8 +16,8 @@ computing dynamic actions like:
 
 ## Repetitions and/or dynamic rendering of the content
 
-Supposing we want to show a list of users rather than a single one like we previously done in
-the [`controllers\Home`](https://github.com/rcarvello/webmvcframework/wiki/Handling-placeholders#handling-placeholders-by-using-template-view-and-controller).
+Supposing we want to show a list of users rather than a single one like we previously done in the [
+`controllers\Home`](https://github.com/rcarvello/webmvcframework/wiki/Handling-placeholders#handling-placeholders-by-using-template-view-and-controller).
 On the section
 about [Dynamic Content](https://github.com/rcarvello/webmvcframework/wiki/Dynamic-content#understanding-blocks), we
 introduced and coded the following `templates\users_manager.html.tpl`, by using a block named `Users` suitable for this
@@ -111,10 +111,10 @@ contained in the given `$users` array; specifically, we:
 
 * Invoking the `openBlock `method inherited from `framework\View`. This method, behind the scenes, do:
     * It recognizes the block `Users`
-    * It creates a swap, initially empty, variable to store the dynamic content to be generated. We refer it
-      as `dynamic_content`
-    * It generates an internal template that contains the HTML eclosed in the Users block. We refer it
-      as `template_pattern`
+    * It creates a swap, initially empty, variable to store the dynamic content to be generated. We refer it as
+      `dynamic_content`
+    * It generates an internal template that contains the HTML eclosed in the Users block. We refer it as
+      `template_pattern`
     * It predisposes each future calling of the `setVar` method to be restricted to the content of `template_pattern`.
 
 * Then, we start a PHP `foreach` loop on `$users`. For each element of $users:
@@ -132,8 +132,8 @@ contained in the given `$users` array; specifically, we:
         * Else `foreach` loop exit
 
 * Finally, by calling the `setBlock` method, we stop the processing on the opened block and, behind the scenes, method
-  replaces the text originally enclosed in the block `Users` with the text contained into its internal
-  variable `dynamic_content`
+  replaces the text originally enclosed in the block `Users` with the text contained into its internal variable
+  `dynamic_content`
 
 Now we code the `controllers\UsersManager `and save it as `controllers\UsersManager.php`
 
@@ -182,6 +182,7 @@ Now you can run the controller:
 `http://localhost/users_manager`
 
 ...and you will get the users table (see the page summary below)
+
 
 ## Summary
 

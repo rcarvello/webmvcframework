@@ -12,7 +12,6 @@ Pages with dynamic content, have the information contained in the pages that cha
 changes are based on the contents of variables, arrays or database.   
 WebMVC handles the dynamic content of web pages firstly by giving it a static representation in the Template. For this
 purpose WebMVC use two elementary elements:
-
 * Placeholder
 * Block
 
@@ -38,7 +37,6 @@ code below:
   </body>
 </html>
 ```
-
 The static output of a template like this is:
 
 ![placeholder](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/placeholder.png)
@@ -108,8 +106,8 @@ in depth
 
 A block is a generic HTML text encapsulated inside two special HTML comments. A block, like a placeholder, is also
 located somewhere in the template. The content of a block can also contain placeholders.   
-For example we now define a block named "Users" located somewhere in a new template
-named `templates\user_manager.html.tpl`. See the code below:
+For example we now define a block named "Users" located somewhere in a new template named
+`templates\user_manager.html.tpl`. See the code below:
 
 ```html
 <!DOCTYPE html>

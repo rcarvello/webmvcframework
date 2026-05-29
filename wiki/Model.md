@@ -92,7 +92,6 @@ refactor the `controllers\NestedBlocks` by:
   provided by `models\NestedBlocks` as public services.
 
 See the code below for the new version of `controllers\NestedBlocks` :
-
 ```php
 <?php
 
@@ -147,8 +146,9 @@ class NestedBlocks extends Controller
 ```
 
 We don't need to update
-the [previuos](https://github.com/rcarvello/webmvcframework/wiki/Insight-on-nesting-of-blocks#nesting-of-blocks-for-showing-a-subset-of-custom-values) `views\NestedBlokcs`
-and `templates\nested_blocks.html.tpl` because they are already decoupled from control and data logic.     
+the [previuos](https://github.com/rcarvello/webmvcframework/wiki/Insight-on-nesting-of-blocks#nesting-of-blocks-for-showing-a-subset-of-custom-values)
+`views\NestedBlokcs` and `templates\nested_blocks.html.tpl` because they are already decoupled from control and data
+logic.     
 The figure below shows the files structure of model, view, template, and controller:
 
 ![Figure1](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/view_tree_mvc.png)
@@ -159,7 +159,6 @@ the previous page:
 ![Model](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/nested_blocks04.png)
 
 ## Summary
-
 By using Model, the Controller must now take into account the coordination of View and Model following these steps:
 
 * Link the variable `$this->view` and `$this->model` to the corresponding class instances passing them to the

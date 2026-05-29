@@ -47,8 +47,8 @@ components are equipped with specific functions to manage this need, and there a
 2. Because components are designed like MVC assemblies, developers can also use and aggregate many of them into one
    parent controller for the purpose of building a complex application page regarding database management. In the
    provided examples you will find a typical DB application
-   implemented [here](https://www.webmvcframework.com/examples/db/part_list_manager) (`controllers\examples\db\PartListManager`)
-   that uses different components assembled into one root Controller.
+   implemented [here](https://www.webmvcframework.com/webmvc/examples/db/part_list_manager) (
+   `controllers\examples\db\PartListManager`) that uses different components assembled into one root Controller.
 
 ## Conclusion
 

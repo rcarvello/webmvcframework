@@ -1,10 +1,14 @@
 The simpler component made available by WebMVC is `framework\components\DataRepeater` to easy the displaying of data
-coming from a given source. Two possible scenarios where the DataRepeater can be conveniently used are when: a list of
-records from a database or data stored in an array must be provided in the output according to a given visualization
-structure.   
-In the example above example, implemented by coding the `SimpleDataRepeater` assembly, we show how an instance
-of `framework\components\DataRepeater` will provide data repetition from different data sources, array and DB, and how
-you can use it.
+coming from a given source. Two possible scenarios where the DataRepeater can be conveniently used are when:
+
+* a list of records from a database
+* or data stored in an array
+
+must be provided in the output according to a given visualization structure.
+
+In the example above example, implemented by coding the `SimpleDataRepeater` assembly, we show how an instance of
+`framework\components\DataRepeater` will provide data repetition from different data sources, array and DB, and how you
+can use it.
 
 First of all the code for `templates\simple_data_repeater.html.tpl` where a Block Parts is designed to renders data.
 
@@ -18,12 +22,9 @@ First of all the code for `templates\simple_data_repeater.html.tpl` where a Bloc
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
+
 </head>
 <body>
 
@@ -45,12 +46,12 @@ First of all the code for `templates\simple_data_repeater.html.tpl` where a Bloc
                     </tr>
                 </thead>
                 <tbody>
-                   	<!-- BEGIN Parts -->
+                     <!-- BEGIN Parts -->
                      <tr>
                         <td>{part_code}</td>
                         <td>{description}</td>
                     </tr> 
-                	<!-- END Parts -->
+                    <!-- END Parts -->
                 </tbody>
             </table>
         </div>
@@ -59,8 +60,7 @@ First of all the code for `templates\simple_data_repeater.html.tpl` where a Bloc
 </html>
 ```
 
-Here the simple `views\SimpleDataRepetaer.php`
-
+Here is the simple `views\SimpleDataRepetaer.php`
 ```php
 <?php
 namespace views;
@@ -85,8 +85,8 @@ class SimpleDataRepeater extends View
 }
 ```
 
-Below we show the `models\SimpleDataRepetaer.php` in which we coded two methods `getPartsFromArray()`
-and `getPartsFromDB()` (read code comments) providing respectively data from array and DB. You will find the DDL of the
+Below we show the `models\SimpleDataRepetaer.php` in which we coded two methods `getPartsFromArray()`  and
+`getPartsFromDB()` (read code comments) providing respectively data from array and DB. You will find the DDL of the
 table `part` [here](https://github.com/rcarvello/webmvcframework/blob/master/sql/mrp.sql) (lines from 171 to 198)
 
 ```php
@@ -129,7 +129,6 @@ class SimpleDataRepeater extends Model
 ```
 
 Finally the code for `controllers\SimpleDataRepeater`
-
 ```php
 <?php
 
@@ -234,7 +233,7 @@ class SimpleDataRepeater extends Controller
 
 
     /**
-    * Initialize the View by loading static design of /simple_data_repeater.html.tpl
+    * Initialize the View by loading the static design of /simple_data_repeater.html.tpl
     * managed by views\SimpleDataRepeater class
     *
     */
@@ -256,13 +255,27 @@ class SimpleDataRepeater extends Controller
 }
 ```
 
-In the above code, you will find the following methods. Each one uses different data source and initialization mode for
+In the above code, you will find the following methods. Each one uses different (optionally) parameters to instantiate
 the DataRepeater component:
 
-* `useArray()`
-* `useDB()`
-* `manualSetupArray()`
-* `manualSetupDB()`
+                               new DataRepeater( [View] , [Model] , [Template Block], [Array] )
 
-Please read code comments and implementations for technical details regarding the methods above. Let only one of them be
-uncommented inside the `autorun` method for showing it's output when running `SimpleDataRepeater`.
+* `useArray()`: It automatically renders array data into the Block labeled Parts.
+
+  `new DataRepeater($this->view,null,"Parts",$parts)`
+
+* `useDB()`: It automatically renders model data into the Block labeled Parts.
+
+  `new DataRepeater($this->view,$this->model,"Parts",null)`
+
+* `manualSetupArray()`: It manually renders array data into the Block labeled Parts by manually setting the DataRepeater
+  Instance.
+
+* `manualSetupDB()`: It manually renders model data into the Block labeled Parts by manually setting the DataRepeater
+  Instance.
+
+Please read the code comments and implementations for technical details regarding the methods above.
+Let only one of them be uncommented inside the `autorun` method for showing its output when running
+`SimpleDataRepeater`.
+
+![WebMVC Folders Structure](https://github.com/rcarvello/webmvcframework/blob/master/docs/wiki_resource/DataRepeater.png)
