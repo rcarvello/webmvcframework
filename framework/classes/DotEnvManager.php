@@ -32,6 +32,9 @@
 
 namespace framework\classes;
 
+use InvalidArgumentException;
+use RuntimeException;
+
 class DotEnvManager
 {
     /**
@@ -42,18 +45,18 @@ class DotEnvManager
     protected $path;
 
 
-    public function __construct(string $path)
+    public function __construct($path)
     {
         if (!file_exists($path)) {
-            throw new \InvalidArgumentException(sprintf('%s does not exist', $path));
+            throw new InvalidArgumentException(sprintf('%s does not exist', $path));
         }
         $this->path = $path;
     }
 
-    public function load(): void
+    public function load()
     {
         if (!is_readable($this->path)) {
-            throw new \RuntimeException(sprintf('%s file is not readable', $this->path));
+            throw new RuntimeException(sprintf('%s file is not readable', $this->path));
         }
 
         $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
