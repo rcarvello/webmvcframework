@@ -16,6 +16,7 @@ return (new PhpCsFixer\Config())
     ->setFinder($finder)
     ->setRules([
         'nullable_type_declaration_for_default_null_value' => true,
+        'short_scalar_cast' => true
     ]);
 
 foreach ($finder as $file) {
