@@ -6,6 +6,7 @@ $finder = PhpCsFixer\Finder::create()
         __DIR__ . '/framework',
         __DIR__ . '/controllers',
         __DIR__ . '/models',
+        __DIR__ . '/config',
         __DIR__ . '/views',
         __DIR__ . '/util',
         __DIR__ . '/classes',
